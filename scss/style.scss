@@ -1,0 +1,117 @@
+/*-----------------------------------------------------------------
+Theme Name: CleanPro
+Author: SoftCrafty
+Author URI: https://themeforest.net/user/SoftCrafty
+Version: 1.0.0 
+Description: CleanPro - Cleaning Service HTML Template
+-------------------------------------------------------------------
+ CSS TABLE OF CONTENTS
+------------------------------------------------------------------- 
+1. Common
+2. Header
+3. Hero
+4. About
+5. Meanmenu
+6. Title
+7. Service
+8. Project
+9. Testimonial
+10. Contact
+11. Blog
+12. Pricing
+13. WCU
+14. Team
+15. FAQ
+16. Work Process
+17. Appointment
+18. Footer
+------------------------------------------------------------------*/
+
+//====== modules Start ======//
+
+/* 1. Common */
+@use "./modules/common/counter-box";
+@use "./modules/common/slider-button";
+@use "./modules/common/fancy-box";
+@use "./modules/common/progress-bar";   
+@use "./modules/common/marquee";   
+@use "./modules/common/video";   
+@use "./modules/common/faq";   
+@use "./modules/common/popupsearch";   
+@use "./modules/common/sidemenu";   
+@use "./modules/common/pagination";   
+@use "./modules/common/breadcrumb";   
+@use "./modules/common/widget";   
+
+/* 2. Header */
+@use "./modules/header/header";
+@use "./modules/header/header-2";
+@use "./modules/header/mobile-menu";
+
+/* 3. Hero */
+@use "./modules/hero/hero1";
+@use "./modules/hero/hero2";
+
+/* 4. About */
+@use "./modules/about/about1";   
+@use "./modules/about/about2";   
+
+/* 5. Meanmenu */
+@use "./modules/meanmenu";
+
+/* 5. Offcanvas */
+@use "./modules/offcanvas";
+  
+/* 6. Title */
+@use "./modules/title";
+
+/* 7. Service */
+@use "./modules/service/service1";   
+@use "./modules/service/service2";   
+
+/* 8. Project */
+@use "./modules/project/project1";   
+@use "./modules/project/project2";   
+@use "./modules/project/project3";   
+@use "./modules/project/project4";   
+
+/* 9. Testimonial */
+@use "./modules/testimonial/testimonial1";   
+@use "./modules/testimonial/testimonial2";   
+
+/* 10. Contact */
+@use "./modules/contact/contact1";   
+@use "./modules/contact/contact2";   
+
+/* 11. Blog */
+@use "./modules/blog/blog1";
+@use "./modules/blog/blog2";
+@use "./modules/blog/blog3";
+@use "./modules/blog/blog4";
+
+/* 12. Pricing */
+@use "./modules/pricing/pricing1";   
+
+/* 13. WCU */
+@use "./modules/chooseUs/choose1";   
+
+/* 14. Team */
+@use "./modules/team/team1";   
+@use "./modules/team/team2";   
+
+/* 15. FAQ */
+@use "./modules/faq/faq1";  
+
+/* 16. Work Process */
+@use "./modules/work-process";
+
+/* 17. Appointment */
+@use "./modules/appointment";
+
+/* 18. Footer */
+@use "./modules/footer/footer1";
+@use "./modules/footer/footer2";
+
+//====== modules End ======//
+
+//====== Template Section Style End ======//

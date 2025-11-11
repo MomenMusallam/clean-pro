@@ -1,0 +1,62 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+.counter {
+    position: relative;
+    background: linear-gradient(90deg, #3CA200 0%, #16171A 100%);
+    &-shape1 {
+        position: absolute;
+        top: 0;
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+    &-shape2 {
+        position: absolute;
+        right: 0;
+        top: 0;
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+    &-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 50px;
+        &-box {
+            &__value {
+                display: flex;
+                align-items: center;
+                
+                color: var(--White, #FFF);
+                font-family: $body-font;
+                font-size: 64px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 26px; /* 40.625% */
+                padding-bottom: 14px;
+                @include breakpoint (max-md) {
+                    font-size: 54px;
+                }
+                img {
+                    padding-right: 14px;
+                    padding-bottom: 7px;
+                }
+            }
+            &__label {
+                p {
+                    color: var(--White, #FFF);
+                    font-family: $title-font;
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 34px; /* 141.667% */
+                }
+            }
+        }
+    
+    }
+}
+
+

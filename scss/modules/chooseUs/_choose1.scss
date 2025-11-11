@@ -1,0 +1,83 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+
+.choose1 {
+  position: relative;
+  background: rgb(22, 23, 52);
+
+  &__thumb {
+    position: absolute;
+    z-index: 9;
+    @include breakpoint (max-xxl) {
+      display: none;
+    }
+  }
+  &__shape1 {
+    position: absolute;
+    top: 0;
+    left: 38%;
+    z-index: 9;
+  }
+  &__shape2 {
+    position: absolute;
+    bottom: 0%;
+    right: -3%;
+    z-index: 9;
+  }
+  &-content {
+    position: relative;
+    z-index: 9;
+    max-width: 655px;
+    padding-left: 20px;
+    @include breakpoint (max-xl2) {
+      padding-left: 100px;
+      max-width: none;
+    }
+    @include breakpoint (max-xxxl) {
+      padding-left: 165px;
+    }
+    @include breakpoint (max-xxl) {
+      padding-left: 0;
+      max-width: 645px;
+    }
+    
+    &-btn {
+      display: flex;
+      gap: 30px;
+      @include breakpoint (max-sm){
+        flex-direction: column;
+      }
+      &-item {
+        position: relative;
+        p {
+          padding: 35px 22px 35px 63px;
+          border-radius: 20px;
+          border: 1px solid $gray2;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 283px;
+          height: 84px;
+  
+          color: #FFF;
+          font-family: $title-font;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 30px; /* 150% */
+          @include breakpoint (max-md){
+            padding: 35px 22px 35px 60px;
+            width: 244px;
+            height: 71px;
+            font-size: 16px;
+          }
+        }
+        &__icon {
+          position: absolute;
+          top: 0;
+        }
+      }
+    }
+  }
+}
+  

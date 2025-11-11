@@ -1,0 +1,74 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+
+
+/*----------------------------------------------
+    # Buttons style here
+----------------------------------------------*/
+.slider-btn {
+    @include flex;
+    gap: 12px;
+    .style1 {
+        display: flex;
+        width: 64px;
+        height: 64px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 42px;
+        border: 1px solid rgba(38, 38, 38, 0.30);
+        background: $black;
+
+        i {
+            color: $white;
+            font-size: 20px;
+        }
+
+        img {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            max-width: fit-content;
+        }
+
+        @include breakpoint (max-sm) {
+            width: 50px;
+            height: 50px;
+        }
+        &:hover {
+            background: $theme-color;
+            @include transition;
+        }
+    }
+    .style2 {
+        display: flex;
+        width: 64px;
+        height: 64px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 42px;
+        background: $black;
+
+        i {
+            color: $white;
+            font-size: 20px;
+        }
+
+        img {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            max-width: fit-content;
+        }
+
+        @include breakpoint (max-sm) {
+            width: 50px;
+            height: 50px;
+        }
+        &:hover {
+            background: $yellow;
+            @include transition;
+        }
+    }
+}

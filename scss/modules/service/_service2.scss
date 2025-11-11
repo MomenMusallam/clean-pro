@@ -1,0 +1,131 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+
+.service2 {
+    &-details {
+        padding: 30px;
+        border-radius: 10px;
+        background: $white;
+        box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.08);
+        &__thumb {
+            padding-bottom: 18px;
+            border-radius: 10px;
+            img {
+                border-radius: 10px;
+            }
+        }
+        &-content {
+            &__title{
+                padding-bottom: 20px;
+                h3 {
+                    color: $title-color4;
+                    font-family: $title-font;
+                    font-size: 48px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 54px; 
+                    text-transform: capitalize;
+                    @include breakpoint (max-md){
+                        font-size: 34px;
+                        line-height: 42px; 
+                    }
+                }
+            }
+            &__desc {
+                padding-bottom: 20px;
+                p {
+                    color: $gray2;
+                    font-family: $body-font;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 26px; 
+                }
+            }
+
+            &__desc2 {
+                padding-bottom: 23px;
+                p {
+                    color: $gray2;
+                    font-family: $body-font;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 26px; /* 162.5% */
+                }
+            }
+            &__title2 {
+                padding-bottom: 24px;
+                h5 {
+                    color: $title-color4;
+                    font-family: $paragraph-font2;
+                    font-size: 30px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 40px; /* 133.333% */
+                    @include breakpoint (max-md){
+                        font-size: 20px;
+                    }
+                }
+            }
+            &__desc3 {
+                max-width: 713px;
+                padding-bottom: 33px;
+                p {
+                    color: $gray2;
+                    font-family: $body-font;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 26px; /* 162.5% */
+                }
+            }
+            &-thumb {
+                display: flex;
+                gap: 24px;
+                padding-bottom: 33px;
+
+                img {
+                    border-radius: 20px;
+                }
+            }
+            &__title3 {
+                padding-bottom: 24px;
+                h5 {
+                    color: $title-color4;
+                    font-family: $paragraph-font2;
+                    font-size: 30px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 40px; /* 133.333% */
+                    @include breakpoint (max-md){
+                        font-size: 20px;
+                    }
+                }
+            }
+            &-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 78px;
+                @include breakpoint (max-xxl){
+                    gap: 20px;
+                }
+            }
+            &__title4 {
+                padding-bottom: 24px;
+                padding-top: 24px;
+                h5 {
+                    color: $title-color4;
+                    font-family: $title-font;
+                    font-size: 30px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 40px; /* 133.333% */
+                    @include breakpoint (max-md){
+                        font-size: 20px;
+                    }
+                }
+            }
+        }        
+    }
+}

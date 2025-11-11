@@ -1,0 +1,174 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+
+.hero2 {
+    position: relative;
+    padding: 85px 0 85px;
+    margin-top: 107px;
+    @include breakpoint (max-xl) {
+        margin-bottom: 0px;
+        padding: 0;
+
+    }
+    &__shape1 {
+        position: absolute;
+        top: -25px;
+        left: 125px;
+        z-index: 9;
+        @include breakpoint (max-xl2){
+            display: none;
+        }
+    }
+    &__shape2 {
+        position: absolute;
+        bottom: 12%;
+        z-index: 9;
+        left: 40%;
+        @include breakpoint (max-xl2){
+            display: none;
+        }
+    }
+    &-background-image {
+        &__one {
+            position: absolute;
+            inset: 0;
+            z-index: 9;
+            background-repeat: no-repeat;
+            background-size: cover;
+            left: 47.3%;
+            @include breakpoint (max-xxl){
+                left: 62.3%;
+            }
+            @include breakpoint (max-xl){
+                display: none;
+            }
+        }
+        &__two {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            width: 23%;
+            margin-left: -184px;
+            display: inline-block;
+            @include breakpoint (max-xl){
+                display: none;
+            }
+        
+            &::before {
+              content: '';
+              position: absolute;
+              inset: 0;
+              z-index: 0; 
+              background: $theme-color;
+            }
+        
+            img {
+              position: relative;
+              z-index: 1; 
+              display: block;
+            //   width: 100%;
+              top: 21%;
+              height: auto;
+            }
+        }
+    }    
+    &-content {
+        position: relative;
+        z-index: 8;
+        border-radius: 20px;
+        background: var(--100, #FCF9F7);
+        padding: 60px 245px 181px 113px;
+        margin-left: -80px;
+        @include breakpoint (max-xl) {
+            padding: 60px 101px 81px 113px;
+            margin-left: 0px;
+        }
+        @include breakpoint (max-lg) {
+            padding: 60px;
+        }
+        @include breakpoint (max-md) {
+            padding: 30px;
+        }
+        &__subtitle {
+            color: $theme-color;
+            font-family: "Cormorant Garamond";
+            font-size: 15px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 22px; /* 146.667% */
+            letter-spacing: 1.62px;
+            text-transform: uppercase;
+            padding-bottom: 5px; 
+            img {
+                padding-right: 10px;
+            }
+        }
+        &__title { 
+            padding-bottom: 10px;
+            color: var(--900, #0D0D0D);
+            font-family: $title-font;
+            font-size: 64px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 74px; /* 115.625% */
+            span {
+                text-decoration: underline;
+                text-decoration-color: $yellow;
+                -moz-text-decoration-color: $yellow;
+            }
+            @include breakpoint (max-lg) {
+                font-size: 58px;
+                line-height: 70px;
+            }
+            @include breakpoint (max-md) {
+                font-size: 45px;
+                line-height: 50px;
+            }
+            @include breakpoint (max-sm) {
+                font-size: 35px;
+                line-height: 40px;
+            }
+        } 
+        &__desc {
+            padding-right: 0px;
+            color: $title-color2;
+            font-family: $body-font;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 26px;
+        }
+        &-cta {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            @include breakpoint (max-xs){
+                flex-direction: column;
+                align-items: self-start;
+                gap: 20px;
+            }
+            &-btn {
+                display: flex;
+                gap: 20px;
+                &-text {
+                    &__title {
+                        color: var(--900, #0D0D0D);
+                        font-family: $title-font;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: 26px; /* 185.714% */
+                    }
+                    &__numb {
+                        color: var(--900, #0D0D0D);
+                        font-family: $title-font;
+                        font-size: 20px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: 30px; /* 150% */
+                    }
+                }
+            }
+        }   
+    }   
+}

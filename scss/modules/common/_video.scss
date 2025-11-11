@@ -1,0 +1,57 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+
+
+/*----------------------------------------------
+    # Video style here
+----------------------------------------------*/
+.video-box-area {
+    position: relative;
+    z-index: 3;
+  
+    .video-wrap  {
+      &.style1 {
+        padding: 0;
+  
+        .video-box {
+          position: relative;
+          z-index: 5;
+          padding: 400px 0 400px;
+
+          @include breakpoint (max-lg) {
+            padding: 300px 0 300px;
+          }
+
+          @include breakpoint (max-sm) {
+            padding: 250px 0 250px;
+          }
+      
+          &.background-image {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+          }
+      
+          .play-btn {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 6;
+
+            svg {
+              width: 80px;
+              height: 80px;
+              @include breakpoint (sm) {
+                  width: 120px;
+                  height: 120px;
+              }
+              :hover {
+                fill: $title-color;
+              }
+            }
+          }      
+        }
+      }
+    }
+  }

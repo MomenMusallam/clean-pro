@@ -1,0 +1,141 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+
+.pricing1 {
+    position: relative;
+    &-card {
+        position: relative;
+        @include breakpoint (max-xsmall){
+            border: 1px solid #D8DDE1;
+            border-radius: 25px;            
+        }
+        &-shape1 {
+            position: absolute;
+            z-index: 1;
+            @include breakpoint (max-xsmall){
+                display: none;
+            }
+        }
+        &-shape2 {
+            position: absolute;
+            z-index: 1;
+            bottom: -20px;
+            left: 8px;
+            @include breakpoint (max-xsmall){
+                display: none;
+            }
+        }
+        &-content {
+            position: relative;
+            z-index: 9;
+            padding: 45px 50px 50px;
+            @include breakpoint (max-md){
+                padding: 40px 30px 50px;
+            }
+            &__title {
+                padding-bottom: 10px;
+                h5 {
+                    color: $title-color3;
+                    font-family: $title-font;
+                    font-size: 30px;
+                    font-style: normal;
+                    font-weight: 700;   
+                    line-height: 40px; /* 133.333% */
+                }
+            }
+            &__desc {
+                padding-bottom: 27px;
+                @include breakpoint (max-sm){
+                    max-width: 400px;
+                }
+                p {
+                    color: $gray;
+                    font-family: $body-font;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 26px; /* 162.5% */
+                }
+            }
+            &__btn {
+                margin-top: 30px;
+                span {
+                    padding: 18px 110px;
+                    border-radius: 8px;
+                    border: 1px solid $border-color;
+                    text-align: center;
+                    color: $gray2;
+                    font-family: $body-font;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 24px; /* 171.429% */
+                    text-transform: uppercase;
+                    @include breakpoint (max-xxxl) {
+                        padding: 18px 105px;
+                    }
+                    @include breakpoint (max-xsmall){
+                        padding: 22px 42px;
+
+                    }
+                }
+            }            
+        }
+        &-value {
+            position: relative;
+            z-index: 9;
+            left: 12px;
+            padding: 28px 23px;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            background: $white;
+            &__dolar {
+                color: $theme-color;
+                font-family: $title-font;
+                font-size: 36px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 46px; /* 127.778% */ 
+            }
+            &__month {
+                color: $title-color;
+                text-align: center;
+                font-family: $title-font;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 34px; /* 141.667% */
+            }
+        }
+        &:hover {
+            .pricing1 {
+                &-card {
+                    &-shape1 {
+                        svg path {
+                            stroke: $theme-color;
+                            @include transition;
+                        }
+                    }
+                    &-shape2 {
+                        svg path {
+                            fill: $theme-color;
+                            @include transition;
+                        }
+                    }
+                    &-content {
+                        &__btn {
+                            span {
+                                border: 1px solid $theme-color;
+                                color: $theme-color;
+                                @include transition;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

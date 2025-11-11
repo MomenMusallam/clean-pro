@@ -1,0 +1,249 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+
+.about1 {
+    position: relative;
+    &-shape1 {
+        position: absolute;
+        right: 13.7%;
+        bottom: 0;
+        z-index: 5;
+
+        @include breakpoint (max-xl4) {
+            right: 12.7%;
+        }
+        @include breakpoint (max-xl3) {
+            right: 10.7%;
+        }
+        @include breakpoint (max-xl2) {
+            right: 8%;
+        }
+        @include breakpoint (max-xxxl) {
+            right: 41px;
+        }
+        @include breakpoint (max-xxl) {
+            right: 31px;
+        }
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+    &-content {
+            padding: 48px 60px;
+            position: relative;
+            z-index: 7;
+            @include breakpoint (max-xxl) {
+                padding: 48px 30px;
+            }
+            @include breakpoint (max-xl) {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+            @include breakpoint (max-lg) {
+                padding: 45px 10px;
+            }
+
+        &-btn {
+            display: inline-table;
+            color: $title-color;
+            font-family: $title-font;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 28px; /* 155.556% */
+            @include breakpoint (max-md){
+                font-size: 14px;
+            }
+            @include breakpoint (max-sm){
+                flex-direction: column;
+                display: flex;
+            }
+            &__one {
+                display: inline-flex;
+                padding: 20px 25px;
+                justify-content: center;
+                align-items: center;
+                gap: 10px; 
+                border-radius: 2px;
+                background: $white;
+                @include breakpoint (max-lg){
+                    padding: 20px 15px;
+                }
+                @include breakpoint (max-md){
+                    padding: 10px 5px;
+                }
+                &.active-btn-style {
+                    display: inline-flex;
+                    padding: 25px;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    border-radius: 2px;
+                    background: $theme-color;
+                    color: $white;
+                    font-family: $title-font;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 28px; /* 155.556% */
+                    @include breakpoint (max-lg){
+                        padding: 25px 15px;
+                    }
+                    @include breakpoint (max-md){
+                        font-size: 14px;
+                        padding: 15px 5px;
+                    }
+                }
+            }
+        }
+        &-info {
+            padding-top: 35px;
+            padding-bottom: 25px;
+            display: flex;
+            gap: 30px;
+            @include breakpoint(max-xl){
+                padding-top: 40px;
+                display: flex;
+                gap: 65px;
+                justify-content: center;
+            }
+            @include breakpoint(max-md){
+                gap: 35px;
+            }
+            @include breakpoint(max-xsmall){
+                gap: 15px;
+            }
+            &-left {
+                padding-top: 10px;
+                &__icon {
+                    padding-bottom: 20px;
+                }
+                &__title {
+                    padding-bottom: 27px;
+                    max-width: 128px;
+                    h6 {
+                        color: #000;
+                        font-family: $title-font;
+                        font-size: 24px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: 34px; /* 141.667% */
+                        @include breakpoint (max-sm){
+                            font-size: 20px;
+                            line-height: 30px;
+                        }  
+                    }
+                }
+                &__link {
+                    color: $title-color;
+                    font-family: $body-font;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 24px; /* 171.429% */
+                    letter-spacing: 0.42px;
+                    text-transform: uppercase;
+                    padding-bottom: 36px;
+                }
+                &__rating {
+                    h6 {
+                        color: #000;
+                        font-family: $title-font;
+                        font-size: 24px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: 34px; 
+                        @include breakpoint (max-sm){
+                            font-size: 20px;
+                            line-height: 30px;
+                        }                       
+                    }
+                    p {
+                        color: #000;
+                        font-family: $body-font;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 24px; /* 171.429% */                        
+                    }
+                }
+            }
+            &__verticalLine {
+                padding-top: 5px;
+                padding-right: 20px;
+                @include breakpoint (max-md) {
+                    display: none;
+                }
+            }
+            &-right {
+                &-list {
+                    padding-bottom: 23px;
+                    display: flex;
+                    gap: 15px;
+                    align-items: center;
+
+                    &-item {
+                        &__title {
+                            color: #000;
+                            font-family: $title-font;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: 600;
+                            line-height: 30px; 
+                        }
+                        &__text {
+                            color: $gray2;
+                            font-family: $body-font;
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 24px; 
+                            max-width: 270px;
+                        }
+                    }
+                }
+                &-profile {
+                    display: flex;
+                    gap: 14px;
+                    padding-top: 24px;
+                    &__img {
+                        padding-top: 15px;
+                    }
+                    @include breakpoint (max-xsmall) {
+                        padding-top: 0px;
+                    }
+                }
+            }
+        }
+    }
+    &-thumb {
+        position: relative;
+        z-index: 9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-left: -170px;
+        @include breakpoint (max-xxl){
+            margin-left: -212px;
+        }
+        @include breakpoint (max-xl){
+            display: none;
+        }
+        &__top {
+            margin-bottom: -77px;
+        }
+        &-middle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        &__bottom {
+            margin-top: -77px;
+        }
+    }
+}
+
+  

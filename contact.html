@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <!--=========== Meta Tags ==========-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SoftCrafty">
+    <meta name="description" content="CleanPro - Cleaning Service HTML Template">
+    <!--============= Page title ============ -->
+    <title>CleanPro - Cleaning Service HTML Template</title>
+    <!--===== Favcion =====-->
+    <link rel="shortcut icon" href="images/favicon.png">
+    <!--===== Bootstrap min.css =====-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--===== All Min Css =====-->
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <!--===== Animate.css =====-->
+    <link rel="stylesheet" href="css/animate.min.css">
+    <!--===== Swiper Bundle.css =====-->
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <!--===== Magnific Popup.css =====-->
+    <link rel="stylesheet" href="css/magnific-popup.min.css">
+    <!--===== Text Splitting.css =====-->
+    <link rel="stylesheet" href="css/splitting.min.css">
+        <!--<< MeanMenu.css >>-->
+    <link rel="stylesheet" href="css/meanmenu.css">
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <!--===== Main.css =====-->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!--===== Preloader Start =====-->
+    <div id="preloader" class="preloader">
+        <div class="animation-preloader">
+            <div class="txt-loading">
+                <span data-text-preloader="C" class="letters-loading">
+                    C
+                </span>
+                <span data-text-preloader="L" class="letters-loading">
+                    L
+                </span>
+                <span data-text-preloader="E" class="letters-loading">
+                    E
+                </span>
+                <span data-text-preloader="A" class="letters-loading">
+                    A
+                </span>
+                <span data-text-preloader="N" class="letters-loading">
+                    N
+                </span>
+                <span data-text-preloader="P" class="letters-loading">
+                    P
+                </span>
+                <span data-text-preloader="R" class="letters-loading">
+                    R
+                </span>
+                <span data-text-preloader="O" class="letters-loading">
+                    O
+                </span>
+            </div>
+            <p class="text-center">Loading</p>
+        </div>
+        <div class="loader">
+            <div class="row">
+                <div class="col-3 loader-section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-right">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-right">
+                    <div class="bg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--===== Mouse Cursor Start =====-->
+    <div class="mouse-cursor cursor-outer"></div>
+    <div class="mouse-cursor cursor-inner"></div>
+
+    <!--===== Back To Top Start =====-->
+    <button id="back-top" class="back-to-top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!--===== Search Box Popup =====-->
+    <div class="popup-search-box d-none d-lg-block">
+        <button class="searchClose"><i class="fal fa-times"></i></button>
+        <form action="#">
+            <input type="text" placeholder="What are you looking for?">
+            <button type="submit"><i class="fal fa-search"></i></button>
+        </form>
+    </div>
+
+    <!-- Offcanvas Area Start -->
+    <div class="fix-area">
+        <div class="offcanvas__info">
+            <div class="offcanvas__wrapper">
+                <div class="offcanvas__content">
+                    <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
+                        <div class="offcanvas__logo">
+                            <a href="index.html">
+                                <img src="images/logo/Logo-dark.png" alt="logo">
+                            </a>
+                        </div>
+                        <div class="offcanvas__close">
+                            <button>
+                            <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mobile-menu fix mb-3"></div>
+                    <div class="offcanvas__contact">
+                        <h4>Contact Info</h4>
+                        <ul>
+                            <li class="d-flex align-items-center">
+                                <div class="offcanvas__contact-icon">
+                                    <i class="fal fa-map-marker-alt"></i>
+                                </div>
+                                <div class="offcanvas__contact-text">
+                                    <a target="_blank" href="#">3517 W. Gray St. Utica, Pennsylvania 57867</a>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <div class="offcanvas__contact-icon mr-15">
+                                    <i class="fal fa-envelope"></i>
+                                </div>
+                                <div class="offcanvas__contact-text">
+                                    <a href="mailto:example@gmail.com"><span>tanya.hill@example.com</span></a>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <div class="offcanvas__contact-icon mr-15">
+                                    <i class="fal fa-clock"></i>
+                                </div>
+                                <div class="offcanvas__contact-text">
+                                    <a target="_blank" href="#">Mod-friday, 09am -05pm</a>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <div class="offcanvas__contact-icon mr-15">
+                                    <i class="far fa-phone"></i>
+                                </div>
+                                <div class="offcanvas__contact-text">
+                                    <a href="tel:+(123)456-7890">(123) 456-7890</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="header-button">
+                            <div class="btnbox">
+                                <a class="theme-btn" href="contact.html">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="16" viewBox="0 0 19 16" fill="none">
+                                            <path d="M18.45 8.70711C18.8406 8.31658 18.8406 7.68342 18.45 7.29289L12.0861 0.928932C11.6955 0.538408 11.0624 0.538408 10.6719 0.928932C10.2813 1.31946 10.2813 1.95262 10.6719 2.34315L16.3287 8L10.6719 13.6569C10.2813 14.0474 10.2813 14.6805 10.6719 15.0711C11.0624 15.4616 11.6955 15.4616 12.0861 15.0711L18.45 8.70711ZM0.74292 9H17.7429V7H0.74292V9Z" fill="white"/>
+                                        </svg>
+                                    </span>
+                                    Get A Quote 
+                                </a>
+                            </div>
+                        </div>
+                        <div class="social-icon d-flex align-items-center">
+                            <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://x.com/?lang=en&mx=2"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas__overlay"></div>
+
+    <div class="header-top-section style1 fix">
+        <div class="container">
+            <div class="header-top-wrapper">
+                <div class="top-left">
+                    <ul class="contact-list">
+                        <li>
+                            <a href="mailto:info@example.com">
+                                <img src="images/icon/envelop-top.svg" alt="Email">
+                                <p>info@example.com</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.google.com/maps?q=6391+Elgin+St+Celina+10299" target="_blank">
+                                <img src="images/icon/location-top.svg" alt="Location">
+                                <p>6391 Elgin St. Celina, 10299</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="images/icon/clock-top.svg" alt="Opening Hours">
+                                <p>Sunday - Friday: 9 am - 8 pm</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="top-right">
+                    <ul class="contact-list">
+                        <li>
+                            <a href="https://facebook.com/yourpage" target="_blank" rel="noopener noreferrer">
+                                <img src="images/icon/facebook-top.svg" alt="Facebook">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                <img src="images/icon/instagram-top.svg" alt="Instagram">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                <img src="images/icon/twitter-top.svg" alt="Twitter">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+                                <img src="images/icon/linkeding-top.svg" alt="LinkedIn">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- header area start -->
+    <header>
+        <div class="header-1" id="header-sticky">
+            <div class="header-wrap">
+                <div class="logo">
+                    <a class="primary-logo" href="index.html"><img src="images/logo/Logo-dark.png" alt="logo"></a>
+                    <a class="sticky-logo" href="index.html"><img src="images/logo/Logo-dark.png" alt="logo"></a>
+                </div>
+                <div class="main-menu-wrap">
+                    <div class="main-menu">
+                        <nav id="mobile-menu">
+                            <ul>
+                                <li class="has-dropdown menu-thumb">
+                                    <a href="index.html">
+                                        Home  <span class="dropdown-icon"><img src="images/icon/dropdown-icon.svg" alt="icon"></span>                                                   
+                                    </a>
+                                    <ul class="submenu">
+                                        <li><a href="index.html">Home 01</a></li>
+                                        <li><a href="index2.html">Home 02</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-dropdown">
+                                    <a href="about.html">
+                                        About Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="service.html">
+                                        Services <span class="dropdown-icon"><img src="images/icon/dropdown-icon.svg" alt="icon"></span>                                                  
+                                    </a>
+                                    <ul class="submenu">
+                                        <li><a href="service.html">Service</a></li>
+                                        <li><a href="service-details.html">Service Details</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="service.html">
+                                        Projects <span class="dropdown-icon"><img src="images/icon/dropdown-icon.svg" alt="icon"></span>                                                  
+                                    </a>
+                                    <ul class="submenu">
+                                        <li><a href="project.html">Project</a></li>
+                                        <li><a href="project-details.html">Project Details</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="blog.html">
+                                        Blog <span class="dropdown-icon"><img src="images/icon/dropdown-icon.svg" alt="icon"></span>  
+                                    </a>
+                                    <ul class="submenu">
+                                        <li><a href="blog.html">Blog</a></li>
+                                        <li><a href="blog-details.html">Blog Details</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Pages <span class="dropdown-icon"><img src="images/icon/dropdown-icon.svg" alt="icon"></span>  
+                                    </a>
+                                    <ul class="submenu">
+                                        <li><a href="team.html">Team</a></li>
+                                        <li><a href="team-details.html">Team Details</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="contact.html">
+                                        Contact
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="search search-trigger searchBoxToggler d-none d-xxl-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                                <path d="M18.869 19.662L12.926 13.178C14.265 11.777 15.001 9.945 15.001 8C15.001 5.997 14.221 4.113 12.804 2.697C11.387 1.281 9.50398 0.5 7.50098 0.5C5.49798 0.5 3.61398 1.28 2.19798 2.697C0.781977 4.114 0.000976562 5.997 0.000976562 8C0.000976562 10.003 0.780977 11.887 2.19798 13.303C3.61498 14.719 5.49798 15.5 7.50098 15.5C9.22698 15.5 10.863 14.921 12.189 13.855L18.132 20.338C18.231 20.446 18.365 20.5 18.501 20.5C18.622 20.5 18.743 20.457 18.839 20.369C19.043 20.182 19.056 19.866 18.87 19.663L18.869 19.662ZM0.999977 8C0.999977 4.416 3.91598 1.5 7.49998 1.5C11.084 1.5 14 4.416 14 8C14 11.584 11.084 14.5 7.49998 14.5C3.91598 14.5 0.999977 11.584 0.999977 8Z" fill="black"/>
+                            </svg>
+                    </button>
+                    <button class="offcanvas-bar text-white sidebar__toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                <path d="M21.875 6.25H3.125C2.78 6.25 2.5 5.97 2.5 5.625C2.5 5.28 2.78 5 3.125 5H21.875C22.22 5 22.5 5.28 22.5 5.625C22.5 5.97 22.22 6.25 21.875 6.25Z" fill="black"/>
+                                <path d="M16.875 15H3.125C2.78 15 2.5 14.72 2.5 14.375C2.5 14.03 2.78 13.75 3.125 13.75H16.875C17.22 13.75 17.5 14.03 17.5 14.375C17.5 14.72 17.22 15 16.875 15Z" fill="black"/>
+                                <path d="M21.875 23.75H3.125C2.78 23.75 2.5 23.47 2.5 23.125C2.5 22.78 2.78 22.5 3.125 22.5H21.875C22.22 22.5 22.5 22.78 22.5 23.125C22.5 23.47 22.22 23.75 21.875 23.75Z" fill="black"/>
+                        </svg>
+                    </button>
+                    <div class="pl-30 btn-wrapper return-left d-none d-xxl-block">
+                            <a class="theme-btn style4" href="contact.html">Get a Quote<i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<div id="smooth-wrapper">
+    <div id="smooth-content">
+
+    <!--===== Breadcrumb Section    S T A R T =====-->
+    <div class="breadcrumb bg-cover" style="background-image: url('images/breadcrumb/breadcrumb.png');">
+        <div class="breadcrumb-shape1"><img src="images/shape/bubble-shape5.svg" alt="svg"></div>
+        <div class="breadcrumb-shape2"><img src="images/shape/bubble-shape5.svg" alt="svg"></div>
+        <div class="container">
+            <div class="breadcrumb-heading return-left">
+                <h1>Contact Us</h1>
+                <ul class="breadcrumb-heading__items">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <i class="fa-regular fa-chevrons-right"></i>
+                    </li>
+                    <li>
+                        Contact Us
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--===== Contact Section    S T A R T =====-->
+    <section class="contact2 section-padding pb-0 fix">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="contact2-content">
+                        <h2 class="contact2-content__title">Contact Information</h2>
+                        <h5 class="contact2-content__desc"> Specialized service for cleaning fabric and leather furniture Techniques include steam cleaning dry foam and solvent cleaning to remove dirt stains and allergens This service helps to extend the life of furniture</h5>
+                        <div class="contact2-content-contact">
+                            <div class="contact2-content-contact-item return-left">
+                                <div class="contact2-content-contact-item__icon"><i class="fa-regular fa-location-dot"></i></div>
+                                <div class="contact2-content-contact-item-info">
+                                    <h6 class="contact2-content-contact-item-info__title">Our Address</h6>
+                                    <p class="contact2-content-contact-item-info__desc">1801 Thorn ridge Cir.</p>
+                                    <p class="contact2-content-contact-item-info__desc2">Shiloh, Hawaii 71087</p>
+                                </div>
+                            </div>
+                        
+                            <div class="contact2-content-contact-item me-0 return-right">
+                                <div class="contact2-content-contact-item__icon"><i class="fa-regular fa-phone"></i></div>
+                                <div class="contact2-content-contact-item-info">
+                                    <h6 class="contact2-content-contact-item-info__title">Phone Number</h6>
+                                    <p class="contact2-content-contact-item-info__desc">
+                                        <a href="tel:+12085820811">+(208) 582-0811</a>
+                                    </p>
+                                    <p class="contact2-content-contact-item-info__desc2">
+                                        <a href="tel:+1204888025">+(204) 888-025</a>
+                                    </p>
+                                </div>
+                            </div>
+                        
+                            <div class="contact2-content-contact-item return-left">
+                                <div class="contact2-content-contact-item__icon"><i class="fa-regular fa-envelope"></i></div>
+                                <div class="contact2-content-contact-item-info">
+                                    <h6 class="contact2-content-contact-item-info__title">Email Address</h6>
+                                    <p class="contact2-content-contact-item-info__desc">
+                                        <a href="mailto:helpclean@gmail.com">helpclean@gmail.com</a>
+                                    </p>
+                                    <p class="contact2-content-contact-item-info__desc2">
+                                        <a href="mailto:helpclean@gmail.com">helpclean@gmail.com</a>
+                                    </p>
+                                </div>
+                            </div>
+                        
+                            <div class="contact2-content-contact-item me-0 return-right">
+                                <div class="contact2-content-contact-item__icon"><i class="fa-regular fa-clock"></i></div>
+                                <div class="contact2-content-contact-item-info">
+                                    <h6 class="contact2-content-contact-item-info__title">Working Time</h6>
+                                    <p class="contact2-content-contact-item-info__desc">Work Time: Thu - Fri.</p>
+                                    <p class="contact2-content-contact-item-info__desc2">10:00 AM - 6:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h5 class="contact2-content__title2">Follow The Social Media:</h5>
+                        <p class="contact2-content__desc2">Ensure your Clean system is ready for the hottest days with our Comfort Check</p>
+                        <div class="global-social5">
+                            <div class="global-social5__item">
+                                <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </a>
+                            </div>
+                            <div class="global-social5__item">
+                                <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-twitter"></i>
+                                </a>
+                            </div>
+                            <div class="global-social5__item">
+                                <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </a>
+                            </div>
+                            <div class="global-social5__item">
+                                <a href="https://www.behance.net/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                            </div>                                  
+                            <div class="global-social5__item">
+                                <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                            
+                    </div>
+                </div>
+                <div class="col-md-6">                    
+                    <div class="contact2-card">
+                        <div class="contact2-card__title">
+                            <h6>Book An Appointment</h6>
+                        </div>  
+                        <form action="#" method="post" class="ask-question-form">
+                            <div class="form__group3 mb-3 position-relative">
+                                <input type="text" name="name" placeholder="Your Name" required>
+                                <i class="fa-regular fa-user input-icon"></i>
+                            </div>
+                        
+                            <div class="form__group3 mb-3 position-relative">
+                                <input type="email" name="email" placeholder="Your Email" required>
+                                <i class="fa-regular fa-envelope input-icon"></i>
+                            </div>
+                        
+                            <div class="form__group3 mb-3 position-relative">
+                                <select class="form__select" name="subject" required>
+                                    <option value="" disabled selected>Select Subject</option>
+                                    <option value="booking">Booking</option>
+                                    <option value="payment">Payment</option>
+                                    <option value="support">Support</option>
+                                    <option value="feedback">Feedback</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down input-icon dropdown-icon"></i>
+                            </div>
+                        
+                            <div class="form__group3 mb-4 position-relative">
+                                <textarea name="message" rows="3" placeholder="Write Message..." required></textarea>
+                                <i class="fa-light fa-pen input-icon textarea-icon"></i>
+                            </div>
+                        
+                            <div class="btn-wrapper text-center">
+                                <button type="submit" class="btn-submit2">Appointment Now</button>
+                            </div>
+                        </form>                                               
+                    </div>   
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--===== Map Section    S T A R T =====-->
+    <div class="map-section section-padding pb-0 fix">
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6678.7619084840835!2d144.9618311901502!3d-37.81450084255415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642b4758afc1d%3A0x3119cc820fdfc62e!2sEnvato!5e0!3m2!1sen!2sbd!4v1641984054261!5m2!1sen!2sbd"
+                allowfullscreen loading="lazy">
+            </iframe>
+        </div>
+    </div>
+    
+
+    <!--===== Footer Section    S T A R T =====-->
+    <footer class="footer2 fix footer1-bg pb-96">
+        <div class="footer2-shape1">
+            <img src="images/shape/bubble-shape2.svg" alt="svg">
+        </div>
+        <div class="footer2-shape2">
+            <img src="images/shape/bubble-shape3.svg" alt="svg">
+        </div>
+        <div class="footer2-shape3">
+            <img src="images/shape/bubble-shape4.svg" alt="svg">
+        </div>
+        <div class="footer2-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="footer2-cta">
+                            <!-- Phone -->
+                            <a href="tel:+12085550112" class="footer2-cta-item">
+                                <div class="footer2-cta-item__icon">
+                                    <img src="images/icon/cta-phone.svg" alt="svg">
+                                </div>
+                                <div class="footer2-cta-item-info">
+                                    <h6 class="footer2-cta-item-info__name">Need Any Cleaning Help</h6>
+                                    <div class="footer2-cta-item-info__numb">(208) 555-0112</div>
+                                </div>
+                            </a>
+                        
+                            <!-- Email -->
+                            <a href="mailto:helpClaoseing@gmail.com" class="footer2-cta-item2">
+                                <div class="footer2-cta-item2__icon">
+                                    <img src="images/icon/cta-envelope.svg" alt="svg">
+                                </div>
+                                <div class="footer2-cta-item2-info">
+                                    <h6 class="footer2-cta-item2-info__name">Send Email</h6>
+                                    <div class="footer2-cta-item2-info__numb">helpClaoseing@gmail.com</div>
+                                </div>
+                            </a>
+                        
+                            <!-- Address (linked to Google Maps) -->
+                            <a href="https://www.google.com/maps?q=1801+Thorn+ridge+Cir" target="_blank" class="footer2-cta-item3">
+                                <div class="footer2-cta-item3__icon">
+                                    <img src="images/icon/cta-user.svg" alt="svg">
+                                </div>
+                                <div class="footer2-cta-item3-info">
+                                    <h6 class="footer2-cta-item3-info__name">Our Address</h6>
+                                    <div class="footer2-cta-item3-info__numb">1801 Thorn ridge Cir.</div>
+                                </div>
+                            </a>
+                        </div>                        
+                    </div>
+                </div>               
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer2-wrapper-logoInfo return-footer">
+                            <div class="footer2-wrapper-logoInfo__logo">
+                                <a href="index.html">
+                                    <img src="./images/logo/Logo-white.png" alt="logo">
+                                </a>
+                            </div>
+                            <p class="footer2-wrapper-logoInfo__desc">
+                                Many desktop publishing packages and web page editors now use as their default model text infancy.
+                            </p>
+                            <div class="global-social3">
+                                <div class="global-social3__item">
+                                    <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    </a>
+                                </div>
+                                <div class="global-social3__item">
+                                    <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                        <i class="fa-brands fa-twitter"></i>
+                                    </a>
+                                </div>
+                                <div class="global-social3__item">
+                                    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+                                        <i class="fa-brands fa-linkedin-in"></i>
+                                    </a>
+                                </div>
+                                <div class="global-social3__item">
+                                    <a href="https://vimeo.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-vimeo-v"></i>
+                                    </a>
+                                </div>                                  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer2-wrapper-service return-footer">
+                            <h5 class="footer2-wrapper-service__title">Services</h5>
+                            <ul class="footer2-wrapper-service-list">
+                                <li class="footer2-wrapper-service-list__item"><img src="images/icon/group-star5.svg" alt="svg"><a href="service-details.html">Residential Cleaning</a></li>
+                                <li class="footer2-wrapper-service-list__item"><img src="images/icon/group-star5.svg" alt="svg"><a href="service-details.html">Commercial Cleaning</a></li>
+                                <li class="footer2-wrapper-service-list__item"><img src="images/icon/group-star5.svg" alt="svg"><a href="service-details.html">Move-Out Cleaning</a></li>
+                                <li class="footer2-wrapper-service-list__item"><img src="images/icon/group-star5.svg" alt="svg"><a href="service-details.html">Specialized Cleaning</a></li>
+                                <li class="footer2-wrapper-service-list__item"><img src="images/icon/group-star5.svg" alt="svg"><a href="service-details.html">Bathroom cleaning</a></li>
+                                <li class="footer2-wrapper-service-list__item"><img src="images/icon/group-star5.svg" alt="svg"><a href="service-details.html">Plumbing Cleaning </a></li>  
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer2-wrapper-contact return-footer">
+                            <h5 class="footer2-wrapper-contact__title">Contact us</h5>
+                            <ul class="footer2-wrapper-contact-list">             
+                                <li class="footer2-wrapper-contact-list__item">
+                                    <a href="https://www.google.com/maps/search/?q=27+Division+St,+New+York,+NY+10002,+USA" target="_blank" class="d-flex align-items-start">
+                                      <span class="icon me-2">
+                                        <img src="images/icon/user-footer.svg" alt="svg">
+                                      </span>
+                                      <span class="text">
+                                        1801 Thorn Ridge Cir.<br> Shiloh, Hawaii 71087
+                                      </span>
+                                    </a>
+                                </li>                                  
+                                <li class="footer2-wrapper-contact-list__item">
+                                    <a href="tel:+1800123654987" class="d-flex align-items-start">
+                                      <span class="icon me-2">
+                                        <img src="images/icon/phone-footer.svg" alt="svg">
+                                      </span>
+                                      <span class="text d-flex flex-column">
+                                        <span>(+208) 582-0811</span>
+                                        <span>(+204) 888-025</span>
+                                      </span>
+                                    </a>
+                                </li>                                  
+                                <li class="footer2-wrapper-contact-list__item">
+                                    <a href="mailto:helpClaoseing@gmail.com" class="d-flex align-items-start">
+                                      <span class="icon me-2">
+                                        <img src="images/icon/envelope-footer.svg" alt="svg">
+                                      </span>
+                                      <span class="text d-flex flex-column">
+                                        <span>helpClaoseing@gmail.com</span>
+                                        <span>helpClaoseing@gmail.com</span>
+                                      </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>                    
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer2-wrapper-posts return-footer">
+                            <h5 class="footer2-wrapper-posts__title">Recent Posts</h5>
+                            <ul class="footer2-wrapper-posts-list">             
+                                <li class="footer2-wrapper-posts-list__item">
+                                    <span class="icon me-2">
+                                        <img src="images/footer/footer-thumb1_1.png" alt="png">
+                                    </span>
+                                    <span class="footer2-wrapper-posts-list__item__desc">
+                                        <a href="blog-details.html" class="d-block text-white">                                            
+                                            <span>Revitalising Your People In To a Retail Sown-turn.</span>
+                                        </a>
+                                        <span><img src="images/icon/calendar-clock.svg" alt="svg"> June 10 2025</span>                            
+                                    </span>
+                                </li>                                  
+                                <li class="footer2-wrapper-posts-list__item">
+                                    <span class="icon me-2">
+                                        <img src="images/footer/footer-thumb1_2.png" alt="png">
+                                    </span>
+                                    <span class="footer2-wrapper-posts-list__item__desc">
+                                        <a href="blog-details.html" class="d-block text-white">
+                                            <span>Revitalising Your People In To a Retail Sown-turn.</span>
+                                        </a>
+                                        <span><img src="images/icon/calendar-clock.svg" alt="svg"> June 10 2025</span>                            
+                                    </span>
+                                </li>                                  
+                            </ul>
+                        </div>
+                    </div>                    
+                </div>
+            </div>            
+        </div>
+        <div class="footer2-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="footer2-bottom-info">
+                            <p>Copyright@ 2025 . <span>Claoseing</span> All Rights Reserved.</p>
+                            <div class="footer2-bottom-info__links">
+                                <a href="contact.html">Setting & Privacy</a>                                
+                                <a href="contact.html">FAQ</a>
+                                <a href="contact.html">Support</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+</div>
+
+    <!--===== All JS Plugins =====-->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!--===== Bootstrap Js =====-->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!--===== Waypoints Js =====-->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <!--===== Counterup Js =====-->
+    <script src="js/jquery.counterup.min.js"></script>
+    <!--===== Viewport Js =====-->
+    <script src="js/viewport.jquery.min.js"></script>
+    <!--===== Tilt Js =====-->
+    <script src="js/tilt.min.js"></script>
+    <!--===== Splitting Animation Js =====-->
+    <script src="js/splitting.min.js"></script>
+    <!--===== Swiper Slider Js =====-->
+    <script src="js/swiper-bundle.min.js"></script>
+    <!--===== Magnific Js =====-->
+    <script src="js/magnific-popup.min.js"></script>
+            <!--===== Meanmenu Js =====-->
+    <script src="js/jquery.meanmenu.min.js"></script>
+    <!--===== Wow Animation Js =====-->
+    <script src="js/wow.min.js"></script>
+    <!-- Flatpickr JS -->
+    <script src="js/jquery-ui.min.js"></script>
+
+    <!-- Gsap -->
+    <script src="js/plugins/gsap.min.js"></script>
+    <script src="js/plugins/ScrollSmoother.min.js"></script>
+    <script src="js/plugins/ScrollToPlugin.min.js"></script>
+    <script src="js/plugins/ScrollTrigger.min.js"></script>
+    <script src="js/plugins/ScrollMagic.min.js"></script>
+    <script src="js/plugins/animation.gsap.min.js"></script>    
+    <script src="js/plugins/ui-draggable.min.js"></script>    
+    <script src="js/plugins/gsap-ease-pack.min.js"></script>    
+    <script src="js/plugins/SplitText.min.js"></script> 
+    <script src="js/gsap-comp/return-img-gsap.min.js"></script>  
+    <script src="js/gsap-comp/gsap-split.min.js"></script>    
+    <script src="js/gsap-comp/pin-spacer.min.js"></script>    
+    <script src="js/gsap-comp/gsap-mix.min.js"></script>
+    <script src="js/gsap-comp/title-fade-up.min.js"></script>
+    <script src="js/gsap-comp/scroll-fixing.min.js"></script>
+
+    <!--===== Main.js =====-->
+    <script src="js/main.js"></script>    
+</body>
+
+</html>

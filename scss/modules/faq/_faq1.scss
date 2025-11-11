@@ -1,0 +1,97 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+
+.faq1 {
+  position: relative;
+  background: $title-color;
+
+  &__shape1 {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    @include breakpoint (max-xxl) {
+      display: none;
+    }
+  
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: $smoke2;
+      z-index: -1; 
+    }
+  
+    img {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    &__thumb {
+      position: absolute;
+      z-index: 9;
+      right: 0;
+      bottom: 0;
+      @include breakpoint (max-xl3) {
+        width: 36%;
+      }
+    }
+  }
+  
+  &-content {
+    position: absolute;
+    max-width: 570px;
+    top: 12%;
+    z-index: 9;
+    @include breakpoint (max-xl2){
+      top: 6%;
+    }
+    @include breakpoint (max-xxxl){
+      top: 1%;
+    }
+    @include breakpoint (max-xxl) {
+      position: static;
+      padding: 70px 0;
+    }    
+    &-btn {
+      display: flex;
+      gap: 30px;
+      @include breakpoint (max-sm){
+        flex-direction: column;
+      }
+      &-item {
+        position: relative;
+        p {
+          padding: 35px 22px 35px 63px;
+          border-radius: 20px;
+          border: 1px solid $gray2;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 283px;
+          height: 84px;
+  
+          color: #FFF;
+          font-family: $title-font;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 30px; /* 150% */
+          @include breakpoint (max-md){
+            padding: 35px 22px 35px 60px;
+            width: 244px;
+            height: 71px;
+            font-size: 16px;
+          }
+        }
+        &__icon {
+          position: absolute;
+          top: 0;
+        }
+      }
+    }
+  }
+}
+  

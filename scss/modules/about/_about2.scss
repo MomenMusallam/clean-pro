@@ -1,0 +1,229 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+
+.about2 {
+    position: relative;
+    @include breakpoint (max-md){
+        padding-top: 30px;
+    }
+    &-thumb {
+        position: relative;
+        margin-top: 74px;
+        @include breakpoint (max-xl){
+            margin-top: 0px;
+            margin-bottom: 100px;
+        }  
+        @include breakpoint (max-md){
+            display: none;
+        }  
+        &__left {
+            position: relative;
+
+            @include breakpoint (max-xxxl){
+                left: -2%;
+            }
+            @include breakpoint (max-xxl){
+                img {
+                    max-width: 72%;
+                    height: auto;
+                }
+            }   
+            @include breakpoint (max-xl){
+                img {
+                    max-width: 100%;
+                    height: auto;
+                }
+            }   
+        }
+        &__right {
+            position: absolute;
+            right: 3%;
+            bottom: -19%;
+            z-index: 9;
+            @include breakpoint (max-xxl){
+                right: -9%;
+                bottom: -17%;
+                img {
+                    max-width: 87%;
+                    height: auto;
+                }
+            }
+            @include breakpoint (max-xl){
+                right: 11%;
+                bottom: -19%;
+                img {
+                    max-width: 100%;
+                    height: auto;
+                }
+            }  
+        }
+        &__top {
+            position: absolute;
+            right: 19px;
+            top: -46px;
+
+            @include breakpoint (max-xxl){
+                right: -25px;
+                top: -34px;
+                img {
+                    max-width: 87%;
+                    height: auto;
+                }
+            }
+            @include breakpoint (max-xl){
+                right: 80px;
+                top: -46px;
+                img {
+                    max-width: 100%;
+                    height: auto;
+                }
+            }       
+        }
+        &__badge {
+            position: absolute;
+            top: -5px;
+            right: 56px;
+
+            @include breakpoint (max-xxl){
+                top: -5px;
+                right: 25px;
+            }
+            @include breakpoint (max-xl){
+                top: -5px;
+                right: 114px;
+            }
+
+            h2 {
+                color: $white;
+                text-align: center;
+                font-family: $body-font;
+                font-size: 64px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 74px; /* 115.625% */
+            }
+            p {
+                color: $white;
+                text-align: center;
+                font-family: $body-font;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 24px; /* 171.429% */
+            }
+        }
+
+    }
+    &-btn {
+        display: inline-flex;
+        gap: 59px;
+        padding: 20px 50px;
+        border-radius: 50px;
+        background: $smoke2;
+        @include breakpoint (max-sm){
+            gap: 28px;
+            padding: 16px 15px;
+        }
+        &__item {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            p {
+                color: $title-color;
+                font-family: $title-font;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 26px; /* 162.5% */
+            }
+            &--line {
+                opacity: 0.2;
+                background: #16171A;
+                width: 1px;
+                height: 25px;
+            }
+        }
+    }
+    &-content {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        @include breakpoint (max-sm){
+         flex-direction: column; 
+         align-items: start;      
+        }
+        &-left {
+            max-width: 263px;
+            &-item {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                padding-top: 30px;
+                &-text {
+                    &__title {
+                        h4 {
+                            color: #000;
+                            font-family: $title-font;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: 600;
+                            line-height: 30px; /* 150% */
+                        }
+                    }
+                    &__desc {
+                        p {
+                            color: #000;
+                            font-family: $body-font;
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 24px; /* 171.429% */
+                        }
+                    }
+                }
+                &-btn {
+                    padding-top: 30px;
+                }
+            }
+        }
+        &-right {
+            position: relative;
+            &-thumb {
+                &:before {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    background: $title-color;
+                    opacity: 0.6;
+                    border-radius: 10px;
+                    z-index: 1;
+                }
+            }
+            &__icon {
+                display: flex;
+                gap: 10px;
+                position: absolute;
+                left: 68px;
+                z-index: 9;
+                top: 57px;
+            }
+            &__text {
+                display: flex;
+                gap: 10px;
+                position: absolute;
+                bottom: 48px;
+                left: 6%;
+                z-index: 9;
+                color: #FFF;
+                text-align: center;
+                font-family: $title-font;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 34px; /* 141.667% */
+            }
+        }
+    }
+}
+
+  

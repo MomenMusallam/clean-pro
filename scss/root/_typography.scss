@@ -1,0 +1,175 @@
+@use '../root/variables' as *;
+@use '../root/mixins' as *;
+
+/* --------------------------------------------
+    Template Default Fonts & Fonts Styles
+ ---------------------------------------------- */ 
+ @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@100..900&family=Manrope:wght@100..800&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+ $body-font: "DM Sans", sans-serif;
+ $title-font: "Raleway", sans-serif;
+ $title-font2: "Poppins", sans-serif;
+ $title-font3: "Manrope", sans-serif;
+ $paragraph-font: "Inter", sans-serif;
+ $paragraph-font2: "Outfit", sans-serif;
+ $faq-font: "Archivo", sans-serif;
+ 
+ 
+ 
+$fa: "Font Awesome 6 Pro";
+
+
+body {
+    font-family: $body-font;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    color: $black;
+    background-color: $white;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+
+input:focus {
+    color: $title-color;
+    outline: none;
+}
+
+input {
+    &::placeholder {
+        color: #767771;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0px;
+    padding: 0;
+    @include transition;
+}
+
+h1 {
+    color: var(--900, #0F1B24);
+    font-family: $title-font;
+    font-size: 74px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 84px; /* 113.514% */
+    @include breakpoint(max-xxl) {
+        font-size: 60px;
+    }
+    @include breakpoint(max-md) {
+        font-size: 50px; 
+    }
+}
+
+h2 {
+    color: var(--900, #0D0D0D);
+    font-family: $title-font;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 74px; /* 115.625% */
+    @include breakpoint(max-xxl) {
+        font-size: 45px;
+    }
+    @include breakpoint(max-md) {
+        font-size: 40px;
+        line-height: 50px;
+    }
+}
+
+h3 { 
+    color: $title-color;
+    font-family: $title-font;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 54px; /* 112.5% */
+    text-transform: capitalize;
+
+    @include breakpoint(max-xl) {
+        font-size: 24px;
+    }
+
+    @include breakpoint (max-md) {
+        font-size: 20px;
+    } 
+}
+
+h4 {
+    color: $title-color;
+    font-family: $title-font;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 30px;
+    letter-spacing: -0.46px;
+    @include breakpoint(max-xxl) {
+        font-size: 20px;
+    }
+}
+
+h5 {
+    color: $white;
+    font-family: $title-font;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+}
+
+h6 {
+    color: $title-color;
+    font-family: $title-font;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 34px;
+}
+
+p {
+    margin: 0px;
+    @include transition;
+    color: $title-color;
+    font-family: $body-font;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px; 
+}
+
+a {
+    text-decoration: none;
+    outline: none !important;
+    cursor: pointer;
+    color: $title-color;
+    @include transition;
+    &:hover {
+        color: $theme-color;
+    }
+}
+
+
+span {
+    margin: 0px;
+    @include transition;
+}

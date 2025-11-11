@@ -1,0 +1,141 @@
+@use '../root' as *;
+@use '../utilities' as *;
+
+
+/*----------------------------------------------
+    # Title style here
+----------------------------------------------*/
+ .section-top {
+    &__subtitle {
+        color: $theme-color;
+        font-family: $title-font;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 30px; /* 150% */
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        span {
+            padding-right: 8px;
+        } 
+    }
+    &__subtitle2 {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+
+        color: $white;
+        font-family: $title-font;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 30px; /* 150% */
+        text-transform: uppercase;
+        margin-bottom: 12px;
+    }
+    &__subtitle3 {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+
+        color: $yellow;
+        font-family: $title-font;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 30px; /* 150% */
+        text-transform: uppercase;
+        margin-bottom: 12px;
+    }
+
+    &__title {
+        color: $title-color;
+        font-family: $title-font;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 54px; 
+        text-transform: capitalize;
+        @include breakpoint (max-xl) {
+            font-size: 45px;
+            line-height: 50px;
+        }
+        @include breakpoint (max-md) {
+            font-size: 42px;
+            line-height: 45px;
+        }
+        @include breakpoint (max-sm) {
+            font-size: 30px;
+            line-height: 40px;
+        }
+    }
+    &__title2 {
+        color: $white;
+        text-align: center;
+        font-family: $title-font;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 54px; /* 112.5% */
+        text-transform: capitalize;
+        @include breakpoint (max-xl) {
+            font-size: 45px;
+            line-height: 50px;
+        }
+        @include breakpoint (max-md) {
+            font-size: 42px;
+            line-height: 45px;
+        }
+        @include breakpoint (max-sm) {
+            font-size: 30px;
+            line-height: 40px;
+        }
+    }
+    &__title3 {
+        color: $title-color3;
+        font-family: $title-font3;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 54px; /* 112.5% */
+        text-transform: capitalize;
+        @include breakpoint (max-xl) {
+            font-size: 45px;
+            line-height: 50px;
+        }
+        @include breakpoint (max-md) {
+            font-size: 42px;
+            line-height: 45px;
+        }
+        @include breakpoint (max-sm) {
+            font-size: 30px;
+            line-height: 40px;
+        }
+    }
+
+    &__desc {
+        color: $gray;
+        font-family: $body-font;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 26px; /* 162.5% */
+    }
+    &__desc2 {
+        color: $smoke;
+        text-align: center;
+        font-family: $body-font;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 26px; /* 162.5% */
+    }
+    &__desc3 {
+        color: #000;
+        font-family: $title-font;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 26px; /* 185.714% */ 
+    }
+ }

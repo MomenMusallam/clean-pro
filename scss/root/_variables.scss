@@ -1,0 +1,55 @@
+/*----------------------------------------------
+    # All Variables here
+----------------------------------------------*/
+:root {
+    
+    --white: #FFF; 
+    --black: #000;
+    --title: #16171A; 
+    --title2: #7E7E7E; 
+    --title3: #373A3F; 
+    --title4: #010F34; 
+
+    --dark: #0D0D0D;
+    --yellow: #F2D701; 
+    --yellow2: #FFB400; 
+    --border: #D8DDE1;
+    
+    --gray: #696969;
+    --gray2: #727272;
+
+    --smoke: #FAF8F7;
+    --smoke2: #ECF1F5;
+    --smoke3: #F4F4F4;
+
+    --theme: #3CA200;
+    --theme2: #FCF9F7;
+    --theme3: #077CEA;
+
+    --box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.08);
+    --icon-font: "Font Awesome 6 Pro";
+}
+
+// Theme Color - Defualt Colors
+$white: var(--white);
+$black: var(--black);
+$title-color: var(--title); 
+$title-color2: var(--title2); 
+$title-color3: var(--title3); 
+$title-color4: var(--title4); 
+$dark: var(--dark);
+$yellow: var(--yellow);
+$yellow2: var(--yellow2);
+$border-color: var(--border);
+$gray: var(--gray);
+$gray2: var(--gray2);
+$smoke: var(--smoke);
+$smoke2: var(--smoke2);
+$smoke3: var(--smoke3);
+$theme-color: var(--theme);
+$theme-color2: var(--theme2);
+$theme-color3: var(--theme3);
+$shadow: var(--box-shadow);
+
+// Font Variation
+$icon-font : var(--icon-font);

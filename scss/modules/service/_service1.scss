@@ -1,0 +1,189 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+
+.service1 {
+    &-card {
+        position: relative;
+
+        &__thumb {
+            position: relative;
+            text-align: center;
+        }
+        &-content {
+            margin-top: -50px;
+            background: $white;
+            box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.08);
+            padding: 80px 30px 30px 30px;
+
+            &__icon {
+                padding-bottom: 20px;
+            }
+            &__title {
+                color: $title-color;
+                font-family: $title-font;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 34px; /* 141.667% */
+                padding-bottom: 10px;
+            }
+            &__desc {
+                padding-bottom: 20px;
+                p {
+                    color: $gray2;
+                    font-family: $body-font;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 26px; /* 162.5% */
+                }
+            }
+            &__link {
+                color: $title-color;
+                font-family: $body-font;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 24px; /* 171.429% */
+                letter-spacing: 0.42px;
+                text-transform: uppercase;
+
+                img {
+                    padding-left: 5px;
+                }
+            }
+        }
+        &:hover {
+        }
+    }
+}
+
+.service2 {
+    position: relative;
+    @include breakpoint (max-xl) {
+        background: linear-gradient(270deg, #ECF1F5 0%);
+    }
+    .fix-position {
+        position: relative;
+        z-index: 9;
+        padding-top: 110px;
+        @include breakpoint (max-xl) {
+            padding-top: 0;
+        }
+    }
+    &-shape3 {
+        position: absolute; 
+        z-index: 5;
+        @include breakpoint (max-xl){
+            display: none;
+        }
+        img {
+            height: 910px;
+        }
+
+    }
+    &-card {
+        position: relative;
+        z-index: 9;
+        border-radius: 220px;
+        border-bottom: 1px solid $border-color;
+        background: $smoke;
+        @include breakpoint (max-sm) {
+            width: 300px;
+        }
+        &:hover {
+            border-radius: 220px;
+            background: $theme-color;
+            @include transition;
+        }
+        &__shape1 {
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            img {
+                width: 100%;
+            }
+        }
+        &-content {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+            padding: 90px 49px 66px;
+            @include breakpoint (max-xxl) {
+                padding: 45px 41px 66px;
+            }
+            @include breakpoint (max-xl) {
+                padding: 90px 49px 66px;
+            }
+            @include breakpoint (max-md) {
+                padding: 48px 30px 50px;
+            }
+            &__title {
+                color: #373A3F;
+                font-family: $title-font;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 34px; /* 141.667% */
+                padding-bottom: 13px;
+                &:hover {
+                    color: $theme-color;
+                }
+            }
+            &__desc {
+                color: $gray;
+                text-align: center;
+                font-family: $body-font;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 26px; 
+                padding-bottom: 17px;
+            }
+            &__link {
+                color: $title-color;
+                font-family: $body-font;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 24px; /* 171.429% */
+                text-transform: uppercase;
+            }
+            &__icon {
+                width: 95px;
+                height: 95px;
+                flex-shrink: 0;
+                background: white;
+                border-radius: 50px;
+                padding: 20px;
+                text-align: center;
+                margin: auto;
+                margin-top: 66px;
+                @include breakpoint (max-xxl) {
+                    margin-top: 25px;
+                }
+                @include breakpoint (max-xl) {
+                    margin-top: 45px;
+                }
+                @include breakpoint (max-lg) {
+                    margin-top: 92px;
+                }
+                @include breakpoint (max-md) {
+                    margin-top: 8px;
+                }
+                @include breakpoint (max-sm) {
+                    margin-top: 115px;
+                }
+            }
+
+        }
+    }
+
+    .widget-card{
+        margin-bottom: 0;
+
+        &:last-child{
+            padding-bottom: 5px;
+        }
+    }
+}

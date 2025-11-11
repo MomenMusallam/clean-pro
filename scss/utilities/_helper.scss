@@ -1,0 +1,404 @@
+@use '../root' as *;
+
+/*----------------------------------------------
+    # Helping  style here
+----------------------------------------------*/
+//page scroll bar add
+::-webkit-scrollbar {
+	width: 10px;
+	height: 4px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px $theme-color;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $theme-color;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+//page scroll bar add
+
+//Basic Code Start
+.fix {
+  overflow: hidden;
+}
+
+.ralt{
+ position: relative;
+}
+
+//Basic Code End
+
+//Video Css Start
+.ripple {
+  position: relative;
+
+  &::before,&::after {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 60px;
+      height: 60px;
+      -webkit-transform: translateX(-50%) translateY(-50%);
+      transform: translateX(-50%) translateY(-50%);
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(56, 75, 255, 0.5);
+      -webkit-animation: rippleOne 3s infinite;
+      animation: rippleOne 3s infinite;
+  }
+
+  &::before {
+      -webkit-animation-delay: 0.9s;
+      animation-delay: 0.9s;
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+  }
+
+  &::after {
+      -webkit-animation-delay: 0.6s;
+      animation-delay: 0.6s;
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+  }
+}
+//Video Css End
+
+/* background */
+.bg-cover {
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  background-position: center;
+}
+
+// Padding
+.section-padding {
+  padding: 120px 0;
+  @include breakpoint(max-lg) {
+    padding: 80px 0;
+  }
+}
+
+@include breakpoint (lg){  
+  .fix-header {
+    padding-top: 45px;
+  }
+}
+
+.custom-flex {
+  display: flex;
+  gap: 30px;
+}
+.section-padding-testi {
+  padding: 120px 0;
+  @include breakpoint(max-lg) {
+    padding: 40px 0;
+  }
+  @include breakpoint(max-sm) {
+    padding: 20px 0;
+  }
+}
+.gutter-pricing {
+  @include breakpoint(max-xxl) {
+    --bs-gutter-y: 3.5rem;
+  }
+}
+
+// Margin
+.mb-120 {
+  margin-bottom: 120px;
+  @include breakpoint(max-lg) {
+    margin-bottom: 80px;
+  }
+
+}
+
+// Padding
+.pt-128 {
+  padding-top: 25px;
+  @include breakpoint (xxl){
+    padding-top: 128px;
+  }
+}
+.pt-120 {
+  padding-top: 120px;
+  @include breakpoint (max-xl){
+    padding-top: 30px;
+  }
+}
+.pb-30 {
+  padding-bottom: 30px !important;
+}
+.pb-52 {
+  @include breakpoint(xxl){
+    padding-bottom: 52px;
+  }
+}
+
+.pb-55 {
+  padding-bottom: 55px !important;
+}
+.pb-96 {
+  @include breakpoint (xl3){
+    padding-bottom: 96px !important;
+  }
+}
+.pb-140 {
+  padding-bottom: 140px;
+  @include breakpoint(max-lg) {
+    padding: 80px 0;
+  }
+}
+
+.pl-22 {
+  padding-left: 22px;
+}
+.pr-320 {
+  padding-right: 320px;
+  @include breakpoint (max-xxxl){
+    padding-right: 0px;
+  }
+
+}
+
+.pb-160 {
+  padding-bottom: 160px;
+  @include breakpoint (max-xxl){
+    padding-bottom: 80px;
+  }
+}
+.mb-25 {
+  margin-bottom: 25px;
+}
+.mb-35 {
+  margin-bottom: 35px;
+}
+.mr-10 {
+  margin-right: 10px;
+}
+
+.about-fix {
+  @include breakpoint (xl){
+    padding-left: 52px;
+  }
+}
+
+.wcu-padding {
+  padding: 120px 0;
+  @include breakpoint(max-xxxl) {
+    padding: 92px 0;
+  }
+}
+
+//Colors
+.bg-theme {
+  background-color: $theme-color !important;
+}
+
+.bg-theme2 {
+  background-color: $black !important;
+}
+.bg-color1 {
+  border-radius: 10px;
+  background: $smoke2;
+  // padding: 45px 60px;
+}
+.bg-white {
+  background: $white;
+}
+.footer1-bg {
+  background: rgb(22, 23, 26);
+}
+.servic2-bg {
+  background: linear-gradient(270deg, #ECF1F5 0%, rgba(255, 255, 255, 0.80) 67.14%, rgba(255, 255, 255, 0.00) 100%);
+  @include breakpoint (max-xl) {
+    background: linear-gradient(270deg, #ECF1F5 0%);
+  }
+}
+.servic3-bg {
+  background: linear-gradient(270deg, #ECF1F5 0%);
+}
+
+.bor-top1 {
+  border-top: 1px solid rgb(69, 69, 72);
+}
+
+.cap {
+  text-transform: capitalize !important;
+  i {
+    transform: rotate(0deg) !important;
+  }
+}
+
+#serviceSlider1 {
+  padding: 0 20px 20px;
+}
+
+.nav-pills {
+  border: 1px solid $border-color;
+  border-radius: 50px;
+  display: flex; 
+  display: inline-block;
+
+  .nav-item {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .nav-link {
+    color: $theme-color;				  
+    font-family: $body-font;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px; 
+    border: 0;
+    flex: 1; 
+    text-align: center;
+    padding: 8px 32px;
+    transition: all 0.3s ease;
+    border-radius: 0; 
+  
+    &.active {
+    background: $theme-color;
+    color: $white;
+    }
+  
+    &:first-child.active {
+      border-radius: 30px;
+
+    }
+  
+    &:last-child.active {
+      border-radius: 30px;
+    }
+  }
+}		
+
+
+.footer1-banner {
+  padding: 100px 0 65px 0;  
+
+  &__form {
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.20);
+    height: 55px;
+  }
+
+  &__input {
+    border: none;
+    padding: 5px 20px;
+    background: transparent;
+    color: white;
+    width: 200px;
+
+    color: $white;
+    font-family: $body-font;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px; 
+
+    @include breakpoint (max-xxsmall){
+      padding: 5px 13px;
+      width: 147px;
+    }
+
+
+    &::placeholder {
+      color: #ccc;
+    }
+
+    &:focus {
+      outline: none;
+      color: $white;
+    }
+  }
+
+  &__btn {
+    border: none;
+    color: #fff;
+    padding: 0px 36px;
+    border-radius: 25px 25px 25px 25px;
+    transition: 0.3s ease;
+
+    color: $white;
+    font-family: $body-font;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; 
+    text-transform: uppercase;
+
+    border-radius: 999px;
+    border: 1px solid #3CA200;
+    background: $theme-color;
+
+    &:hover {
+      background-color: #00a300;
+    }
+  }
+}
+
+.section-underline {
+  height: 3px;
+  background: linear-gradient(to right, #3CA200 30px, #D8DDE1 0);
+  width: 100%;
+  border-radius: 2px;
+  border-radius: 20px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+}
+.header-line {
+  width: 1px;
+  height: 46px;
+  background: var(--Default-color-Black, #D8DDE1);
+  margin-right: -15px;
+}
+
+.text-fade-up .char {
+  display: inline-block;
+  white-space: pre;
+}
+
+.text-fade-up .word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.testimonial1 .swiper-slide.swiper-slide-active {
+  transform: scale(.8) translateX(10%);
+  @include breakpoint (max-md){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(.8) translateX(0%);
+}
+}
+
+.testimonial1 .swiper-slide.swiper-slide-next {
+  transform: scale(.9) translateX(0%);
+  -webkit-transform: scale(.9) translateX(0%);
+  -moz-transform: scale(.9) translateX(0%);
+  -ms-transform: scale(.9) translateX(0%);
+  -o-transform: scale(.9) translateX(0%);
+}
+
+.testimonial1 .swiper-slide.swiper-slide-prev {
+  transform: scale(0.6) translateX(0%);
+  -webkit-transform: scale(0.6) translateX(0%);
+  -moz-transform: scale(0.6) translateX(0%);
+  -ms-transform: scale(0.6) translateX(0%);
+  -o-transform: scale(0.6) translateX(0%);
+}

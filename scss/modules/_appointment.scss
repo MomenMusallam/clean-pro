@@ -1,0 +1,85 @@
+@use '../root' as *;
+@use '../utilities' as *;
+
+.appointment1 {
+    position: relative;
+    &-shape1 {
+        position: absolute;
+        right: 0;
+        top: 0px;
+        z-index: 5;
+        @include breakpoint (max-xl2){
+         display: none;
+        }
+    }
+    &-shape2 {
+        position: absolute;
+        bottom: 14%;
+        z-index: 5;
+        @include breakpoint (max-xl2){
+         display: none;
+        }
+    }
+    &-form {
+        max-width: 460px;        
+    }
+    &-thumb {
+        position: relative;
+        text-align: center;
+        margin-top: 100px;
+        &__top {
+            position: absolute;
+            top: -72px;
+            left: 20px;
+            z-index: 9;
+            @include breakpoint (max-xxl) {
+                img {
+                    width: 70%;
+                }
+            }
+            @include breakpoint (max-xl) {
+                display: none;
+            }
+        }
+        &__bottom {
+            position: relative;
+            z-index: 8;
+            @include breakpoint (max-xxl) {
+                img {
+                    width: 70%;
+                }
+            }
+            @include breakpoint (max-xl) {
+                display: none;
+            }
+        }
+        &__leftShape {
+            position: absolute;
+            bottom: -30px;
+            left: -35px;
+            @include breakpoint (max-xxl) {
+                img {
+                    width: 70%;
+                }
+            }
+            @include breakpoint (max-xl) {
+                display: none;
+            }
+        }
+        &__rightShape {
+            position: absolute;
+            right: -44px;
+            bottom: 17%;
+            @include breakpoint (max-xxl) {
+                right: -87px;
+                img {
+                    width: 70%;
+                }
+            }
+            @include breakpoint (max-xl) {
+                display: none;
+            }
+
+        }
+    }
+}

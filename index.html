@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <!--=========== Meta Tags ==========-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SoftCrafty">
+    <meta name="description" content="CleanPro - Cleaning Service HTML Template">
+    <!--============= Page title ============ -->
+    <title>CleanPro - Cleaning Service HTML Template</title>
+    <!--===== Favcion =====-->
+    <link rel="shortcut icon" href="images/favicon.png">
+    <!--===== Bootstrap min.css =====-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--===== All Min Css =====-->
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <!--===== Animate.css =====-->
+    <link rel="stylesheet" href="css/animate.min.css">
+    <!--===== Swiper Bundle.css =====-->
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <!--===== Magnific Popup.css =====-->
+    <link rel="stylesheet" href="css/magnific-popup.min.css">
+    <!--===== Text Splitting.css =====-->
+    <link rel="stylesheet" href="css/splitting.min.css">
+    <!--<< MeanMenu.css >>-->
+    <link rel="stylesheet" href="css/meanmenu.css">
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <!--===== Main.css =====-->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!--===== Preloader Start =====-->
+    <div id="preloader" class="preloader">
+        <div class="animation-preloader">
+            <div class="txt-loading">
+                <span data-text-preloader="C" class="letters-loading">
+                    C
+                </span>
+                <span data-text-preloader="L" class="letters-loading">
+                    L
+                </span>
+                <span data-text-preloader="E" class="letters-loading">
+                    E
+                </span>
+                <span data-text-preloader="A" class="letters-loading">
+                    A
+                </span>
+                <span data-text-preloader="N" class="letters-loading">
+                    N
+                </span>
+                <span data-text-preloader="P" class="letters-loading">
+                    P
+                </span>
+                <span data-text-preloader="R" class="letters-loading">
+                    R
+                </span>
+                <span data-text-preloader="O" class="letters-loading">
+                    O
+                </span>
+            </div>
+            <p class="text-center">Loading</p>
+        </div>
+        <div class="loader">
+            <div class="row">
+                <div class="col-3 loader-section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-right">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-right">
+                    <div class="bg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!--===== Mouse Cursor Start =====-->
+    <div class="mouse-cursor cursor-outer"></div>
+    <div class="mouse-cursor cursor-inner"></div>
+
+    <!--===== Back To Top Start =====-->
+    <button id="back-top" class="back-to-top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!--===== Search Box Popup =====-->
+    <div class="popup-search-box d-none d-lg-block">
+        <button class="searchClose"><i class="fal fa-times"></i></button>
+        <form action="#">
+            <input type="text" placeholder="What are you looking for?">
+            <button type="submit"><i class="fal fa-search"></i></button>
+        </form>
+    </div>
+
+    <!-- Offcanvas Area Start -->
+    <div class="fix-area">
+        <div class="offcanvas__info">
+            <div class="offcanvas__wrapper">
+                <div class="offcanvas__content">
+                    <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
+                        <div class="offcanvas__logo">
+                            <a href="index.html">
+                                <img src="images/logo/Logo-dark.png" alt="logo">
+                            </a>
+                        </div>
+                        <div class="offcanvas__close">
+                            <button>
+                            <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mobile-menu fix mb-3"></div>
+                    <div class="offcanvas__contact">
+                        <h4>Contact Info</h4>
+                        <ul>
+                            <li class="d-flex align-items-center">
+                                <div class="offcanvas__contact-icon">
+                                    <i class="fal fa-map-marker-alt"></i>
+                                </div>
+                                <div class="offcanvas__contact-text">
+                                    <a target="_blank" href="#">3517 W. Gray St. Utica, Pennsylvania 57867</a>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <div class="offcanvas__contact-icon mr-15">
+                                    <i class="fal fa-envelope"></i>
+                                </div>
+                                <div class="offcanvas__contact-text">
+                                    <a href="mailto:example@gmail.com"><span>tanya.hill@example.com</span></a>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <div class="offcanvas__contact-icon mr-15">
+                                    <i class="fal fa-clock"></i>
+                                </div>
+                                <div class="offcanvas__contact-text">
+                                    <a target="_blank" href="#">Mod-friday, 09am -05pm</a>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <div class="offcanvas__contact-icon mr-15">
+                                    <i class="far fa-phone"></i>
+                                </div>
+                                <div class="offcanvas__contact-text">
+                                    <a href="tel:+(123)456-7890">(123) 456-7890</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="header-button">
+                            <div class="btnbox">
+                                <a class="theme-btn" href="contact.html">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="16" viewBox="0 0 19 16" fill="none">
+                                            <path d="M18.45 8.70711C18.8406 8.31658 18.8406 7.68342 18.45 7.29289L12.0861 0.928932C11.6955 0.538408 11.0624 0.538408 10.6719 0.928932C10.2813 1.31946 10.2813 1.95262 10.6719 2.34315L16.3287 8L10.6719 13.6569C10.2813 14.0474 10.2813 14.6805 10.6719 15.0711C11.0624 15.4616 11.6955 15.4616 12.0861 15.0711L18.45 8.70711ZM0.74292 9H17.7429V7H0.74292V9Z" fill="white"/>
+                                        </svg>
+                                    </span>
+                                    Get A Quote 
+                                </a>
+                            </div>
+                        </div>
+                        <div class="social-icon d-flex align-items-center">
+                            <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://x.com/?lang=en&mx=2"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas__overlay"></div>
+
+
+    <!-- header area start -->
+    <header>
+        <div class="header-1" id="header-sticky">
+            <div class="header-wrap">
+                <div class="logo">
+                    <a class="primary-logo" href="index.html"><img src="images/logo/Logo-dark.png" alt="logo"></a>
+                    <a class="sticky-logo" href="index.html"><img src="images/logo/Logo-dark.png" alt="logo"></a>
+                </div>
+                <div class="main-menu-wrap">
+                    <div class="main-menu">
+                        <nav id="mobile-menu">
+                            <ul>
+                                <li class="has-dropdown menu-thumb">
+                                    <a href="index.html">
+                                        Home  <span class="dropdown-icon"><img src="images/icon/dropdown-icon.svg" alt="icon"></span>                                                   
+                                    </a>
+                                    <ul class="submenu">
+                                        <li><a href="index.html">Home 01</a></li>
+                                        <li><a href="index2.html">Home 02</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-dropdown">
+                                    <a href="about.html">
+                                        About Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="service.html">
+                                        Services <span class="dropdown-icon"><img src="images/icon/dropdown-icon.svg" alt="icon"></span>                                                  
+                                    </a>
+                                    <ul class="submenu">
+                                        <li><a href="service.html">Service</a></li>
+                                        <li><a href="service-details.html">Service Details</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="service.html">
+                                        Projects <span class="dropdown-icon"><img src="images/icon/dropdown-icon.svg" alt="icon"></span>                                                  
+                                    </a>
+                                    <ul class="submenu">
+                                        <li><a href="project.html">Project</a></li>
+                                        <li><a href="project-details.html">Project Details</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="blog.html">
+                                        Blog <span class="dropdown-icon"><img src="images/icon/dropdown-icon.svg" alt="icon"></span>  
+                                    </a>
+                                    <ul class="submenu">
+                                        <li><a href="blog.html">Blog</a></li>
+                                        <li><a href="blog-details.html">Blog Details</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Pages <span class="dropdown-icon"><img src="images/icon/dropdown-icon.svg" alt="icon"></span>  
+                                    </a>
+                                    <ul class="submenu">
+                                        <li><a href="team.html">Team</a></li>
+                                        <li><a href="team-details.html">Team Details</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="contact.html">
+                                        Contact
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="search search-trigger searchBoxToggler d-none d-xxl-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                                <path d="M18.869 19.662L12.926 13.178C14.265 11.777 15.001 9.945 15.001 8C15.001 5.997 14.221 4.113 12.804 2.697C11.387 1.281 9.50398 0.5 7.50098 0.5C5.49798 0.5 3.61398 1.28 2.19798 2.697C0.781977 4.114 0.000976562 5.997 0.000976562 8C0.000976562 10.003 0.780977 11.887 2.19798 13.303C3.61498 14.719 5.49798 15.5 7.50098 15.5C9.22698 15.5 10.863 14.921 12.189 13.855L18.132 20.338C18.231 20.446 18.365 20.5 18.501 20.5C18.622 20.5 18.743 20.457 18.839 20.369C19.043 20.182 19.056 19.866 18.87 19.663L18.869 19.662ZM0.999977 8C0.999977 4.416 3.91598 1.5 7.49998 1.5C11.084 1.5 14 4.416 14 8C14 11.584 11.084 14.5 7.49998 14.5C3.91598 14.5 0.999977 11.584 0.999977 8Z" fill="black"/>
+                            </svg>
+                    </button>
+                    <button class="offcanvas-bar text-white sidebar__toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                <path d="M21.875 6.25H3.125C2.78 6.25 2.5 5.97 2.5 5.625C2.5 5.28 2.78 5 3.125 5H21.875C22.22 5 22.5 5.28 22.5 5.625C22.5 5.97 22.22 6.25 21.875 6.25Z" fill="black"/>
+                                <path d="M16.875 15H3.125C2.78 15 2.5 14.72 2.5 14.375C2.5 14.03 2.78 13.75 3.125 13.75H16.875C17.22 13.75 17.5 14.03 17.5 14.375C17.5 14.72 17.22 15 16.875 15Z" fill="black"/>
+                                <path d="M21.875 23.75H3.125C2.78 23.75 2.5 23.47 2.5 23.125C2.5 22.78 2.78 22.5 3.125 22.5H21.875C22.22 22.5 22.5 22.78 22.5 23.125C22.5 23.47 22.22 23.75 21.875 23.75Z" fill="black"/>
+                        </svg>
+                    </button>
+                    <div class="pl-30 btn-wrapper return-left d-none d-xxl-block">
+                            <a class="theme-btn style4" href="contact.html">Get a Quote<i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<div id="smooth-wrapper">
+    <div id="smooth-content">
+
+    <!--===== Hero Section    S T A R T =====-->
+    <section class="hero1 fix">
+        <div class="hero1-background-image__one img-fade-gsap" style="background-image: url('images/hero/hero-thumb1_1.png');"></div>
+        <div class="hero1-background-image__two img-fade-gsap-2" style="background-image: url('images/hero/hero-thumb1_2.png');"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-10 col-xxl-8">
+                    <div class="hero1-content return-left">
+                        <h6 class="hero1-content__subtitle">Best Cleaner</h6>
+                        <h1 class="hero1-content__title">We Make <span>Dirts</span> Disappear</h1>
+                        <p class="hero1-content__desc">A cleaning service is a professional company or individual that provides cleaning solutions for homes, offices, businesses</p>
+                        <div class="hero1-content-cta pt-30">
+                            <a class="hero1-content-cta__btn" href="contact.html">Contact Us <img src="images/icon/arrow-up-yellow.svg" alt="svg"></a> 
+                            <div class="hero1-content-cta__star">5.0 <img src="images/icon/group-star.svg" alt="svg"></div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+      
+    <!--===== About Section    S T A R T =====-->
+    <section class="about1 section-padding pb-0 fix">
+        <div class="about1-shape1">
+            <img src="images/shape/about-shape.png" alt="shape">
+        </div>
+        <div class="container">
+            <div class="row g-4 d-flex align-items-end pb-50">
+                <div class="col-lg-6">
+                    <div class="section-top">
+                        <p class="section-top__subtitle"> <span><img src="images/icon/cleaner-icon.svg" alt="svg"></span>About us</p>
+                        <h2 class="section-top__title title-fade-up">Transforming Homes One Clean at a Time</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="btn-wrapper d-flex justify-content-lg-end return-right">
+                        <a class="theme-btn style1" href="about.html">KNOW more<i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row gy-0 bg-color1">
+                <div class="col-lg-12 col-xl-9 col-xxl-8">
+                    <div class="about1-content">
+                        <!-- Tab Buttons -->
+                        <div class="about1-content-btn">
+                            <div class="about1-content-btn__one" data-tab="tab1">Premium Home Clean</div>
+                            <div class="about1-content-btn__one active-btn-style" data-tab="tab2">Office Sparkle Service</div>
+                            <div class="about1-content-btn__one" data-tab="tab3">Post-Construction Purge</div>
+                        </div>
+
+                        <!-- Tab Contents -->
+                        <div class="tab-content mt-4">
+                            <!-- Tab 1 Content -->
+                            <div class="about1-content-info d-none" id="tab1">
+                                <div class="about1-content-info-left">
+                                    <div class="about1-content-info-left__icon">
+                                        <img src="images/icon/spin-user.png" alt="png">
+                                    </div>
+                                    <div class="about1-content-info-left__title">
+                                        <h6>(1) We Have Over 25 Years of Experience</h6>
+                                    </div>
+                                    <div class="about1-content-info-left__link">
+                                        Read More <img src="images/icon/arrow-up.svg" alt="">
+                                    </div>
+                                    <div class="about1-content-info-left__rating">
+                                        <h6>2.65 Million+</h6>
+                                        <p>Worldwide Clients</p>
+                                    </div>
+                                </div>
+                                <div class="about1-content-info__verticalLine">
+                                    <img src="images/shape/vertical-line.svg" alt="svg">
+                                </div>
+                                <div class="about1-content-info-right">
+                                    <div class="about1-content-info-right-list">
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__icon">
+                                                <img src="images/icon/group-star3.svg" alt="svg">
+                                            </div>
+                                        </div>
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__title">Green Cleaning Solutions</div>
+                                            <div class="about1-content-info-right-list-item__text">Our standard service includes dusting vacuuming, mopping</div>
+                                        </div>
+                                    </div>
+                                    <div class="about1-content-info-right-list">
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__icon">
+                                                <img src="images/icon/group-star4.svg" alt="svg">
+                                            </div>
+                                        </div>
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__title">Seasonal Deep Clean</div>
+                                            <div class="about1-content-info-right-list-item__text">You can book a service through our website, by calling us</div>
+                                        </div>
+                                    </div>
+                                    <div class="about1-content-info-right-list">
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__icon">
+                                                <img src="images/icon/group-star3.svg" alt="svg">
+                                            </div>
+                                        </div>
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__title">Quick & Clean Service</div>
+                                            <div class="about1-content-info-right-list-item__text">We use environmentally friendly and non-toxic cleaning products</div>
+                                        </div>
+                                    </div>
+                                    <div class="about1-content-info-right-profile">
+                                        <div class="about1-content-info-right-profile__icon">
+                                            <img src="images/icon/vector.svg" alt="svg">
+                                        </div>
+                                        <div class="about1-content-info-right-profile__img">
+                                            <img src="images/about/about-profile1_1.png" alt="png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab 2 Content -->
+                            <div class="about1-content-info" id="tab2">
+                                <div class="about1-content-info-left">
+                                    <div class="about1-content-info-left__icon">
+                                        <img src="images/icon/spin-user.png" alt="png">
+                                    </div>
+                                    <div class="about1-content-info-left__title">
+                                        <h6>(2) We Have Over 30 Years of Experience</h6>
+                                    </div>
+                                    <div class="about1-content-info-left__link">
+                                        Read More <img src="images/icon/arrow-up.svg" alt="">
+                                    </div>
+                                    <div class="about1-content-info-left__rating">
+                                        <h6>2.65 Million+</h6>
+                                        <p>Worldwide Clients</p>
+                                    </div>
+                                </div>
+                                <div class="about1-content-info__verticalLine">
+                                    <img src="images/shape/vertical-line.svg" alt="svg">
+                                </div>
+                                <div class="about1-content-info-right">
+                                    <div class="about1-content-info-right-list">
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__icon">
+                                                <img src="images/icon/group-star3.svg" alt="svg">
+                                            </div>
+                                        </div>
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__title">Green Cleaning Solutions</div>
+                                            <div class="about1-content-info-right-list-item__text">Our standard service includes dusting vacuuming, mopping</div>
+                                        </div>
+                                    </div>
+                                    <div class="about1-content-info-right-list">
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__icon">
+                                                <img src="images/icon/group-star4.svg" alt="svg">
+                                            </div>
+                                        </div>
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__title">Seasonal Deep Clean</div>
+                                            <div class="about1-content-info-right-list-item__text">You can book a service through our website, by calling us</div>
+                                        </div>
+                                    </div>
+                                    <div class="about1-content-info-right-list">
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__icon">
+                                                <img src="images/icon/group-star3.svg" alt="svg">
+                                            </div>
+                                        </div>
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__title">Quick & Clean Service</div>
+                                            <div class="about1-content-info-right-list-item__text">We use environmentally friendly and non-toxic cleaning products</div>
+                                        </div>
+                                    </div>
+                                    <div class="about1-content-info-right-profile">
+                                        <div class="about1-content-info-right-profile__icon">
+                                            <img src="images/icon/vector.svg" alt="svg">
+                                        </div>
+                                        <div class="about1-content-info-right-profile__img">
+                                            <img src="images/about/about-profile1_1.png" alt="png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab 3 Content -->
+                            <div class="about1-content-info d-none" id="tab3">
+                                <div class="about1-content-info-left">
+                                    <div class="about1-content-info-left__icon">
+                                        <img src="images/icon/spin-user.png" alt="png">
+                                    </div>
+                                    <div class="about1-content-info-left__title">
+                                        <h6>(3) We Have Over 35 Years of Experience</h6>
+                                    </div>
+                                    <div class="about1-content-info-left__link">
+                                        Read More <img src="images/icon/arrow-up.svg" alt="">
+                                    </div>
+                                    <div class="about1-content-info-left__rating">
+                                        <h6>2.65 Million+</h6>
+                                        <p>Worldwide Clients</p>
+                                    </div>
+                                </div>
+                                <div class="about1-content-info__verticalLine">
+                                    <img src="images/shape/vertical-line.svg" alt="svg">
+                                </div>
+                                <div class="about1-content-info-right">
+                                    <div class="about1-content-info-right-list">
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__icon">
+                                                <img src="images/icon/group-star3.svg" alt="svg">
+                                            </div>
+                                        </div>
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__title">Green Cleaning Solutions</div>
+                                            <div class="about1-content-info-right-list-item__text">Our standard service includes dusting vacuuming, mopping</div>
+                                        </div>
+                                    </div>
+                                    <div class="about1-content-info-right-list">
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__icon">
+                                                <img src="images/icon/group-star4.svg" alt="svg">
+                                            </div>
+                                        </div>
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__title">Seasonal Deep Clean</div>
+                                            <div class="about1-content-info-right-list-item__text">You can book a service through our website, by calling us</div>
+                                        </div>
+                                    </div>
+                                    <div class="about1-content-info-right-list">
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__icon">
+                                                <img src="images/icon/group-star3.svg" alt="svg">
+                                            </div>
+                                        </div>
+                                        <div class="about1-content-info-right-list-item">
+                                            <div class="about1-content-info-right-list-item__title">Quick & Clean Service</div>
+                                            <div class="about1-content-info-right-list-item__text">We use environmentally friendly and non-toxic cleaning products</div>
+                                        </div>
+                                    </div>
+                                    <div class="about1-content-info-right-profile">
+                                        <div class="about1-content-info-right-profile__icon">
+                                            <img src="images/icon/vector.svg" alt="svg">
+                                        </div>
+                                        <div class="about1-content-info-right-profile__img">
+                                            <img src="images/about/about-profile1_1.png" alt="png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-xxl-4 d-flex">
+                    <div class="about1-thumb">
+                        <div class="about1-thumb__top">
+                            <img src="images/about/about-thumb1_1.png" alt="png">
+                        </div>
+                        <div class="about1-thumb-middle">
+                            <div class="about1-thumb-middle__left">
+                                <img src="images/about/about-thumb1_2.png" alt="png">
+                            </div>
+                            <div class="about1-thumb-middle__right">
+                                <img src="images/about/about-thumb1_3.png" alt="png">
+                            </div>
+                        </div>
+                        <div class="about1-thumb__bottom">
+                            <img src="images/about/about-thumb1_4.png" alt="png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--===== Contact us Section    S T A R T =====-->
+    <section class="contact1 section-padding fix">
+        <div class="contact1__shape">
+            <img src="images/shape/contact-shape1.svg" alt="shape">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="contact1-info">
+                        <div class="contact1-info__icon tw_title_anim">
+                            <img src="images/icon/phone-icon2.svg" alt="svg">
+                        </div>
+                        <div class="contact1-info__numb tw_title_anim">
+                            <span>(+284) 5962 2834</span>
+                        </div>
+                        <div class="contact1-info__text tw_title_anim">
+                            <h3>Contact Us For Batter Services</h3>
+                        </div>
+                        <div class="contact1-info-btn">
+                            <div class="contact1-info-btn__book return-left">
+                                <a href="#!">
+                                    BOOK NOW<i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            <div class="contact1-info-btn__contact return-right">
+                                <a href="contact.html">CONTACT US</a>
+                            </div>
+                        </div>
+                    </div>                   
+                </div>                                        
+                                                       
+            </div>
+        </div>
+    </section>
+
+    <!--===== Service Section    S T A R T =====-->
+    <section class="service1 section-padding fix">
+        <div class="container">
+            <div class="row g-4 d-flex align-items-end pb-50">
+                <div class="col-lg-7">
+                    <div class="section-top">
+                        <p class="section-top__subtitle"> <span><img src="images/icon/cleaner-icon.svg" alt="svg"></span>Our Services</p>
+                        <h2 class="section-top__title title-fade-up">Because Your Home Deserves the Best</h2>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="slider-btn justify-content-lg-end return-right">
+                        <button data-slider-prev="#serviceSlider1" class="slider-arrow style1"><i class="fa-regular fa-arrow-left-long"></i></button>
+                        <button data-slider-next="#serviceSlider1" class="slider-arrow style1 slider-next"><i class="fa-regular fa-arrow-right-long"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-12">
+                    <div class="swiper global-slider" id="serviceSlider1"
+                            data-slider-options='{"loop": true,"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":2,"centeredSlides":true},"768":{"slidesPerView":2},"992":{"slidesPerView":3},"1200":{"slidesPerView":3}}}'>
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="service1-card">
+                                        <div class="service1-card__thumb">
+                                            <img src="images/service/service-thumb1_1.png" alt="png">
+                                        </div>
+                                        <div class="service1-card-content">
+                                            <div class="service1-card-content__icon">
+                                                <img src="images/icon/service-icon1_1.svg" alt="svg">
+                                            </div>
+                                            <h6 class="service1-card-content__title">
+                                                <a href="service-details.html">Window Woder Wash</a>
+                                            </h6>                              
+                                            <div class="service1-card-content__desc">
+                                                <p>we provide all necessary cleaning and as supplies and equipment. If you have your specific products</p>
+                                            </div>
+                                            <a href="service-details.html" class="service1-card-content__link">Read more <img src="images/icon/arrow-up.svg" alt="svg"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="service1-card">
+                                        <div class="service1-card__thumb">
+                                            <img src="images/service/service-thumb1_2.png" alt="png">
+                                        </div>
+                                        <div class="service1-card-content">
+                                            <div class="service1-card-content__icon">
+                                                <img src="images/icon/service-icon1_2.svg" alt="svg">
+                                            </div>
+                                            <h6 class="service1-card-content__title">
+                                                <a href="service-details.html">Office Gleam Service</a>
+                                            </h6>                              
+                                            <div class="service1-card-content__desc">
+                                                <p>We offer eco-friendly cleaning options a  Please let us know if you prefer these an products when</p>
+                                            </div>
+                                            <a href="service-details.html" class="service1-card-content__link">Read more <img src="images/icon/arrow-up.svg" alt="svg"></a>
+                                        </div>
+                                    </div>  
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="service1-card">
+                                        <div class="service1-card__thumb">
+                                            <img src="images/service/service-thumb1_3.png" alt="png">
+                                        </div>
+                                        <div class="service1-card-content">
+                                            <div class="service1-card-content__icon">
+                                                <img src="images/icon/service-icon1_3.svg" alt="svg">
+                                            </div>
+                                            <h6 class="service1-card-content__title">
+                                                <a href="service-details.html">Ultimate Home fresh</a>
+                                            </h6>                              
+                                            <div class="service1-card-content__desc">
+                                                <p>Customer satisfaction is our top priority. If you're not happy with our service and please contact</p>
+                                            </div>
+                                            <a href="service-details.html" class="service1-card-content__link">Read more <img src="images/icon/arrow-up.svg" alt="svg"></a>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--===== Project Section    S T A R T =====-->
+    <section class="project1 fix">
+        <div class="project1__shape">
+            <img src="images/shape/project-shape1.svg" alt="svg">
+        </div>
+        <div class="container">
+            <div class="row d-flex justify-content-center pt-120">
+                <div class="col-md-12 col-lg-7 text-center">
+                    <div class="section-top text-center">
+                        <p class="section-top__subtitle2 tw_title_anim">
+                            <span><img src="images/icon/cleaner-icon-green.svg" alt="svg"></span>Before & After <span><img src="images/icon/cleaner-icon-green.svg" alt="svg"></span>
+                        </p>
+                        <h2 class="section-top__title2 pb-20 tw_title_anim">Recent Completed Projects</h2>
+                        <p class="section-top__desc2 pb-20">We offer customizable cleaning plans to fit your specific needs and preferences. Just let us know what you require You can schedule an appointment through our website, by phone, or via email. We offer flexible</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="project1-card section-item">
+                        <div class="project1-card-thumb">
+                            <div class="project1-card-thumb__one">
+                                <img src="images/project/project-thumb1_1.png" alt="png">
+                            </div>
+                            <div class="project1-card-thumb__two">
+                                <img src="images/project/project-thumb1_2.png" alt="png">
+                            </div>                        
+                        </div>
+                        <div class="project1-card-btn1">
+                            <span>Before</span>
+                        </div>
+                        <div class="project1-card-btn2">
+                            <span>After</span>
+                        </div>
+                        <div class="project1-card__icon">
+                            <img src="images/icon/alter-icon.svg" alt="svg">
+                        </div>
+                    </div>
+                </div>
+                              
+            </div>            
+        </div>
+    </section>
+
+    <!--===== Team Section    S T A R T =====-->
+    <section class="team1 section-padding fix">
+        <div class="container">
+            <div class="row g-4 d-flex align-items-end pb-50">
+                <div class="col-lg-6">
+                    <div class="section-top">
+                        <p class="section-top__subtitle"> <span><img src="images/icon/cleaner-icon.svg" alt="svg"></span>team members</p>
+                        <h2 class="section-top__title title-fade-up">Meet Our Team of Expert Cleaning Staff</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="btn-wrapper d-flex justify-content-lg-end return-right">
+                        <a class="theme-btn style1" href="team.html">READ MORE<i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="team1-card">
+                        <div class="team1-card-thumb">
+                            <div class="team1-card-thumb__img">
+                                <img src="images/team/team-thumb1_1.png" alt="png">
+                            </div>
+                            <div class="team1-card-thumb__shape">
+                                <img class="team1-card-thumb__shape--one" src="images/shape/team-shape1.svg" alt="svg">
+                                <img class="team1-card-thumb__shape--two" src="images/shape/team-shape2.svg" alt="svg">
+                            </div>
+                        </div>
+                        <div class="global-social mt-4">
+                            <div class="global-social__item">
+                                <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </a>
+                            </div>
+                            <div class="global-social__item">
+                                <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                            </div>
+                            <div class="global-social__item">
+                                <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-twitter"></i>
+                                </a>
+                            </div>
+                            <div class="global-social__item">
+                                <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="team1-card-content">
+                            <h6 class="team1-card-content__title">
+                                <a href="team-details.html">Francene Vandyne</a>
+                            </h6>                              
+                            <div class="team1-card-content__desc">
+                                <p>Team Leader</p>
+                            </div>
+                            <div class="team1-card-content__phone">
+                                <img src="images/icon/phone-lg.svg" alt="svg">
+                                <p><a href="tel:+2085550112">(+208) 555-0112</a></p>
+                            </div>                            
+                        </div>
+                    </div>                   
+                </div>                                        
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="team1-card">
+                        <div class="team1-card-thumb">
+                            <div class="team1-card-thumb__img">
+                                <img src="images/team/team-thumb1_2.png" alt="png">
+                            </div>
+                            <div class="team1-card-thumb__shape">
+                                <img class="team1-card-thumb__shape--one" src="images/shape/team-shape1.svg" alt="svg">
+                                <img class="team1-card-thumb__shape--two" src="images/shape/team-shape2.svg" alt="svg">
+                            </div>
+                        </div>
+                        <div class="global-social mt-4">
+                            <div class="global-social__item">
+                                <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </a>
+                            </div>
+                            <div class="global-social__item">
+                                <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                            </div>
+                            <div class="global-social__item">
+                                <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-twitter"></i>
+                                </a>
+                            </div>
+                            <div class="global-social__item">
+                                <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="team1-card-content">
+                            <h6 class="team1-card-content__title">
+                                <a href="team-details.html">Savannah Nguyen</a>
+                            </h6>                              
+                            <div class="team1-card-content__desc">
+                                <p>Managing Partner</p>
+                            </div>
+                            <div class="team1-card-content__phone">
+                                <img src="images/icon/phone-lg.svg" alt="svg">
+                                <p><a href="tel:+2085550112">(+208) 555-0112</a></p>
+                            </div>                            
+                        </div>
+                    </div>                   
+                </div>                                        
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="team1-card">
+                        <div class="team1-card-thumb">
+                            <div class="team1-card-thumb__img">
+                                <img src="images/team/team-thumb1_3.png" alt="png">
+                            </div>
+                            <div class="team1-card-thumb__shape">
+                                <img class="team1-card-thumb__shape--one" src="images/shape/team-shape1.svg" alt="svg">
+                                <img class="team1-card-thumb__shape--two" src="images/shape/team-shape2.svg" alt="svg">
+                            </div>
+                        </div>
+                        <div class="global-social mt-4">
+                            <div class="global-social__item">
+                                <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </a>
+                            </div>
+                            <div class="global-social__item">
+                                <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                            </div>
+                            <div class="global-social__item">
+                                <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-twitter"></i>
+                                </a>
+                            </div>
+                            <div class="global-social__item">
+                                <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="team1-card-content">
+                            <h6 class="team1-card-content__title">
+                                <a href="team-details.html">Sanjuanita Ordonez</a>
+                            </h6>                              
+                            <div class="team1-card-content__desc">
+                                <p>Section Manager</p>
+                            </div>
+                            <div class="team1-card-content__phone">
+                                <img src="images/icon/phone-lg.svg" alt="svg">
+                                <p><a href="tel:+2085550112">(+208) 555-0112</a></p>
+                            </div>                            
+                        </div>
+                    </div>                   
+                </div>                                        
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="team1-card">
+                        <div class="team1-card-thumb">
+                            <div class="team1-card-thumb__img">
+                                <img src="images/team/team-thumb1_4.png" alt="png">
+                            </div>
+                            <div class="team1-card-thumb__shape">
+                                <img class="team1-card-thumb__shape--one" src="images/shape/team-shape1.svg" alt="svg">
+                                <img class="team1-card-thumb__shape--two" src="images/shape/team-shape2.svg" alt="svg">
+                            </div>
+                        </div>
+                        <div class="global-social mt-4">
+                            <div class="global-social__item">
+                                <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </a>
+                            </div>
+                            <div class="global-social__item">
+                                <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                            </div>
+                            <div class="global-social__item">
+                                <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-twitter"></i>
+                                </a>
+                            </div>
+                            <div class="global-social__item">
+                                <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="team1-card-content">
+                            <h6 class="team1-card-content__title">
+                                <a href="team-details.html">Cameron Williamson</a>
+                            </h6>                              
+                            <div class="team1-card-content__desc">
+                                <p>Managing Partner</p>
+                            </div>
+                            <div class="team1-card-content__phone">
+                                <img src="images/icon/phone-lg.svg" alt="svg">
+                                <p><a href="tel:+2085550112">(+208) 555-0112</a></p>
+                            </div>                            
+                        </div>
+                    </div>                   
+                </div>                                        
+            </div>
+        </div>
+    </section>
+
+    <!--===== Choose Us Section    S T A R T =====-->
+    <section class="choose1 section-padding pt-0 pb-0 fix">
+        <div class="choose1__thumb">
+            <img src="images/wcu/wcu-thumb1_1.png" alt="png">
+        </div>
+        <div class="choose1__shape1">
+            <img src="images/shape/bubble-shape1.svg" alt="svg">
+        </div>
+        <div class="choose1__shape2">
+            <img src="images/shape/bubble-shape1.svg" alt="svg">
+        </div>
+        <div class="container">
+            <div class="row wcu-padding">
+                <div class="offset-xxl-5 col-xxl-7">
+                    <div class="choose1-content">
+                        <div class="section-top pb-35">
+                            <p class="section-top__subtitle2 justify-content-start tw_title_anim">
+                                <span><img src="images/icon/cleaner-icon-green.svg" alt="svg"></span>why choose us<span><img src="images/icon/cleaner-icon-green.svg" alt="svg"></span>
+                            </p>
+                            <h2 class="section-top__title2 text-start pb-20 tw_title_anim">Swim Worry-Free with Our Top-tier Cleaning Solutions</h2>
+                            <p class="section-top__desc2 text-start">High-pressure cleaning service for exterior surfaces such as driveways sidewalks patios decks and building exteriors This service removes dirt mold mildew stains and algae restoring the appearance</p>
+                        </div>
+                        <div class="choose1-content-btn pb-30">
+                            <div class="choose1-content-btn-item">
+                                <p>Bright Bliss Cleaning</p>
+                                <div class="choose1-content-btn-item__icon">
+                                    <img src="images/icon/group-star-icon.svg" alt="svg">
+                                </div>
+                            </div>
+                            <div class="choose1-content-btn-item">
+                                <p>Sparkling Spaces</p>
+                                <div class="choose1-content-btn-item__icon">
+                                    <img src="images/icon/group-star-icon.svg" alt="svg">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="choose1-content-btn">
+                            <div class="choose1-content-btn-item">
+                                <p>Sparkling Spaces</p>
+                                <div class="choose1-content-btn-item__icon">
+                                    <img src="images/icon/group-star-icon.svg" alt="svg">
+                                </div>
+                            </div>
+                            <div class="choose1-content-btn-item">
+                                <p>Quick Shine Express</p>
+                                <div class="choose1-content-btn-item__icon">
+                                    <img src="images/icon/group-star-icon.svg" alt="svg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                                     
+        </div>
+    </section>
+
+    <!--===== Pricing Section    S T A R T =====-->
+    <section class="pricing1 section-padding pb-140 fix">
+        <div class="container">
+            <div class="row g-4 d-flex align-items-end pb-50">
+                <div class="col-lg-6">
+                    <div class="section-top">
+                        <p class="section-top__subtitle"> <span><img src="images/icon/cleaner-icon.svg" alt="svg"></span>Pricing plan</p>
+                        <h2 class="section-top__title title-fade-up">Choose your Pricing Plan</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-flex justify-content-lg-end">
+                    <div class="nav nav-pills return-right" id="pills-tab" role="tablist">
+                        <div class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-monthly-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-monthly" type="button" role="tab"
+                                aria-controls="pills-monthly" aria-selected="true">
+                                Monthly
+                            </button>
+                            <button class="nav-link" id="pills-yearly-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-yearly" type="button" role="tab" aria-controls="pills-yearly"
+                                aria-selected="false" tabindex="-1">
+                                Yearly
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade active show" id="pills-monthly" role="tabpanel"
+                    aria-labelledby="pills-monthly-tab">
+                    <div class="row g-4 gutter-pricing">
+                        <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                            <div class="pricing1-card">
+                                <div class="pricing1-card-shape1">
+                                    <img class="svg" src="images/shape/pricing-shape1.svg" alt="svg">
+                                </div>
+                                <div class="pricing1-card-shape2">
+                                    <img class="svg" src="images/shape/pricing-shape2.svg" alt="svg">
+                                </div>
+                                <div class="pricing1-card-content">
+                                    <div class="pricing1-card-content__title">
+                                        <h5>Basic Plan</h5>
+                                    </div>
+                                    <div class="pricing1-card-content__desc">
+                                        <p>General cleaning tasks performed regularly to maintain cleanliness in a home</p>
+                                    </div>
+                                    <ul class="checklist style1">
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Deluxe Deep Clean</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Plumbing Service</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>House Cleaning</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Kitchen Cleaning</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Window Service</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Seasonal Deep Clean</span>
+                                        </li>
+                                    </ul>
+                                    <div class="pricing1-card-content__btn">
+                                        <a href="#!"><span>Choose Plan</span></a>                                
+                                    </div>
+                                </div>
+                                <div class="pricing1-card-value">
+                                    <span class="pricing1-card-value__dolar" >$120</span>
+                                    <span class="pricing1-card-value__month">Monthly</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                            <div class="pricing1-card">
+                                <div class="pricing1-card-shape1">
+                                    <img class="svg" src="images/shape/pricing-shape1.svg" alt="svg">
+                                </div>
+                                <div class="pricing1-card-shape2">
+                                    <img class="svg" src="images/shape/pricing-shape2.svg" alt="svg">
+                                </div>
+                                <div class="pricing1-card-content">
+                                    <div class="pricing1-card-content__title">
+                                        <h5>Stander Plan</h5>
+                                    </div>
+                                    <div class="pricing1-card-content__desc">
+                                        <p>Dusting vacuuming mopping floors cleaning bathrooms and kitchens taking </p>
+                                    </div>
+                                    <ul class="checklist style1">
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Deluxe Deep Clean</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Plumbing Service</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>House Cleaning</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Kitchen Cleaning</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Window Service</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Seasonal Deep Clean</span>
+                                        </li>
+                                    </ul>
+                                    <div class="pricing1-card-content__btn">
+                                        <a href="#!"><span>Choose Plan</span></a>                                
+                                    </div>
+                                </div>
+                                <div class="pricing1-card-value">
+                                    <span class="pricing1-card-value__dolar" >$180</span>
+                                    <span class="pricing1-card-value__month">Monthly</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                            <div class="pricing1-card">
+                                <div class="pricing1-card-shape1">
+                                    <img class="svg" src="images/shape/pricing-shape1.svg" alt="svg">
+                                </div>
+                                <div class="pricing1-card-shape2">
+                                    <img class="svg" src="images/shape/pricing-shape2.svg" alt="svg">
+                                </div>
+                                <div class="pricing1-card-content">
+                                    <div class="pricing1-card-content__title">
+                                        <h5>Premium Plan</h5>
+                                    </div>
+                                    <div class="pricing1-card-content__desc">
+                                        <p>Cleaning behind appliances scrubbing tile grout washing baseboards</p>
+                                    </div>
+                                    <ul class="checklist style1">
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Deluxe Deep Clean</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Plumbing Service</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>House Cleaning</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Kitchen Cleaning</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Window Service</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Seasonal Deep Clean</span>
+                                        </li>
+                                    </ul>
+                                    <div class="pricing1-card-content__btn">
+                                        <a href="#!"><span>Choose Plan</span></a>                                
+                                    </div>
+                                </div>
+                                <div class="pricing1-card-value">
+                                    <span class="pricing1-card-value__dolar" >$220</span>
+                                    <span class="pricing1-card-value__month">Monthly</span>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-yearly" role="tabpanel" aria-labelledby="pills-yearly-tab">
+                    <div class="row g-4 gutter-pricing">
+                        <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                            <div class="pricing1-card">
+                                <div class="pricing1-card-shape1">
+                                    <img class="svg" src="images/shape/pricing-shape1.svg" alt="svg">
+                                </div>
+                                <div class="pricing1-card-shape2">
+                                    <img class="svg" src="images/shape/pricing-shape2.svg" alt="svg">
+                                </div>
+                                <div class="pricing1-card-content">
+                                    <div class="pricing1-card-content__title">
+                                        <h5>Basic Plan</h5>
+                                    </div>
+                                    <div class="pricing1-card-content__desc">
+                                        <p>General cleaning tasks performed regularly to maintain cleanliness in a home</p>
+                                    </div>
+                                    <ul class="checklist style1">
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Deluxe Deep Clean</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Plumbing Service</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>House Cleaning</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Kitchen Cleaning</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Window Service</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Seasonal Deep Clean</span>
+                                        </li>
+                                    </ul>
+                                    <div class="pricing1-card-content__btn">
+                                        <a href="#!"><span>Choose Plan</span></a>                                
+                                    </div>
+                                </div>
+                                <div class="pricing1-card-value">
+                                    <span class="pricing1-card-value__dolar" >$120</span>
+                                    <span class="pricing1-card-value__month">Monthly</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                            <div class="pricing1-card">
+                                <div class="pricing1-card-shape1">
+                                    <img class="svg" src="images/shape/pricing-shape1.svg" alt="svg">
+                                </div>
+                                <div class="pricing1-card-shape2">
+                                    <img class="svg" src="images/shape/pricing-shape2.svg" alt="svg">
+                                </div>
+                                <div class="pricing1-card-content">
+                                    <div class="pricing1-card-content__title">
+                                        <h5>Stander Plan</h5>
+                                    </div>
+                                    <div class="pricing1-card-content__desc">
+                                        <p>Dusting vacuuming mopping floors cleaning bathrooms and kitchens taking </p>
+                                    </div>
+                                    <ul class="checklist style1">
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Deluxe Deep Clean</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Plumbing Service</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>House Cleaning</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Kitchen Cleaning</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Window Service</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Seasonal Deep Clean</span>
+                                        </li>
+                                    </ul>
+                                    <div class="pricing1-card-content__btn">
+                                        <a href="#!"><span>Choose Plan</span></a>                                
+                                    </div>
+                                </div>
+                                <div class="pricing1-card-value">
+                                    <span class="pricing1-card-value__dolar" >$180</span>
+                                    <span class="pricing1-card-value__month">Monthly</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                            <div class="pricing1-card">
+                                <div class="pricing1-card-shape1">
+                                    <img class="svg" src="images/shape/pricing-shape1.svg" alt="svg">
+                                </div>
+                                <div class="pricing1-card-shape2">
+                                    <img class="svg" src="images/shape/pricing-shape2.svg" alt="svg">
+                                </div>
+                                <div class="pricing1-card-content">
+                                    <div class="pricing1-card-content__title">
+                                        <h5>Premium Plan</h5>
+                                    </div>
+                                    <div class="pricing1-card-content__desc">
+                                        <p>Cleaning behind appliances scrubbing tile grout washing baseboards</p>
+                                    </div>
+                                    <ul class="checklist style1">
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Deluxe Deep Clean</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Plumbing Service</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>House Cleaning</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Kitchen Cleaning</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Window Service</span>
+                                        </li>
+                                        <li><img src="images/icon/group-star2.svg" alt="icon">
+                                            <span>Seasonal Deep Clean</span>
+                                        </li>
+                                    </ul>
+                                    <div class="pricing1-card-content__btn">
+                                        <a href="#!"><span>Choose Plan</span></a>                                
+                                    </div>
+                                </div>
+                                <div class="pricing1-card-value">
+                                    <span class="pricing1-card-value__dolar" >$220</span>
+                                    <span class="pricing1-card-value__month">Monthly</span>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--===== Testimonial Section    S T A R T =====-->   
+    <section class="testimonial1 section-padding pt-0 fix position-relative">
+        <div class="testimonial1-shape">
+            <img src="images/shape/testi-shape5.svg" alt="svg">
+        </div>
+        <div class="container-fluid">
+          <div class="row align-items-center section-padding-testi pb-0">
+            <div class="col-lg-7 overflow-visible">
+              <div class="swiper global-slider" id="testimonialSlider1"
+                data-slider-options='{"loop": true, "breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":1,"centeredSlides":true},"768":{"slidesPerView":2},"992":{"slidesPerView":1},"1200":{"slidesPerView":2} ,"1700":{"slidesPerView":3}}}'>
+                <div class="swiper-wrapper">    
+                    <div class="swiper-slide" style="width: 397px;">
+                        <div class="testimonial1-card-three testimonial1-slide-inner">
+                            <div class="testimonial1-card-three-header">
+                                <div class="testimonial1-card-three-header__icon">
+                                    <img src="images/icon/testi-icon1_1.svg" alt="svg">
+                                </div>
+                                <div class="testimonial1-card-three-header__text">
+                                    <p>Our standard service includes dusting vacuuming mopping kitchen and bathroom cleaning and general
+                                        tidying up services</p>
+                                </div>
+                            </div>
+                            <div class="fancy-box1">
+                                <div class="fancy-box1__item">
+                                    <img src="images/testimonial/testi-thumb1_3.png" alt="thumb">
+                                </div>
+                                <div class="fancy-box1__item">
+                                <h6>Darlene Robertson</h6>
+                                <p>Marketing Coordinator</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                    <div class="swiper-slide" style="width: 397px;">
+                        <div class="testimonial1-card-three testimonial1-slide-inner">
+                            <div class="testimonial1-card-three-header">
+                                <div class="testimonial1-card-three-header__icon">
+                                    <img src="images/icon/testi-icon1_2.svg" alt="svg">
+                                </div>
+                                <div class="testimonial1-card-three-header__text">
+                                    <p>Our standard service includes dusting vacuuming mopping kitchen and bathroom cleaning and general
+                                        tidying up services</p>
+                                </div>
+                            </div>
+                            <div class="fancy-box1">
+                                <div class="fancy-box1__item">
+                                    <img src="images/testimonial/testi-thumb1_3.png" alt="thumb">
+                                </div>
+                                <div class="fancy-box1__item">
+                                <h6>Savannah Nguyen</h6>
+                                <p>Marketing Coordinator</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                    <div class="swiper-slide" style="width: 397px;">
+                        <div class="testimonial1-card-three testimonial1-slide-inner">
+                            <div class="testimonial1-card-three-header">
+                                <div class="testimonial1-card-three-header__icon">
+                                    <img src="images/icon/testi-icon1_3.svg" alt="svg">
+                                </div>
+                                <div class="testimonial1-card-three-header__text">
+                                    <p>Our standard service includes dusting vacuuming mopping kitchen and bathroom cleaning and general
+                                        tidying up services</p>
+                                </div>
+                            </div>
+                            <div class="fancy-box1">
+                                <div class="fancy-box1__item">
+                                    <img src="images/testimonial/testi-thumb1_3.png" alt="thumb">
+                                </div>
+                                <div class="fancy-box1__item">
+                                <h6>Cameron Williamson</h6>
+                                <p>Marketing Coordinator</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                    <div class="swiper-slide" style="width: 397px;">
+                        <div class="testimonial1-card-three testimonial1-slide-inner">
+                            <div class="testimonial1-card-three-header">
+                                <div class="testimonial1-card-three-header__icon">
+                                    <img src="images/icon/testi-icon1_1.svg" alt="svg">
+                                </div>
+                                <div class="testimonial1-card-three-header__text">
+                                    <p>Our standard service includes dusting vacuuming mopping kitchen and bathroom cleaning and general
+                                        tidying up services</p>
+                                </div>
+                            </div>
+                            <div class="fancy-box1">
+                                <div class="fancy-box1__item">
+                                    <img src="images/testimonial/testi-thumb1_3.png" alt="thumb">
+                                </div>
+                                <div class="fancy-box1__item">
+                                <h6>Darlene Robertson</h6>
+                                <p>Marketing Coordinator</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                    <div class="swiper-slide" style="width: 397px;">
+                        <div class="testimonial1-card-three testimonial1-slide-inner">
+                            <div class="testimonial1-card-three-header">
+                                <div class="testimonial1-card-three-header__icon">
+                                    <img src="images/icon/testi-icon1_2.svg" alt="svg">
+                                </div>
+                                <div class="testimonial1-card-three-header__text">
+                                    <p>Our standard service includes dusting vacuuming mopping kitchen and bathroom cleaning and general
+                                        tidying up services</p>
+                                </div>
+                            </div>
+                            <div class="fancy-box1">
+                                <div class="fancy-box1__item">
+                                    <img src="images/testimonial/testi-thumb1_3.png" alt="thumb">
+                                </div>
+                                <div class="fancy-box1__item">
+                                <h6>Savannah Nguyen</h6>
+                                <p>Marketing Coordinator</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                    <div class="swiper-slide" style="width: 397px;">
+                        <div class="testimonial1-card-three testimonial1-slide-inner">
+                            <div class="testimonial1-card-three-header">
+                                <div class="testimonial1-card-three-header__icon">
+                                    <img src="images/icon/testi-icon1_3.svg" alt="svg">
+                                </div>
+                                <div class="testimonial1-card-three-header__text">
+                                    <p>Our standard service includes dusting vacuuming mopping kitchen and bathroom cleaning and general
+                                        tidying up services</p>
+                                </div>
+                            </div>
+                            <div class="fancy-box1">
+                                <div class="fancy-box1__item">
+                                    <img src="images/testimonial/testi-thumb1_3.png" alt="thumb">
+                                </div>
+                                <div class="fancy-box1__item">
+                                <h6>Cameron Williamson</h6>
+                                <p>Marketing Coordinator</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                    <div class="swiper-slide" style="width: 397px;">
+                        <div class="testimonial1-card-three testimonial1-slide-inner">
+                            <div class="testimonial1-card-three-header">
+                                <div class="testimonial1-card-three-header__icon">
+                                    <img src="images/icon/testi-icon1_1.svg" alt="svg">
+                                </div>
+                                <div class="testimonial1-card-three-header__text">
+                                    <p>Our standard service includes dusting vacuuming mopping kitchen and bathroom cleaning and general
+                                        tidying up services</p>
+                                </div>
+                            </div>
+                            <div class="fancy-box1">
+                                <div class="fancy-box1__item">
+                                    <img src="images/testimonial/testi-thumb1_3.png" alt="thumb">
+                                </div>
+                                <div class="fancy-box1__item">
+                                <h6>Darlene Robertson</h6>
+                                <p>Marketing Coordinator</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                    <div class="swiper-slide" style="width: 397px;">
+                        <div class="testimonial1-card-three testimonial1-slide-inner">
+                            <div class="testimonial1-card-three-header">
+                                <div class="testimonial1-card-three-header__icon">
+                                    <img src="images/icon/testi-icon1_2.svg" alt="svg">
+                                </div>
+                                <div class="testimonial1-card-three-header__text">
+                                    <p>Our standard service includes dusting vacuuming mopping kitchen and bathroom cleaning and general
+                                        tidying up services</p>
+                                </div>
+                            </div>
+                            <div class="fancy-box1">
+                                <div class="fancy-box1__item">
+                                    <img src="images/testimonial/testi-thumb1_3.png" alt="thumb">
+                                </div>
+                                <div class="fancy-box1__item">
+                                <h6>Savannah Nguyen</h6>
+                                <p>Marketing Coordinator</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                    <div class="swiper-slide" style="width: 397px;">
+                        <div class="testimonial1-card-three testimonial1-slide-inner">
+                            <div class="testimonial1-card-three-header">
+                                <div class="testimonial1-card-three-header__icon">
+                                    <img src="images/icon/testi-icon1_3.svg" alt="svg">
+                                </div>
+                                <div class="testimonial1-card-three-header__text">
+                                    <p>Our standard service includes dusting vacuuming mopping kitchen and bathroom cleaning and general
+                                        tidying up services</p>
+                                </div>
+                            </div>
+                            <div class="fancy-box1">
+                                <div class="fancy-box1__item">
+                                    <img src="images/testimonial/testi-thumb1_3.png" alt="thumb">
+                                </div>
+                                <div class="fancy-box1__item">
+                                <h6>Cameron Williamson</h6>
+                                <p>Marketing Coordinator</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                </div>
+              </div>
+            </div>
+      
+            <div class="col-lg-5">
+                <div class="testimonial1-content">
+                    <div class="section-top pb-40">
+                        <p class="section-top__subtitle3 justify-content-start">
+                            <span><img src="images/icon/cleaner-icon.svg" alt="svg"></span>Testimonial<span></span>
+                        </p>
+                        <h2 class="section-top__title3 text-start pb-10">What our clients say About Us</h2>
+                        <p class="section-top__desc pb-15">We offer a wide range of services office including regular cleaning, deep cleaning, move-in/move-out cleaning, and service We offer a wide range of services office including  </p>
+                        <p class="section-top__desc3">Trust Score 5.3(Bases on 1,300 reviews)</p>
+                    </div>
+                    <div class="slider-btn return-right">
+                        <button data-slider-prev="#testimonialSlider1" class="slider-arrow style2"><i class="fa-regular fa-arrow-left-long"></i></button>
+                        <button data-slider-next="#testimonialSlider1" class="slider-arrow style2 slider-next"><i class="fa-regular fa-arrow-right-long"></i></button>
+                    </div>                        
+                </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!--===== Blog Section    S T A R T =====-->
+    <section class="blog1 section-padding pb-55 fix">
+        <div class="container">
+            <div class="row g-4 d-flex align-items-end pb-60">
+                <div class="col-lg-6">
+                    <div class="section-top">
+                        <p class="section-top__subtitle"> <span><img src="images/icon/cleaner-icon.svg" alt="svg"></span>blog and news</p>
+                        <h2 class="section-top__title title-fade-up">Latest New and Blog</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="btn-wrapper d-flex justify-content-lg-end return-right">
+                        <a class="theme-btn style1" href="blog.html">View all blog<i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-12 col-xl-6">
+                    <div class="blog1-card-one">
+                        <div class="blog1-card-one__thumb">
+                            <img src="images/blog/blog-thumb1_1.png" alt="png">
+                        </div>
+                        <div class="blog1-card-one-content">
+                            <div class="blog1-card-one-content-meta">
+                                <div class="blog1-card-one-content-meta__user"><i class="fa-regular fa-user"></i>Post Admin</div>  
+                                <div class="blog1-card-one-content-meta__line"></div>
+                                <div class="blog1-card-one-content-meta__comment"><i class="fa-regular fa-calendar"></i>June 10 2025</div>
+                                <div class="blog1-card-one-content-meta__line"></div>
+                                <div class="blog1-card-one-content-meta__calendar"><i class="fa-regular fa-comments"></i>04 Comments</div>
+                            </div>
+                            <a href="blog-details.html">
+                                <h6 class="blog1-card-one-content__title">All our cleaners are highly trained professio who are fully insured</h6>
+                            </a>
+                            <p class="blog1-card-one-content__desc">
+                                Our maids come fully equipped with all the necessary cleaning supplies and equipment. You can sit
+                            </p>
+                            <a href="blog-details.html" class="blog1-card-one-content__link">Read more<img src="images/icon/arrow-up-white.svg" alt="svg"></a>
+                            <div class="blog1-card-one-content__shape">
+                                <img src="images/shape/blog-shape1.svg" alt="svg">
+                            </div>
+                        </div>
+                    </div>                   
+                </div>
+                <div class="col-lg-12 col-xl-6">
+                    <div class="blog1-card-two">
+                        <div class="blog1-card-two__thumb">
+                            <img src="images/blog/blog-thumb1_2.png" alt="png">
+                        </div>
+                        <div class="blog1-card-two-content">
+                            <div class="blog1-card-two-content-meta">
+                                <div class="blog1-card-one-content-meta__comment"><i class="fa-regular fa-calendar"></i>June 10 2025</div>
+                                <div class="blog1-card-one-content-meta__line"></div>
+                                <div class="blog1-card-one-content-meta__calendar"><i class="fa-regular fa-comments"></i>04 Comments</div>
+                            </div>
+                            <a href="blog-details.html">
+                                <h6 class="blog1-card-two-content__title">Cleaning products safe for  and children</h6>
+                            </a>
+                            <a href="blog-details.html" class="blog1-card-two-content__link">Read more<img src="images/icon/arrow-up-green.svg" alt="svg"></a>
+                            <div class="blog1-card-two-content__shape">
+                                <img src="images/shape/blog-shape2.svg" alt="svg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog1-card-two">
+                        <div class="blog1-card-two__thumb">
+                            <img src="images/blog/blog-thumb1_3.png" alt="png">
+                        </div>
+                        <div class="blog1-card-two-content">
+                            <div class="blog1-card-two-content-meta">
+                                <div class="blog1-card-one-content-meta__comment"><i class="fa-regular fa-calendar"></i>June 10 2025</div>
+                                <div class="blog1-card-one-content-meta__line"></div>
+                                <div class="blog1-card-one-content-meta__calendar"><i class="fa-regular fa-comments"></i>04 Comments</div>
+                            </div>
+                            <a href="blog-details.html">
+                                <h6 class="blog1-card-two-content__title">Meticulous Cleaning for Modern Living</h6>
+                            </a>
+                            <a href="blog-details.html" class="blog1-card-two-content__link">Read more<img src="images/icon/arrow-up-green.svg" alt="svg"></a>
+                            <div class="blog1-card-two-content__shape">
+                                <img src="images/shape/blog-shape2.svg" alt="svg">
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </section>   
+
+
+    <!--===== Footer Section    S T A R T =====-->
+    <footer class="footer1 fix pb-30 footer1-bg">
+        <div class="footer1-shape">
+            <img src="images/shape/footer-shape1.svg" alt="svg">
+        </div>
+        <div class="footer1-wrapper">
+            <div class="container">
+                <div class="footer1-banner tw_title_anim">
+                    <div class="row g-4 align-items-center justify-content-between">
+                      
+                      <!-- Left: Social Icons -->
+                        <div class="col-md-6 col-lg-4 d-flex">
+                            <div class="global-social2">
+                                <div class="global-social2__item">
+                                    <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    </a>
+                                </div>
+                                <div class="global-social2__item">
+                                    <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                                        <i class="fa-brands fa-twitter"></i>
+                                    </a>
+                                </div>
+                                <div class="global-social2__item">
+                                    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+                                        <i class="fa-brands fa-linkedin-in"></i>
+                                    </a>
+                                </div>
+                                <div class="global-social2__item">
+                                    <a href="https://www.behance.net/yourprofile" target="_blank" rel="noopener noreferrer">
+                                      <i class="fab fa-behance"></i>
+                                    </a>
+                                </div>                                  
+                            </div>
+                        </div>
+                
+                      <!-- Center: Logo -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="footer1-banner__logo">
+                                <a href="index.html">
+                                    <img src="images/logo/Logo-white.png" alt="logo">
+                                </a>
+                            </div>
+                        </div>
+                
+                      <!-- Right: Subscription -->
+                        <div class="col-lg-4 footer1-banner__subscribe d-flex justify-content-lg-end">
+                            <form class="footer1-banner__form d-flex">
+                            <input type="email" class="footer1-banner__input" placeholder="Enter Your Email">
+                            <button type="submit" class="footer1-banner__btn">Subscribe</button>
+                            </form>
+                        </div>                      
+                    </div>
+                </div>
+                  
+                <div class="row bor-top1">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer1-wrapper-service return-footer">
+                            <h5 class="footer1-wrapper-service__title">Services</h5>
+                            <ul class="footer1-wrapper-service-list">
+                                <li class="footer1-wrapper-service-list__item"><img src="images/icon/cleaner-icon-footer.svg" alt="svg"><a href="service-details.html">Pure & Simple Cleaning</a></li>
+                                <li class="footer1-wrapper-service-list__item"><img src="images/icon/cleaner-icon-footer.svg" alt="svg"><a href="service-details.html">Bright Space Cleaners</a></li>
+                                <li class="footer1-wrapper-service-list__item"><img src="images/icon/cleaner-icon-footer.svg" alt="svg"><a href="service-details.html">Window Gleam Service</a></li>
+                                <li class="footer1-wrapper-service-list__item"><img src="images/icon/cleaner-icon-footer.svg" alt="svg"><a href="service-details.html">Residential Cleaning</a></li>
+                                <li class="footer1-wrapper-service-list__item"><img src="images/icon/cleaner-icon-footer.svg" alt="svg"><a href="service-details.html">Express Cleaning Service</a></li>
+                                <li class="footer1-wrapper-service-list__item"><img src="images/icon/cleaner-icon-footer.svg" alt="svg"><a href="service-details.html">Carpet and Upholstery</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-2">
+                        <div class="footer1-wrapper-link return-footer">
+                            <h5 class="footer1-wrapper-link__title">Quick Link</h5>
+                            <ul class="footer1-wrapper-link-list">
+                                <li class="footer1-wrapper-link-list__item"><img src="images/icon/cleaner-icon-footer.svg" alt="svg"><a href="index.html">Home</a></li>
+                                <li class="footer1-wrapper-link-list__item"><img src="images/icon/cleaner-icon-footer.svg" alt="svg"><a href="about.html">About</a></li>
+                                <li class="footer1-wrapper-link-list__item"><img src="images/icon/cleaner-icon-footer.svg" alt="svg"><a href="service.html">Services</a></li>
+                                <li class="footer1-wrapper-link-list__item"><img src="images/icon/cleaner-icon-footer.svg" alt="svg"><a href="project.html">Portfolio</a></li>
+                                <li class="footer1-wrapper-link-list__item"><img src="images/icon/cleaner-icon-footer.svg" alt="svg"><a href="blog.html">Blog</a></li>
+                                <li class="footer1-wrapper-link-list__item"><img src="images/icon/cleaner-icon-footer.svg" alt="svg"><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="footer1-wrapper-contact return-footer">
+                            <h5 class="footer1-wrapper-contact__title">Contact us</h5>
+                            <ul class="footer1-wrapper-contact-list">             
+                                <li class="footer1-wrapper-contact-list__item">
+                                    <a href="https://www.google.com/maps/search/?q=27+Division+St,+New+York,+NY+10002,+USA" target="_blank" class="d-flex align-items-start">
+                                      <span class="icon me-2">
+                                        <img src="images/icon/user-footer.svg" alt="svg">
+                                      </span>
+                                      <span class="text">
+                                        1801 Thorn Ridge Cir.<br> Shiloh, Hawaii 71087
+                                      </span>
+                                    </a>
+                                </li>                                  
+                                <li class="footer1-wrapper-contact-list__item">
+                                    <a href="tel:+1800123654987" class="d-flex align-items-start">
+                                      <span class="icon me-2">
+                                        <img src="images/icon/phone-footer.svg" alt="svg">
+                                      </span>
+                                      <span class="text d-flex flex-column">
+                                        <span>(+208) 582-0811</span>
+                                        <span>(+204) 888-025</span>
+                                      </span>
+                                    </a>
+                                </li>                                  
+                                <li class="footer1-wrapper-contact-list__item">
+                                    <a href="mailto:helpClaoseing@gmail.com" class="d-flex align-items-start">
+                                      <span class="icon me-2">
+                                        <img src="images/icon/envelope-footer.svg" alt="svg">
+                                      </span>
+                                      <span class="text d-flex flex-column">
+                                        <span>helpClaoseing@gmail.com</span>
+                                        <span>helpClaoseing@gmail.com</span>
+                                      </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer1-wrapper-schedule return-footer">
+                            <h5 class="footer1-wrapper-schedule__title">Working Hours:</h5>
+                            <ul class="footer1-wrapper-schedule-list">
+                                <li class="footer1-wrapper-schedule-list__item">
+                                    <span class="footer1-wrapper-schedule-list__item--week">Thu - Fri</span>
+                                    <span class="footer1-wrapper-schedule-list__item--time">10:00 AM - 6:00 PM</span>
+                                </li>
+                                <li class="footer1-wrapper-schedule-list__item">
+                                    <span class="footer1-wrapper-schedule-list__item--week fix-pr">Mon - Wed</span>
+                                    <span class="footer1-wrapper-schedule-list__item--time">9:30 AM - 7:30 PM</span>
+                                </li>
+                                <li class="footer1-wrapper-schedule-list__item">
+                                    <span class="footer1-wrapper-schedule-list__item--week">Saturday</span>
+                                    <span class="footer1-wrapper-schedule-list__item--time">9:00 AM - 8:00 PM</span>
+                                </li>
+                                <li class="footer1-wrapper-schedule-list__item">
+                                    <span class="footer1-wrapper-schedule-list__item--week fix-pr2">Sunday</span>
+                                    <span class="footer1-wrapper-schedule-list__item--time">Close</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="footer1-bottom">
+                            <p>Copyright@ 2025 . <span>Claoseing</span> All Rights Reserved.</p>
+                            <div class="footer1-bottom__links">
+                                <a href="contact.html">Setting & Privacy<span class="ps-4" >/</span></a>                                
+                                <a href="contact.html">FAQ<span class="ps-4" >/</span></a>
+                                <a href="contact.html">Support</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+</div>
+
+    <!--===== All JS Plugins =====-->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!--===== Bootstrap Js =====-->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!--===== Waypoints Js =====-->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <!--===== Counterup Js =====-->
+    <script src="js/jquery.counterup.min.js"></script>
+    <!--===== Viewport Js =====-->
+    <script src="js/viewport.jquery.min.js"></script>
+    <!--===== Tilt Js =====-->
+    <script src="js/tilt.min.js"></script>
+    <!--===== Splitting Animation Js =====-->
+    <script src="js/splitting.min.js"></script>
+    <!--===== Swiper Slider Js =====-->
+    <script src="js/swiper-bundle.min.js"></script>
+    <!--===== Magnific Js =====-->
+    <script src="js/magnific-popup.min.js"></script>
+        <!--===== Meanmenu Js =====-->
+    <script src="js/jquery.meanmenu.min.js"></script>
+    <!--===== Wow Animation Js =====-->
+    <script src="js/wow.min.js"></script>
+    <!-- Flatpickr JS -->
+    <script src="js/jquery-ui.min.js"></script>
+
+    <!-- Gsap -->
+    <script src="js/plugins/gsap.min.js"></script>
+    <script src="js/plugins/ScrollSmoother.min.js"></script>
+    <script src="js/plugins/ScrollToPlugin.min.js"></script>
+    <script src="js/plugins/ScrollTrigger.min.js"></script>
+    <script src="js/plugins/ScrollMagic.min.js"></script>
+    <script src="js/plugins/animation.gsap.min.js"></script>    
+    <script src="js/plugins/ui-draggable.min.js"></script>    
+    <script src="js/plugins/gsap-ease-pack.min.js"></script>    
+    <script src="js/plugins/SplitText.min.js"></script> 
+    <script src="js/gsap-comp/return-img-gsap.min.js"></script>     
+    <script src="js/gsap-comp/gsap-split.min.js"></script>    
+    <script src="js/gsap-comp/pin-spacer.min.js"></script>    
+    <script src="js/gsap-comp/gsap-mix.min.js"></script>
+    <script src="js/gsap-comp/title-fade-up.min.js"></script>
+    <script src="js/gsap-comp/scroll-fixing.min.js"></script>
+
+    <!--===== Main.js =====-->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

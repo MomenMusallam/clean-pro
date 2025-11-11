@@ -1,0 +1,111 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+
+.project4 {  
+    &-card {
+        position: relative;
+        &-textLeft,
+        &-textRight {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);    
+            border-radius: 0px 0px 50px 0px;
+            background: $white;
+            box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.08);
+            padding: 58px 24px;
+        
+          h5 {
+            color: $theme-color;
+            font-family: $title-font;
+            font-size: 30px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 40px; /* 133.333% */
+          }
+        }
+      
+        &-textRight {
+          writing-mode: vertical-lr;
+          transform: rotate(0deg);
+        }
+      
+        &-thumb {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            &::before {
+                visibility: hidden;
+                opacity: 0;
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(180deg, rgba(7, 124, 234, 0.20) 11.16%, #074886 100%);
+                border-radius: 20px;
+                background: linear-gradient(180deg, rgba(7, 124, 234, 0.20) 11.16%, #3CA200 100%);
+                z-index: 1;
+                pointer-events: none; 
+            }
+        
+            img {
+                border-radius: 10px;
+            }      
+        }  
+        &-content {
+            display: none;
+            position: absolute;
+            bottom: 0;
+
+            text-align: center;
+            padding: 40px 30px;
+            z-index: 2;
+            border-radius: 20px;
+
+          &__icon {
+            margin-bottom: 15px;
+            img {
+                @include breakpoint (max-xl){
+                    width: 25%;
+                }
+            }
+          }
+    
+          &__title {
+              color: $white;
+              text-align: center;
+              font-family: $title-font;
+              font-size: 24px;
+              font-style: normal;
+              font-weight: 600;
+              line-height: 34px; /* 141.667% */
+              margin-bottom: 10px;
+          }
+    
+          &__desc {
+              color: $smoke3;
+              text-align: center;
+              font-family: $title-font;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 600;
+              line-height: 26px; /* 162.5% */
+              margin-bottom: 0;
+          }
+        }
+        &:hover {
+            .project4 {
+                &-card {
+                    &-thumb {
+                        &::before {
+                            visibility: visible;
+                            opacity: 1;
+                            @include transition;
+                        }
+                    }
+                    &-content {            
+                        display: block;
+                        @include transition;
+                    }
+                }
+            }
+        }
+    }
+}

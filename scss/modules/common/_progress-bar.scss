@@ -1,0 +1,109 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+
+
+.progress-wrap {
+    &:not(:last-child) {
+        padding-bottom: 27px;
+    }
+
+	.progress-meta {
+		display: flex;
+		justify-content: space-between;
+        padding-bottom: 9px;
+		.title {
+            color: $white;
+            font-family: $title-font;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 20px;
+            letter-spacing: -0.36px;
+            text-transform: uppercase;
+		}
+		.title2 {
+			color: $title-color;
+			font-family: $title-font;
+			font-size: 18px;
+			font-style: normal;
+			font-weight: 600;
+			line-height: 28px; /* 155.556% */
+		}
+
+		.percentage {
+            color: $white;
+            font-family: $title-font;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 20px; 
+            letter-spacing: -0.36px;
+            text-transform: uppercase;
+		}
+		.percentage2 {
+			color: $title-color;
+			font-family: $body-font;
+			font-size: 18px;
+			font-style: normal;
+			font-weight: 500;
+			line-height: 26px; 
+			padding-right: 24px;
+		}
+
+		&.mxw-424 {
+			max-width: 375px;
+			@include breakpoint (xs) {
+				max-width: 420px;
+			}
+			@include breakpoint (md) {
+				max-width: 510px;
+			}
+			@include breakpoint (lg) {
+				max-width: 370px;
+			}
+			@include breakpoint (xxl) {
+				max-width: 424px;
+			}
+		}
+		&.mxw-375 {
+			max-width: 340px;
+			@include breakpoint (xs) {
+				max-width: 370px;
+			}
+			@include breakpoint (md) {
+				max-width: 450px;
+			}
+			@include breakpoint (lg) {
+				max-width: 325px;
+			}
+			@include breakpoint (xxl) {
+				max-width: 375px;
+			}
+		}
+	}
+
+	.progress-container {
+		display: flex;
+		align-items: center;
+		position: relative;
+		max-width: 570px;
+		height: 8px;
+		border-radius: 15px;
+		border: 1px solid $smoke2;
+		background: $white;
+		overflow: visible;
+
+		.progress-bar {
+			height: 2px;
+			border-radius: 6px;
+			background: $theme-color;
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			white-space: nowrap;
+			z-index: 1;
+            
+		}
+	}
+}

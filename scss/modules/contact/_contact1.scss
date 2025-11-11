@@ -1,0 +1,145 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+
+.contact1 {
+    padding-bottom: 120px; 
+    @include breakpoint (max-xl2){
+        padding-bottom: 80px;
+    }
+    @include breakpoint (max-xxxl){
+        padding-bottom: 70px;
+    }
+    @include breakpoint (max-xxl){
+        padding-bottom: 30px;
+    }
+    @include breakpoint (max-lg){
+        padding-bottom: 20px;
+    }
+    position: relative;
+    &__shape {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        img {
+            width: 100%;
+        }
+    }
+    &-info {
+        top: 82px;
+        position: relative;
+        z-index: 9;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding-bottom: 30px;
+        @include breakpoint (max-xxl) {
+            top: 50px;
+        }
+        &__icon {
+            padding-bottom: 25px;            
+        }
+        &__numb {
+            padding-bottom: 25px;
+            color: $black;
+            font-family: $body-font;
+            font-size: 30px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 26px; /* 86.667% */
+            @include breakpoint (max-sm) {
+                font-size: 25px;
+            } 
+        }
+        &__text {
+            padding-bottom: 25px;
+            h3 {
+                color: $black;
+                text-align: center;
+                font-family: $title-font;
+                font-size: 48px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 54px; /* 112.5% */
+                text-transform: capitalize;
+                @include breakpoint(max-lg) {
+                    font-size: 40px;
+                    line-height: 40px;
+                }
+            
+                @include breakpoint (max-md) {
+                    font-size: 35px;
+                } 
+                @include breakpoint (max-sm) {
+                    font-size: 30px;
+                } 
+            }
+        }
+        &-btn {
+            display: flex;
+            gap: 30px;
+            @include breakpoint (max-xxsmall){
+                gap: 7px;
+            }  
+            &__book {
+                a {
+
+                    display: inline-flex;
+                    height: 54px;
+                    padding: 22px 25px;
+                    align-items: center;
+                    gap: 8px;
+                    flex-shrink: 0;
+                    border-radius: 40px;
+                    background: $yellow2;
+                    color: $white;
+                    font-family: $title-font2;
+                    font-size: 15px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: normal;
+                    text-transform: uppercase;
+                    i {
+                        transform: rotate(-45deg);
+                    }
+                    @include breakpoint (max-xxsmall){
+                        height: 45px;
+                        padding: 22px 16px;
+                    } 
+                    &:hover {
+                        background: $theme-color;     
+                        @include transition;               
+                    }
+                }
+            }
+            &__contact {
+                a {
+                    display: inline-flex;
+                    height: 54px;
+                    padding: 22px 25px;
+                    align-items: center;
+                    gap: 8px;
+                    flex-shrink: 0;
+                    border-radius: 40px;
+                    background: $title-color;
+                    color: $white;
+                    font-family: $title-font2;
+                    font-size: 15px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: normal;
+                    text-transform: uppercase;
+                    @include breakpoint (max-xxsmall){
+                        height: 45px;
+                        padding: 22px 16px;
+                    } 
+                    &:hover {
+                        background: $theme-color;     
+                        @include transition;               
+                    }
+                }
+            }
+        }
+    }
+}

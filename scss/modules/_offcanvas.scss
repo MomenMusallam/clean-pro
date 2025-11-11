@@ -1,0 +1,237 @@
+@use '../root' as *;
+@use '../utilities' as *;
+
+/*------------------------------------
+		2.7 Offcanvas
+----------------------------------*/
+
+.offcanvas__info {
+	background: $white none repeat scroll 0 0;
+	border-left: 1px solid  var( --theme-color);
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 400px;
+	height: 100%;
+	-webkit-transform: translateX(calc(100% + 80px));
+	-moz-transform: translateX(calc(100% + 80px));
+	-ms-transform: translateX(calc(100% + 80px));
+	-o-transform: translateX(calc(100% + 80px));
+	transform: translateX(calc(100% + 80px));
+	-webkit-transition: transform 0.45s ease-in-out, opacity 0.45s ease-in-out;
+	-moz-transition: transform 0.45s ease-in-out, opacity 0.45s ease-in-out;
+	transition: transform 0.45s ease-in-out, opacity 0.45s ease-in-out;
+	z-index: 99999;
+	overflow-y: scroll;
+	overscroll-behavior-y: contain;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.offcanvas__info.info-open {
+	opacity: 1;
+	-webkit-transform: translateX(0);
+	-moz-transform: translateX(0);
+	-ms-transform: translateX(0);
+	-o-transform: translateX(0);
+	transform: translateX(0);
+
+	@include breakpoint(max-sm){
+		width: 320px;
+	}
+}
+
+.offcanvas__logo {
+	a {
+		img {
+			width: 150px;
+		}
+	}
+}
+
+.offcanvas__wrapper {
+	position: relative;
+	height: 100%;
+	padding: 30px 30px;
+
+	.offcanvas__content {
+		@include breakpoint(max-sm){
+			padding: 30px 0;
+		}
+		.text {
+			color: $title-color;
+			margin-bottom: 20px;
+		}
+
+		.theme-btn{
+			padding: 15px 28px;
+			margin-top: 40px;
+			width: 80%;
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			color: $white;
+			font-size: 18px;
+			font-weight: 400;
+			line-height: 1;
+			background-color: $theme-color;
+			padding: 25px 28px;
+			display: inline-flex;
+			align-items: center;
+
+			@include breakpoint(max-lg){
+				padding: 20px 19px;
+			}
+			span{
+				margin-right: 15px;
+				@include flexbox();
+				align-items: center;
+				justify-content: center;
+				width: 34px;
+				height: 34px;
+				border-radius: 34px;
+				border: 1px solid #fff;
+				margin-right: 20px;
+				svg{
+					path{
+						@include transition;
+					}
+				}
+			}
+			&:hover{
+				color: $title-color;
+				span{
+					svg{
+						path{
+							animation: tfLeftToRight 0.5s forwards;
+							fill: $title-color;
+						}
+					}
+				}
+			}
+		}
+
+		.offcanvas__close {
+			width: 45px;
+			height: 45px;
+            text-align: center;
+            line-height: 46px;
+			border-radius: 50%;
+			background: $theme-color;
+			position: relative;
+			z-index: 9;
+			cursor: pointer;
+            &:hover{
+                i{
+                    transform: rotate(90deg);
+                }
+            }
+			i {
+				color: $white;
+                font-size: 16px;
+                @include transition;
+			}
+		}
+
+		.offcanvas__contact {
+			margin-top: 20px;
+			h4{
+				color: $title-color;
+				font-size: 30px;
+			}
+			ul {
+				margin-top: 20px;
+
+				li {
+					font-size: 16px;
+					font-weight: 600;
+					text-transform: capitalize;
+
+					a {
+						color: $title-color;
+						&:hover{
+							color: $theme-color;
+						}
+					}
+
+					&:not(:last-child){
+						margin-bottom: 15px;
+					}
+
+					.offcanvas__contact-icon {
+						margin-right: 20px;
+
+						i {
+							color: var( --theme-color);
+						}
+					}
+				}
+			}
+
+			span {
+				text-transform: initial;
+			}
+
+			.header-button {
+				.btn-read {
+					width: 100%;
+					padding: 16px 40px;
+				}
+			}
+
+			.social-icon {
+				margin-top: 40px;
+                gap: 10px;
+
+				a{
+					display: inline-block;
+					width: 42px;
+					height: 42px;
+					border-radius: 100%;
+					line-height: 42px;
+					border: 1px solid #414141;
+					text-align: center;
+					color: $title-color;
+					@include transition;
+					&:hover{
+						border: 1px solid $theme-color;
+						background-color: $theme-color;
+						color: $white;
+					}
+				}
+            }
+		}
+	}
+}
+
+.offcanvas__overlay {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background: #151515;
+	z-index: 900;
+	top: 0;
+	opacity: 0;
+	visibility: hidden;
+	right: 0;
+}
+
+.offcanvas__overlay.overlay-open {
+	opacity: 0.8;
+	visibility: visible;
+}
+
+@media (max-width:450px) {
+	.offcanvas__info {
+		width: 300px;
+	}
+}
+
+@media (max-width: 575px) {
+	.offcanvas__wrapper {
+		padding: 20px;
+	}
+}
+

@@ -1,0 +1,26 @@
+@use '../root/variables' as *;
+@use '../root/mixins' as *;
+
+/*----------------------------------------------
+    # Container  style here
+----------------------------------------------*/
+
+@media (min-width:1600px) { 
+    .container{
+        max-width: 1344px;
+    }
+    .global-header {
+        &.header-layout {
+            .container{
+                max-width: 1644px;
+            }
+        }
+    }
+    .header-top-section {
+        &.style1 {
+            .container{
+                max-width: 1644px;
+            }
+        }
+    }
+}

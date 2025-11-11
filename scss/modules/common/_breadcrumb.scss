@@ -1,0 +1,105 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+
+//>>>>> Breadcrumb Start <<<<<//
+.breadcrumb {
+    overflow: hidden;
+    background-color: $title-color;
+    padding: 212px 0 206px 0;
+    margin: 0 auto;
+    margin-top: 93px;
+
+    position: relative;
+	overflow: hidden;
+	&::before {
+		@include before;
+        background: var(--Default-color-Black, #000);
+        opacity: 0.7;
+        mix-blend-mode: multiply;
+	}
+  
+    @include breakpoint (max-md) {
+        padding: 80px 0 80px 0;
+    }  
+  
+    &-heading {
+        position: relative;
+        z-index: 6;
+    
+        h1 {
+            color: $white;
+            font-family: $title-font;
+            font-size: 64px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 74px;
+            text-align: center;
+            @include breakpoint (max-md) {
+                font-size: 42px;
+                line-height: 42px;
+            }
+        }
+        &__items {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 8px;
+            gap: 5px;
+            justify-content: center;
+            list-style-type: none;
+            padding-left: 0;
+    
+            @include breakpoint (max-md) {
+            margin-top: 15px;
+            }
+    
+            li {
+                color: #FFF;
+                font-family: $body-font;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 24px; 
+                text-transform: uppercase;
+                text-align: center;
+                &:hover {
+                    color: $theme-color;
+                }
+        
+                a {
+                    color: $white;
+                    @include transition;
+        
+                    &:hover {
+                        color: $theme-color;
+                    }
+                }
+        
+                i {
+                    color: $white;
+                    text-align: center;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 900;
+                    line-height: normal;
+                }
+            }
+        }  
+    }
+    &-shape1 {
+        position: absolute;
+        left: 3%;
+        z-index: 5;
+        @include breakpoint (max-xl){
+            display: none;
+        }
+    }
+    &-shape2 {
+        position: absolute;
+        right: -6%;
+        z-index: 5;
+        @include breakpoint (max-xl){
+            display: none;
+        }
+    }
+}

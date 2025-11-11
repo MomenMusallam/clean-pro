@@ -1,0 +1,200 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+
+.testimonial1 {
+  position: relative;
+  background: $smoke2;
+  &-shape {
+    position: absolute;
+    @include breakpoint (max-xl2){
+      display: none;
+    } 
+  }
+  &-card {    
+    position: relative;
+    &-one {
+      max-width: 257px;
+      padding: 10px;
+      border-radius: 30px;
+      border: 1px solid $theme-color;
+      background: $white;
+  
+      &-header {
+        padding: 0 10px;
+        background: $smoke2;
+        text-align: center;
+        border-radius: 25px;
+
+        &__icon {
+          padding-top: 12px;
+        }
+        &__text {
+          padding-top: 26px;
+          padding-bottom: 49px;
+          p {
+            color: $gray2;
+            text-align: center;
+            font-family: $body-font;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px; 
+          }
+        }
+      }
+
+      .fancy-box1 {
+        text-align: center;
+        margin-top: -35px;
+        padding-bottom: 5px;
+        &__item {
+          h6 {
+            color: $title-color;
+            font-family: $title-font;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 26px; /* 162.5% */
+          }
+          p {
+              color: $title-color3;
+              font-family: $body-font;
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 24px; /* 171.429% */
+          }
+        }    
+      }
+    }
+    &-two {
+      max-width: 329px;
+      padding: 12px;
+      border-radius: 30px;
+      border: 1px solid $theme-color;
+      background: $white;
+  
+      &-header {
+        padding: 0 10px;
+        background: $smoke2;
+        text-align: center;
+        border-radius: 25px;
+
+        &__icon {
+          padding-top: 14px;
+        }
+        &__text {
+          padding-top: 32px;
+          padding-bottom: 73px;
+          p{ 
+            color: $gray2;
+            text-align: center;
+            font-family: $body-font;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px; /* 171.429% */
+          }
+        }
+      }
+
+      .fancy-box2 {
+        text-align: center;
+        margin-top: -45px;
+        padding-bottom: 5px;
+        &__item {
+          h6 {
+            color: $title-color;
+            font-family: $title-font;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 30px; /* 150% */
+            padding-top: 15px;
+          }
+          p {
+              color: $title-color3;
+              font-family: $body-font;
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 24px; /* 171.429% */
+          }
+        }    
+      }
+    }
+    &-three {
+      max-width: 397px;
+      padding: 20px 20px 25px;
+      border-radius: 30px;
+      border: 1px solid $theme-color;
+      background: $white;
+  
+      &-header {
+        padding: 0 34px;
+        background: $smoke2;
+        text-align: center;
+        border-radius: 25px;
+
+        &__icon {
+          padding-top: 20px;
+        }
+        &__text {
+          padding-top: 24px;
+          padding-bottom: 94px;
+
+          p {
+            color: $gray2;
+            text-align: center;
+            font-family: $paragraph-font;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 25px; /* 156.25% */
+            letter-spacing: 0.32px;
+          }
+        }
+      }
+
+      .fancy-box1 {
+        text-align: center;
+        margin-top: -55px;
+        padding-bottom: 5px;
+        &__item {
+          h6 {
+            color: $title-color;
+            font-family: $title-font;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 34px; 
+            padding-top: 14px;
+          }
+          p {
+              color: $title-color3;
+              font-family: $body-font;
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 24px;
+          }
+        }    
+      }
+    }
+    
+  }
+  &-content {
+    max-width: 520px;
+    @include breakpoint (max-lg) {
+        padding-top: 25px;
+    }   
+  }
+
+  .swiper-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+}
+
+  

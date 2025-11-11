@@ -1,0 +1,149 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+
+.project3 {
+    &-details {
+        &-content {
+            &-wrapper {
+                padding-bottom: 40px;
+                display: flex;
+                gap: 40px;
+                @include breakpoint (max-lg){
+                    flex-direction: column;
+                }
+                &-info {
+                    max-width: 950px;
+                    &__title{
+                        padding-bottom: 20px;
+                        h3 {
+                            color: var(--Black-01, #141422);
+                            font-family: $title-font;
+                            font-size: 48px;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: 54px; /* 112.5% */
+                            text-transform: capitalize;
+                            @include breakpoint (max-md){
+                                font-size: 34px;
+                                line-height: 42px; 
+                            }
+                        }
+                    }
+                    &__desc {
+                        padding-bottom: 20px;
+                        p {
+                            color: $gray2;
+                            font-family: $body-font;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 26px; 
+                        }
+                    }
+        
+                    &__desc2 {
+                        padding-bottom: 23px;
+                        p {
+                            color: $gray2;
+                            font-family: $body-font;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 26px; /* 162.5% */
+                        }
+                    }
+                }
+                &-card {
+                    padding: 40px;
+                    border-radius: 10px;
+                    height: 100%;
+                    background: $smoke2;
+                    &__title {
+                        padding-bottom: 10px;
+                        h4 {
+                            color: var(--Black-01, #141422);
+                            font-family: $title-font3;
+                            font-size: 24px;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: 34px; /* 141.667% */
+                        }
+                    }
+                    &__label {
+                        color: $gray2;
+                        font-family: $body-font;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 24px; /* 171.429% */
+                    }
+                    &__name {
+                        color: $title-color;
+                        font-family: $title-font;
+                        font-size: 20px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: 30px; /* 150% */
+                    }
+                    &__brb {
+                        width: 250px;
+                        height: 1px;
+                        flex-shrink: 0;
+                        background: $border-color;
+                        margin-top: 12px;
+                        margin-bottom: 18px;
+                    }
+                }
+            }           
+
+            &__title2 {
+                padding-bottom: 13px;
+                h5 {
+                    color: var(--Black-01, #141422);
+                    font-family: $title-font;
+                    font-size: 30px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 40px; /* 133.333% */
+                    @include breakpoint (max-md){
+                        font-size: 20px;
+                    }
+                }
+            }
+            &__desc2 {
+                padding-bottom: 24px;
+                p {
+                    color: $gray2;
+                    font-family: $body-font;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 26px; /* 162.5% */
+                }
+            }
+            &-thumb {
+                display: flex;
+                gap: 30px;
+                padding-bottom: 30px;
+
+                img {
+                    border-radius: 10px;
+                }
+            }
+            &__title3 {
+                padding-bottom: 15px;
+                h5 {
+                    color: var(--Black-01, #141422);
+                    font-family: $title-font3;
+                    font-size: 30px;
+                    font-style: normal;
+                    font-weight: 800;
+                    line-height: 40px; /* 133.333% */
+                    @include breakpoint (max-md){
+                        font-size: 20px;
+                    }
+                }
+            }
+        }        
+    }
+}  

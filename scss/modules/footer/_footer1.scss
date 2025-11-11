@@ -1,0 +1,296 @@
+@use '../../root' as *;
+@use '../../utilities' as *;
+
+
+/*----------------------------------------------
+    # Footer style here
+----------------------------------------------*/
+
+.footer1 {
+  position: relative;
+  &-shape {
+    position: absolute;
+    z-index: 5;
+    @include breakpoint (max-xl2){
+      display: none;
+    }
+  }
+  &-wrapper {   
+    display: flex;
+    justify-content: space-between;
+    position: relative;   
+    z-index: 9; 
+
+    &-service {
+      padding-bottom: 70px;
+      padding-top: 32px;
+      @include breakpoint (xxl){
+        border-right: 1px solid rgb(69, 69, 72);
+        margin-right: 47px;
+      }
+      @include breakpoint (max-lg){
+        padding-bottom: 25px;
+      }
+      &__title {
+        color: #FFF;
+        font-family: $title-font;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 30px; /* 150% */
+        padding-bottom: 27px;
+      }
+      &-list {
+        &__item {    
+          &:not(:last-child) {
+            padding-bottom: 10px;
+          }
+          a {
+            color: $white;
+            font-family: $title-font;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 26px;
+            &:hover {
+              color: $theme-color;
+            }
+          }
+          img {
+            padding-right: 10px;
+          }
+        }
+      }
+    }
+    &-link {
+      padding-bottom: 70px;
+      padding-top: 32px;
+      @include breakpoint (xxl){
+        border-right: 1px solid rgb(69, 69, 72);
+        margin-right: 24px;
+      }
+      @include breakpoint (max-lg){
+        padding-bottom: 25px;
+      }
+      &__title {
+        color: #FFF;
+        font-family: $title-font;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 30px; /* 150% */
+        padding-bottom: 27px;
+      }
+      &-list {
+        &__item {    
+          &:not(:last-child) {
+            padding-bottom: 10px;
+          }
+          a {
+            color: $white;
+            font-family: $title-font;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 26px;
+            &:hover {
+              color: $theme-color;
+            }
+          }
+          img {
+            padding-right: 10px;
+          }
+        }
+      }
+    }    
+    &-contact {
+      padding-bottom: 100px;
+      padding-top: 32px;
+      @include breakpoint (xxl){
+        border-right: 1px solid rgb(69, 69, 72);
+        margin-right: 65px;
+        padding-left: 30px;
+      }
+      @include breakpoint (max-md){
+        padding-bottom: 25px;
+      }
+      &__title {
+        color: #FFF;
+        font-family: $title-font;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 30px; /* 150% */
+        padding-bottom: 27px;
+      }
+      &-list {
+        &__item {    
+          &:not(:last-child) {
+            padding-bottom: 10px;
+          }
+          a {
+            display: flex !important;
+            align-items: center !important;
+            color: $white;
+            font-family: $title-font;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 26px;
+            &:hover {
+              color: $theme-color;
+            }
+
+            img {
+              padding-right: 10px;
+            }
+          }
+        }
+      }
+    }
+    &-schedule {
+      padding-top: 32px;
+      @include breakpoint (max-md){
+        padding-bottom: 50px;
+      }
+      &__title {
+        color: #FFF;
+        font-family: $title-font;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 30px; /* 150% */
+        padding-bottom: 27px;
+      }
+      &-list {
+        &__item {    
+          color: $white;
+          font-family: $body-font;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 26px; /* 162.5% */
+          &:not(:last-child) {
+            padding-bottom: 10px;
+          }
+          &--week {
+            padding-right: 58px;
+            &.fix-pr {
+              padding-right: 40px;
+            }
+            &.fix-pr2 {
+              padding-right: 68px;
+            }
+          }
+        }
+      }
+    }
+    &-subscribe {
+      border-radius: 10px;
+      padding-top: 30px;
+      &-form {
+        position: relative;
+        &__input {
+          border-radius: 999px;
+          background: rgb(25, 25, 25); 
+          width: 300px;
+          height: 58px;
+          padding: 15px 30px;
+          border: none;
+          outline: none;
+          box-sizing: border-box;
+
+          color: var(--White, #FFF);
+          font-feature-settings: 'liga' off, 'clig' off;
+          font-family: Rajdhani;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 26.1px; 
+          @include breakpoint (max-xxl){
+            width: 100%;
+          }
+        }
+        &__button {
+          position: absolute;
+          right: 115px;
+          top: 2px;
+          @include breakpoint (max-xxl){
+            right: 0;
+          }
+          img {
+            border-radius: 999px;
+            background: var(--Secondary, #C11425);
+            padding: 22px;
+          }
+          :hover {
+            background: $black;
+            border: 1px solid $white;
+          }
+        }
+      }
+    }    
+  }
+
+  &-bottom {
+    padding-top: 21px;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgb(69, 69, 72);
+    @include breakpoint (lg){
+      flex-direction: row;
+      gap: 10px;
+    }
+
+    p {
+      color: $white;
+      font-family: $body-font;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 26px; /* 162.5% */
+      @include breakpoint (max-xs){
+        font-size: 14px;
+      }
+      @include breakpoint (max-xxsmall){
+        font-size: 12px;
+      }
+
+      span {
+        color: $theme-color;
+      }
+    }
+
+    &__links {
+      a {
+        color: $white;
+        font-family: $body-font;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 26px; /* 162.5% */
+
+        &:not(:last-child) {
+          padding-right: 20px;
+        }
+        @include breakpoint (max-xs){
+          font-size: 14px;
+        }
+        @include breakpoint (max-xxsmall){
+          font-size: 12px;
+        }
+
+        &:hover {
+          color: $white;
+        }
+
+      }
+    }
+  }
+}
+
+  
+
