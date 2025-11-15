@@ -1,0 +1,548 @@
+.upholstery-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.item-card {
+  border: 1px solid #dee2e6;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  width: 150px;
+  background: #fff;
+  transition: 0.2s;
+  flex-shrink: 0;
+}
+
+.item-card:hover {
+  transform: scale(1.03);
+}
+
+.item-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.counter-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.counter-btn {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: #fff;
+  transition: 0.2s ease;
+}
+
+.counter-btn:hover {
+  transform: scale(1.1);
+}
+
+.btn-plus {
+  background-color: #198754;
+}
+
+.btn-minus {
+  background-color: #dc3545;
+}
+
+.counter-input {
+  width: 60px;
+  text-align: center;
+  font-size: 1.1rem;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  height: 35px;
+}
+
+.form-container {
+  margin: 153px 56px;
+}
+
+.tabs {
+  height: 72vh;
+  min-width: 195px;
+}
+
+.btn-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.btn-form {
+  padding: 8px 13px !important;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #f8f9fa;
+  color: #3ca200;
+  border: 1px solid #3ca200;
+  width: max-content;
+}
+
+.nav-pills .nav-link {
+  color: #888
+}
+
+.accordion-button {
+  height: 50px;
+}
+
+.accordion-button:not(.collapsed) {
+  color: #46a40d;
+  background-color: #f8f9fa;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.sub-title {
+  font-size: 19px;
+  margin-bottom: 21px;
+  margin-top: 20px;
+}
+
+.form-box {
+  position: relative;
+  border-top: 1px solid #d1d1d1;
+  padding: 28px 0 0 0;
+
+}
+
+.form-box div {
+  position: absolute;
+  top: -14px;
+  left: 28px;
+
+}
+
+.form-box span {
+  font-size: 12px;
+  color: #ffffff;
+  background-color: #000;
+  border-radius: 14px;
+  padding: 6px 10px;
+
+}
+
+.tab-content-box {
+  min-width: 400px;
+  /* max-height: 100%;
+    overflow: auto; */
+}
+
+.input-labal-box {
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.input-labal-box label {
+  color: #3ca200;
+  font-size: 14px;
+  min-width: 117px;
+}
+
+.form {
+
+  margin: 0;
+}
+
+.card-container {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.card-label {
+  cursor: pointer;
+}
+
+/* اخفاء الradio input */
+.card-input {
+  display: none;
+}
+
+.submit-btn {
+  position: absolute;
+  bottom: -38px;
+  width: 100%;
+}
+
+.accordions-box {
+  min-height: 100%;
+  position: relative;
+}
+
+/* تصميم البطاقة */
+.card {
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 12px;
+  width: 64px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+/* عند تحديد البطاقة */
+.card-input:checked+.card {
+  border-color: #3ca200;
+  box-shadow: 0 0 10px rgba(60, 162, 0, 0.5);
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.card p {
+  margin: 4px 0 0;
+  font-size: 9px;
+  color: #555;
+}
+
+.form-check-input:checked {
+  background-color: #3ca200;
+  /* أصفر */
+  border-color: #3ca200;
+}
+
+.inputMultImg {
+  border: 1px solid #d1d1d1;
+  padding: 6px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inputs section {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.inputs section div {
+  width: calc(50% - 8px);
+}
+
+.inputs span {
+  font-size: 12px;
+}
+
+.imgCount {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  font-size: 14px;
+}
+
+.Deuteschland {
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  background-color: #dbdbdb;
+  padding: 8px;
+}
+
+.accordion-item {
+  padding: 0 !important;
+}
+
+.redeem {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.btn-redeem {
+  background-color: rgb(9, 196, 140);
+}
+
+.tabs-sidebar {
+
+  padding-bottom: 20px !important;
+}
+
+.date-container-days div:not(.no-highlight).active {
+  background: #fff !important;
+  color: #000 !important;
+}
+
+.counter-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  /* margin-top: 100px; */
+}
+
+.counter-btn {
+  padding: 3px 8px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: #fff;
+  transition: 0.2s ease;
+}
+
+.counter-btn:hover {
+  transform: scale(1.1);
+}
+
+.btn-plus {
+  background-color: #198754;
+}
+
+.btn-minus {
+  background-color: #dc3545;
+}
+
+.counter-input {
+  width: 100px;
+  text-align: center;
+  font-size: 1.5rem;
+  border: 2px solid #dee2e6;
+  border-radius: 10px;
+  height: 45px;
+}
+
+.form-select {
+  height: 38.5px !important;
+}
+
+.w-30 {
+  width: calc(30% - 8px) !important;
+}
+
+.w-70 {
+  width: calc(70% - 8px) !important;
+}
+
+.card svg {
+  margin: auto;
+}
+
+.nav-pills .nav-link span {
+  width: max-content;
+}
+
+.upholstery-input {
+  width: 30px !important;
+  padding: 0 !important;
+  height: 30px !important;
+}
+
+.upholstery-wrapper .btn-plus {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  font-size: 12px;
+}
+
+.upholstery-wrapper .btn-minus {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  font-size: 12px;
+}
+
+.upholstery-wrapper .counter-box {
+  gap: 0 !important;
+}
+
+.upholstery-wrapper .item-card {
+  width: 130px !important;
+}
+
+.upholstery-wrapper h6 {
+  font-size: 9px;
+}
+
+
+
+.form-section {
+  height: 63vh;
+  position: relative;
+}
+
+.submit-form-btn {
+  position: absolute;
+  bottom: -40px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+}
+
+.submit-form-btn button {
+  background-color: color(srgb 0.95 0.84 0);
+  border: 1px solid color(srgb 0.95 0.84 0)
+}
+
+.submit-form-btn button:hover {
+  background-color: color(srgb 0.95 0.84 0);
+  border: 1px solid color(srgb 0.95 0.84 0)
+}
+
+.submit-button {
+  width: calc(100% - 30px);
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600
+}
+
+select {
+  padding: 8px 10px;
+  font-size: 16px
+}
+
+.boxes2 {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.box3 {
+  min-width: 200px;
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  background: #fff;
+  position: relative;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.box h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px
+}
+
+.btn-remove {
+  line-height: 18px;
+  font-size: 12px;
+  font-weight: 400;
+  border: 1px solid #a5a5a5;
+  color: #000;
+  cursor: pointer;
+  width: 20px;
+  height: 19px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+}
+
+.card-container label {
+  min-width: 0 !important;
+}
+
+@media (max-width: 1131px) {
+  .tabs {
+    height: 78vh;
+  }
+
+
+
+  .tab-content-box {
+    min-width: 0;
+  }
+
+  .form-container {
+    margin: 115px 43px;
+  }
+}
+
+@media (max-width: 851px) {
+  .form-section {
+    height: 68vh;
+    position: relative;
+  }
+}
+
+@media (max-width: 768px) {
+  .tabs-sidebar {
+    display: flex !important;
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow: auto;
+    padding-bottom: 8px !important;
+  }
+
+  .form-section {
+    height: 60vh;
+  }
+
+  .accordion-sec {
+    height: 58vh;
+
+  }
+}
+
+@media (max-width: 600px) {
+  .form-container {
+    margin: 115px 20px;
+  }
+
+
+
+
+  .inputs section div {
+    width: calc(100%);
+  }
+
+  .w-30 {
+    width: calc(100%) !important;
+  }
+
+  .w-70 {
+    width: calc(100%) !important;
+  }
+
+
+}
