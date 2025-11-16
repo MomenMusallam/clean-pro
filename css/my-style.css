@@ -503,6 +503,11 @@ select {
     height: 68vh;
     position: relative;
   }
+
+  .accordion-sec {
+    height: 58vh;
+
+  }
 }
 
 @media (max-width: 768px) {

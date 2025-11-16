@@ -1,36 +1,7 @@
         // =========================
         // Bootstrap Form Validation
         // =========================
-        (() => {
-            'use strict';
-
-            const forms = document.querySelectorAll('.needs-validation');
-
-            Array.from(forms).forEach(form => {
-
-                form.addEventListener('submit', event => {
-
-                    // if (!form.checkValidity()) {
-                    //     event.preventDefault();
-                    //     event.stopPropagation();
-                    // }
-
-                    // form.classList.add('was-validated');
-
-                    // ⭐⭐⭐ إذا الفورم VALID → نفذ التجميع ⭐⭐⭐
-                    if (form.checkValidity()) {
-                        event.preventDefault(); // عشان ما ينعمل submit حقيقي (إذا بدك AJAX)
-
-                        collectData(); // ← نستدعي دالة تجميع البيانات
-                    }
-
-                }, true);
-            });
-        })();
-
-        function collectData() {
-            let data = {};
-            let upholstery = {
+let upholstery = {
                 twoSeater: 0,
                 threeSeater: 0,
                 cornerCouchSmall: 0,
@@ -52,8 +23,42 @@
                 chairWithBackrest2: 0,
                 couchIndividual: 0
             };
+                        let data = {
+                             tabName:"Normal-Cleaning"
+                        };
 
-            data = {
+        (() => {
+            'use strict';
+
+            const forms = document.querySelectorAll('.needs-validation');
+
+            Array.from(forms).forEach(form => {
+
+                form.addEventListener('submit', event => {
+
+                    // if (!form.checkValidity()) {
+                    //     event.preventDefault();
+                    //     event.stopPropagation();
+                    // }
+
+                    // form.classList.add('was-validated');
+
+                    // ⭐⭐⭐ إذا الفورم VALID → نفذ التجميع ⭐⭐⭐
+                    if (form.checkValidity()) {
+                        event.preventDefault(); // عشان ما ينعمل submit حقيقي (إذا بدك AJAX)
+console.log(upholstery);
+
+                        collectData(); // ← نستدعي دالة تجميع البيانات
+                    }
+
+                }, true);
+            });
+        })();
+
+        function collectData() {
+
+
+            data = {...data,
                 type: document.getElementById("typeSelect")?.value || "",
                 storey: document.getElementById("storeyInput")?.value || "",
                 furniture: document.getElementById("furnitureSelect")?.value || "",
@@ -248,155 +253,8 @@
         // =========================
         // Form Data Collection
         // =========================
-        let data = {};
-        let upholstery = {
-            twoSeater: 0,
-            threeSeater: 0,
-            cornerCouchSmall: 0,
-            cornerCouchLarge: 0,
-            armchair: 0,
-            stool: 0,
-            chairWithBackrest1: 0,
-            chairWithBackrest2: 0,
-            couchIndividual: 0
-        };
-        let upholsteryOptional = {
-            twoSeater: 0,
-            threeSeater: 0,
-            cornerCouchSmall: 0,
-            cornerCouchLarge: 0,
-            armchair: 0,
-            stool: 0,
-            chairWithBackrest1: 0,
-            chairWithBackrest2: 0,
-            couchIndividual: 0
-        };
-        document.getElementById("submitBtn").addEventListener("click", () => {
-            data = {
-                type: document.getElementById("typeSelect")?.value || "",
-                storey: document.getElementById("storeyInput")?.value || "",
-                furniture: document.getElementById("furnitureSelect")?.value || "",
-                reason: document.getElementById("reasonSelect")?.value || "",
-                casement: document.getElementById("casementInput")?.value || "",
-                height: document.getElementById("heightInput")?.value || "",
-                contamination: document.querySelector('input[name="contamination"]:checked')?.value || "",
-                requests: Array.from(document.querySelectorAll('input[name="requests"]:checked')).map(e => e.value),
-                info: document.getElementById("infoTextarea")?.value || "",
-                photos: Array.from(document.getElementById("formFileMultiple")?.files || []).map(f => f.name),
-                dateTime: document.getElementById("datetimepicker1Input")?.value || "",
 
-                // ✅ بيانات الفاتورة
-                billing: {
-                    email: document.getElementById("billingEmail")?.value || "",
-                    mobile: billingInput.value || "",
-                    countryCode: itiBilling.getSelectedCountryData().dialCode || "",
-                    company: document.getElementById("billingCompany")?.value || "",
-                    country: document.getElementById("billingCountry")?.value || "",
-                    salutation: document.getElementById("billingSalutation")?.value || "",
-                    firstName: document.getElementById("billingFirstName")?.value || "",
-                    secondName: document.getElementById("billingSecondName")?.value || "",
-                    street: document.getElementById("billingStreet")?.value || "",
-                    no: document.getElementById("billingNo")?.value || "",
-                    zip: document.getElementById("billingZip")?.value || "",
-                    city: document.getElementById("billingCity")?.value || "",
-                    hasSeparateCleaningAddress: document.getElementById("separateCleaningAddress")?.checked || false
-                },
-                CleaningData: {
-                    // for normal
-                    areaForNormal: document.getElementById("areaForNormal")?.value || "",
-                    reasonForNormal: document.getElementById("reasonForNormal")?.value || "",
-                    requestsForNormal: Array.from(document.querySelectorAll('input[name="requestsForNormal"]:checked')).map(e => e.value)
-                    , contaminationForNormal: document.querySelector('input[name="contaminationForNormal"]:checked')?.value || "",
-                    // for window
-                    reasonForWindowCleaning: document.getElementById("reasonForWindowCleaning")?.value || "",
-                    heightInputForWindowCleaning: document.getElementById("heightInputForWindowCleaning")?.value || "",
-                    casementForWindowCleaning: document.getElementById("casementForWindowCleaning")?.value || "",
-                    requestsForWindowCleaning: Array.from(document.querySelectorAll('input[name="requestsForWindowCleaning"]:checked')).map(e => e.value)
-                    , contaminationForWindowCleaning: document.querySelector('input[name="contaminationForWindowCleaning"]:checked')?.value || "",
-                    // for window Optional
-                    reasonForWindowCleaningOptional: document.getElementById("reasonForWindowCleaningOptional")?.value || "",
-                    heightInputForWindowCleaningOptional: document.getElementById("heightInputForWindowCleaningOptional")?.value || "",
-                    casementForWindowCleaningOptional: document.getElementById("casementForWindowCleaningOptional")?.value || "",
-                    requestsForWindowCleaningOptional: Array.from(document.querySelectorAll('input[name="requestsForWindowCleaningOptional"]:checked')).map(e => e.value)
-                    , contaminationForWindowCleaningOptional: document.querySelector('input[name="contaminationForWindowCleaningOptional"]:checked')?.value || "",
 
-                    // for carpet
-                    looseCarpetForCarpet: document.getElementById("looseCarpetForCarpet")?.value || "",
-                    totalAreaForCarpet: document.getElementById("totalAreaForCarpet")?.value || "",
-                    fixedCarpetForCarpet: document.getElementById("fixedCarpetForCarpet")?.value || "",
-                    requestsForCarpet: Array.from(document.querySelectorAll('input[name="requestsForCarpet"]:checked')).map(e => e.value)
-                    , contaminationForCarpet: document.querySelector('input[name="contaminationForCarpet"]:checked')?.value || "",
-
-                    // for carpet Optional
-                    looseCarpetForCarpetOptional: document.getElementById("looseCarpetForCarpetOptional")?.value || "",
-                    totalAreaForCarpetOptional: document.getElementById("totalAreaForCarpetOptional")?.value || "",
-                    fixedCarpetForCarpetOptional: document.getElementById("fixedCarpetForCarpetOptional")?.value || "",
-                    requestsForCarpetOptional: Array.from(document.querySelectorAll('input[name="requestsForCarpetOptional"]:checked')).map(e => e.value)
-                    , contaminationForCarpetOptional: document.querySelector('input[name="contaminationForCarpetOptional"]:checked')?.value || "",
-                    // for spring
-                    areaForSpringCleaning: document.getElementById("areaForSpringCleaning")?.value || "",
-                    reasonForSpringCleaning: document.getElementById("reasonForSpringCleaning")?.value || "",
-                    requestsForSpringCleaning: Array.from(document.querySelectorAll('input[name="requestsForSpringCleaning"]:checked')).map(e => e.value)
-                    , contaminationForSpringCleaning: document.querySelector('input[name="contaminationForSpringCleaning"]:checked')?.value || "",
-                    //for cleaning
-                    areaForCleaning: document.getElementById("areaForCleaning")?.value || "",
-                    reasonForCleaning: document.getElementById("reasonForCleaning")?.value || "",
-                    requestsForCleaning: Array.from(document.querySelectorAll('input[name="requestsForCleaning"]:checked')).map(e => e.value)
-                    , contaminationForCleaning: document.querySelector('input[name="contaminationForCleaning"]:checked')?.value || "",
-
-                    //  for Messie-Apartment
-                    areaForMessieApatment: document.getElementById("areaForMessieApatment")?.value || "",
-                    reasonForMessieApatment: document.getElementById("reasonForMessieApatment")?.value || "",
-                    requestsForMessieApatment: Array.from(document.querySelectorAll('input[name="requestsForMessieApatment"]:checked')).map(e => e.value)
-                    , contaminationForMessieApatment: document.querySelector('input[name="contaminationForMessieApatment"]:checked')?.value || "",
-
-                    //upholstery
-                    upholstery: upholstery,
-                    contaminationForUpholstery: document.querySelector('input[name="contaminationForUpholstery"]:checked')?.value || "",
-                    requestsForUpholstery: Array.from(document.querySelectorAll('input[name="requestsForUpholstery"]:checked')).map(e => e.value),
-                    upholsteryOptional: upholsteryOptional,
-                    reason: document.getElementById("windowReason")?.value || "",
-                    area: document.getElementById("windowArea")?.value || "",
-                    contaminationForUpholsteryOptional: document.querySelector('input[name="contaminationForUpholsteryOptional"]:checked')?.value || "",
-                    requestsForUpholsteryOptional: Array.from(document.querySelectorAll('input[name="requestsForUpholsteryOptional"]:checked')).map(e => e.value),
-                    contamination: document.querySelector('input[name="windowContamination"]:checked')?.value || "",
-                    requests: Array.from(document.querySelectorAll('input[name="windowRequests"]:checked')).map(e => e.value),
-                },
-                // ✅ بيانات موقع التنظيف
-                cleaning: {
-                    company: document.getElementById("cleaningCompany")?.value || "",
-                    street: document.getElementById("cleaningStreet")?.value || "",
-                    no: document.getElementById("cleaningNo")?.value || "",
-                    zip: document.getElementById("cleaningZip")?.value || "",
-                    city: document.getElementById("cleaningCity")?.value || "",
-                    hasSeparateContactPerson: document.getElementById("separateContactPerson")?.checked || false
-                },
-
-                // ✅ بيانات التواصل
-                contact: {
-                    mobile: contactInput.value || "",
-                    countryCode: itiContact.getSelectedCountryData().dialCode || "",
-                    country: document.getElementById("contactCountry")?.value || "",
-                    salutation: document.getElementById("contactSalutation")?.value || "",
-                    firstName: document.getElementById("contactFirstName")?.value || "",
-                    secondName: document.getElementById("contactSecondName")?.value || "",
-                    email: document.getElementById("contactEmail")?.value || "",
-                    note: document.getElementById("contactNote")?.value || ""
-                },
-
-                // ✅ كود الخصم
-                voucher: document.getElementById("voucherCode")?.value || "",
-
-                // ✅ القيم الجديدة الخاصة بالسجاد
-                carpetCleaning: {
-                    looseCarpet: document.getElementById("looseCarpetInput")?.value || "",
-                    totalArea: document.getElementById("totalArea")?.value || "",
-                    fixedCarpet: document.getElementById("fixedCarpetInput")?.value || ""
-                }
-            };
-
-            console.log("Collected Data:", data);
-        });
         // =========================
         // File Input Limit
         // =========================
@@ -430,6 +288,8 @@
                 if (targetDiv) targetDiv.style.display = 'block';
 
                 // تفريغ فقط data.CleaningData
+                console.log(tabName);
+data={...data,tabName:tabName}
                 if (data && typeof data === 'object' && data.CleaningData) {
                     data.CleaningData = {};
                 }
@@ -507,6 +367,8 @@
 
         document.addEventListener('click', e => {
             if (e.target.classList.contains('btn-plus') || e.target.classList.contains('btn-minus')) {
+              console.log(12);
+
                 const id = e.target.getAttribute('data-id');
                 const input = document.getElementById(id);
                 let value = Number(input.value);
@@ -544,6 +406,7 @@
         const dropdownBtn = document.getElementById('whichDropdown');
 
         dropdownItems.forEach(item => {
+
             item.addEventListener('click', function (e) {
                 e.preventDefault();
 
@@ -567,31 +430,36 @@
             });
         });
 
-        // عند الضغط على زر الحذف داخل أي box
-        boxes.addEventListener('click', function (e) {
-            if (e.target.classList.contains('btn-remove')) {
+       // عند الضغط على زر الحذف داخل أي box
+boxes.addEventListener('click', function (e) {
+    if (e.target.classList.contains('btn-remove')) {
 
-                // أقرب صندوق يبدأ ID تبعه بـ box-
-                const box = e.target.closest('[id^="box-"]');
-                if (!box) return;
+        // أقرب صندوق يبدأ ID تبعه بـ box-
+        const box = e.target.closest('[id^="box-"]');
+        if (!box) return;
 
-                // إخفاء الصندوق
-                box.classList.add('hidden');
+        // إخفاء الصندوق
+        box.classList.add('hidden');
 
-                // إعادة تفعيل الخيار في المنيو
-                const option = document.querySelector(`.dropdown-item[data-value="${box.id}"]`);
-                if (option) {
-                    option.classList.remove('disabled');
-                    option.style.pointerEvents = "auto";
-                }
+        // إعادة تفعيل الخيار في المنيو
+        const option = document.querySelector(`.dropdown-item[data-value="${box.id}"]`);
+        if (option) {
+            option.classList.remove('disabled');
+            option.style.pointerEvents = "auto";
+        }
 
-            }
-        });
+        // إذا كان الصندوق هو box-1 فضّي الأوبجكت
+        if (box.id === "box-3") {
+            upholstery = {};   // ← هنا التفريغ
+        }
+    }
+});
 
 
 
         // عند تغيير الـ select
         select.addEventListener('change', (e) => {
+
             const val = e.target.value;
             if (!val) return;
 
