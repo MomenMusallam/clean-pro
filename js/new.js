@@ -1,6 +1,22 @@
         // =========================
         // Bootstrap Form Validation
         // =========================
+          const toggleBtn = document.getElementById('toggleBtn');
+console.log(toggleBtn);
+
+    toggleBtn.addEventListener('click', function (e) {
+        console.log(111);
+
+        e.preventDefault(); // يمنع إعادة تحميل الصفحة
+
+        if (toggleBtn.textContent.trim() === "De") {
+            toggleBtn.textContent = "En";
+            toggleBtn.href = "#"; // مؤقت
+        } else {
+            toggleBtn.textContent = "De";
+            toggleBtn.href = "#"; // مؤقت
+        }
+    });
 let upholstery = {
                 twoSeater: 0,
                 threeSeater: 0,
@@ -504,3 +520,4 @@ boxes.addEventListener('click', function (e) {
             // إذا أردت حذف الـ DOM بالكامل بدل الإخفاء استخدم box.remove();
             // box.remove();
         });
+

@@ -142,10 +142,23 @@
 }
 
 .tab-content-box {
-  min-width: 400px;
+  min-width: 550px;
   /* max-height: 100%;
     overflow: auto; */
 }
+
+/* .blur-div {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+.accordion-item {
+  background-color: #ff000000;
+} */
 
 .input-labal-box {
   flex-direction: row;
@@ -488,9 +501,12 @@ select {
   }
 
 
+  .form-section {
+    height: 68vh;
+  }
 
   .tab-content-box {
-    min-width: 0;
+    min-width: 100%;
   }
 
   .form-container {
