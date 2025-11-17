@@ -147,6 +147,14 @@
     overflow: auto; */
 }
 
+.breadcrumb {
+  padding: 0 !important;
+}
+
+.breadcrumb .container {
+  max-width: 100% !important;
+}
+
 /* .blur-div {
   background-color: rgba(255, 255, 255, 0.2) !important;
   border-radius: 15px;
