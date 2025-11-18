@@ -17,6 +17,19 @@
     //     }
     // });
 
+const thumbnails = document.querySelectorAll('.thumbnails img');
+
+thumbnails.forEach(img => {
+    img.addEventListener('click', () => {
+        console.log(1112,thumbnails);
+
+        // إزالة الكلاس من جميع الصور
+        thumbnails.forEach(i => i.classList.remove('selected-thumb'));
+        // إضافة الكلاس على الصورة اللي ضغطت عليها
+        img.classList.add('selected-thumb');
+    });
+});
+
 let upholstery = {
                 twoSeater: 0,
                 threeSeater: 0,
