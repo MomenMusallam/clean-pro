@@ -642,7 +642,25 @@ select {
     margin: 115px 20px;
   }
 
+  .form-select {
+    width: 100% !important;
+  }
 
+  .form-control {
+    width: 100% !important;
+  }
+
+  div:has(> .form-select) {
+    width: 100% !important;
+    max-width: 100% !important;
+
+  }
+
+  div:has(> .form-control) {
+    width: 100% !important;
+    max-width: 100% !important;
+
+  }
 
 
   .inputs section div {
