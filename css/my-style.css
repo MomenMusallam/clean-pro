@@ -70,13 +70,49 @@
   height: 35px;
 }
 
-.form-container {
-  margin: 153px 56px;
+.hero2-content {
+  padding: 0 8px !important;
+  margin-left: 0 !important;
 }
 
 .tabs {
   height: 72vh;
   min-width: 195px;
+}
+
+.nav-pills .nav-link span {
+  font-weight: 300;
+  font-size: 16px !important;
+}
+
+.nav-pills .nav-link:hover {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: #f8f9fa;
+  color: #3ca200;
+  /* border-bottom: 1px solid #3ca200; */
+  width: max-content;
+  border-radius: 30px
+}
+
+.container-tabs2 {
+  width: 500px;
+  padding: 14px 14px 71px 14px;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  position: relative;
+}
+
+.container-tabs2-section {
+  width: 480px;
+  height: 500px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.container-ul {
+  width: 220px;
+  height: 550px;
 }
 
 .btn-box {
@@ -91,9 +127,11 @@
 }
 
 .nav-pills .nav-link.active {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
   background-color: #f8f9fa;
   color: #3ca200;
-  border: 1px solid #3ca200;
+  border-bottom: 1px solid #3ca200;
   width: max-content;
 }
 
@@ -141,32 +179,21 @@
 
 }
 
-.tab-content-box {
-  min-width: 550px;
-  /* max-height: 100%;
-    overflow: auto; */
+.hero2-content-withoutbgcolor {
+  background-color: #fcf9f700 !important;
 }
 
-.breadcrumb {
-  padding: 0 !important;
+.container-tabs-ul {
+  display: flex;
+  width: 720px;
+  position: absolute;
+  z-index: 9;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.breadcrumb .container {
-  max-width: 100% !important;
+.home-img {
+  z-index: 8;
 }
-
-/* .blur-div {
-  background-color: rgba(255, 255, 255, 0.2) !important;
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  color: white;
-}
-
-.accordion-item {
-  background-color: #ff000000;
-} */
 
 .input-labal-box {
   flex-direction: row;
@@ -220,7 +247,7 @@
   border: 2px solid #ccc;
   border-radius: 12px;
   padding: 12px;
-  width: 64px;
+  width: 86px;
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -229,7 +256,10 @@
 .card-input:checked+.card {
   border-color: #3ca200;
   box-shadow: 0 0 10px rgba(60, 162, 0, 0.5);
+  background-color: #a7a7a72e;
 }
+
+
 
 .card h3 {
   margin: 0;
@@ -239,8 +269,13 @@
 
 .card p {
   margin: 4px 0 0;
-  font-size: 9px;
+  font-size: 14px;
+  font-weight: 800;
   color: #555;
+}
+
+.card:hover {
+  box-shadow: 0 0 10px rgba(60, 162, 0, 0.3);
 }
 
 .form-check-input:checked {
@@ -307,7 +342,7 @@
 
 .tabs-sidebar {
 
-  padding-bottom: 20px !important;
+  padding: 20px 13px !important;
 }
 
 .date-container-days div:not(.no-highlight).active {
@@ -346,6 +381,10 @@
 
 .btn-minus {
   background-color: #dc3545;
+}
+
+.container-tabs2 {
+  height: 621px;
 }
 
 .counter-input {
@@ -418,7 +457,7 @@
 
 .submit-form-btn {
   position: absolute;
-  bottom: -40px;
+  bottom: 16px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -428,7 +467,8 @@
 
 .submit-form-btn button {
   background-color: color(srgb 0.95 0.84 0);
-  border: 1px solid color(srgb 0.95 0.84 0)
+  border: 1px solid color(srgb 0.95 0.84 0);
+  border-radius: 8px !important;
 }
 
 .submit-form-btn button:hover {
@@ -437,12 +477,17 @@
 }
 
 .submit-button {
-  width: calc(100% - 30px);
+  width: calc(100% - 102px);
+}
+
+.dropdown-menu {
+  padding: 0 !important;
+
 }
 
 .container {
-  max-width: 720px;
-  margin: 0 auto
+  /* max-width: 720px; */
+  /* margin: 0 auto */
 }
 
 label {
@@ -481,23 +526,47 @@ select {
   font-size: 16px
 }
 
-.btn-remove {
-  line-height: 18px;
-  font-size: 12px;
-  font-weight: 400;
-  border: 1px solid #a5a5a5;
-  color: #000;
-  cursor: pointer;
-  width: 20px;
-  height: 19px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  z-index: 10;
-  top: 0;
+/* إزالة سهم dropdown */
+.no-caret::after {
+  display: none;
 }
+
+/* تغيير حجم الزر */
+.no-caret {
+  font-size: 18px;
+  padding: 6px 12px;
+  /* اختياري لتناسب الحجم */
+}
+
+
+.btn-remove {
+  background-color: red;
+  border: none;
+  border-radius: 3px 0 0 3px;
+  padding: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-remove:hover {
+  background-color: white;
+  border: 1px solid red;
+}
+
+/* اللون الافتراضي للأيقونة */
+.delete-icon {
+  fill: white;
+  transition: fill 0.3s ease;
+}
+
+/* عند تحويم الزر تغير لون الأيقونة */
+.btn-remove:hover .delete-icon {
+  fill: red;
+}
+
 
 .card-container label {
   min-width: 0 !important;
@@ -551,6 +620,21 @@ select {
     height: 58vh;
 
   }
+
+  .container-tabs2 {
+    width: auto;
+
+  }
+
+  .container-tabs2-section {
+    width: 100%;
+
+  }
+
+  .container-tabs-ul {
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -574,4 +658,30 @@ select {
   }
 
 
+}
+
+@media (max-width: 600px) {
+  .submit-btn {
+    flex-wrap: wrap-reverse;
+  }
+
+  .submit-form-btn button {
+    width: 100% !important;
+  }
+
+  .dropdown {
+    width: 100%;
+  }
+
+  .dropdown button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 5px auto !important;
+
+  }
+
+  .container-tabs2 {
+    height: 707px;
+  }
 }
