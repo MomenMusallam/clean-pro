@@ -1,22 +1,22 @@
         // =========================
         // Bootstrap Form Validation
         // =========================
-          const toggleBtn = document.getElementById('toggleBtn');
-console.log(toggleBtn);
+    //       const toggleBtn = document.getElementById('toggleBtn');
 
-    toggleBtn.addEventListener('click', function (e) {
-        console.log(111);
+    // toggleBtn.addEventListener('click', function (e) {
+    //     console.log(111);
 
-        e.preventDefault(); // يمنع إعادة تحميل الصفحة
+    //     e.preventDefault(); // يمنع إعادة تحميل الصفحة
 
-        if (toggleBtn.textContent.trim() === "De") {
-            toggleBtn.textContent = "En";
-            toggleBtn.href = "#"; // مؤقت
-        } else {
-            toggleBtn.textContent = "De";
-            toggleBtn.href = "#"; // مؤقت
-        }
-    });
+    //     if (toggleBtn.textContent.trim() === "De") {
+    //         toggleBtn.textContent = "En";
+    //         toggleBtn.href = "#"; // مؤقت
+    //     } else {
+    //         toggleBtn.textContent = "De";
+    //         toggleBtn.href = "#"; // مؤقت
+    //     }
+    // });
+
 let upholstery = {
                 twoSeater: 0,
                 threeSeater: 0,
@@ -43,33 +43,102 @@ let upholstery = {
                              tabName:"Normal-Cleaning"
                         };
 
-        (() => {
-            'use strict';
 
-            const forms = document.querySelectorAll('.needs-validation');
 
-            Array.from(forms).forEach(form => {
+let photos = [];
 
-                form.addEventListener('submit', event => {
+const fileInput = document.getElementById("formFileMultiple");
+const imgCount = document.querySelector(".imgCount");
 
-                    // if (!form.checkValidity()) {
-                    //     event.preventDefault();
-                    //     event.stopPropagation();
-                    // }
+fileInput.addEventListener("change", function (e) {
+    const newFiles = Array.from(e.target.files);
 
-                    // form.classList.add('was-validated');
+    // منع أن يصبح العدد أكبر من 5
+    if (photos.length + newFiles.length > 5) {
+        alert("لا يمكنك رفع أكثر من 5 صور!");
+        fileInput.value = "";
+        return;
+    }
 
-                    // ⭐⭐⭐ إذا الفورم VALID → نفذ التجميع ⭐⭐⭐
-                    if (form.checkValidity()) {
-                        event.preventDefault(); // عشان ما ينعمل submit حقيقي (إذا بدك AJAX)
-console.log(upholstery);
+    // دمج الصور الجديدة
+    photos = photos.concat(newFiles);
 
-                        collectData(); // ← نستدعي دالة تجميع البيانات
-                    }
+    // تحديث العرض + الكاونتر
+    renderPhotos();
 
-                }, true);
+    // يسمح برفع نفس الصورة لاحقاً
+    fileInput.value = "";
+});
+
+function renderPhotos() {
+    const preview = document.getElementById("preview");
+    preview.innerHTML = "";
+
+    // تحديث الكاونتر
+    imgCount.textContent = `${photos.length}/5`;
+
+    photos.forEach((file, index) => {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const card = document.createElement("div");
+            card.style.width = "120px";
+            card.style.border = "1px solid #ccc";
+            card.style.borderRadius = "8px";
+            card.style.textAlign = "center";
+            card.style.position = "relative";
+            card.style.background = "#f9f9f9";
+
+           card.innerHTML = `
+    <div style="position: relative; width: 100%; height: 80px;">
+        <img src="${e.target.result}"
+             style="width:100%; height:100%; object-fit:cover; border-radius:5px;" />
+        <button data-index="${index}"
+                style="
+                    position:absolute;
+                    top:5px;
+                    right:5px;
+                    width:20px;
+                    height:20px;
+                    border-radius:50%;
+                    background-color:#bb0101;
+                    color:white;
+                    border:none;
+                    font-weight:bold;
+                    cursor:pointer;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    padding:0;
+                    transition: all 0.3s;
+                "
+                onmouseover="this.style.backgroundColor='white'; this.style.color='red';"
+                onmouseout="this.style.backgroundColor='red'; this.style.color='white';">
+            ×
+        </button>
+    </div>
+`;
+
+            card.querySelector("button").addEventListener("click", function () {
+                const idx = this.getAttribute("data-index");
+
+                // حذف الصورة
+                photos.splice(idx, 1);
+
+                // إعادة عرض الصور + تحديث الكاونتر
+                renderPhotos();
             });
-        })();
+
+            preview.appendChild(card);
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+
+document.getElementById("SubmitForm").addEventListener("click", function (e) {
+    e.preventDefault(); // يمنع الريلود إذا كان داخل فورم
+    collectData();
+});
 
         function collectData() {
 
@@ -274,20 +343,7 @@ console.log(upholstery);
         // =========================
         // File Input Limit
         // =========================
-        const inputFile = document.getElementById('formFileMultiple');
-        const imgCount = document.querySelector('.imgCount');
-        const maxFiles = 5;
-        inputFile.addEventListener('change', () => {
-            let files = inputFile.files;
-            if (files.length > maxFiles) {
-                alert(`You can only select up to ${maxFiles} photos.`);
-                const dt = new DataTransfer();
-                for (let i = 0; i < maxFiles; i++) dt.items.add(files[i]);
-                inputFile.files = dt.files;
-                files = inputFile.files;
-            }
-            imgCount.textContent = `${files.length}/${maxFiles}`;
-        });
+
 
         // =========================
         // Tabs Functionality
@@ -441,35 +497,37 @@ data={...data,tabName:tabName}
                     this.style.pointerEvents = "none";
 
                     // إعادة اسم البوتن كما كان (اختياري)
-                    dropdownBtn.textContent = "choose";
+                    dropdownBtn.textContent = "+";
                 }
             });
         });
 
        // عند الضغط على زر الحذف داخل أي box
 boxes.addEventListener('click', function (e) {
-    if (e.target.classList.contains('btn-remove')) {
+    // البحث عن أقرب عنصر يحتوي على الكلاس btn-remove
+    const btn = e.target.closest('.btn-remove, .btn-remove-svg');
+    if (!btn) return;
 
-        // أقرب صندوق يبدأ ID تبعه بـ box-
-        const box = e.target.closest('[id^="box-"]');
-        if (!box) return;
+    // أقرب صندوق يبدأ ID تبعه بـ box-
+    const box = btn.closest('[id^="box-"]');
+    if (!box) return;
 
-        // إخفاء الصندوق
-        box.classList.add('hidden');
+    // إخفاء الصندوق
+    box.classList.add('hidden');
 
-        // إعادة تفعيل الخيار في المنيو
-        const option = document.querySelector(`.dropdown-item[data-value="${box.id}"]`);
-        if (option) {
-            option.classList.remove('disabled');
-            option.style.pointerEvents = "auto";
-        }
+    // إعادة تفعيل الخيار في المنيو
+    const option = document.querySelector(`.dropdown-item[data-value="${box.id}"]`);
+    if (option) {
+        option.classList.remove('disabled');
+        option.style.pointerEvents = "auto";
+    }
 
-        // إذا كان الصندوق هو box-1 فضّي الأوبجكت
-        if (box.id === "box-3") {
-            upholstery = {};   // ← هنا التفريغ
-        }
+    // إذا كان الصندوق هو box-3 فضّي الأوبجكت
+    if (box.id === "box-3") {
+        upholstery = {};   // ← هنا التفريغ
     }
 });
+
 
 
 
