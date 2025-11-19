@@ -55,6 +55,8 @@ let upholstery = {
                         let data = {
                              tabName:"Normal-Cleaning"
                         };
+                        let CleaningData = {};
+
 
 
 
@@ -154,6 +156,62 @@ document.getElementById("SubmitForm").addEventListener("click", function (e) {
 });
 
         function collectData() {
+CleaningData = {
+        areaForNormal: document.getElementById("areaForNormal")?.value || "",
+        reasonForNormal: document.getElementById("reasonForNormal")?.value || "",
+        requestsForNormal: Array.from(document.querySelectorAll('input[name="requestsForNormal"]:checked')).map(e => e.value),
+        contaminationForNormal: document.querySelector('input[name="contaminationForNormal"]:checked')?.value || "",
+
+        reasonForWindowCleaning: document.getElementById("reasonForWindowCleaning")?.value || "",
+        heightInputForWindowCleaning: document.getElementById("heightInputForWindowCleaning")?.value || "",
+        casementForWindowCleaning: document.getElementById("casementForWindowCleaning")?.value || "",
+        requestsForWindowCleaning: Array.from(document.querySelectorAll('input[name="requestsForWindowCleaning"]:checked')).map(e => e.value),
+        contaminationForWindowCleaning: document.querySelector('input[name="contaminationForWindowCleaning"]:checked')?.value || "",
+
+        reasonForWindowCleaningOptional: document.getElementById("reasonForWindowCleaningOptional")?.value || "",
+        heightInputForWindowCleaningOptional: document.getElementById("heightInputForWindowCleaningOptional")?.value || "",
+        casementForWindowCleaningOptional: document.getElementById("casementForWindowCleaningOptional")?.value || "",
+        requestsForWindowCleaningOptional: Array.from(document.querySelectorAll('input[name="requestsForWindowCleaningOptional"]:checked')).map(e => e.value),
+        contaminationForWindowCleaningOptional: document.querySelector('input[name="contaminationForWindowCleaningOptional"]:checked')?.value || "",
+
+        looseCarpetForCarpet: document.getElementById("looseCarpetForCarpet")?.value || "",
+        totalAreaForCarpet: document.getElementById("totalAreaForCarpet")?.value || "",
+        fixedCarpetForCarpet: document.getElementById("fixedCarpetForCarpet")?.value || "",
+        requestsForCarpet: Array.from(document.querySelectorAll('input[name="requestsForCarpet"]:checked')).map(e => e.value),
+        contaminationForCarpet: document.querySelector('input[name="contaminationForCarpet"]:checked')?.value || "",
+
+        looseCarpetForCarpetOptional: document.getElementById("looseCarpetForCarpetOptional")?.value || "",
+        totalAreaForCarpetOptional: document.getElementById("totalAreaForCarpetOptional")?.value || "",
+        fixedCarpetForCarpetOptional: document.getElementById("fixedCarpetForCarpetOptional")?.value || "",
+        requestsForCarpetOptional: Array.from(document.querySelectorAll('input[name="requestsForCarpetOptional"]:checked')).map(e => e.value),
+        contaminationForCarpetOptional: document.querySelector('input[name="contaminationForCarpetOptional"]:checked')?.value || "",
+
+        areaForSpringCleaning: document.getElementById("areaForSpringCleaning")?.value || "",
+        reasonForSpringCleaning: document.getElementById("reasonForSpringCleaning")?.value || "",
+        requestsForSpringCleaning: Array.from(document.querySelectorAll('input[name="requestsForSpringCleaning"]:checked')).map(e => e.value),
+        contaminationForSpringCleaning: document.querySelector('input[name="contaminationForSpringCleaning"]:checked')?.value || "",
+
+        areaForCleaning: document.getElementById("areaForCleaning")?.value || "",
+        reasonForCleaning: document.getElementById("reasonForCleaning")?.value || "",
+        requestsForCleaning: Array.from(document.querySelectorAll('input[name="requestsForCleaning"]:checked')).map(e => e.value),
+        contaminationForCleaning: document.querySelector('input[name="contaminationForCleaning"]:checked')?.value || "",
+
+        areaForMessieApatment: document.getElementById("areaForMessieApatment")?.value || "",
+        reasonForMessieApatment: document.getElementById("reasonForMessieApatment")?.value || "",
+        requestsForMessieApatment: Array.from(document.querySelectorAll('input[name="requestsForMessieApatment"]:checked')).map(e => e.value),
+        contaminationForMessieApatment: document.querySelector('input[name="contaminationForMessieApatment"]:checked')?.value || "",
+
+        upholstery: upholstery,
+        contaminationForUpholstery: document.querySelector('input[name="contaminationForUpholstery"]:checked')?.value || "",
+        requestsForUpholstery: Array.from(document.querySelectorAll('input[name="requestsForUpholstery"]:checked')).map(e => e.value),
+        upholsteryOptional: upholsteryOptional,
+        reason: document.getElementById("windowReason")?.value || "",
+        area: document.getElementById("windowArea")?.value || "",
+        contaminationForUpholsteryOptional: document.querySelector('input[name="contaminationForUpholsteryOptional"]:checked')?.value || "",
+        requestsForUpholsteryOptional: Array.from(document.querySelectorAll('input[name="requestsForUpholsteryOptional"]:checked')).map(e => e.value),
+        contamination: document.querySelector('input[name="windowContamination"]:checked')?.value || "",
+        requests: Array.from(document.querySelectorAll('input[name="windowRequests"]:checked')).map(e => e.value),
+    };
 
 
             data = {...data,
@@ -185,62 +243,7 @@ document.getElementById("SubmitForm").addEventListener("click", function (e) {
                     hasSeparateCleaningAddress: document.getElementById("separateCleaningAddress")?.checked || false
                 },
 
-                CleaningData: {
-                    areaForNormal: document.getElementById("areaForNormal")?.value || "",
-                    reasonForNormal: document.getElementById("reasonForNormal")?.value || "",
-                    requestsForNormal: Array.from(document.querySelectorAll('input[name="requestsForNormal"]:checked')).map(e => e.value),
-                    contaminationForNormal: document.querySelector('input[name="contaminationForNormal"]:checked')?.value || "",
 
-                    reasonForWindowCleaning: document.getElementById("reasonForWindowCleaning")?.value || "",
-                    heightInputForWindowCleaning: document.getElementById("heightInputForWindowCleaning")?.value || "",
-                    casementForWindowCleaning: document.getElementById("casementForWindowCleaning")?.value || "",
-                    requestsForWindowCleaning: Array.from(document.querySelectorAll('input[name="requestsForWindowCleaning"]:checked')).map(e => e.value),
-                    contaminationForWindowCleaning: document.querySelector('input[name="contaminationForWindowCleaning"]:checked')?.value || "",
-
-                    reasonForWindowCleaningOptional: document.getElementById("reasonForWindowCleaningOptional")?.value || "",
-                    heightInputForWindowCleaningOptional: document.getElementById("heightInputForWindowCleaningOptional")?.value || "",
-                    casementForWindowCleaningOptional: document.getElementById("casementForWindowCleaningOptional")?.value || "",
-                    requestsForWindowCleaningOptional: Array.from(document.querySelectorAll('input[name="requestsForWindowCleaningOptional"]:checked')).map(e => e.value),
-                    contaminationForWindowCleaningOptional: document.querySelector('input[name="contaminationForWindowCleaningOptional"]:checked')?.value || "",
-
-                    looseCarpetForCarpet: document.getElementById("looseCarpetForCarpet")?.value || "",
-                    totalAreaForCarpet: document.getElementById("totalAreaForCarpet")?.value || "",
-                    fixedCarpetForCarpet: document.getElementById("fixedCarpetForCarpet")?.value || "",
-                    requestsForCarpet: Array.from(document.querySelectorAll('input[name="requestsForCarpet"]:checked')).map(e => e.value),
-                    contaminationForCarpet: document.querySelector('input[name="contaminationForCarpet"]:checked')?.value || "",
-
-                    looseCarpetForCarpetOptional: document.getElementById("looseCarpetForCarpetOptional")?.value || "",
-                    totalAreaForCarpetOptional: document.getElementById("totalAreaForCarpetOptional")?.value || "",
-                    fixedCarpetForCarpetOptional: document.getElementById("fixedCarpetForCarpetOptional")?.value || "",
-                    requestsForCarpetOptional: Array.from(document.querySelectorAll('input[name="requestsForCarpetOptional"]:checked')).map(e => e.value),
-                    contaminationForCarpetOptional: document.querySelector('input[name="contaminationForCarpetOptional"]:checked')?.value || "",
-
-                    areaForSpringCleaning: document.getElementById("areaForSpringCleaning")?.value || "",
-                    reasonForSpringCleaning: document.getElementById("reasonForSpringCleaning")?.value || "",
-                    requestsForSpringCleaning: Array.from(document.querySelectorAll('input[name="requestsForSpringCleaning"]:checked')).map(e => e.value),
-                    contaminationForSpringCleaning: document.querySelector('input[name="contaminationForSpringCleaning"]:checked')?.value || "",
-
-                    areaForCleaning: document.getElementById("areaForCleaning")?.value || "",
-                    reasonForCleaning: document.getElementById("reasonForCleaning")?.value || "",
-                    requestsForCleaning: Array.from(document.querySelectorAll('input[name="requestsForCleaning"]:checked')).map(e => e.value),
-                    contaminationForCleaning: document.querySelector('input[name="contaminationForCleaning"]:checked')?.value || "",
-
-                    areaForMessieApatment: document.getElementById("areaForMessieApatment")?.value || "",
-                    reasonForMessieApatment: document.getElementById("reasonForMessieApatment")?.value || "",
-                    requestsForMessieApatment: Array.from(document.querySelectorAll('input[name="requestsForMessieApatment"]:checked')).map(e => e.value),
-                    contaminationForMessieApatment: document.querySelector('input[name="contaminationForMessieApatment"]:checked')?.value || "",
-
-                    upholstery: upholstery,
-                    contaminationForUpholstery: document.querySelector('input[name="contaminationForUpholstery"]:checked')?.value || "",
-                    requestsForUpholstery: Array.from(document.querySelectorAll('input[name="requestsForUpholstery"]:checked')).map(e => e.value),
-                    upholsteryOptional: upholsteryOptional,
-                    reason: document.getElementById("windowReason")?.value || "",
-                    area: document.getElementById("windowArea")?.value || "",
-                    contaminationForUpholsteryOptional: document.querySelector('input[name="contaminationForUpholsteryOptional"]:checked')?.value || "",
-                    requestsForUpholsteryOptional: Array.from(document.querySelectorAll('input[name="requestsForUpholsteryOptional"]:checked')).map(e => e.value),
-                    contamination: document.querySelector('input[name="windowContamination"]:checked')?.value || "",
-                    requests: Array.from(document.querySelectorAll('input[name="windowRequests"]:checked')).map(e => e.value),
-                },
 
                 cleaning: {
                     company: document.getElementById("cleaningCompany")?.value || "",
@@ -271,7 +274,8 @@ document.getElementById("SubmitForm").addEventListener("click", function (e) {
                 }
             };
 
-            console.log("Collected Data:", data);
+    data = { ...data, CleaningData };
+    console.log("Collected Data:", data);
         }
 
 
@@ -364,27 +368,59 @@ document.getElementById("SubmitForm").addEventListener("click", function (e) {
         // =========================
         // Tabs Functionality
         // =========================
-        document.querySelectorAll('.btn-form').forEach(button => {
-            button.addEventListener('click', function () {
-                const tabName = this.querySelector('span').textContent.trim().replace(/\s+/g, '-');
+document.querySelectorAll('.btn-form').forEach(button => {
+    button.addEventListener('click', function () {
+ const loading = document.querySelector('.loading');
+        if (loading) {
+            loading.style.display = 'flex';
+        }
 
-                // إخفاء كل التابات
-                document.querySelectorAll('.tab-section').forEach(div => div.style.display = 'none');
+        const tabName = this.querySelector('span').textContent.trim().replace(/\s+/g, '-');
 
-                // إظهار التاب المطلوب فقط
-                const targetDiv = document.querySelector('.' + tabName);
-                if (targetDiv) targetDiv.style.display = 'block';
+        // إخفاء كل التابات
+        document.querySelectorAll('.tab-section').forEach(div => div.style.display = 'none');
 
-                // تفريغ فقط data.CleaningData
-                console.log(tabName);
-data={...data,tabName:tabName}
-                if (data && typeof data === 'object' && data.CleaningData) {
-                    data.CleaningData = {};
-                }
+        // إظهار التاب المطلوب فقط
+        const targetDiv = document.querySelector('.' + tabName);
+        if (targetDiv) targetDiv.style.display = 'block';
 
-                console.log("data.CleaningData cleared for tab:", tabName);
-            });
+        // تفريغ CleaningData داخل الـ data
+        data = { ...data, CleaningData: {} };
+
+        // 🔥 تفريغ كل الحقول الخاصة بكل التابات داخل CleaningData
+        document.querySelectorAll('.tab-section input, .tab-section select, .tab-section textarea')
+        .forEach(input => {
+            if (input.type === 'checkbox' || input.type === 'radio') {
+                input.checked = false;
+            } else {
+                input.value = '';
+            }
         });
+    setTimeout(() => {
+            const targetDiv = document.querySelector('.' + tabName);
+            if (targetDiv) {
+                targetDiv.style.display = 'block';
+
+                // Scroll إلى أول العنصر داخل .container-tabs2-section
+                const container = document.querySelector('.container-tabs2-section');
+                console.log(container,'container');
+
+                if (container) {
+                    container.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'  // حركة سلسة
+                    });
+                }
+            }
+
+            // إخفاء Loading
+            if (loading) loading.style.display = 'none';
+        }, 2000);
+        console.log("Global CleaningData + All Tabs Inputs Cleared");
+    });
+});
+
+
 
         // =========================
         // Separate Cleaning Address Toggle
