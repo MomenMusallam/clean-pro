@@ -18,14 +18,20 @@
     // });
 
 const thumbnails = document.querySelectorAll('.thumbnails img');
+const box1 = document.querySelector('.box-1');
+const box2 = document.querySelector('.box-2');
+const box3 = document.querySelector('.box-3');
+const box4 = document.querySelector('.box-4');
+box4.style.display = 'none';
+box4.style.pointerEvents = 'none';
 
 thumbnails.forEach(img => {
     img.addEventListener('click', () => {
         console.log(1112,thumbnails);
 
-        // إزالة الكلاس من جميع الصور
+        // إزالة الكلاس من جميع الصو
         thumbnails.forEach(i => i.classList.remove('selected-thumb'));
-        // إضافة الكلاس على الصورة اللي ضغطت عليها
+        // إضافة الكلاس على الصوة اللي ضغطت عليها
         img.classList.add('selected-thumb');
     });
 });
@@ -68,20 +74,20 @@ const imgCount = document.querySelector(".imgCount");
 fileInput.addEventListener("change", function (e) {
     const newFiles = Array.from(e.target.files);
 
-    // منع أن يصبح العدد أكبر من 5
+    // منع أن يصبح العدد أكب من 5
     if (photos.length + newFiles.length > 5) {
-        alert("لا يمكنك رفع أكثر من 5 صور!");
+        alert("لا يمكنك فع أكث من 5 صو!");
         fileInput.value = "";
         return;
     }
 
-    // دمج الصور الجديدة
+    // دمج الصو الجديدة
     photos = photos.concat(newFiles);
 
-    // تحديث العرض + الكاونتر
+    // تحديث العض + الكاونت
     renderPhotos();
 
-    // يسمح برفع نفس الصورة لاحقاً
+    // يسمح بفع نفس الصوة لاحقاً
     fileInput.value = "";
 });
 
@@ -89,7 +95,7 @@ function renderPhotos() {
     const preview = document.getElementById("preview");
     preview.innerHTML = "";
 
-    // تحديث الكاونتر
+    // تحديث الكاونت
     imgCount.textContent = `${photos.length}/5`;
 
     photos.forEach((file, index) => {
@@ -136,10 +142,10 @@ function renderPhotos() {
             card.querySelector("button").addEventListener("click", function () {
                 const idx = this.getAttribute("data-index");
 
-                // حذف الصورة
+                // حذف الصوة
                 photos.splice(idx, 1);
 
-                // إعادة عرض الصور + تحديث الكاونتر
+                // إعادة عض الصو + تحديث الكاونت
                 renderPhotos();
             });
 
@@ -151,7 +157,7 @@ function renderPhotos() {
 
 
 document.getElementById("SubmitForm").addEventListener("click", function (e) {
-    e.preventDefault(); // يمنع الريلود إذا كان داخل فورم
+    e.preventDefault(); // يمنع اليلود إذا كان داخل فوم
     collectData();
 });
 
@@ -161,6 +167,11 @@ CleaningData = {
         reasonForNormal: document.getElementById("reasonForNormal")?.value || "",
         requestsForNormal: Array.from(document.querySelectorAll('input[name="requestsForNormal"]:checked')).map(e => e.value),
         contaminationForNormal: document.querySelector('input[name="contaminationForNormal"]:checked')?.value || "",
+
+         areaForNormalOption: document.getElementById("areaForNormalOption")?.value || "",
+        reasonForNormalOption: document.getElementById("reasonForNormalOption")?.value || "",
+        requestsForNormalOption: Array.from(document.querySelectorAll('input[name="requestsForNormalOption"]:checked')).map(e => e.value),
+        contaminationForNormalOption: document.querySelector('input[name="contaminationForNormalOption"]:checked')?.value || "",
 
         reasonForWindowCleaning: document.getElementById("reasonForWindowCleaning")?.value || "",
         heightInputForWindowCleaning: document.getElementById("heightInputForWindowCleaning")?.value || "",
@@ -370,55 +381,101 @@ CleaningData = {
         // =========================
 document.querySelectorAll('.btn-form').forEach(button => {
     button.addEventListener('click', function () {
- const loading = document.querySelector('.loading');
-        if (loading) {
-            loading.style.display = 'flex';
-        }
+        const loading = document.querySelector('.loading');
+        if (loading) loading.style.display = 'flex';
 
-        const tabName = this.querySelector('span').textContent.trim().replace(/\s+/g, '-');
+        const tabName = this.querySelector('span').textContent.trim();
+        const tabClass = tabName.replace(/\s+/g, '-');
+        const tabNameText = this.querySelector('span').textContent
+                    .trim()               // إزالة المسافات من البداية والنهاية
+                    .toLowerCase()        // تحويل كل الحوف إلى صغية
+                    .replace(/\s+/g, '')
+if(tabNameText === "windowscleaning"){
+    box4.classList.remove('hidden');
+    box1.classList.add('hidden'); // يضيف كلاس hidden
+    box3.classList.remove('hidden');
+    box2.classList.remove('hidden');
+
+}else if(tabNameText==='carpet'){
+   box4.classList.remove('hidden');
+    box1.classList.remove('hidden'); // يضيف كلاس hidden
+    box3.classList.remove('hidden');
+    box2.classList.add('hidden');
+
+}else if(tabNameText==='upholsterycleaning'){
+ box4.classList.remove('hidden');
+    box1.classList.remove('hidden'); // يضيف كلاس hidden
+    box3.classList.add('hidden');
+    box2.classList.remove('hidden');
+}else{
+ box4.classList.add('hidden');
+    box1.classList.remove('hidden');
+    box3.classList.remove('hidden');
+    box2.classList.remove('hidden');
+}
+console.log(tabNameText,box4,box1,box2,box3);
 
         // إخفاء كل التابات
         document.querySelectorAll('.tab-section').forEach(div => div.style.display = 'none');
 
-        // إظهار التاب المطلوب فقط
-        const targetDiv = document.querySelector('.' + tabName);
+        // 🔥 إعادة كل الصناديق إلى الحالة المخفية عند تغيي التاب
+        document.querySelectorAll('#boxes > .box').forEach(box => {
+            box.classList.add('hidden');
+
+            // إعادة تفعيل الخياات المصاحبة في dropdown
+            const optionDropdown = document.querySelector(`.dropdown-item[data-value="${box.id}"]`);
+            if (optionDropdown) {
+                optionDropdown.classList.remove('disabled');
+                optionDropdown.style.pointerEvents = "auto";
+                if(box.id === 'box-4') optionDropdown.style.display = 'block'; // إعادة عض box-4
+            }
+
+            // إعادة تفعيل الخياات المصاحبة في select
+            const optionSelect = document.querySelector(`#which option[value="${box.id}"]`);
+            if (optionSelect) optionSelect.disabled = false;
+        });
+
+        // إظها التاب المطلوب
+        const targetDiv = document.querySelector('.' + tabClass);
         if (targetDiv) targetDiv.style.display = 'block';
 
-        // تفريغ CleaningData داخل الـ data
+        // تفيغ CleaningData داخل الـ data
         data = { ...data, CleaningData: {} };
 
-        // 🔥 تفريغ كل الحقول الخاصة بكل التابات داخل CleaningData
+        // 🔥 تفيغ كل الحقول الخاصة بكل التابات داخل CleaningData
         document.querySelectorAll('.tab-section input, .tab-section select, .tab-section textarea')
-        .forEach(input => {
-            if (input.type === 'checkbox' || input.type === 'radio') {
-                input.checked = false;
-            } else {
-                input.value = '';
-            }
-        });
-    setTimeout(() => {
-            const targetDiv = document.querySelector('.' + tabName);
+            .forEach(input => {
+                if (input.type === 'checkbox' || input.type === 'radio') {
+                    input.checked = false;
+                } else {
+                    input.value = '';
+                }
+            });
+
+        // ✅ عض box-4 تلقائيًا إذا كان التاب من القيم المحددة، وإخفاء الخيا من الـ dropdown
+
+
+        // Scroll و Loading
+        setTimeout(() => {
             if (targetDiv) {
                 targetDiv.style.display = 'block';
-
-                // Scroll إلى أول العنصر داخل .container-tabs2-section
                 const container = document.querySelector('.container-tabs2-section');
-                console.log(container,'container');
-
-                if (container) {
-                    container.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'  // حركة سلسة
-                    });
-                }
+                if (container) container.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             }
-
-            // إخفاء Loading
             if (loading) loading.style.display = 'none';
         }, 2000);
-        console.log("Global CleaningData + All Tabs Inputs Cleared");
+
+        console.log("Global CleaningData + All Tabs Inputs Cleared + Boxes Reset + Box-4 Logic Applied");
     });
 });
+
+
+
+
+
 
 
 
@@ -491,7 +548,6 @@ document.querySelectorAll('.btn-form').forEach(button => {
 
         document.addEventListener('click', e => {
             if (e.target.classList.contains('btn-plus') || e.target.classList.contains('btn-minus')) {
-              console.log(12);
 
                 const id = e.target.getAttribute('data-id');
                 const input = document.getElementById(id);
@@ -523,7 +579,7 @@ document.querySelectorAll('.btn-form').forEach(button => {
                 console.log(upholsteryOptional);
             }
         });
-        // العناصر
+        // العناص
         const select = document.getElementById('which');
         const boxes = document.getElementById('boxes');
         const dropdownItems = document.querySelectorAll('.dropdown-item');
@@ -540,34 +596,34 @@ document.querySelectorAll('.btn-form').forEach(button => {
                 const box = document.getElementById(val);
                 if (!box) return;
 
-                // إذا كان الصندوق مخفي → أظهره و عطّل الخيار
+                // إذا كان الصندوق مخفي → أظهه و عطّل الخيا
                 if (box.classList.contains('hidden')) {
                     box.classList.remove('hidden');
 
-                    // تعطيل هذا الخيار في المنيو
+                    // تعطيل هذا الخيا في المنيو
                     this.classList.add('disabled');
                     this.style.pointerEvents = "none";
 
-                    // إعادة اسم البوتن كما كان (اختياري)
+                    // إعادة اسم البوتن كما كان (اختياي)
                     dropdownBtn.textContent = "+";
                 }
             });
         });
 
-       // عند الضغط على زر الحذف داخل أي box
+       // عند الضغط على ز الحذف داخل أي box
 boxes.addEventListener('click', function (e) {
-    // البحث عن أقرب عنصر يحتوي على الكلاس btn-remove
+    // البحث عن أقب عنص يحتوي على الكلاس btn-remove
     const btn = e.target.closest('.btn-remove, .btn-remove-svg');
     if (!btn) return;
 
-    // أقرب صندوق يبدأ ID تبعه بـ box-
+    // أقب صندوق يبدأ ID تبعه بـ box-
     const box = btn.closest('[id^="box-"]');
     if (!box) return;
 
     // إخفاء الصندوق
     box.classList.add('hidden');
 
-    // إعادة تفعيل الخيار في المنيو
+    // إعادة تفعيل الخيا في المنيو
     const option = document.querySelector(`.dropdown-item[data-value="${box.id}"]`);
     if (option) {
         option.classList.remove('disabled');
@@ -576,14 +632,14 @@ boxes.addEventListener('click', function (e) {
 
     // إذا كان الصندوق هو box-3 فضّي الأوبجكت
     if (box.id === "box-3") {
-        upholstery = {};   // ← هنا التفريغ
+        upholstery = {};   // ← هنا التفيغ
     }
 });
 
 
 
 
-        // عند تغيير الـ select
+        // عند تغيي الـ select
         select.addEventListener('change', (e) => {
 
             const val = e.target.value;
@@ -594,21 +650,21 @@ boxes.addEventListener('click', function (e) {
             if (!box) return;
 
 
-            // إذا الصندوق مخفي نعرضه ونوقف الخيار
+            // إذا الصندوق مخفي نعضه ونوقف الخيا
             if (box.classList.contains('hidden')) {
                 box.classList.remove('hidden');
-                // تعطيل الخيار المصاحب
+                // تعطيل الخيا المصاحب
                 const opt = select.querySelector(`option[value="${val}"]`);
                 if (opt) opt.disabled = true;
 
 
-                // نعيد قيمة الـ select إلى العنصر الافتراضي
+                // نعيد قيمة الـ select إلى العنص الافتاضي
                 select.value = '';
             }
         });
 
 
-        // حدث عالمي لأزرار الحذف داخل الصناديق
+        // حدث عالمي لأزا الحذف داخل الصناديق
         boxes.addEventListener('click', (e) => {
             if (!e.target.classList.contains('btn-remove')) return;
             const box = e.target.closest('.box');
@@ -622,12 +678,12 @@ boxes.addEventListener('click', function (e) {
             box.classList.add('hidden');
 
 
-            // إعادة تفعيل الخيار في select
+            // إعادة تفعيل الخيا في select
             const opt = select.querySelector(`option[value="${id}"]`);
             if (opt) opt.disabled = false;
 
 
-            // إذا أردت حذف الـ DOM بالكامل بدل الإخفاء استخدم box.remove();
+            // إذا أدت حذف الـ DOM بالكامل بدل الإخفاء استخدم box.remove();
             // box.remove();
         });
 
