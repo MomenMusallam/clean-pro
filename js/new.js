@@ -292,6 +292,7 @@ document.getElementById("SubmitForm").addEventListener("click", function (e) {
                 }
             );
 
+
             const selectedDatesList = document.getElementById("selectedDatesList");
             const inputField = document.getElementById("datetimepicker1Input");
             let selectedDates = [];
@@ -309,12 +310,14 @@ document.getElementById("SubmitForm").addEventListener("click", function (e) {
                     div.style.borderRadius = '5px';
                     div.style.cursor = 'pointer';
                     div.textContent = dateStr + ' ✕';
+
                     div.addEventListener('click', () => {
                         selectedDates.splice(index, 1);
                         if (selectedDates.length < 3) inputField.disabled = false;
                         renderSelectedDates();
                         inputField.value = selectedDates.map(d => new Date(d).toLocaleDateString('en-GB')).join(', ');
                     });
+
                     selectedDatesList.appendChild(div);
                 });
             }
