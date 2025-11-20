@@ -332,51 +332,34 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // النقر على أي div داخل القائمة
-  // عند حذف من القائمة:
-selectedDatesList.addEventListener('click', (e) => {
-    const index = e.target.dataset.index;
-    if (index !== undefined) {
-        // نحسب التاريخ من الـ div
-        const divText = e.target.textContent.split(' ✕')[0];
-        const [day, month, year] = divText.split('/').map(Number);
-        const dateObj = new Date(year, month - 1, day);
+    // حذف تاريخ عند النقر
+    selectedDatesList.addEventListener('click', (e) => {
+        const index = e.target.dataset.index;
+        if (index !== undefined) {
+            const divText = e.target.textContent.split(' ✕')[0];
+            const [day, month, year] = divText.split('/').map(Number);
+            const dateObj = new Date(year, month - 1, day);
 
-        // نحذف من المصفوفة
-        selectedDates.splice(index, 1);
+            selectedDates.splice(index, 1);
+            if (selectedDates.length < 3) inputField.disabled = false;
 
-        // نطيّل قيمة input إذا ممكن
-        if (selectedDates.length < 3) inputField.disabled = false;
+            picker.dates.clear();
+            selectedDates.forEach(d => picker.dates.add(d));
 
-        // نمسح جميع التواريخ من الـ picker
-        picker.dates.clear();
+            renderSelectedDates();
+            inputField.value = selectedDates.map(d => new Date(d).toLocaleDateString('en-GB')).join(', ');
+        }
+    });
 
-        // نضيف كل التواريخ المتبقية من المصفوفة
-        selectedDates.forEach(d => {
-            picker.dates.add(d);
-        });
-
-        // نعيد الريندر للقائمة
-        renderSelectedDates();
-        inputField.value = selectedDates.map(d => new Date(d).toLocaleDateString('en-GB')).join(', ');
-    }
-});
-
-
-    // عند اختيار أو إزالة تاريخ من الـ picker
+    // عند اختيار أو إزالة تاريخ من picker
     picker.subscribe(tempusDominus.Namespace.events.change, (e) => {
         const pickedDate = e.date || e.oldDate;
         if (!pickedDate) return;
 
-        console.log("التاريخ المختار أو المحذوف:", pickedDate);
-
         const dateStr = pickedDate.toDateString();
-
-        // إضافة إذا ما كان موجود
         if (e.date && !selectedDates.some(d => new Date(d).toDateString() === dateStr)) {
             selectedDates.push(pickedDate);
         }
-        // إزالة إذا موجود
         if (e.oldDate) {
             selectedDates = selectedDates.filter(d => new Date(d).toDateString() !== dateStr);
         }
@@ -399,7 +382,6 @@ selectedDatesList.addEventListener('click', (e) => {
             }
         });
 
-        // إزالة أي تواريخ موجودة في picker لكنها لم تعد موجودة في input
         selectedDates.forEach(d => {
             if (!newSelectedDates.some(nd => new Date(nd).toDateString() === new Date(d).toDateString())) {
                 picker.dates.remove(d);
@@ -410,7 +392,111 @@ selectedDatesList.addEventListener('click', (e) => {
         renderSelectedDates();
         inputField.disabled = selectedDates.length >= 3;
     });
+
+    // إضافة نص تلقائي عند فتح الـ picker
+  // إضافة نص تلقائي عند فتح الـ picker
+// إضافة نص مخصص عند فتح الـ picker
+// إضافة النصوص المخصصة عند فتح الـ picker
+picker.subscribe(tempusDominus.Namespace.events.show, () => {
+    const widget = document.querySelector('.tempus-dominus-widget');
+
+    // div الأول: Angaben übernehmen
+    if (widget && !widget.querySelector('.custom-text')) {
+        const textDiv = document.createElement('div');
+        textDiv.textContent = 'Angaben übernehmen';
+        textDiv.classList.add('custom-text');
+
+        textDiv.style.backgroundColor = '#4b4d4c';
+        textDiv.style.padding = '8px 32px';
+        textDiv.style.color = 'white';
+        textDiv.style.fontSize = '15px';
+        textDiv.style.textAlign = 'center';
+        textDiv.style.marginTop = '10px';
+        textDiv.style.borderRadius = '5px';
+
+        widget.appendChild(textDiv);
+    }
+
+    // div الثاني: خلفية #f8d7da
+    if (widget && !widget.querySelector('.custom-info')) {
+        const infoDiv = document.createElement('div');
+        infoDiv.classList.add('custom-info');
+        infoDiv.style.backgroundColor = '#f8d7da';
+        infoDiv.style.padding = '10px';
+        infoDiv.style.marginTop = '8px';
+        infoDiv.style.borderRadius = '5px';
+        infoDiv.style.display = 'flex';
+        infoDiv.style.gap = '10px';
+
+        // أيقونة علامة التعجب
+        const iconDiv = document.createElement('div');
+        iconDiv.innerHTML = '❗';
+        iconDiv.style.fontSize = '20px';
+        iconDiv.style.alignSelf = 'flex-start';
+
+        // div للنصوص الثلاثة
+        const textsDiv = document.createElement('div');
+        textsDiv.style.display = 'flex';
+        textsDiv.style.flexDirection = 'column';
+        textsDiv.style.gap = '5px';
+
+        // السطر الأول
+        const line1 = document.createElement('div');
+        line1.textContent = 'Bitte Datum klicken für Terminauswahl (max. 3)';
+        line1.style.color = '#4b4d4c';
+        line1.style.fontSize = '15px';
+
+        // السطر الثاني: نقطة خضراء + نص
+        const line2 = document.createElement('div');
+        const dot2 = document.createElement('span');
+        dot2.style.display = 'inline-block';
+        dot2.style.width = '10px';
+        dot2.style.height = '10px';
+        dot2.style.backgroundColor = 'green';
+        dot2.style.borderRadius = '50%';
+        dot2.style.marginRight = '6px';
+        line2.appendChild(dot2);
+        const text2 = document.createElement('span');
+        text2.textContent = 'Samstag ohne Zuschlag';
+        text2.style.color = '#4b4d4c';
+        text2.style.fontSize = '15px';
+        line2.appendChild(text2);
+
+        // السطر الثالث: نقطة خضراء + نص
+        const line3 = document.createElement('div');
+        const dot3 = document.createElement('span');
+        dot3.style.display = 'inline-block';
+        dot3.style.width = '10px';
+        dot3.style.height = '10px';
+        dot3.style.backgroundColor = 'green';
+        dot3.style.borderRadius = '50%';
+        dot3.style.marginRight = '6px';
+        line3.appendChild(dot3);
+        const text3 = document.createElement('span');
+        text3.textContent = 'Sonn- u. Feiertag 100% Zuschlag';
+        text3.style.color = '#4b4d4c';
+        text3.style.fontSize = '15px';
+        line3.appendChild(text3);
+
+        // إضافة الخطوط إلى div النصوص
+        textsDiv.appendChild(line1);
+        textsDiv.appendChild(line2);
+        textsDiv.appendChild(line3);
+
+        // إضافة الأيقونة والنصوص إلى div الخلفية
+        infoDiv.appendChild(iconDiv);
+        infoDiv.appendChild(textsDiv);
+
+        // إضافة الـ infoDiv للـ picker
+        widget.appendChild(infoDiv);
+    }
 });
+
+
+
+
+});
+
 
 
 
