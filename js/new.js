@@ -536,11 +536,16 @@ picker.subscribe(tempusDominus.Namespace.events.show, () => {
 document.querySelectorAll('.btn-form').forEach(button => {
     button.addEventListener('click', function () {
 
+        const tabId = this.dataset.tab;
+
+        // التحقق إذا كان التاب الحالي هو نفسه المفعل
+        const activeTab = document.querySelector('.tab-section:not([style*="display: none"])');
+        if (activeTab && activeTab.dataset.tab === tabId) {
+            return; // إيقاف تنفيذ الفانكشن إذا نفس التاب
+        }
+
         const loading = document.querySelector('.loading');
         if (loading) loading.style.display = 'flex';
-
-        // المعرف الثابت للتاب
-        const tabId = this.dataset.tab;
 
         // ===============================
         // 🔥 تغيير نص الـ accordion حسب اسم التاب
@@ -552,7 +557,6 @@ document.querySelectorAll('.btn-form').forEach(button => {
         }
         // ===============================
 
-
         // إخفاء كل التابات
         document.querySelectorAll('.tab-section').forEach(div => {
             div.style.display = 'none';
@@ -562,7 +566,7 @@ document.querySelectorAll('.btn-form').forEach(button => {
         const select = document.getElementById('which');
         if (select) {
             select.querySelectorAll('option').forEach(opt => opt.disabled = false);
-            select.value = ''; // القيمة الافتراضية
+            select.value = '';
         }
 
         // إعادة تفعيل كل العناصر في dropdown
@@ -639,6 +643,7 @@ document.querySelectorAll('.btn-form').forEach(button => {
         }, 2000);
     });
 });
+
 
 
 
