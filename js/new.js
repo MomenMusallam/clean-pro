@@ -293,61 +293,129 @@ CleaningData = {
         // =========================
         // Tempus Dominus Date Picker
         // =========================
-        document.addEventListener("DOMContentLoaded", function () {
-            const picker = new tempusDominus.TempusDominus(
-                document.getElementById("datetimepicker1"),
-                {
-                    multipleDates: true,
-                    display: {
-                        components: { calendar: true, date: true, month: true, year: true, decades: true, clock: false },
-                        buttons: { today: true, clear: true, close: true }
-                    },
-                    localization: { format: 'dd/MM/yyyy' },
-                    useCurrent: false
-                }
-            );
+          const inputField = document.getElementById("datetimepicker1Input");
+document.addEventListener("DOMContentLoaded", function () {
 
+    const picker = new tempusDominus.TempusDominus(
+        document.getElementById("datetimepicker1"),
+        {
+            multipleDates: true,
+            display: {
+                components: { calendar: true, date: true, month: true, year: true, decades: true, clock: false },
+                buttons: { today: true, clear: true, close: true }
+            },
+            localization: { format: 'dd/MM/yyyy' },
+            useCurrent: false
+        }
+    );
 
-            const selectedDatesList = document.getElementById("selectedDatesList");
-            const inputField = document.getElementById("datetimepicker1Input");
-            let selectedDates = [];
+    const selectedDatesList = document.getElementById("selectedDatesList");
+    const inputField = document.getElementById("datetimepicker1Input");
+    let selectedDates = [];
 
-            function renderSelectedDates() {
-                selectedDatesList.innerHTML = '';
-                selectedDates.forEach((d, index) => {
-                    const dateStr = new Date(d).toLocaleDateString('en-GB');
-                    const div = document.createElement('div');
-                    div.style.display = 'inline-block';
-                    div.style.margin = '5px';
-                    div.style.padding = '5px 10px';
-                    div.style.background = '#3ca200';
-                    div.style.color = 'white';
-                    div.style.borderRadius = '5px';
-                    div.style.cursor = 'pointer';
-                    div.textContent = dateStr + ' ✕';
+    function renderSelectedDates() {
+        selectedDatesList.innerHTML = '';
+        selectedDates.forEach((d, index) => {
+            const dateStr = new Date(d).toLocaleDateString('en-GB');
+            const div = document.createElement('div');
+            div.style.display = 'inline-block';
+            div.style.margin = '5px';
+            div.style.padding = '5px 10px';
+            div.style.background = '#3ca200';
+            div.style.color = 'white';
+            div.style.borderRadius = '5px';
+            div.style.cursor = 'pointer';
+            div.textContent = dateStr + ' ✕';
+            div.dataset.index = index;
 
-                    div.addEventListener('click', () => {
-                        selectedDates.splice(index, 1);
-                        if (selectedDates.length < 3) inputField.disabled = false;
-                        renderSelectedDates();
-                        inputField.value = selectedDates.map(d => new Date(d).toLocaleDateString('en-GB')).join(', ');
-                    });
-
-                    selectedDatesList.appendChild(div);
-                });
-            }
-
-            picker.subscribe(tempusDominus.Namespace.events.change, (e) => {
-                const pickedDate = e.date;
-                if (!pickedDate) return;
-                const dateStr = pickedDate.toDateString();
-                if (!selectedDates.some(d => new Date(d).toDateString() === dateStr)) selectedDates.push(pickedDate);
-                renderSelectedDates();
-                inputField.value = selectedDates.map(d => new Date(d).toLocaleDateString('en-GB')).join(', ');
-                picker.hide();
-                inputField.disabled = selectedDates.length >= 3;
-            });
+            selectedDatesList.appendChild(div);
         });
+    }
+
+    // النقر على أي div داخل القائمة
+  // عند حذف من القائمة:
+selectedDatesList.addEventListener('click', (e) => {
+    const index = e.target.dataset.index;
+    if (index !== undefined) {
+        // نحسب التاريخ من الـ div
+        const divText = e.target.textContent.split(' ✕')[0];
+        const [day, month, year] = divText.split('/').map(Number);
+        const dateObj = new Date(year, month - 1, day);
+
+        // نحذف من المصفوفة
+        selectedDates.splice(index, 1);
+
+        // نطيّل قيمة input إذا ممكن
+        if (selectedDates.length < 3) inputField.disabled = false;
+
+        // نمسح جميع التواريخ من الـ picker
+        picker.dates.clear();
+
+        // نضيف كل التواريخ المتبقية من المصفوفة
+        selectedDates.forEach(d => {
+            picker.dates.add(d);
+        });
+
+        // نعيد الريندر للقائمة
+        renderSelectedDates();
+        inputField.value = selectedDates.map(d => new Date(d).toLocaleDateString('en-GB')).join(', ');
+    }
+});
+
+
+    // عند اختيار أو إزالة تاريخ من الـ picker
+    picker.subscribe(tempusDominus.Namespace.events.change, (e) => {
+        const pickedDate = e.date || e.oldDate;
+        if (!pickedDate) return;
+
+        console.log("التاريخ المختار أو المحذوف:", pickedDate);
+
+        const dateStr = pickedDate.toDateString();
+
+        // إضافة إذا ما كان موجود
+        if (e.date && !selectedDates.some(d => new Date(d).toDateString() === dateStr)) {
+            selectedDates.push(pickedDate);
+        }
+        // إزالة إذا موجود
+        if (e.oldDate) {
+            selectedDates = selectedDates.filter(d => new Date(d).toDateString() !== dateStr);
+        }
+
+        renderSelectedDates();
+        inputField.value = selectedDates.map(d => new Date(d).toLocaleDateString('en-GB')).join(', ');
+        picker.hide();
+        inputField.disabled = selectedDates.length >= 3;
+    });
+
+    // مراقبة تغييرات input المباشرة
+    inputField.addEventListener('input', () => {
+        const inputDates = inputField.value.split(',').map(s => s.trim()).filter(s => s);
+        const newSelectedDates = [];
+
+        inputDates.forEach(str => {
+            const [day, month, year] = str.split('/').map(Number);
+            if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
+                newSelectedDates.push(new Date(year, month - 1, day));
+            }
+        });
+
+        // إزالة أي تواريخ موجودة في picker لكنها لم تعد موجودة في input
+        selectedDates.forEach(d => {
+            if (!newSelectedDates.some(nd => new Date(nd).toDateString() === new Date(d).toDateString())) {
+                picker.dates.remove(d);
+            }
+        });
+
+        selectedDates = newSelectedDates;
+        renderSelectedDates();
+        inputField.disabled = selectedDates.length >= 3;
+    });
+});
+
+
+
+
+
 
         // =========================
         // intl-tel-input Initialization

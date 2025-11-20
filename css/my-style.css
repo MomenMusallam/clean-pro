@@ -519,8 +519,8 @@
 }
 
 .date-container-days div:not(.no-highlight).active {
-  background: #fff !important;
-  color: #000 !important;
+  /* background: #fff !important;
+  color: #000 !important; */
 }
 
 .counter-container {
