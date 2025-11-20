@@ -593,7 +593,6 @@ document.querySelectorAll('.btn-form').forEach(button => {
                 const id = e.target.id;
                 const value = Math.max(0, Number(e.target.value));
                 upholsteryOptional[id] = value;
-                console.log(upholsteryOptional);
             }
         });
         // العناص
@@ -604,27 +603,56 @@ document.querySelectorAll('.btn-form').forEach(button => {
 
         dropdownItems.forEach(item => {
 
-            item.addEventListener('click', function (e) {
-                e.preventDefault();
+          item.addEventListener('click', function (e) {
+    e.preventDefault();
 
-                const val = this.getAttribute('data-value');
-                const text = this.textContent;
+    const val = this.getAttribute('data-value') || this.dataset.value;
+    const text = this.textContent.trim();
 
-                const box = document.getElementById(val);
-                if (!box) return;
+    const box = document.getElementById(val);
+    if (!box) return;
 
-                // إذا كان الصندوق مخفي → أظهه و عطّل الخيا
-                if (box.classList.contains('hidden')) {
-                    box.classList.remove('hidden');
+    // إذا كان الصندوق مخفي → أظهره وعلّق الخيا
+    if (box.classList.contains('hidden')) {
+        box.classList.remove('hidden');
 
-                    // تعطيل هذا الخيا في المنيو
-                    this.classList.add('disabled');
-                    this.style.pointerEvents = "none";
+        // عطّل هذا البند في المنيو (dropdown item)
+        this.classList.add('disabled');
+        this.style.pointerEvents = "none";
 
-                    // إعادة اسم البوتن كما كان (اختياي)
-                    dropdownBtn.textContent = "+";
-                }
-            });
+        // تعطيل الخيا الموازي في الـ select (لو موجود)
+        const select = document.getElementById('which');
+        if (select) {
+            const opt = select.querySelector(`option[value="${val}"]`);
+            if (opt) opt.disabled = true;
+            // إعادة قيمة select إلى الافتراضي (اختياري)
+            select.value = '';
+        }
+
+        // إعادة اسم زر الـ dropdown كما طلبت
+        if (typeof dropdownBtn !== 'undefined' && dropdownBtn) {
+            dropdownBtn.textContent = "+";
+        }
+    } else {
+        // إذا الصندوق ظاهر بالفعل نقدر فقط ننقّل السكروول إليه
+        // (ولا نغيّر حالة الـ dropdown item لأنّه مفعل مسبقاً)
+    }
+
+    // Scroll إلى الصندوق داخل الـ container المحدد (سلوك سلس)
+    const container = document.querySelector('.container-tabs2-section');
+    if (container) {
+        // scrollIntoView يتصرف جيداً ويبحث عن أقرب ancestor قابل للتمرير (container)
+        box.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+
+        // بديل (دقيق أكثر لو احتجت ضبط موضع أعلى):
+        // const top = box.getBoundingClientRect().top - container.getBoundingClientRect().top + container.scrollTop;
+        // container.scrollTo({ top, behavior: 'smooth' });
+    } else {
+        // لو ما فيه container محدد، ننقّل الصفحة كاملة إليه
+        box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+});
+
         });
 
        // عند الضغط على ز الحذف داخل أي box
@@ -683,6 +711,7 @@ boxes.addEventListener('click', function (e) {
 
         // حدث عالمي لأزا الحذف داخل الصناديق
         boxes.addEventListener('click', (e) => {
+
             if (!e.target.classList.contains('btn-remove')) return;
             const box = e.target.closest('.box');
             if (!box) return;

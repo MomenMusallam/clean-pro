@@ -149,7 +149,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 23px;
+  /* gap: 23px; */
 }
 
 .svg-box {
@@ -207,6 +207,14 @@
 .nav-pills .nav-link:hover .svg-box {
   background-color: #3ca100;
 
+}
+
+.nav-pills .nav-link.active .btn-box {
+  gap: 23px;
+}
+
+.nav-pills .nav-link:hover .btn-box {
+  gap: 23px;
 }
 
 .nav-pills .nav-link:hover .svg-box div {
@@ -374,7 +382,7 @@
 
 .card-container {
   display: flex;
-  gap: 7px;
+  gap: 13px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -408,6 +416,13 @@
   /* width: calc(25% - 6px); */
   text-align: center;
   transition: all 0.3s ease;
+
+}
+
+.card svg {
+  width: 40px;
+  height: 40px;
+  /* margin-bottom: 8px; */
 }
 
 /* عند تحديد البطاقة */
