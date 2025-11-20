@@ -388,7 +388,8 @@
                                                 class="tabs-sidebar nav form-list nav-pills d-flex flex-md-column flex-row bg-light p-2 border-bottom border-md-end"
                                                 id="v-pills-tab" role="tablist">
                                                 <li class="nav-item" role="presentation">
-                                                    <button class="nav-link nav-link-btn btn-form active" id="tab1-tab"
+                                                    <button data-tab="normal-cleaning"
+                                                        class="nav-link nav-link-btn btn-form active" id="tab1-tab"
                                                         data-bs-toggle="pill" data-bs-target="#tab1" type="button"
                                                         id="tab1-tab" data-bs-toggle="pill" data-bs-target="#tab1"
                                                         type="button" role="tab">
@@ -441,7 +442,8 @@
                                                     </button>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <button class="nav-link nav-link-btn btn-form" id="tab2-tab"
+                                                    <button data-tab="windows-cleaning"
+                                                        class="nav-link nav-link-btn btn-form" id="tab2-tab"
                                                         data-bs-toggle="pill" data-bs-target="#tab1" type="button"
                                                         role="tab">
                                                         <div class="btn-box">
@@ -481,9 +483,9 @@
                                                     </button>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <button class="nav-link nav-link-btn btn-form" id="tab3-tab"
-                                                        data-bs-toggle="pill" data-bs-target="#tab1" type="button"
-                                                        role="tab">
+                                                    <button data-tab="carpet" class="nav-link nav-link-btn btn-form"
+                                                        id="tab3-tab" data-bs-toggle="pill" data-bs-target="#tab1"
+                                                        type="button" role="tab">
                                                         <div class="btn-box">
                                                             <div class="svg-box">
                                                                 <div>
@@ -525,7 +527,8 @@
                                                     </button>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <button class="nav-link nav-link-btn btn-form" id="tab3-tab"
+                                                    <button data-tab="upholstery-cleaning"
+                                                        class="nav-link nav-link-btn btn-form" id="tab3-tab"
                                                         data-bs-toggle="pill" data-bs-target="#tab1" type="button"
                                                         role="tab">
                                                         <div class="btn-box">
@@ -569,7 +572,8 @@
                                                     </button>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <button class="nav-link nav-link-btn btn-form" id="tab3-tab"
+                                                    <button data-tab="spring-cleaning"
+                                                        class="nav-link nav-link-btn btn-form" id="tab3-tab"
                                                         data-bs-toggle="pill" data-bs-target="#tab1" type="button"
                                                         role="tab">
                                                         <div class="btn-box">
@@ -618,9 +622,9 @@
                                                 </li>
 
                                                 <li class="nav-item" role="presentation">
-                                                    <button class="nav-link nav-link-btn btn-form" id="tab3-tab"
-                                                        data-bs-toggle="pill" data-bs-target="#tab1" type="button"
-                                                        role="tab">
+                                                    <button data-tab="cleaning" class="nav-link nav-link-btn btn-form"
+                                                        id="tab3-tab" data-bs-toggle="pill" data-bs-target="#tab1"
+                                                        type="button" role="tab">
                                                         <div class="btn-box">
                                                             <div class="svg-box">
                                                                 <div>
@@ -664,7 +668,8 @@
                                                     </button>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <button class="nav-link nav-link-btn btn-form" id="tab3-tab"
+                                                    <button data-tab="messie-apartment"
+                                                        class="nav-link nav-link-btn btn-form" id="tab3-tab"
                                                         data-bs-toggle="pill" data-bs-target="#tab1" type="button"
                                                         role="tab">
                                                         <div class="btn-box">
@@ -729,10 +734,11 @@
                                                                         <h2 class="accordion-header">
                                                                             <button class="accordion-button"
                                                                                 type="button" data-bs-toggle="collapse"
+                                                                                id='accordionTitle'
                                                                                 data-bs-target="#collapseOne"
                                                                                 aria-expanded="true"
                                                                                 aria-controls="collapseOne">
-                                                                                Misse Apartment </button>
+                                                                                Normal Cleaning </button>
                                                                         </h2>
                                                                         <div class="form">
                                                                             <div id="collapseOne"
@@ -945,7 +951,8 @@
                                                                                     </div>
                                                                                     <div
                                                                                         class="tab-content-container mt-4">
-                                                                                        <div class="tab-section Normal-Cleaning"
+                                                                                        <div data-tab="normal-cleaning"
+                                                                                            class="tab-section Normal-Cleaning"
                                                                                             style="display: block;">
                                                                                             <!-- start Normal Cleaning -->
                                                                                             <div>
@@ -1395,7 +1402,8 @@
                                                                                         </div>
                                                                                         <!-- start window Cleaning -->
 
-                                                                                        <div class="tab-section windows-cleaning"
+                                                                                        <div data-tab="windows-cleaning"
+                                                                                            class="tab-section windows-cleaning"
                                                                                             style="display: none;">
                                                                                             <div
                                                                                                 class="windows-cleaning">
@@ -1846,7 +1854,8 @@
                                                                                         <!-- end window Cleaning -->
                                                                                         <!-- start Carpet -->
 
-                                                                                        <div class="tab-section Carpet"
+                                                                                        <div data-tab="carpet"
+                                                                                            class="tab-section Carpet"
                                                                                             style="display: none;">
                                                                                             <div
                                                                                                 class="window-cleaning">
@@ -2288,7 +2297,8 @@
                                                                                         </div>
                                                                                         <!-- end Carpet -->
 
-                                                                                        <div class="tab-section Upholstery-Cleaning"
+                                                                                        <div data-tab="upholstery-cleaning"
+                                                                                            class="tab-section Upholstery-Cleaning"
                                                                                             style="display: none;">
 
                                                                                             <div class=" ">
@@ -3333,7 +3343,8 @@
                                                                                         </div>
                                                                                         <!-- start Spring Cleaning -->
 
-                                                                                        <div class="tab-section Spring-Cleaning"
+                                                                                        <div data-tab="spring-cleaning"
+                                                                                            class="tab-section Spring-Cleaning"
                                                                                             style="display: none;">
                                                                                             <div>
                                                                                                 <div
@@ -3781,7 +3792,8 @@
                                                                                         <!-- end Spring Cleaning -->
                                                                                         <!-- start Cleaning -->
 
-                                                                                        <div class="tab-section Cleaning"
+                                                                                        <div data-tab="cleaning"
+                                                                                            class="tab-section Cleaning"
                                                                                             style="display: none;">
                                                                                             <div>
                                                                                                 <div
@@ -4229,7 +4241,8 @@
                                                                                         <!-- end Cleaning -->
                                                                                         <!-- start Messie Apartment -->
 
-                                                                                        <div class="tab-section Messie-Apartment"
+                                                                                        <div data-tab="messie-apartment"
+                                                                                            class="tab-section Messie-Apartment"
                                                                                             style="display: none;">
                                                                                             <div>
                                                                                                 <div

@@ -381,68 +381,58 @@ CleaningData = {
         // =========================
 document.querySelectorAll('.btn-form').forEach(button => {
     button.addEventListener('click', function () {
+
         const loading = document.querySelector('.loading');
         if (loading) loading.style.display = 'flex';
 
-        const tabName = this.querySelector('span').textContent.trim();
-        const tabClass = tabName.replace(/\s+/g, '-');
-        const tabNameText = this.querySelector('span').textContent
-                    .trim()               // إزالة المسافات من البداية والنهاية
-                    .toLowerCase()        // تحويل كل الحوف إلى صغية
-                    .replace(/\s+/g, '')
-if(tabNameText === "windowscleaning"){
-    box4.classList.remove('hidden');
-    box1.classList.add('hidden'); // يضيف كلاس hidden
-    box3.classList.remove('hidden');
-    box2.classList.remove('hidden');
+        // المعرف الثابت للتاب
+        const tabId = this.dataset.tab;
 
-}else if(tabNameText==='carpet'){
-   box4.classList.remove('hidden');
-    box1.classList.remove('hidden'); // يضيف كلاس hidden
-    box3.classList.remove('hidden');
-    box2.classList.add('hidden');
+        // ===============================
+        // 🔥 تغيير نص الـ accordion حسب اسم التاب
+        // ===============================
+        const accordionTitle = document.getElementById("accordionTitle");
+        if (accordionTitle) {
+            const titleText = this.querySelector("span")?.textContent.trim() || "";
+            accordionTitle.textContent = titleText;
+        }
+        // ===============================
 
-}else if(tabNameText==='upholsterycleaning'){
- box4.classList.remove('hidden');
-    box1.classList.remove('hidden'); // يضيف كلاس hidden
-    box3.classList.add('hidden');
-    box2.classList.remove('hidden');
-}else{
- box4.classList.add('hidden');
-    box1.classList.remove('hidden');
-    box3.classList.remove('hidden');
-    box2.classList.remove('hidden');
-}
-console.log(tabNameText,box4,box1,box2,box3);
 
         // إخفاء كل التابات
-        document.querySelectorAll('.tab-section').forEach(div => div.style.display = 'none');
-
-        // 🔥 إعادة كل الصناديق إلى الحالة المخفية عند تغيي التاب
-        document.querySelectorAll('#boxes > .box').forEach(box => {
-            box.classList.add('hidden');
-
-            // إعادة تفعيل الخياات المصاحبة في dropdown
-            const optionDropdown = document.querySelector(`.dropdown-item[data-value="${box.id}"]`);
-            if (optionDropdown) {
-                optionDropdown.classList.remove('disabled');
-                optionDropdown.style.pointerEvents = "auto";
-                if(box.id === 'box-4') optionDropdown.style.display = 'block'; // إعادة عض box-4
-            }
-
-            // إعادة تفعيل الخياات المصاحبة في select
-            const optionSelect = document.querySelector(`#which option[value="${box.id}"]`);
-            if (optionSelect) optionSelect.disabled = false;
+        document.querySelectorAll('.tab-section').forEach(div => {
+            div.style.display = 'none';
         });
 
-        // إظها التاب المطلوب
-        const targetDiv = document.querySelector('.' + tabClass);
+        // إعادة تفعيل كل الخيارات في select
+        const select = document.getElementById('which');
+        if (select) {
+            select.querySelectorAll('option').forEach(opt => opt.disabled = false);
+            select.value = ''; // القيمة الافتراضية
+        }
+
+        // إعادة تفعيل كل العناصر في dropdown
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.classList.remove('disabled');
+            item.style.pointerEvents = "auto";
+            if (item.dataset.value === 'box-4') {
+                item.style.display = 'block';
+            }
+        });
+
+        // إخفاء كل الصناديق بالكامل
+        document.querySelectorAll('#boxes > .box').forEach(box => {
+            box.classList.add('hidden');
+        });
+
+        // إظهار التاب المطلوب
+        const targetDiv = document.querySelector(`.tab-section[data-tab="${tabId}"]`);
         if (targetDiv) targetDiv.style.display = 'block';
 
-        // تفيغ CleaningData داخل الـ data
+        // تفريغ CleaningData
         data = { ...data, CleaningData: {} };
 
-        // 🔥 تفيغ كل الحقول الخاصة بكل التابات داخل CleaningData
+        // تفريغ الحقول
         document.querySelectorAll('.tab-section input, .tab-section select, .tab-section textarea')
             .forEach(input => {
                 if (input.type === 'checkbox' || input.type === 'radio') {
@@ -452,25 +442,52 @@ console.log(tabNameText,box4,box1,box2,box3);
                 }
             });
 
-        // ✅ عض box-4 تلقائيًا إذا كان التاب من القيم المحددة، وإخفاء الخيا من الـ dropdown
+        // منطق إظهار الصناديق حسب التاب
+        if (tabId === "windows-cleaning") {
+            box1.classList.add('hidden');
+            box2.classList.remove('hidden');
+            box3.classList.remove('hidden');
+            box4.classList.remove('hidden');
 
+        } else if (tabId === "carpet") {
+            box1.classList.remove('hidden');
+            box2.classList.add('hidden');
+            box3.classList.remove('hidden');
+            box4.classList.remove('hidden');
 
-        // Scroll و Loading
+        } else if (tabId === "upholstery-cleaning") {
+            box1.classList.remove('hidden');
+            box2.classList.remove('hidden');
+            box3.classList.add('hidden');
+            box4.classList.remove('hidden');
+
+        } else {
+            box1.classList.remove('hidden');
+            box2.classList.remove('hidden');
+            box3.classList.remove('hidden');
+            box4.classList.add('hidden');
+        }
+
+        // Scroll + Loading
         setTimeout(() => {
-            if (targetDiv) {
-                targetDiv.style.display = 'block';
-                const container = document.querySelector('.container-tabs2-section');
-                if (container) container.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            }
             if (loading) loading.style.display = 'none';
-        }, 2000);
 
-        console.log("Global CleaningData + All Tabs Inputs Cleared + Boxes Reset + Box-4 Logic Applied");
+            if (targetDiv) {
+                const container = document.querySelector('.container-tabs2-section');
+                if (container) {
+                    container.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+        }, 2000);
     });
 });
+
+
+
 
 
 
