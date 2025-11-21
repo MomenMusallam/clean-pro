@@ -472,24 +472,50 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // حذف تاريخ عند النقر
-    selectedDatesList.addEventListener('click', (e) => {
-        const index = e.target.dataset.index;
-        if (index !== undefined) {
-            const divText = e.target.textContent.split(' ✕')[0];
-            const [day, month, year] = divText.split('/').map(Number);
-            const dateObj = new Date(year, month - 1, day);
+selectedDatesList.addEventListener('click', (e) => {
+  const index = e.target?.dataset?.index;
+  if (index === undefined) return;
 
-            selectedDates.splice(index, 1);
-            if (selectedDates.length < 3) inputField.disabled = false;
+  // استخرج التاريخ من نص الـ div
+  const divText = e.target.textContent.split(' ✕')[0];
+  const [day, month, year] = divText.split('/').map(Number);
+  const dateToRemove = new Date(year, month - 1, day);
 
-            picker.dates.clear();
-            selectedDates.forEach(d => picker.dates.add(d));
+  // حدّث المصفوفة المحلية فقط
+  selectedDates = selectedDates.filter(d => new Date(d).toDateString() !== dateToRemove.toDateString());
 
-            renderSelectedDates();
-            inputField.value = selectedDates.map(d => new Date(d).toLocaleDateString('en-GB')).join(', ');
-        }
+  // الآن نعيد تهيئة التواريخ في الـ picker باستخدام API عامة
+  try {
+    // نمسح التحديدات الحالية
+    picker.dates.clear();
+
+    // نضيف كل تاريخ متبقّي واحد-واحد باستخدام setValue
+    // استخدام index يضمن أن كل استدعاء يحدث التحديث المناسب للواجهة
+    selectedDates.forEach((d, i) => {
+      // تمرير كائن Date أو TempusDominus DateTime — v6 تحتوي على DateTime الممتدة من Date
+      // نستخدم new tempusDominus.DateTime(d) إذا أردت التأكد
+      const dt = (typeof tempusDominus?.DateTime === 'function')
+                 ? new tempusDominus.DateTime(new Date(d))
+                 : new Date(d);
+
+      picker.dates.setValue(dt, i);
+      // ملاحظة: setValue يقبل عنصر واحد فقط؛ نحن نمرر كل واحد بمؤشره لعمل "بناء" للمصفوفة
     });
+
+  } catch (err) {
+    console.error('Error rebuilding picker dates:', err);
+    // كخطة احتياط، لو حدث خطأ بسبب قيود (min/max) نعرض رسالة أو نتجاهل
+  }
+
+  // تحديث الواجهة المرئية
+  renderSelectedDates();
+  inputField.value = selectedDates.map(d => new Date(d).toLocaleDateString('en-GB')).join(', ');
+  inputField.disabled = selectedDates.length >= 3;
+});
+
+
+
+
 
     // عند اختيار أو إزالة تاريخ من picker
     picker.subscribe(tempusDominus.Namespace.events.change, (e) => {
