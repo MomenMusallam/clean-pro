@@ -35,6 +35,118 @@ thumbnails.forEach(img => {
         img.classList.add('selected-thumb');
     });
 });
+document.querySelectorAll('.form-control').forEach(input => {
+    const checkValue = () => {
+        if (input.value.trim() !== "") {
+            input.classList.add('filled');
+        } else {
+            input.classList.remove('filled');
+        }
+    };
+
+    // تحقق عند التحميل
+    checkValue();
+
+    // تحقق عند الكتابة أو تغييرات الانبوت
+    input.addEventListener('input', checkValue);
+});
+document.querySelectorAll('.form-control').forEach(element => {
+    // تجاهل العناصر داخل .upholstery-wrapper بالكامل
+    if (element.closest('.upholstery-wrapper')) return;
+
+    // إذا كان input type number ولم يتم تحديد قيمة، اجعله 0
+    if (element.tagName.toLowerCase() === 'input' && element.type === 'number' && element.value.trim() === '') {
+        element.value = '0';
+    }
+
+    // إنشاء علامة ✅ للـ input و textarea فقط (ليس select)
+    let check;
+    if (element.tagName.toLowerCase() !== 'select') {
+        check = document.createElement('span');
+        check.textContent = '✓';
+        check.style.position = 'absolute';
+        check.style.right = '10px';
+        check.style.top = '50%';
+        check.style.transform = 'translateY(-50%)';
+        check.style.color = '#3ca200';
+        check.style.fontSize = '22px';
+        check.style.fontWeight = 'bold';
+        check.style.textShadow = '0 0 3px rgba(0,0,0,0.3)';
+        check.style.display = 'none';
+        check.style.pointerEvents = 'none';
+    }
+
+    // إنشاء wrapper حول الانبوت
+    const wrapper = document.createElement('div');
+    wrapper.style.position = 'relative';
+    wrapper.style.display = 'inline-block';
+    wrapper.style.width = '100%'; // عرض كامل يرث من الانبوت
+
+    element.parentNode.insertBefore(wrapper, element);
+    wrapper.appendChild(element);
+    if (check) wrapper.appendChild(check);
+
+    const toggleCheck = () => {
+        const value = element.value.trim();
+        // ✅ يظهر فقط إذا القيمة ليست فارغة وليست صفر
+        if (value !== '' && value !== '0') {
+            if (check) check.style.display = 'block';
+            element.style.borderColor = '#3ca200';
+        } else {
+            if (check) check.style.display = 'none';
+            element.style.borderColor = '';
+        }
+    };
+
+    toggleCheck();
+    element.addEventListener('input', toggleCheck);
+    element.addEventListener('focus', toggleCheck);
+    element.addEventListener('blur', toggleCheck);
+});
+
+
+
+
+
+
+document.querySelectorAll('.form-select').forEach(select => {
+    // تجاهل العناصر داخل .upholstery-wrapper بالكامل
+    if (select.closest('.upholstery-wrapper')) return;
+
+    // تعيين القيمة الافتراضية 0 إذا لم يتم اختيار أي خيار
+    if (!select.value || select.value.trim() === '') {
+        select.value = '0';
+    }
+
+    // إنشاء wrapper حول select بدون تحديد عرض ثابت
+    const wrapper = document.createElement('div');
+    wrapper.style.position = 'relative';
+    wrapper.style.display = 'inline-flex'; // أفضل للتعامل مع العناصر
+    wrapper.style.width = '100%'; // يأخذ كامل مساحة الحاوية الأصلية
+    wrapper.style.boxSizing = 'border-box'; // لتجنب مشاكل الـ padding والحدود
+
+    select.parentNode.insertBefore(wrapper, select);
+    wrapper.appendChild(select);
+
+    const toggleBorder = () => {
+        const value = select.value.trim();
+        // البوردر الأخضر فقط إذا القيمة ليست 0
+        if (value !== '' && value !== '0') {
+            select.style.borderColor = '#3ca200';
+        } else {
+            select.style.borderColor = '';
+        }
+    };
+
+    toggleBorder();
+    select.addEventListener('change', toggleBorder);
+    select.addEventListener('focus', toggleBorder);
+    select.addEventListener('blur', toggleBorder);
+});
+
+
+
+
 
 let upholstery = {
                 twoSeater: 0,
@@ -66,36 +178,39 @@ let upholstery = {
 
 
 
-let photos = [];
+// مصفوفة لكل input حسب الـ ID
+const photosMap = {};
 
-const fileInput = document.getElementById("formFileMultiple");
-const imgCount = document.querySelector(".imgCount");
+function setupFileInput({ inputId, previewId, counterClass, maxFiles = 5 }) {
+    console.log(document.getElementById(inputId));
+    console.log(document.getElementById(previewId));
+    console.log(document.querySelector(counterClass));
 
-fileInput.addEventListener("change", function (e) {
-    const newFiles = Array.from(e.target.files);
+    const fileInput = document.getElementById(inputId);
+    const preview = document.getElementById(previewId);
+    const imgCount = document.querySelector(counterClass);
 
-    // منع أن يصبح العدد أكب من 5
-    if (photos.length + newFiles.length > 5) {
-        alert("لا يمكنك فع أكث من 5 صو!");
+    // تهيئة المصفوفة إذا ما كانت موجودة
+    if (!photosMap[inputId]) photosMap[inputId] = [];
+
+    fileInput.addEventListener("change", (e) => {
+        const newFiles = Array.from(e.target.files);
+
+        if (photosMap[inputId].length + newFiles.length > maxFiles) {
+            alert(`لا يمكنك رفع أكثر من ${maxFiles} صور!`);
+            fileInput.value = "";
+            return;
+        }
+
+        photosMap[inputId] = photosMap[inputId].concat(newFiles);
+        renderPhotos(inputId, preview, imgCount);
         fileInput.value = "";
-        return;
-    }
+    });
+}
 
-    // دمج الصو الجديدة
-    photos = photos.concat(newFiles);
-
-    // تحديث العض + الكاونت
-    renderPhotos();
-
-    // يسمح بفع نفس الصوة لاحقاً
-    fileInput.value = "";
-});
-
-function renderPhotos() {
-    const preview = document.getElementById("preview");
+function renderPhotos(inputId, preview, imgCount) {
     preview.innerHTML = "";
-
-    // تحديث الكاونت
+    const photos = photosMap[inputId];
     imgCount.textContent = `${photos.length}/5`;
 
     photos.forEach((file, index) => {
@@ -109,10 +224,9 @@ function renderPhotos() {
             card.style.position = "relative";
             card.style.background = "#f9f9f9";
 
-           card.innerHTML = `
+            card.innerHTML = `
     <div style="position: relative; width: 100%; height: 80px;">
-        <img src="${e.target.result}"
-             style="width:100%; height:100%; object-fit:cover; border-radius:5px;" />
+        <img src="${e.target.result}" style="width:100%; height:100%; object-fit:cover; border-radius:5px;" />
         <button data-index="${index}"
                 style="
                     position:absolute;
@@ -141,12 +255,8 @@ function renderPhotos() {
 
             card.querySelector("button").addEventListener("click", function () {
                 const idx = this.getAttribute("data-index");
-
-                // حذف الصوة
                 photos.splice(idx, 1);
-
-                // إعادة عض الصو + تحديث الكاونت
-                renderPhotos();
+                renderPhotos(inputId, preview, imgCount);
             });
 
             preview.appendChild(card);
@@ -154,6 +264,36 @@ function renderPhotos() {
         reader.readAsDataURL(file);
     });
 }
+
+// مثال على الاستخدام لكل input
+setupFileInput({
+    inputId: "formFileMultiple",
+    previewId: "preview",
+    counterClass: ".imgCount"
+});
+setupFileInput({
+    inputId: "formFileMultipleUpholstery",
+    previewId: "previewUpholstery",
+    counterClass: ".imgCountUpholstery"
+});
+
+
+setupFileInput({
+    inputId: "formFileMultipleWindow",
+    previewId: "previewWindow",
+    counterClass: ".imgCountWindow"
+});
+
+setupFileInput({
+    inputId: "formFileMultipleCarpet",
+    previewId: "previewCarpet",
+    counterClass: ".imgCountCarpet"
+});
+setupFileInput({
+    inputId: "formFileMultipleNormal",
+    previewId: "previewNormal",
+    counterClass: ".imgCountNormal"
+});
 
 
 document.getElementById("SubmitForm").addEventListener("click", function (e) {
@@ -628,6 +768,7 @@ document.querySelectorAll('.btn-form').forEach(button => {
 
         // Scroll + Loading
         setTimeout(() => {
+
             if (loading) loading.style.display = 'none';
 
             if (targetDiv) {
@@ -762,57 +903,54 @@ document.querySelectorAll('.btn-form').forEach(button => {
 
         dropdownItems.forEach(item => {
 
-          item.addEventListener('click', function (e) {
+   item.addEventListener('click', function (e) {
     e.preventDefault();
 
     const val = this.getAttribute('data-value') || this.dataset.value;
-    const text = this.textContent.trim();
-
     const box = document.getElementById(val);
     if (!box) return;
 
-    // إذا كان الصندوق مخفي → أظهره وعلّق الخيا
+    // فتح الصندوق لو مخفي
     if (box.classList.contains('hidden')) {
         box.classList.remove('hidden');
-
-        // عطّل هذا البند في المنيو (dropdown item)
         this.classList.add('disabled');
         this.style.pointerEvents = "none";
 
-        // تعطيل الخيا الموازي في الـ select (لو موجود)
         const select = document.getElementById('which');
         if (select) {
             const opt = select.querySelector(`option[value="${val}"]`);
             if (opt) opt.disabled = true;
-            // إعادة قيمة select إلى الافتراضي (اختياري)
             select.value = '';
         }
 
-        // إعادة اسم زر الـ dropdown كما طلبت
         if (typeof dropdownBtn !== 'undefined' && dropdownBtn) {
             dropdownBtn.textContent = "+";
         }
-    } else {
-        // إذا الصندوق ظاهر بالفعل نقدر فقط ننقّل السكروول إليه
-        // (ولا نغيّر حالة الـ dropdown item لأنّه مفعل مسبقاً)
     }
 
-    // Scroll إلى الصندوق داخل الـ container المحدد (سلوك سلس)
-    const container = document.querySelector('.container-tabs2-section');
-    if (container) {
-        // scrollIntoView يتصرف جيداً ويبحث عن أقرب ancestor قابل للتمرير (container)
-        box.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+    // فتح الـ accordion باستخدام Bootstrap Collapse
+    const accordionEl = box.querySelector('.accordion-collapse');
+    if (accordionEl) {
+        const bsCollapse = new bootstrap.Collapse(accordionEl, { toggle: true });
 
-        // بديل (دقيق أكثر لو احتجت ضبط موضع أعلى):
-        // const top = box.getBoundingClientRect().top - container.getBoundingClientRect().top + container.scrollTop;
-        // container.scrollTo({ top, behavior: 'smooth' });
-    } else {
-        // لو ما فيه container محدد، ننقّل الصفحة كاملة إليه
-        box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        // استمع لحدث انتهاء الفتح
+        accordionEl.addEventListener('shown.bs.collapse', function () {
+            const container = document.querySelector('.container-tabs2-section');
+            if (container) {
+                // تحريك السكروول ليظهر رأس الـ accordion
+                const top = accordionEl.offsetTop - container.offsetTop;
+                container.scrollTo({ top: top, behavior: 'smooth' });
+            } else {
+                accordionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, { once: true }); // once:true حتى يعمل مرة واحدة فقط
     }
 });
 
+
         });
+
+
 
        // عند الضغط على ز الحذف داخل أي box
 boxes.addEventListener('click', function (e) {
