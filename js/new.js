@@ -17,6 +17,32 @@
     //     }
     // });
 
+
+
+
+// عرض التواريخ المختارة كـ div مع زر ✕
+function renderSelectedDates(dates) {
+    selectedDatesList.innerHTML = '';
+    dates.forEach((d, index) => {
+        const div = document.createElement('div');
+        div.textContent = d.toLocaleDateString('en-GB') + ' ✕';
+        div.dataset.index = index;
+
+        div.addEventListener('click', () => {
+            const newDates = fp.selectedDates.filter((_, i) => i !== index);
+            fp.setDate(newDates, true);
+            renderSelectedDates(newDates);
+
+            if (newDates.length < 3) {
+                fp.set('disable', []);
+            }
+        });
+
+        selectedDatesList.appendChild(div);
+    });
+}
+
+
 const thumbnails = document.querySelectorAll('.thumbnails img');
 const box1 = document.querySelector('.box-1');
 const box2 = document.querySelector('.box-2');
@@ -131,7 +157,9 @@ document.querySelectorAll('.form-select').forEach(select => {
     const toggleBorder = () => {
         const value = select.value.trim();
         // البوردر الأخضر فقط إذا القيمة ليست 0
-        if (value !== '' && value !== '0') {
+        if (value&& (value!="select"&&value !== '' && value !== '0')) {
+            console.log(value);
+
             select.style.borderColor = '#3ca200';
         } else {
             select.style.borderColor = '';
@@ -271,6 +299,7 @@ setupFileInput({
     previewId: "preview",
     counterClass: ".imgCount"
 });
+
 setupFileInput({
     inputId: "formFileMultipleUpholstery",
     previewId: "previewUpholstery",
@@ -376,7 +405,7 @@ CleaningData = {
                 requests: Array.from(document.querySelectorAll('input[name="requests"]:checked')).map(e => e.value),
                 info: document.getElementById("infoTextarea")?.value || "",
                 photos: Array.from(document.getElementById("formFileMultiple")?.files || []).map(f => f.name),
-                dateTime: document.getElementById("datetimepicker1Input")?.value || "",
+                // dateTime: document.getElementById("datetimepicker1Input")?.value || "",
 
                 billing: {
                     email: document.getElementById("billingEmail")?.value || "",
@@ -433,142 +462,19 @@ CleaningData = {
         // =========================
         // Tempus Dominus Date Picker
         // =========================
-          const inputField = document.getElementById("datetimepicker1Input");
-document.addEventListener("DOMContentLoaded", function () {
+const inputField = document.getElementById("datepicker");
+const selectedDatesList = document.getElementById("selectedDatesList");
 
-    const picker = new tempusDominus.TempusDominus(
-        document.getElementById("datetimepicker1"),
-        {
-            multipleDates: true,
-            display: {
-                components: { calendar: true, date: true, month: true, year: true, decades: true, clock: false },
-                buttons: { today: true, clear: true, close: true }
-            },
-            localization: { format: 'dd/MM/yyyy' },
-            useCurrent: false
-        }
-    );
+const fp = flatpickr(inputField, {
+    mode: "multiple",
+    dateFormat: "d/m/Y",
+    maxDate: null,
+    onOpen: function(selectedDates, dateStr, instance) {
+        const widget = instance.calendarContainer;
 
-    const selectedDatesList = document.getElementById("selectedDatesList");
-    const inputField = document.getElementById("datetimepicker1Input");
-    let selectedDates = [];
-
-    function renderSelectedDates() {
-        selectedDatesList.innerHTML = '';
-        selectedDates.forEach((d, index) => {
-            const dateStr = new Date(d).toLocaleDateString('en-GB');
-            const div = document.createElement('div');
-            div.style.display = 'inline-block';
-            div.style.margin = '5px';
-            div.style.padding = '5px 10px';
-            div.style.background = '#3ca200';
-            div.style.color = 'white';
-            div.style.borderRadius = '5px';
-            div.style.cursor = 'pointer';
-            div.textContent = dateStr + ' ✕';
-            div.dataset.index = index;
-
-            selectedDatesList.appendChild(div);
-        });
-    }
-
-selectedDatesList.addEventListener('click', (e) => {
-  const index = e.target?.dataset?.index;
-  if (index === undefined) return;
-
-  // استخرج التاريخ من نص الـ div
-  const divText = e.target.textContent.split(' ✕')[0];
-  const [day, month, year] = divText.split('/').map(Number);
-  const dateToRemove = new Date(year, month - 1, day);
-
-  // حدّث المصفوفة المحلية فقط
-  selectedDates = selectedDates.filter(d => new Date(d).toDateString() !== dateToRemove.toDateString());
-
-  // الآن نعيد تهيئة التواريخ في الـ picker باستخدام API عامة
-  try {
-    // نمسح التحديدات الحالية
-    picker.dates.clear();
-
-    // نضيف كل تاريخ متبقّي واحد-واحد باستخدام setValue
-    // استخدام index يضمن أن كل استدعاء يحدث التحديث المناسب للواجهة
-    selectedDates.forEach((d, i) => {
-      // تمرير كائن Date أو TempusDominus DateTime — v6 تحتوي على DateTime الممتدة من Date
-      // نستخدم new tempusDominus.DateTime(d) إذا أردت التأكد
-      const dt = (typeof tempusDominus?.DateTime === 'function')
-                 ? new tempusDominus.DateTime(new Date(d))
-                 : new Date(d);
-
-      picker.dates.setValue(dt, i);
-      // ملاحظة: setValue يقبل عنصر واحد فقط؛ نحن نمرر كل واحد بمؤشره لعمل "بناء" للمصفوفة
-    });
-
-  } catch (err) {
-    console.error('Error rebuilding picker dates:', err);
-    // كخطة احتياط، لو حدث خطأ بسبب قيود (min/max) نعرض رسالة أو نتجاهل
-  }
-
-  // تحديث الواجهة المرئية
-  renderSelectedDates();
-  inputField.value = selectedDates.map(d => new Date(d).toLocaleDateString('en-GB')).join(', ');
-  inputField.disabled = selectedDates.length >= 3;
-});
-
-
-
-
-
-    // عند اختيار أو إزالة تاريخ من picker
-    picker.subscribe(tempusDominus.Namespace.events.change, (e) => {
-        const pickedDate = e.date || e.oldDate;
-        if (!pickedDate) return;
-
-        const dateStr = pickedDate.toDateString();
-        if (e.date && !selectedDates.some(d => new Date(d).toDateString() === dateStr)) {
-            selectedDates.push(pickedDate);
-        }
-        if (e.oldDate) {
-            selectedDates = selectedDates.filter(d => new Date(d).toDateString() !== dateStr);
-        }
-
-        renderSelectedDates();
-        inputField.value = selectedDates.map(d => new Date(d).toLocaleDateString('en-GB')).join(', ');
-        picker.hide();
-        inputField.disabled = selectedDates.length >= 3;
-    });
-
-    // مراقبة تغييرات input المباشرة
-    inputField.addEventListener('input', () => {
-        const inputDates = inputField.value.split(',').map(s => s.trim()).filter(s => s);
-        const newSelectedDates = [];
-
-        inputDates.forEach(str => {
-            const [day, month, year] = str.split('/').map(Number);
-            if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
-                newSelectedDates.push(new Date(year, month - 1, day));
-            }
-        });
-
-        selectedDates.forEach(d => {
-            if (!newSelectedDates.some(nd => new Date(nd).toDateString() === new Date(d).toDateString())) {
-                picker.dates.remove(d);
-            }
-        });
-
-        selectedDates = newSelectedDates;
-        renderSelectedDates();
-        inputField.disabled = selectedDates.length >= 3;
-    });
-
-    // إضافة نص تلقائي عند فتح الـ picker
-  // إضافة نص تلقائي عند فتح الـ picker
-// إضافة نص مخصص عند فتح الـ picker
-// إضافة النصوص المخصصة عند فتح الـ picker
-picker.subscribe(tempusDominus.Namespace.events.show, () => {
-    const widget = document.querySelector('.tempus-dominus-widget');
-
-    // div الأول: Angaben übernehmen
-    if (widget && !widget.querySelector('.custom-text')) {
-        const textDiv = document.createElement('div');
+        // منع تكرار إضافة الـ infoDiv
+        if (!widget.querySelector('.custom-info')) {
+            const textDiv = document.createElement('div');
         textDiv.textContent = 'Angaben übernehmen';
         textDiv.classList.add('custom-text');
 
@@ -581,89 +487,94 @@ picker.subscribe(tempusDominus.Namespace.events.show, () => {
         textDiv.style.borderRadius = '5px';
 
         widget.appendChild(textDiv);
-    }
+            const infoDiv = document.createElement('div');
+            infoDiv.classList.add('custom-info');
+            infoDiv.style.backgroundColor = '#f8d7da';
+            infoDiv.style.padding = '10px';
+            infoDiv.style.borderRadius = '5px';
+            infoDiv.style.textAlign = 'start';
+            infoDiv.style.display = 'flex';
+            infoDiv.style.gap = '10px';
 
-    // div الثاني: خلفية #f8d7da
-    if (widget && !widget.querySelector('.custom-info')) {
-        const infoDiv = document.createElement('div');
-        infoDiv.classList.add('custom-info');
-        infoDiv.style.backgroundColor = '#f8d7da';
-        infoDiv.style.padding = '10px';
-        infoDiv.style.marginTop = '8px';
-        infoDiv.style.borderRadius = '5px';
-        infoDiv.style.display = 'flex';
-        infoDiv.style.gap = '10px';
+            // أيقونة علامة التعجب
+            const iconDiv = document.createElement('div');
+            iconDiv.innerHTML = '❗';
+            iconDiv.style.fontSize = '20px';
+            iconDiv.style.alignSelf = 'flex-start';
 
-        // أيقونة علامة التعجب
-        const iconDiv = document.createElement('div');
-        iconDiv.innerHTML = '❗';
-        iconDiv.style.fontSize = '20px';
-        iconDiv.style.alignSelf = 'flex-start';
+            // div للنصوص الثلاثة
+            const textsDiv = document.createElement('div');
+            textsDiv.style.display = 'flex';
+            textsDiv.style.flexDirection = 'column';
+            textsDiv.style.gap = '5px';
+            textsDiv.style.alignItems = 'flex-start'; // بداية السطر
 
-        // div للنصوص الثلاثة
-        const textsDiv = document.createElement('div');
-        textsDiv.style.display = 'flex';
-        textsDiv.style.flexDirection = 'column';
-        textsDiv.style.gap = '5px';
+            const line1 = document.createElement('div');
+            line1.textContent = 'Bitte Datum klicken für Terminauswahl (max. 3)';
+            line1.style.color = '#4b4d4c';
+            line1.style.fontSize = '15px';
 
-        // السطر الأول
-        const line1 = document.createElement('div');
-        line1.textContent = 'Bitte Datum klicken für Terminauswahl (max. 3)';
-        line1.style.color = '#4b4d4c';
-        line1.style.fontSize = '15px';
+            const line2 = document.createElement('div');
+            const dot2 = document.createElement('span');
+            dot2.style.display = 'inline-block';
+            dot2.style.width = '10px';
+            dot2.style.height = '10px';
+            dot2.style.backgroundColor = 'green';
+            dot2.style.borderRadius = '50%';
+            dot2.style.marginRight = '6px';
+            line2.appendChild(dot2);
+            const text2 = document.createElement('span');
+            text2.textContent = 'Samstag ohne Zuschlag';
+            text2.style.color = '#4b4d4c';
+            text2.style.fontSize = '15px';
+            line2.appendChild(text2);
 
-        // السطر الثاني: نقطة خضراء + نص
-        const line2 = document.createElement('div');
-        const dot2 = document.createElement('span');
-        dot2.style.display = 'inline-block';
-        dot2.style.width = '10px';
-        dot2.style.height = '10px';
-        dot2.style.backgroundColor = 'green';
-        dot2.style.borderRadius = '50%';
-        dot2.style.marginRight = '6px';
-        line2.appendChild(dot2);
-        const text2 = document.createElement('span');
-        text2.textContent = 'Samstag ohne Zuschlag';
-        text2.style.color = '#4b4d4c';
-        text2.style.fontSize = '15px';
-        line2.appendChild(text2);
+            const line3 = document.createElement('div');
+            const dot3 = document.createElement('span');
+            dot3.style.display = 'inline-block';
+            dot3.style.width = '10px';
+            dot3.style.height = '10px';
+            dot3.style.backgroundColor = 'green';
+            dot3.style.borderRadius = '50%';
+            dot3.style.marginRight = '6px';
+            line3.appendChild(dot3);
+            const text3 = document.createElement('span');
+            text3.textContent = 'Sonn- u. Feiertag 100% Zuschlag';
+            text3.style.color = '#4b4d4c';
+            text3.style.fontSize = '15px';
+            line3.appendChild(text3);
 
-        // السطر الثالث: نقطة خضراء + نص
-        const line3 = document.createElement('div');
-        const dot3 = document.createElement('span');
-        dot3.style.display = 'inline-block';
-        dot3.style.width = '10px';
-        dot3.style.height = '10px';
-        dot3.style.backgroundColor = 'green';
-        dot3.style.borderRadius = '50%';
-        dot3.style.marginRight = '6px';
-        line3.appendChild(dot3);
-        const text3 = document.createElement('span');
-        text3.textContent = 'Sonn- u. Feiertag 100% Zuschlag';
-        text3.style.color = '#4b4d4c';
-        text3.style.fontSize = '15px';
-        line3.appendChild(text3);
+            textsDiv.appendChild(line1);
+            textsDiv.appendChild(line2);
+            textsDiv.appendChild(line3);
 
-        // إضافة الخطوط إلى div النصوص
-        textsDiv.appendChild(line1);
-        textsDiv.appendChild(line2);
-        textsDiv.appendChild(line3);
+            infoDiv.appendChild(iconDiv);
+            infoDiv.appendChild(textsDiv);
 
-        // إضافة الأيقونة والنصوص إلى div الخلفية
-        infoDiv.appendChild(iconDiv);
-        infoDiv.appendChild(textsDiv);
+            widget.appendChild(infoDiv);
+        }
+    },
+    onChange: function(selectedDates) {
+        if (selectedDates.length > 3) {
+            alert("يمكنك اختيار حتى 3 تواريخ فقط");
+            selectedDates.pop();
+            fp.setDate(selectedDates, true);
+        }
 
-        // إضافة الـ infoDiv للـ picker
-        widget.appendChild(infoDiv);
+        // تعطيل أي تواريخ غير مختارة عند اختيار 3 تواريخ
+        if (selectedDates.length === 3) {
+            fp.set('disable', [
+                function(date) {
+                    return !selectedDates.some(d => d.getTime() === date.getTime());
+                }
+            ]);
+        } else {
+            fp.set('disable', []);
+        }
+
+        renderSelectedDates(selectedDates);
     }
 });
-
-
-
-
-});
-
-
 
 
 
