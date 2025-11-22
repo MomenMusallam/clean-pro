@@ -77,15 +77,21 @@ document.querySelectorAll('.form-control').forEach(input => {
     input.addEventListener('input', checkValue);
 });
 document.querySelectorAll('.form-control').forEach(element => {
+
     // تجاهل العناصر داخل .upholstery-wrapper بالكامل
     if (element.closest('.upholstery-wrapper')) return;
+
+    // 🛑 تجاهل انبوت الصور / الملفات
+    if (element.tagName.toLowerCase() === 'input' && element.type === 'file') {
+        return;
+    }
 
     // إذا كان input type number ولم يتم تحديد قيمة، اجعله 0
     if (element.tagName.toLowerCase() === 'input' && element.type === 'number' && element.value.trim() === '') {
         element.value = '0';
     }
 
-    // إنشاء علامة ✅ للـ input و textarea فقط (ليس select)
+    // إنشاء علامة ✓ للـ input و textarea فقط (ليس select)
     let check;
     if (element.tagName.toLowerCase() !== 'select') {
         check = document.createElement('span');
@@ -106,7 +112,7 @@ document.querySelectorAll('.form-control').forEach(element => {
     const wrapper = document.createElement('div');
     wrapper.style.position = 'relative';
     wrapper.style.display = 'inline-block';
-    wrapper.style.width = '100%'; // عرض كامل يرث من الانبوت
+    wrapper.style.width = '100%';
 
     element.parentNode.insertBefore(wrapper, element);
     wrapper.appendChild(element);
@@ -114,7 +120,7 @@ document.querySelectorAll('.form-control').forEach(element => {
 
     const toggleCheck = () => {
         const value = element.value.trim();
-        // ✅ يظهر فقط إذا القيمة ليست فارغة وليست صفر
+        // يظهر فقط إذا القيمة ليست فارغة وليست صفر
         if (value !== '' && value !== '0') {
             if (check) check.style.display = 'block';
             element.style.borderColor = '#3ca200';
@@ -135,6 +141,7 @@ document.querySelectorAll('.form-control').forEach(element => {
 
 
 
+
 document.querySelectorAll('.form-select').forEach(select => {
     // تجاهل العناصر داخل .upholstery-wrapper بالكامل
     if (select.closest('.upholstery-wrapper')) return;
@@ -144,25 +151,41 @@ document.querySelectorAll('.form-select').forEach(select => {
         select.value = '0';
     }
 
-    // إنشاء wrapper حول select بدون تحديد عرض ثابت
+    // إنشاء wrapper حول select
     const wrapper = document.createElement('div');
     wrapper.style.position = 'relative';
-    wrapper.style.display = 'inline-flex'; // أفضل للتعامل مع العناصر
-    wrapper.style.width = '100%'; // يأخذ كامل مساحة الحاوية الأصلية
-    wrapper.style.boxSizing = 'border-box'; // لتجنب مشاكل الـ padding والحدود
+    wrapper.style.display = 'inline-flex';
+    wrapper.style.width = '100%';
+    wrapper.style.boxSizing = 'border-box';
 
     select.parentNode.insertBefore(wrapper, select);
     wrapper.appendChild(select);
 
+    // 🔥 إنشاء علامة ✓
+    const check = document.createElement('span');
+    check.textContent = '✓';
+    check.style.position = 'absolute';
+    check.style.right = '30px';       // 👉 العلامة يسار
+    check.style.top = '50%';
+    check.style.transform = 'translateY(-50%)';
+    check.style.color = '#3ca200';
+    check.style.fontSize = '22px';
+    check.style.fontWeight = 'bold';
+    check.style.textShadow = '0 0 3px rgba(0,0,0,0.3)';
+    check.style.display = 'none';
+    check.style.pointerEvents = 'none';
+
+    wrapper.appendChild(check);
+
     const toggleBorder = () => {
         const value = select.value.trim();
-        // البوردر الأخضر فقط إذا القيمة ليست 0
-        if (value&& (value!="select"&&value !== '' && value !== '0')) {
-            console.log(value);
 
+        if (value && value !== '' && value !== '0' && value !== 'select') {
             select.style.borderColor = '#3ca200';
+            check.style.display = 'block'; // 👍 تظهر العلامة
         } else {
             select.style.borderColor = '';
+            check.style.display = 'none'; // تخفي العلامة
         }
     };
 
@@ -171,6 +194,7 @@ document.querySelectorAll('.form-select').forEach(select => {
     select.addEventListener('focus', toggleBorder);
     select.addEventListener('blur', toggleBorder);
 });
+
 
 
 

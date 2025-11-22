@@ -1,7 +1,7 @@
 .upholstery-wrapper {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 13px;
   justify-content: center;
 }
 
@@ -144,10 +144,10 @@
   height: 35px;
 }
 
-.hero2-content {
+/* .hero2-content {
   padding: 0 8px !important;
   margin-left: 0 !important;
-}
+} */
 
 .tabs {
   height: 72vh;
@@ -379,6 +379,7 @@ input[type=number] {
   width: 720px;
   position: absolute;
   z-index: 9;
+  top: -45px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
@@ -803,6 +804,23 @@ select {
   min-width: 0 !important;
 }
 
+@media (max-width: 1190px) {
+  .container-tabs2 {
+    width: 100%;
+  }
+
+  .container-tabs-ul {
+    position: static !important;
+    background: #000;
+    top: auto;
+  }
+
+  .container-tabs3 {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 1131px) {
   .tabs {
     height: 78vh;
@@ -832,19 +850,22 @@ select {
     height: 58vh;
 
   }
+
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .tabs-sidebar {
     display: flex !important;
     width: 100%;
     flex-wrap: nowrap;
     overflow: auto;
     padding-bottom: 8px !important;
+    flex-direction: row !important
   }
 
   .form-section {
     height: 60vh;
+    padding: 0 !important;
   }
 
   .accordion-sec {
@@ -869,6 +890,15 @@ select {
 }
 
 @media (max-width: 600px) {
+  .hero2-content-withoutbgcolor {
+    padding: 20px 0 !important;
+  }
+
+  .container-row {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
   .form-container {
     margin: 115px 20px;
   }
@@ -932,5 +962,6 @@ select {
 
   .container-tabs2 {
     height: 707px;
+    padding: 0 !important;
   }
 }
