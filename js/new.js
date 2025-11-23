@@ -127,7 +127,10 @@ document.querySelectorAll('.form-control').forEach(element => {
         check.textContent = '✓';
         check.style.position = 'absolute';
         check.style.right = '10px';
+        check.style.background = '#fff';
+
         check.style.top = '50%';
+        check.style.zIndex = '10';
         check.style.transform = 'translateY(-50%)';
         check.style.color = '#3ca200';
         check.style.fontSize = '22px';
@@ -196,6 +199,8 @@ document.querySelectorAll('.form-select').forEach(select => {
     check.style.position = 'absolute';
     check.style.right = '30px';       // 👉 العلامة يسار
     check.style.top = '50%';
+            check.style.background = '#fff';
+
     check.style.transform = 'translateY(-50%)';
     check.style.color = '#3ca200';
     check.style.fontSize = '22px';
@@ -506,6 +511,69 @@ CleaningData = {
                     fixedCarpet: document.getElementById("fixedCarpetInput")?.value || ""
                 }
             };
+const inputIDs = ['storeyInput', 'infoTextarea']; // array من الايدهات
+const container = document.querySelector('.container-tabs2-section');
+let firstError = null;
+
+inputIDs.forEach(id => {
+  const input = document.getElementById(id);
+  const wrapper = input.parentElement;
+
+  // إزالة الأخطاء القديمة
+  wrapper.querySelectorAll('.error-icon').forEach(el => el.remove());
+  input.classList.remove('error');
+
+  // التحقق من القيمة
+  if (!input.value || (input.type === 'email' && !validateEmail(input.value))) {
+    input.classList.add('error');
+
+    // أيقونة التعجب
+    const icon = document.createElement('span');
+    icon.classList.add('error-icon');
+    icon.textContent = '!';
+    wrapper.appendChild(icon);
+
+    if (!firstError) firstError = wrapper;
+  }
+});
+
+// تمرير السكروول للعنصر الخطأ بشكل سلس
+if (firstError) {
+  smoothScroll(container, firstError, 800); // 800ms = أبطأ وأكثر سلاسة
+}
+
+// دالة التمرير السلس
+function smoothScroll(container, target, duration = 600) {
+  const start = container.scrollTop;
+  const end = target.offsetTop - container.offsetTop;
+  const change = end - start;
+  let currentTime = 0;
+  const increment = 20;
+
+  function animateScroll() {
+    currentTime += increment;
+    const val = easeInOutQuad(currentTime, start, change, duration);
+    container.scrollTop = val;
+    if (currentTime < duration) {
+      requestAnimationFrame(animateScroll);
+    }
+  }
+
+  animateScroll();
+}
+
+// دالة easing لتسريع/تبطيء الحركة
+function easeInOutQuad(t, b, c, d) {
+  t /= d / 2;
+  if (t < 1) return c / 2 * t * t + b;
+  t--;
+  return -c / 2 * (t * (t - 2) - 1) + b;
+}
+
+// دالة تحقق الإيميل (لو كان نوع input=email)
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
 
     data = { ...data, CleaningData };
     console.log("Collected Data:", data);

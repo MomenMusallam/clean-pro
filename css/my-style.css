@@ -334,6 +334,26 @@ input[type=number] {
   height: 50px;
 }
 
+.error {
+  border: 2px solid red;
+  position: relative;
+}
+
+.error-icon {
+  color: red;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.input-wrapper {
+  position: relative;
+  margin-bottom: 15px;
+}
+
 .accordion-button:not(.collapsed) {
   color: #46a40d;
   background-color: #f8f9fa;
