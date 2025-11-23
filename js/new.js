@@ -17,6 +17,35 @@
     //     }
     // });
 
+document.querySelectorAll('.cleaning-request label').forEach(label => {
+    const fullText = label.textContent.trim();
+
+    if (fullText.length > 9) {
+        const shortText = fullText.slice(0, 9) + "...";
+        label.textContent = shortText;
+
+        // عند عمل هوفر
+        label.addEventListener('mouseenter', () => {
+            const tooltip = document.createElement('div');
+            tooltip.classList.add('tooltip-box');
+            tooltip.textContent = fullText;
+            document.body.appendChild(tooltip);
+
+            const rect = label.getBoundingClientRect();
+            tooltip.style.left = rect.left + "px";
+            tooltip.style.top = (rect.top - 5) + "px";
+            label._tooltip = tooltip;
+        });
+
+        // عند الخروج من الهوفر
+        label.addEventListener('mouseleave', () => {
+            if (label._tooltip) {
+                label._tooltip.remove();
+                label._tooltip = null;
+            }
+        });
+    }
+});
 
 
 
@@ -657,6 +686,13 @@ document.querySelectorAll('.btn-form').forEach(button => {
             accordionTitle.textContent = titleText;
         }
         // ===============================
+// فتح أول accordion-item تلقائياً
+const firstAccordionButton = document.querySelector('.accordion-item:first-child .accordion-button');
+if (firstAccordionButton && !firstAccordionButton.classList.contains('collapsed')) {
+    // لو هو مفتوح أصلاً لا تعمل شيء
+} else if (firstAccordionButton) {
+    firstAccordionButton.click();
+}
 
         // إخفاء كل التابات
         document.querySelectorAll('.tab-section').forEach(div => {

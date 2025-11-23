@@ -453,9 +453,34 @@ input[type=number] {
   align-items: center;
 }
 
+.cleaning-request {
+  gap: 12px !important;
+}
+
+.tooltip-box {
+  position: absolute;
+  background: #333;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+  z-index: 9999;
+  transform: translateY(-120%);
+  pointer-events: none;
+}
+
+.cleaning-request label {
+  margin-bottom: 0 !important;
+}
+
+.cleaning-request div {
+  width: calc(33% - 23px);
+}
+
 .card-container {
   display: flex;
-  gap: 13px;
+  gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
 }
