@@ -378,9 +378,14 @@ input[type=number] {
   display: flex;
   width: 720px;
   position: absolute;
+  left: -78px;
   z-index: 9;
-  top: -45px;
+  top: -61px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.hero2-background-image__two::before {
+  height: 670px !important;
 }
 
 .home-img {
@@ -649,7 +654,7 @@ input[type=number] {
 
 
 .container-tabs2 {
-  height: 621px;
+  height: 670px;
 }
 
 .counter-input {
