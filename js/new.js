@@ -686,13 +686,29 @@ document.querySelectorAll('.btn-form').forEach(button => {
             accordionTitle.textContent = titleText;
         }
         // ===============================
-// فتح أول accordion-item تلقائياً
-const firstAccordionButton = document.querySelector('.accordion-item:first-child .accordion-button');
-if (firstAccordionButton && !firstAccordionButton.classList.contains('collapsed')) {
-    // لو هو مفتوح أصلاً لا تعمل شيء
-} else if (firstAccordionButton) {
-    firstAccordionButton.click();
+// فتح أول accordion-item بالقوة
+const firstItem = document.querySelector('.accordion-item:nth-child(1)');
+if (firstItem) {
+    const btn = firstItem.querySelector('.accordion-button');
+    const body = firstItem.querySelector('.accordion-collapse');
+
+    btn.classList.remove('collapsed');
+    body.classList.add('show');
 }
+
+// فتح العنصر السادس accordion-item بالقوة (العنصر 6)
+const sixthItem = document.querySelector('.accordion-item:nth-child(4)')
+console.log(sixthItem);
+;
+if (sixthItem) {
+    const btn = sixthItem.querySelector('.accordion-button');
+    const body = sixthItem.querySelector('.accordion-collapse');
+
+    btn.classList.remove('collapsed');
+    body.classList.add('show');
+}
+
+
 
         // إخفاء كل التابات
         document.querySelectorAll('.tab-section').forEach(div => {
