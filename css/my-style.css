@@ -871,6 +871,10 @@ select {
     position: relative;
   }
 
+  .btn-box {
+    min-width: 0px;
+  }
+
   .accordion-sec {
     height: 58vh;
 
@@ -917,6 +921,10 @@ select {
 @media (max-width: 600px) {
   .hero2-content-withoutbgcolor {
     padding: 20px 0 !important;
+  }
+
+  .img-background {
+    background: #fff !important;
   }
 
   .container-row {
