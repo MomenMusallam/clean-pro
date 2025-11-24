@@ -520,7 +520,7 @@ div:has(> .form-control.error) .error-icon {
 
 .card-container {
   display: flex;
-  gap: 9px;
+  gap: 8px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -878,6 +878,7 @@ select {
     position: static !important;
     background: #000;
     top: auto;
+    width: 769px;
   }
 
   .container-tabs3 {
@@ -954,7 +955,7 @@ select {
 
   .container-tabs-ul {
     flex-direction: column;
-    width: 100%;
+    width: 100% !important;
   }
 }
 

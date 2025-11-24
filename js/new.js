@@ -514,6 +514,8 @@ CleaningData = {
 let inputIDs = ['typeSelect', 'storeyInput','furnitureSelect']; // array من الايدهات
 let normalID=['areaForNormal']
 let addressID=['billingEmail','billingMobile','billingFirstName','billingSecondName','billingStreet','billingNo','billingZip','billingCity','billingCountry'];
+let box1=['reasonForWindowCleaningOptional','casementForWindowCleaningOptional','heightInputForWindowCleaningOptional']
+let box2=['looseCarpetForCarpetOptional','totalAreaForCarpetOptional','fixedCarpetForCarpetOptional']
 if(separateCheckbox.checked){
     addressID=['cleaningStreet','cleaningNo','cleaningZip','cleaningCity',...addressID];
 }
@@ -553,6 +555,102 @@ if(!checkedRadio){
 
 
 }
+if(data.optionsTabs &&data.optionsTabs.includes("box-1")){
+    inputIDs=[...inputIDs,...box1];
+// جميع الراديوات ضمن المجموعة
+const radios = document.querySelectorAll('input[name="contaminationForWindowCleaningOptional"]');
+
+// إزالة أي errors سابقة لكل واحد
+radios.forEach(radio => {
+    const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+    wrapper.classList.remove('error');
+    wrapper.querySelectorAll('.error-icon').forEach(el => el.remove());
+});
+
+// التحقق إذا في أي واحد مختار
+const checkedRadio = document.querySelector('input[name="contaminationForWindowCleaningOptional"]:checked');
+
+if(!checkedRadio){
+    // إضافة error لكل الراديوات
+    radios.forEach(radio => {
+        const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+        wrapper.classList.add('error');
+
+        const icon = document.createElement('span');
+        icon.classList.add('error-icon');
+        icon.textContent = '!';
+        wrapper.appendChild(icon);
+    });
+} else {
+    console.log('القيمة المختارة:', checkedRadio.value);
+}
+
+
+}
+if(data.optionsTabs &&data.optionsTabs.includes("box-2")){
+    inputIDs=[...inputIDs,...box2];
+// جميع الراديوات ضمن المجموعة
+const radios = document.querySelectorAll('input[name="contaminationForCarpetOptional"]');
+
+// إزالة أي errors سابقة لكل واحد
+radios.forEach(radio => {
+    const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+    wrapper.classList.remove('error');
+    wrapper.querySelectorAll('.error-icon').forEach(el => el.remove());
+});
+
+// التحقق إذا في أي واحد مختار
+const checkedRadio = document.querySelector('input[name="contaminationForCarpetOptional"]:checked');
+
+if(!checkedRadio){
+    // إضافة error لكل الراديوات
+    radios.forEach(radio => {
+        const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+        wrapper.classList.add('error');
+
+        const icon = document.createElement('span');
+        icon.classList.add('error-icon');
+        icon.textContent = '!';
+        wrapper.appendChild(icon);
+    });
+} else {
+    console.log('القيمة المختارة:', checkedRadio.value);
+}
+
+
+}
+if(data.optionsTabs &&data.optionsTabs.includes("box-3")){
+// جميع الراديوات ضمن المجموعة
+const radios = document.querySelectorAll('input[name="contaminationForUpholsteryOptional"]');
+
+// إزالة أي errors سابقة لكل واحد
+radios.forEach(radio => {
+    const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+    wrapper.classList.remove('error');
+    wrapper.querySelectorAll('.error-icon').forEach(el => el.remove());
+});
+
+// التحقق إذا في أي واحد مختار
+const checkedRadio = document.querySelector('input[name="contaminationForUpholsteryOptional"]:checked');
+
+if(!checkedRadio){
+    // إضافة error لكل الراديوات
+    radios.forEach(radio => {
+        const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+        wrapper.classList.add('error');
+
+        const icon = document.createElement('span');
+        icon.classList.add('error-icon');
+        icon.textContent = '!';
+        wrapper.appendChild(icon);
+    });
+} else {
+    console.log('القيمة المختارة:', checkedRadio.value);
+}
+
+
+}
+
 inputIDs=[...inputIDs,...addressID];
 const container = document.querySelector('.container-tabs2-section');
 let firstError = null;
