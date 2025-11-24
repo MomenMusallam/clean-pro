@@ -512,6 +512,7 @@ CleaningData = {
                 }
             };
 const inputIDs = ['storeyInput', 'infoTextarea']; // array من الايدهات
+
 const container = document.querySelector('.container-tabs2-section');
 let firstError = null;
 
@@ -570,10 +571,7 @@ function easeInOutQuad(t, b, c, d) {
   return -c / 2 * (t * (t - 2) - 1) + b;
 }
 
-// دالة تحقق الإيميل (لو كان نوع input=email)
-function validateEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
+
 
     data = { ...data, CleaningData };
     console.log("Collected Data:", data);
@@ -590,24 +588,26 @@ const fp = flatpickr(inputField, {
     mode: "multiple",
     dateFormat: "d/m/Y",
     maxDate: null,
+
+    // هنا إضافة منع اختيار تاريخ قبل الغد
+    minDate: new Date().fp_incr(1),
+
     onOpen: function(selectedDates, dateStr, instance) {
         const widget = instance.calendarContainer;
 
-        // منع تكرار إضافة الـ infoDiv
         if (!widget.querySelector('.custom-info')) {
             const textDiv = document.createElement('div');
-        textDiv.textContent = 'Angaben übernehmen';
-        textDiv.classList.add('custom-text');
+            textDiv.textContent = 'Angaben übernehmen';
+            textDiv.classList.add('custom-text');
+            textDiv.style.backgroundColor = '#4b4d4c';
+            textDiv.style.padding = '8px 32px';
+            textDiv.style.color = 'white';
+            textDiv.style.fontSize = '15px';
+            textDiv.style.textAlign = 'center';
+            textDiv.style.marginTop = '10px';
+            textDiv.style.borderRadius = '5px';
+            widget.appendChild(textDiv);
 
-        textDiv.style.backgroundColor = '#4b4d4c';
-        textDiv.style.padding = '8px 32px';
-        textDiv.style.color = 'white';
-        textDiv.style.fontSize = '15px';
-        textDiv.style.textAlign = 'center';
-        textDiv.style.marginTop = '10px';
-        textDiv.style.borderRadius = '5px';
-
-        widget.appendChild(textDiv);
             const infoDiv = document.createElement('div');
             infoDiv.classList.add('custom-info');
             infoDiv.style.backgroundColor = '#f8d7da';
@@ -617,18 +617,16 @@ const fp = flatpickr(inputField, {
             infoDiv.style.display = 'flex';
             infoDiv.style.gap = '10px';
 
-            // أيقونة علامة التعجب
             const iconDiv = document.createElement('div');
             iconDiv.innerHTML = '❗';
             iconDiv.style.fontSize = '20px';
             iconDiv.style.alignSelf = 'flex-start';
 
-            // div للنصوص الثلاثة
             const textsDiv = document.createElement('div');
             textsDiv.style.display = 'flex';
             textsDiv.style.flexDirection = 'column';
             textsDiv.style.gap = '5px';
-            textsDiv.style.alignItems = 'flex-start'; // بداية السطر
+            textsDiv.style.alignItems = 'flex-start';
 
             const line1 = document.createElement('div');
             line1.textContent = 'Bitte Datum klicken für Terminauswahl (max. 3)';
@@ -675,6 +673,7 @@ const fp = flatpickr(inputField, {
             widget.appendChild(infoDiv);
         }
     },
+
     onChange: function(selectedDates) {
         if (selectedDates.length > 3) {
             alert("يمكنك اختيار حتى 3 تواريخ فقط");
@@ -682,7 +681,6 @@ const fp = flatpickr(inputField, {
             fp.setDate(selectedDates, true);
         }
 
-        // تعطيل أي تواريخ غير مختارة عند اختيار 3 تواريخ
         if (selectedDates.length === 3) {
             fp.set('disable', [
                 function(date) {
@@ -696,6 +694,7 @@ const fp = flatpickr(inputField, {
         renderSelectedDates(selectedDates);
     }
 });
+
 
 
 
