@@ -512,6 +512,7 @@ CleaningData = {
                 }
             };
 let inputIDs = ['typeSelect', 'storeyInput','furnitureSelect']; // array من الايدهات
+let defultinputIDs = ['typeSelect', 'storeyInput','furnitureSelect']; // array من الايدهات
 let normalID=['areaForNormal']
 let springID=['areaForSpringCleaning']
 
@@ -920,13 +921,37 @@ if (firstError) {
     const normalIDs = [...normalID];
     const addressIDs = [...addressID];
 
+        const box1IDS = [...box1];
+        const box2IDS = [...box2];
+        const box4IDS = [...box4];
+
     const errorInputID = firstError.querySelector('input, select')?.id;
+console.log(errorInputID);
 
     // -------- 1) فتح Normal Cleaning --------
-    if (normalIDs.includes(errorInputID) || inputIDs.includes(errorInputID)) {
+    if (normalIDs.includes(errorInputID)||defultinputIDs.includes(errorInputID) ) {
+console.log('here');
+
         const collapseOne = document.getElementById('collapseOne');
         const bsCollapse1 = new bootstrap.Collapse(collapseOne, { toggle: false });
         bsCollapse1.show();
+    }
+
+
+  if (box1IDS.includes(errorInputID) ) {
+        const collapseThree = document.getElementById('collapseThree');
+        const bsCollapse3 = new bootstrap.Collapse(collapseThree, { toggle: false });
+        bsCollapse3.show();
+    }
+    if (box2IDS.includes(errorInputID) ) {
+        const collapseFour = document.getElementById('collapseFour');
+        const bsCollapse4 = new bootstrap.Collapse(collapseFour, { toggle: false });
+        bsCollapse4.show();
+    }
+    if (box4IDS.includes(errorInputID) ) {
+        const collapseSix = document.getElementById('collapseSix');
+        const bsCollapse5 = new bootstrap.Collapse(collapseSix, { toggle: false });
+        bsCollapse5.show();
     }
 
     // -------- 2) فتح Name and Address --------
@@ -1459,6 +1484,9 @@ boxes.addEventListener('click', function (e) {
     if (option) {
         option.classList.remove('disabled');
         option.style.pointerEvents = "auto";
+        console.log(box.id,'box.idbox.id');
+
+        data={...data,optionsTabs:data.optionsTabs?data.optionsTabs.filter(item=>item!==box.id):[]};
     }
 
     // إذا كان الصندوق هو box-3 فضّي الأوبجكت
