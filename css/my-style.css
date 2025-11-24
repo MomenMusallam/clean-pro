@@ -335,19 +335,30 @@ input[type=number] {
 }
 
 .error {
-  border: 2px solid red;
+  border: 2px solid #ff5b5b;
   position: relative;
 }
 
 .error-icon {
-  color: red;
+  display: none;
+}
+
+div:has(> .form-control.error) .error-icon {
+  display: inline-block;
+  color: #ff5b5b;
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
   font-weight: bold;
   font-size: 18px;
+  border-radius: 50%;
+  padding: 0 10px;
+  background-color: #fff;
+
 }
+
+.error+.error-icon {}
 
 .input-wrapper {
   position: relative;
