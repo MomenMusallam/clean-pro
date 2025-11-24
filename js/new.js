@@ -901,7 +901,7 @@ inputIDs.forEach(id => {
   wrapper.querySelectorAll('.error-icon').forEach(el => el.remove());
   input.classList.remove('error');
 
-  if (!input.value || input.value == 0 || (input.type === 'email' && !validateEmail(input.value))) {
+  if (!input.value || input.value == 0 || (input.type === 'email'&& !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value))) {
     input.classList.add('error');
 
     const icon = document.createElement('span');
@@ -926,11 +926,9 @@ if (firstError) {
         const box4IDS = [...box4];
 
     const errorInputID = firstError.querySelector('input, select')?.id;
-console.log(errorInputID);
 
     // -------- 1) فتح Normal Cleaning --------
     if (normalIDs.includes(errorInputID)||defultinputIDs.includes(errorInputID) ) {
-console.log('here');
 
         const collapseOne = document.getElementById('collapseOne');
         const bsCollapse1 = new bootstrap.Collapse(collapseOne, { toggle: false });
@@ -960,6 +958,153 @@ console.log('here');
         const bsCollapse2 = new bootstrap.Collapse(collapseTwo, { toggle: false });
         bsCollapse2.show();
     }
+}else{
+    let defultData={
+        location_type_id:document.getElementById("typeSelect")?.value ,
+        floor_id:document.getElementById("storeyInput")?.value ,
+        location_status_id:document.getElementById("furnitureSelect")?.value ,
+preferred_date:data.dates,
+email:document.getElementById("billingEmail")?.value,
+phone:document.getElementById("billingMobile")?.value,
+company:document.getElementById("billingCompany")?.value,
+gender:document.getElementById("billingCountry")?.value,
+honorific_title:document.getElementById("billingSalutation")?.value,
+first_name:document.getElementById("billingFirstName")?.value,
+last_name:document.getElementById("billingSecondName")?.value,
+street:document.getElementById("billingStreet")?.value,
+street_number:document.getElementById("billingNo")?.value,
+zip_code:document.getElementById("billingZip")?.value,
+city:document.getElementById("billingCity")?.value,
+separate_company:document.getElementById("cleaningCompany")?.value,
+separate_street:document.getElementById("cleaningStreet")?.value,
+separate_street_number:document.getElementById("cleaningNo")?.value,
+separate_zip_code:document.getElementById("cleaningZip")?.value,
+separate_city:document.getElementById("cleaningCity")?.value,
+separate_gender:document.getElementById("contactCountry")?.value,
+separate_honorific_title:document.getElementById("contactSalutation")?.value,
+separate_first_name:document.getElementById("contactFirstName")?.value,
+separate_last_name:document.getElementById("contactSecondName")?.value,
+separate_email:document.getElementById("contactEmail")?.value,
+separate_phone:document.getElementById("contactMobile")?.value,
+separate_additional_names:document.getElementById("contactNote")?.value,
+is_separate_address:separateCheckbox.checked?1:0
+,
+is_separate_contact:separateContactPerson.checked?1:0
+   }
+   let dataObj={
+    normal:{
+
+  area: document.getElementById("areaForNormal")?.value || "",
+        reason_for_cleaning_id: document.getElementById("reasonForNormal")?.value || "",
+        additional_info: document.getElementById("infoTextarea")?.value || "",
+        cleaning_requests_ids: Array.from(document.querySelectorAll('input[name="requestsForNormal"]:checked')).map(e => e.value),
+        degree_of_contamination_id: document.querySelector('input[name="contaminationForNormal"]:checked')?.value || "",
+
+        images: Array.from(document.getElementById("formFileMultiple")?.files || []),
+
+
+    },
+    windows:{
+                images: Array.from(document.getElementById("formFileMultiple")?.files || []),
+        additional_info: document.getElementById("infoTextarea")?.value || "",
+           reason_for_cleaning_id: document.getElementById("reasonForWindowCleaning")?.value || "",
+        max_room_height: document.getElementById("heightInputForWindowCleaning")?.value || "",
+        window_sash: document.getElementById("casementForWindowCleaning")?.value || "",
+        cleaning_requests_ids: Array.from(document.querySelectorAll('input[name="requestsForWindowCleaning"]:checked')).map(e => e.value),
+        degree_of_contamination_id: document.querySelector('input[name="contaminationForWindowCleaning"]:checked')?.value || "",
+
+
+    },
+    carpet:{
+        images: Array.from(document.getElementById("formFileMultiple")?.files || []),
+        additional_info: document.getElementById("infoTextarea")?.value || "",
+          carpets: document.getElementById("looseCarpetForCarpet")?.value || "",
+        area: document.getElementById("totalAreaForCarpet")?.value || "",
+        fixed_carpet: document.getElementById("fixedCarpetForCarpet")?.value || "",
+        cleaning_requests_ids: Array.from(document.querySelectorAll('input[name="requestsForCarpet"]:checked')).map(e => e.value),
+        degree_of_contamination_id: document.querySelector('input[name="contaminationForCarpet"]:checked')?.value || "",
+
+    },
+    upholstery:{
+        images: Array.from(document.getElementById("formFileMultiple")?.files || []),
+        additional_info: document.getElementById("infoTextarea")?.value || "",
+        furnitures: upholstery,
+        degree_of_contamination_id: document.querySelector('input[name="contaminationForUpholstery"]:checked')?.value || "",
+        cleaning_requests_ids: Array.from(document.querySelectorAll('input[name="requestsForUpholstery"]:checked')).map(e => e.value),
+
+    }
+    ,
+    spring:{
+         images: Array.from(document.getElementById("formFileMultiple")?.files || []),
+        additional_info: document.getElementById("infoTextarea")?.value || "",
+
+        area: document.getElementById("areaForSpringCleaning")?.value || "",
+        reason_for_cleaning_id: document.getElementById("reasonForSpringCleaning")?.value || "",
+        cleaning_requests_ids: Array.from(document.querySelectorAll('input[name="requestsForSpringCleaning"]:checked')).map(e => e.value),
+        degree_of_contamination_id: document.querySelector('input[name="contaminationForSpringCleaning"]:checked')?.value || "",
+
+    },
+    cleaning:{
+           images: Array.from(document.getElementById("formFileMultiple")?.files || []),
+        additional_info: document.getElementById("infoTextarea")?.value || "",
+
+        area: document.getElementById("areaForCleaning")?.value || "",
+        reason_for_cleaning_id: document.getElementById("reasonForCleaning")?.value || "",
+        cleaning_requests_ids: Array.from(document.querySelectorAll('input[name="requestsForCleaning"]:checked')).map(e => e.value),
+        degree_of_contamination_id: document.querySelector('input[name="contaminationForCleaning"]:checked')?.value || "",
+
+    },
+    messieApartment:{
+            images: Array.from(document.getElementById("formFileMultiple")?.files || []),
+        additional_info: document.getElementById("infoTextarea")?.value || "",
+        area: document.getElementById("areaForMessieApatment")?.value || "",
+        reason_for_cleaning_id: document.getElementById("reasonForMessieApatment")?.value || "",
+        cleaning_requests_ids: Array.from(document.querySelectorAll('input[name="requestsForMessieApatment"]:checked')).map(e => e.value),
+        degree_of_contamination_id: document.querySelector('input[name="contaminationForMessieApatment"]:checked')?.value || "",
+
+    },
+    box1:{
+            images: Array.from(document.getElementById("formFileMultipleWindow")?.files || []),
+        additional_info: document.getElementById("infoTextareaWindow")?.value || "",
+
+         reason_for_cleaning_id: document.getElementById("reasonForWindowCleaningOptional")?.value || "",
+        max_room_height: document.getElementById("heightInputForWindowCleaningOptional")?.value || "",
+        window_sash: document.getElementById("casementForWindowCleaningOptional")?.value || "",
+        cleaning_requests_ids: Array.from(document.querySelectorAll('input[name="requestsForWindowCleaningOptional"]:checked')).map(e => e.value),
+        degree_of_contamination_id: document.querySelector('input[name="contaminationForWindowCleaningOptional"]:checked')?.value || "",
+
+    },
+    box2:{
+              images: Array.from(document.getElementById("formFileMultipleCarpet")?.files || []),
+        additional_info: document.getElementById("infoTextareaCarpet")?.value || "",
+       carpets: document.getElementById("looseCarpetForCarpetOptional")?.value || "",
+        area: document.getElementById("totalAreaForCarpetOptional")?.value || "",
+        fixed_carpet: document.getElementById("fixedCarpetForCarpetOptional")?.value || "",
+        cleaning_requests_ids: Array.from(document.querySelectorAll('input[name="requestsForCarpetOptional"]:checked')).map(e => e.value),
+        degree_of_contamination_id: document.querySelector('input[name="contaminationForCarpetOptional"]:checked')?.value || "",
+
+    }
+    ,
+    box3:{
+
+              images: Array.from(document.getElementById("formFileMultipleUpholstery")?.files || []),
+        additional_info: document.getElementById("infoTextareaUpholstery")?.value || "",
+      degree_of_contamination_id: document.querySelector('input[name="contaminationForUpholsteryOptional"]:checked')?.value || "",
+        cleaning_requests_ids: Array.from(document.querySelectorAll('input[name="requestsForUpholsteryOptional"]:checked')).map(e => e.value),
+               furnitures: upholsteryOptional,
+
+    },
+    box4:{
+              images: Array.from(document.getElementById("formFileMultipleUpholstery")?.files || []),
+        additional_info: document.getElementById("infoTextareaUpholstery")?.value || "",
+
+        area: document.getElementById("areaForNormalOption")?.value || "",
+        reason_for_cleaning_id: document.getElementById("reasonForNormalOption")?.value || "",
+        cleaning_requests_ids: Array.from(document.querySelectorAll('input[name="requestsForNormalOption"]:checked')).map(e => e.value),
+        degree_of_contamination_id: document.querySelector('input[name="contaminationForNormalOption"]:checked')?.value || "",
+    }
+   }
+
 }
 
 
@@ -999,8 +1144,6 @@ function easeInOutQuad(t, b, c, d) {
 
 
 
-    data = { ...data, CleaningData };
-    console.log("Collected Data:", data);
         }
 
 
@@ -1118,6 +1261,9 @@ const fp = flatpickr(inputField, {
         }
 
         renderSelectedDates(selectedDates);
+        data={...data,dates:selectedDates}
+        console.log(data);
+
     }
 });
 
