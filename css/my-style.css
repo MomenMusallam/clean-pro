@@ -334,6 +334,10 @@ input[type=number] {
   height: 50px;
 }
 
+.card-container .error {
+  border-radius: 12px;
+}
+
 .error {
   border: 2px solid #ff5b5b;
   position: relative;
@@ -516,7 +520,7 @@ div:has(> .form-control.error) .error-icon {
 
 .card-container {
   display: flex;
-  gap: 12px;
+  gap: 9px;
   flex-wrap: wrap;
   justify-content: center;
 }

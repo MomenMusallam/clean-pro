@@ -257,7 +257,7 @@ let upholstery = {
                 couchIndividual: 0
             };
                         let data = {
-                             tabName:"Normal-Cleaning"
+                             tabName:"normal-cleaning"
                         };
                         let CleaningData = {};
 
@@ -511,24 +511,64 @@ CleaningData = {
                     fixedCarpet: document.getElementById("fixedCarpetInput")?.value || ""
                 }
             };
-const inputIDs = ['storeyInput', 'infoTextarea']; // array من الايدهات
+let inputIDs = ['typeSelect', 'storeyInput','furnitureSelect']; // array من الايدهات
+let normalID=['areaForNormal']
+let addressID=['billingEmail','billingMobile','billingFirstName','billingSecondName','billingStreet','billingNo','billingZip','billingCity','billingCountry'];
+if(separateCheckbox.checked){
+    addressID=['cleaningStreet','cleaningNo','cleaningZip','cleaningCity',...addressID];
+}
+if(separateContactPerson.checked){
+    addressID=['contactFirstName','contactSecondName','contactCountry','contactMobile',...addressID];
+}
 
+if(data.tabName==="normal-cleaning"){
+    inputIDs=[...inputIDs,...normalID];
+// جميع الراديوات ضمن المجموعة
+const radios = document.querySelectorAll('input[name="contaminationForNormal"]');
+
+// إزالة أي errors سابقة لكل واحد
+radios.forEach(radio => {
+    const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+    wrapper.classList.remove('error');
+    wrapper.querySelectorAll('.error-icon').forEach(el => el.remove());
+});
+
+// التحقق إذا في أي واحد مختار
+const checkedRadio = document.querySelector('input[name="contaminationForNormal"]:checked');
+
+if(!checkedRadio){
+    // إضافة error لكل الراديوات
+    radios.forEach(radio => {
+        const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+        wrapper.classList.add('error');
+
+        const icon = document.createElement('span');
+        icon.classList.add('error-icon');
+        icon.textContent = '!';
+        wrapper.appendChild(icon);
+    });
+} else {
+    console.log('القيمة المختارة:', checkedRadio.value);
+}
+
+
+}
+inputIDs=[...inputIDs,...addressID];
 const container = document.querySelector('.container-tabs2-section');
 let firstError = null;
+
+// ... كودك مثل ما هو فوق
 
 inputIDs.forEach(id => {
   const input = document.getElementById(id);
   const wrapper = input.parentElement;
 
-  // إزالة الأخطاء القديمة
   wrapper.querySelectorAll('.error-icon').forEach(el => el.remove());
   input.classList.remove('error');
 
-  // التحقق من القيمة
-  if (!input.value || (input.type === 'email' && !validateEmail(input.value))) {
+  if (!input.value || input.value == 0 || (input.type === 'email' && !validateEmail(input.value))) {
     input.classList.add('error');
 
-    // أيقونة التعجب
     const icon = document.createElement('span');
     icon.classList.add('error-icon');
     icon.textContent = '!';
@@ -537,6 +577,33 @@ inputIDs.forEach(id => {
     if (!firstError) firstError = wrapper;
   }
 });
+
+// ----------------------------------------------------
+//  🔽 فتح الـ Accordion لو الخطأ من normal-cleaning
+// ----------------------------------------------------
+
+if (firstError) {
+    const normalIDs = [...normalID];
+    const addressIDs = [...addressID];
+
+    const errorInputID = firstError.querySelector('input, select')?.id;
+
+    // -------- 1) فتح Normal Cleaning --------
+    if (normalIDs.includes(errorInputID) || inputIDs.includes(errorInputID)) {
+        const collapseOne = document.getElementById('collapseOne');
+        const bsCollapse1 = new bootstrap.Collapse(collapseOne, { toggle: false });
+        bsCollapse1.show();
+    }
+
+    // -------- 2) فتح Name and Address --------
+    if (addressIDs.includes(errorInputID)) {
+        const collapseTwo = document.getElementById('collapseTwo');
+        const bsCollapse2 = new bootstrap.Collapse(collapseTwo, { toggle: false });
+        bsCollapse2.show();
+    }
+}
+
+
 
 // تمرير السكروول للعنصر الخطأ بشكل سلس
 if (firstError) {
@@ -775,7 +842,11 @@ if (sixthItem) {
     body.classList.add('show');
 }
 
+ document.querySelectorAll('input, select').forEach(el => {
+            el.classList.remove('error');
+        });
 
+        document.querySelectorAll('.error-icon').forEach(icon => icon.remove());
 
         // إخفاء كل التابات
         document.querySelectorAll('.tab-section').forEach(div => {
@@ -808,7 +879,7 @@ if (sixthItem) {
         if (targetDiv) targetDiv.style.display = 'block';
 
         // تفريغ CleaningData
-        data = { ...data, CleaningData: {} };
+        data = { ...data,tabName:tabId, CleaningData: {} };
 
         // تفريغ الحقول
         document.querySelectorAll('.tab-section input, .tab-section select, .tab-section textarea')
@@ -985,9 +1056,13 @@ if (sixthItem) {
 
    item.addEventListener('click', function (e) {
     e.preventDefault();
+console.log('here2');
 
     const val = this.getAttribute('data-value') || this.dataset.value;
     const box = document.getElementById(val);
+    console.log(val,'box');
+    data={...data,optionsTabs:data.optionsTabs?[...data.optionsTabs,val]:[val]};
+
     if (!box) return;
 
     // فتح الصندوق لو مخفي
