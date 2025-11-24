@@ -513,9 +513,19 @@ CleaningData = {
             };
 let inputIDs = ['typeSelect', 'storeyInput','furnitureSelect']; // array من الايدهات
 let normalID=['areaForNormal']
+let springID=['areaForSpringCleaning']
+
+let cleaningID=['areaForCleaning']
+let messieApartmentID=['areaForMessieApatment']
+
+let windowID=['reasonForWindowCleaning','casementForWindowCleaning','heightInputForWindowCleaning']
+
+let carpetID=['looseCarpetForCarpet','totalAreaForCarpet','fixedCarpetForCarpet']
 let addressID=['billingEmail','billingMobile','billingFirstName','billingSecondName','billingStreet','billingNo','billingZip','billingCity','billingCountry'];
 let box1=['reasonForWindowCleaningOptional','casementForWindowCleaningOptional','heightInputForWindowCleaningOptional']
+
 let box2=['looseCarpetForCarpetOptional','totalAreaForCarpetOptional','fixedCarpetForCarpetOptional']
+let box4=['reasonForNormalOption','areaForNormalOption']
 if(separateCheckbox.checked){
     addressID=['cleaningStreet','cleaningNo','cleaningZip','cleaningCity',...addressID];
 }
@@ -537,6 +547,201 @@ radios.forEach(radio => {
 
 // التحقق إذا في أي واحد مختار
 const checkedRadio = document.querySelector('input[name="contaminationForNormal"]:checked');
+
+if(!checkedRadio){
+    // إضافة error لكل الراديوات
+    radios.forEach(radio => {
+        const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+        wrapper.classList.add('error');
+
+        const icon = document.createElement('span');
+        icon.classList.add('error-icon');
+        icon.textContent = '!';
+        wrapper.appendChild(icon);
+    });
+} else {
+    console.log('القيمة المختارة:', checkedRadio.value);
+}
+
+
+}
+if(data.tabName==="windows-cleaning"){
+    inputIDs=[...inputIDs,...windowID];
+// جميع الراديوات ضمن المجموعة
+const radios = document.querySelectorAll('input[name="contaminationForWindowCleaning"]');
+
+// إزالة أي errors سابقة لكل واحد
+radios.forEach(radio => {
+    const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+    wrapper.classList.remove('error');
+    wrapper.querySelectorAll('.error-icon').forEach(el => el.remove());
+});
+
+// التحقق إذا في أي واحد مختار
+const checkedRadio = document.querySelector('input[name="contaminationForWindowCleaning"]:checked');
+
+if(!checkedRadio){
+    // إضافة error لكل الراديوات
+    radios.forEach(radio => {
+        const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+        wrapper.classList.add('error');
+
+        const icon = document.createElement('span');
+        icon.classList.add('error-icon');
+        icon.textContent = '!';
+        wrapper.appendChild(icon);
+    });
+} else {
+    console.log('القيمة المختارة:', checkedRadio.value);
+}
+
+
+}
+if(data.tabName==="messie-apartment"){
+    inputIDs=[...inputIDs,...messieApartmentID];
+// جميع الراديوات ضمن المجموعة
+const radios = document.querySelectorAll('input[name="contaminationForMessieApatment"]');
+
+// إزالة أي errors سابقة لكل واحد
+radios.forEach(radio => {
+    const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+    wrapper.classList.remove('error');
+    wrapper.querySelectorAll('.error-icon').forEach(el => el.remove());
+});
+
+// التحقق إذا في أي واحد مختار
+const checkedRadio = document.querySelector('input[name="contaminationForMessieApatment"]:checked');
+
+if(!checkedRadio){
+    // إضافة error لكل الراديوات
+    radios.forEach(radio => {
+        const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+        wrapper.classList.add('error');
+
+        const icon = document.createElement('span');
+        icon.classList.add('error-icon');
+        icon.textContent = '!';
+        wrapper.appendChild(icon);
+    });
+} else {
+    console.log('القيمة المختارة:', checkedRadio.value);
+}
+
+
+}
+if(data.tabName==="cleaning"){
+    inputIDs=[...inputIDs,...cleaningID];
+// جميع الراديوات ضمن المجموعة
+const radios = document.querySelectorAll('input[name="contaminationForCleaning"]');
+
+// إزالة أي errors سابقة لكل واحد
+radios.forEach(radio => {
+    const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+    wrapper.classList.remove('error');
+    wrapper.querySelectorAll('.error-icon').forEach(el => el.remove());
+});
+
+// التحقق إذا في أي واحد مختار
+const checkedRadio = document.querySelector('input[name="contaminationForCleaning"]:checked');
+
+if(!checkedRadio){
+    // إضافة error لكل الراديوات
+    radios.forEach(radio => {
+        const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+        wrapper.classList.add('error');
+
+        const icon = document.createElement('span');
+        icon.classList.add('error-icon');
+        icon.textContent = '!';
+        wrapper.appendChild(icon);
+    });
+} else {
+    console.log('القيمة المختارة:', checkedRadio.value);
+}
+
+
+}
+
+if(data.tabName==="carpet"){
+
+    inputIDs=[...inputIDs,...carpetID];
+// جميع الراديوات ضمن المجموعة
+const radios = document.querySelectorAll('input[name="contaminationForCarpet"]');
+
+// إزالة أي errors سابقة لكل واحد
+radios.forEach(radio => {
+    const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+    wrapper.classList.remove('error');
+    wrapper.querySelectorAll('.error-icon').forEach(el => el.remove());
+});
+
+// التحقق إذا في أي واحد مختار
+const checkedRadio = document.querySelector('input[name="contaminationForCarpet"]:checked');
+
+if(!checkedRadio){
+    // إضافة error لكل الراديوات
+    radios.forEach(radio => {
+        const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+        wrapper.classList.add('error');
+
+        const icon = document.createElement('span');
+        icon.classList.add('error-icon');
+        icon.textContent = '!';
+        wrapper.appendChild(icon);
+    });
+} else {
+    console.log('القيمة المختارة:', checkedRadio.value);
+}
+
+
+}
+if(data.tabName==="spring-cleaning"){
+
+    inputIDs=[...inputIDs,...springID];
+// جميع الراديوات ضمن المجموعة
+const radios = document.querySelectorAll('input[name="contaminationForSpringCleaning"]');
+
+// إزالة أي errors سابقة لكل واحد
+radios.forEach(radio => {
+    const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+    wrapper.classList.remove('error');
+    wrapper.querySelectorAll('.error-icon').forEach(el => el.remove());
+});
+
+// التحقق إذا في أي واحد مختار
+const checkedRadio = document.querySelector('input[name="contaminationForSpringCleaning"]:checked');
+
+if(!checkedRadio){
+    // إضافة error لكل الراديوات
+    radios.forEach(radio => {
+        const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+        wrapper.classList.add('error');
+
+        const icon = document.createElement('span');
+        icon.classList.add('error-icon');
+        icon.textContent = '!';
+        wrapper.appendChild(icon);
+    });
+} else {
+    console.log('القيمة المختارة:', checkedRadio.value);
+}
+
+
+}
+if(data.tabName==="upholstery-cleaning"){
+
+// جميع الراديوات ضمن المجموعة
+const radios = document.querySelectorAll('input[name="contaminationForUpholstery"]');
+
+// إزالة أي errors سابقة لكل واحد
+radios.forEach(radio => {
+    const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+    wrapper.classList.remove('error');
+    wrapper.querySelectorAll('.error-icon').forEach(el => el.remove());
+});
+
+// التحقق إذا في أي واحد مختار
+const checkedRadio = document.querySelector('input[name="contaminationForUpholstery"]:checked');
 
 if(!checkedRadio){
     // إضافة error لكل الراديوات
@@ -632,6 +837,37 @@ radios.forEach(radio => {
 
 // التحقق إذا في أي واحد مختار
 const checkedRadio = document.querySelector('input[name="contaminationForUpholsteryOptional"]:checked');
+
+if(!checkedRadio){
+    // إضافة error لكل الراديوات
+    radios.forEach(radio => {
+        const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+        wrapper.classList.add('error');
+
+        const icon = document.createElement('span');
+        icon.classList.add('error-icon');
+        icon.textContent = '!';
+        wrapper.appendChild(icon);
+    });
+} else {
+    console.log('القيمة المختارة:', checkedRadio.value);
+}
+
+
+}
+if(data.optionsTabs &&data.optionsTabs.includes("box-4")){
+    inputIDs=[...inputIDs,...box4];
+const radios = document.querySelectorAll('input[name="contaminationForNormalOption"]');
+
+// إزالة أي errors سابقة لكل واحد
+radios.forEach(radio => {
+    const wrapper = radio.closest('.input-wrapper') || radio.parentElement;
+    wrapper.classList.remove('error');
+    wrapper.querySelectorAll('.error-icon').forEach(el => el.remove());
+});
+
+// التحقق إذا في أي واحد مختار
+const checkedRadio = document.querySelector('input[name="contaminationForNormalOption"]:checked');
 
 if(!checkedRadio){
     // إضافة error لكل الراديوات
