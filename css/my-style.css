@@ -183,7 +183,7 @@
   height: 100%;
   background: #ffffff;
   top: 0;
-  z-index: 10;
+  z-index: 11;
   border-radius: 3px;
   display: none;
   /* display: flex; */
@@ -330,6 +330,10 @@ input[type=number] {
   color: #888;
 }
 
+.submit-spiner {
+  display: none;
+}
+
 .accordion-button {
   height: 50px;
 }
@@ -340,6 +344,7 @@ input[type=number] {
 
 .error {
   border: 2px solid #ff5b5b;
+  border-color: #ff5b5b !important;
   position: relative;
 }
 

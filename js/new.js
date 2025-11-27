@@ -50,26 +50,7 @@ document.querySelectorAll('.cleaning-request label').forEach(label => {
 
 
 // عرض التواريخ المختارة كـ div مع زر ✕
-function renderSelectedDates(dates) {
-    selectedDatesList.innerHTML = '';
-    dates.forEach((d, index) => {
-        const div = document.createElement('div');
-        div.textContent = d.toLocaleDateString('en-GB') + ' ✕';
-        div.dataset.index = index;
 
-        div.addEventListener('click', () => {
-            const newDates = fp.selectedDates.filter((_, i) => i !== index);
-            fp.setDate(newDates, true);
-            renderSelectedDates(newDates);
-
-            if (newDates.length < 3) {
-                fp.set('disable', []);
-            }
-        });
-
-        selectedDatesList.appendChild(div);
-    });
-}
 
 
 const thumbnails = document.querySelectorAll('.thumbnails img');
@@ -128,6 +109,7 @@ document.querySelectorAll('.form-control').forEach(element => {
         check.style.position = 'absolute';
         check.style.right = '10px';
         check.style.background = '#fff';
+check.className='checkInput'
 
         check.style.top = '50%';
         check.style.zIndex = '10';
@@ -155,6 +137,7 @@ document.querySelectorAll('.form-control').forEach(element => {
         // يظهر فقط إذا القيمة ليست فارغة وليست صفر
         if (value !== '' && value !== '0') {
             if (check) check.style.display = 'block';
+            element.classList.remove('error')
             element.style.borderColor = '#3ca200';
         } else {
             if (check) check.style.display = 'none';
@@ -200,7 +183,7 @@ document.querySelectorAll('.form-select').forEach(select => {
     check.style.right = '30px';       // 👉 العلامة يسار
     check.style.top = '50%';
             check.style.background = '#fff';
-
+check.className='checkInput'
     check.style.transform = 'translateY(-50%)';
     check.style.color = '#3ca200';
     check.style.fontSize = '22px';
@@ -208,6 +191,7 @@ document.querySelectorAll('.form-select').forEach(select => {
     check.style.textShadow = '0 0 3px rgba(0,0,0,0.3)';
     check.style.display = 'none';
     check.style.pointerEvents = 'none';
+
 
     wrapper.appendChild(check);
 
@@ -511,7 +495,7 @@ CleaningData = {
                     fixedCarpet: document.getElementById("fixedCarpetInput")?.value || ""
                 }
             };
-let inputIDs = ['typeSelect', 'storeyInput','furnitureSelect']; // array من الايدهات
+let inputIDs = ['typeSelect', 'storeyInput','furnitureSelect','datepicker']; // array من الايدهات
 let defultinputIDs = ['typeSelect', 'storeyInput','furnitureSelect']; // array من الايدهات
 let normalID=['areaForNormal']
 let springID=['areaForSpringCleaning']
@@ -916,6 +900,17 @@ inputIDs.forEach(id => {
 // ----------------------------------------------------
 //  🔽 فتح الـ Accordion لو الخطأ من normal-cleaning
 // ----------------------------------------------------
+ let   confirm= document.querySelector('input[name="confirmForm"]:checked')
+     let    confirmId= document.getElementById("confirmForm")
+
+            if(!confirm){
+            confirmId.style.border = "1px solid red";
+
+            }else{
+                            confirmId.style.border = "1px solid green";
+
+            }
+            console.log(firstError,confirm);
 
 if (firstError) {
     const normalIDs = [...normalID];
@@ -958,8 +953,10 @@ if (firstError) {
         const bsCollapse2 = new bootstrap.Collapse(collapseTwo, { toggle: false });
         bsCollapse2.show();
     }
-}else{
+}  else if(confirm)   {
+
     let defultData={
+        terms_accepted:confirm?1:0,
         location_type_id:document.getElementById("typeSelect")?.value ,
         floor_id:document.getElementById("storeyInput")?.value ,
         location_status_id:document.getElementById("furnitureSelect")?.value ,
@@ -1105,6 +1102,161 @@ is_separate_contact:separateContactPerson.checked?1:0
     }
    }
 
+   let fatchData={}
+if(data.tabName==='normal-cleaning'){
+    fatchData={
+        ...defultData,services_requested:[dataObj.normal]
+    }
+}else if(data.tabName==='windows-cleaning'){
+    fatchData={
+        ...defultData,services_requested:[dataObj.windows]
+    }
+}if(data.tabName==="carpet"){
+    fatchData={
+        ...defultData,services_requested:[dataObj.carpet]
+    }
+}if(data.tabName==='upholstery-cleaning'){
+    fatchData={
+        ...defultData,services_requested:[dataObj.upholstery]
+    }
+}if(data.tabName==='spring-cleaning'){
+    fatchData={
+        ...defultData,services_requested:[dataObj.spring]
+    }
+}if(data.tabName==="cleaning"){
+    fatchData={
+        ...defultData,services_requested:[dataObj.cleaning]
+    }
+}if(data.tabName==='messie-apartment'){
+    fatchData={
+        ...defultData,services_requested:[dataObj.messieApartment]
+    }
+}
+console.log(data.optionsTabs,'data');
+
+if(data.optionsTabs&&data.optionsTabs.includes('box-1')){
+     fatchData={
+        ...defultData,services_requested:[...fatchData.services_requested, dataObj.box1]
+    }
+}
+if(data.optionsTabs&&data.optionsTabs.includes('box-2')){
+     fatchData={
+        ...defultData,services_requested:[...fatchData.services_requested, dataObj.box2]
+    }
+}
+if(data.optionsTabs&&data.optionsTabs.includes('box-3')){
+     fatchData={
+        ...defultData,services_requested:[...fatchData.services_requested, dataObj.box3]
+    }
+}
+if(data.optionsTabs&&data.optionsTabs.includes('box-4')){
+     fatchData={
+        ...defultData,services_requested:[...fatchData.services_requested, dataObj.box4]
+    }
+}
+ const tabId = data.tabName;
+
+        // التحقق إذا كان التاب الحالي هو نفسه المفعل
+
+
+        const loading = document.querySelector('.submit-spiner');
+        const notLoading = document.querySelector('.submit-icon');
+        const btn = document.querySelector('#SubmitForm');
+        if (loading) loading.style.display = 'block';
+        if (notLoading) notLoading.style.display = 'none';
+    btn.classList.add('disabled');
+
+        // ===============================
+        // 🔥 تغيير نص الـ accordion حسب اسم التاب
+        // ===============================
+                 console.log(loading,'loading');
+
+
+        // ===============================
+// فتح أول accordion-item بالقوة
+const firstItem = document.querySelector('.accordion-item:nth-child(1)');
+if (firstItem) {
+    const btn = firstItem.querySelector('.accordion-button');
+    const body = firstItem.querySelector('.accordion-collapse');
+
+    btn.classList.remove('collapsed');
+    body.classList.add('show');
+}
+
+// فتح العنصر السادس accordion-item بالقوة (العنصر 6)
+const sixthItem = document.querySelector('.accordion-item:nth-child(4)')
+;
+if (sixthItem) {
+    const btn = sixthItem.querySelector('.accordion-button');
+    const body = sixthItem.querySelector('.accordion-collapse');
+
+    btn.classList.remove('collapsed');
+    body.classList.add('show');
+}
+
+ document.querySelectorAll('input, select').forEach(el => {
+            el.classList.remove('error');
+        });
+
+        document.querySelectorAll('.error-icon').forEach(icon => icon.remove());
+
+        // إخفاء كل التابات
+        document.querySelectorAll('.tab-section').forEach(div => {
+            div.style.display = 'none';
+        });
+
+        // إعادة تفعيل كل الخيارات في select
+        const select = document.getElementById('which');
+        if (select) {
+            select.querySelectorAll('option').forEach(opt => opt.disabled = false);
+            select.value = '';
+        }
+
+        // إعادة تفعيل كل العناصر في dropdown
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.classList.remove('disabled');
+            item.style.pointerEvents = "auto";
+            if (item.dataset.value === 'box-4') {
+                item.style.display = 'block';
+            }
+        });
+
+        // إخفاء كل الصناديق بالكامل
+        document.querySelectorAll('#boxes > .box').forEach(box => {
+            box.classList.add('hidden');
+        });
+
+        // إظهار التاب المطلوب
+        const targetDiv = document.querySelector(`.tab-section[data-tab="${tabId}"]`);
+        if (targetDiv) targetDiv.style.display = 'block';
+
+        // تفريغ CleaningData
+        data = { ...data,tabName:tabId, CleaningData: {} };
+
+        // تفريغ الحقول
+        document.querySelectorAll('input, select, textarea')
+            .forEach(input => {
+                if (input.type === 'checkbox' || input.type === 'radio') {
+                    input.checked = false;
+                } else {
+                 document.querySelectorAll('.checkInput').forEach(el => {
+            el.style.display='none';
+        });
+            input.style.borderColor = '#dee2e6';
+
+                    input.value = '';
+                }
+            });
+setTimeout(() => {
+
+             loading.style.display = 'none';
+             notLoading.style.display = 'block';
+                         btn.classList.remove('disabled');
+
+
+}, 1000);
+console.log(fatchData);
+
 }
 
 
@@ -1145,129 +1297,6 @@ function easeInOutQuad(t, b, c, d) {
 
 
         }
-
-
-        // =========================
-        // Tempus Dominus Date Picker
-        // =========================
-const inputField = document.getElementById("datepicker");
-const selectedDatesList = document.getElementById("selectedDatesList");
-
-const fp = flatpickr(inputField, {
-    mode: "multiple",
-    dateFormat: "d/m/Y",
-    maxDate: null,
-
-    // هنا إضافة منع اختيار تاريخ قبل الغد
-    minDate: new Date().fp_incr(1),
-
-    onOpen: function(selectedDates, dateStr, instance) {
-        const widget = instance.calendarContainer;
-
-        if (!widget.querySelector('.custom-info')) {
-            const textDiv = document.createElement('div');
-            textDiv.textContent = 'Angaben übernehmen';
-            textDiv.classList.add('custom-text');
-            textDiv.style.backgroundColor = '#4b4d4c';
-            textDiv.style.padding = '8px 32px';
-            textDiv.style.color = 'white';
-            textDiv.style.fontSize = '15px';
-            textDiv.style.textAlign = 'center';
-            textDiv.style.marginTop = '10px';
-            textDiv.style.borderRadius = '5px';
-            widget.appendChild(textDiv);
-
-            const infoDiv = document.createElement('div');
-            infoDiv.classList.add('custom-info');
-            infoDiv.style.backgroundColor = '#f8d7da';
-            infoDiv.style.padding = '10px';
-            infoDiv.style.borderRadius = '5px';
-            infoDiv.style.textAlign = 'start';
-            infoDiv.style.display = 'flex';
-            infoDiv.style.gap = '10px';
-
-            const iconDiv = document.createElement('div');
-            iconDiv.innerHTML = '❗';
-            iconDiv.style.fontSize = '20px';
-            iconDiv.style.alignSelf = 'flex-start';
-
-            const textsDiv = document.createElement('div');
-            textsDiv.style.display = 'flex';
-            textsDiv.style.flexDirection = 'column';
-            textsDiv.style.gap = '5px';
-            textsDiv.style.alignItems = 'flex-start';
-
-            const line1 = document.createElement('div');
-            line1.textContent = 'Bitte Datum klicken für Terminauswahl (max. 3)';
-            line1.style.color = '#4b4d4c';
-            line1.style.fontSize = '15px';
-
-            const line2 = document.createElement('div');
-            const dot2 = document.createElement('span');
-            dot2.style.display = 'inline-block';
-            dot2.style.width = '10px';
-            dot2.style.height = '10px';
-            dot2.style.backgroundColor = 'green';
-            dot2.style.borderRadius = '50%';
-            dot2.style.marginRight = '6px';
-            line2.appendChild(dot2);
-            const text2 = document.createElement('span');
-            text2.textContent = 'Samstag ohne Zuschlag';
-            text2.style.color = '#4b4d4c';
-            text2.style.fontSize = '15px';
-            line2.appendChild(text2);
-
-            const line3 = document.createElement('div');
-            const dot3 = document.createElement('span');
-            dot3.style.display = 'inline-block';
-            dot3.style.width = '10px';
-            dot3.style.height = '10px';
-            dot3.style.backgroundColor = 'green';
-            dot3.style.borderRadius = '50%';
-            dot3.style.marginRight = '6px';
-            line3.appendChild(dot3);
-            const text3 = document.createElement('span');
-            text3.textContent = 'Sonn- u. Feiertag 100% Zuschlag';
-            text3.style.color = '#4b4d4c';
-            text3.style.fontSize = '15px';
-            line3.appendChild(text3);
-
-            textsDiv.appendChild(line1);
-            textsDiv.appendChild(line2);
-            textsDiv.appendChild(line3);
-
-            infoDiv.appendChild(iconDiv);
-            infoDiv.appendChild(textsDiv);
-
-            widget.appendChild(infoDiv);
-        }
-    },
-
-    onChange: function(selectedDates) {
-        if (selectedDates.length > 3) {
-            alert("يمكنك اختيار حتى 3 تواريخ فقط");
-            selectedDates.pop();
-            fp.setDate(selectedDates, true);
-        }
-
-        if (selectedDates.length === 3) {
-            fp.set('disable', [
-                function(date) {
-                    return !selectedDates.some(d => d.getTime() === date.getTime());
-                }
-            ]);
-        } else {
-            fp.set('disable', []);
-        }
-
-        renderSelectedDates(selectedDates);
-        data={...data,dates:selectedDates}
-        console.log(data);
-
-    }
-});
-
-
 
 
 
@@ -1337,7 +1366,6 @@ if (firstItem) {
 
 // فتح العنصر السادس accordion-item بالقوة (العنصر 6)
 const sixthItem = document.querySelector('.accordion-item:nth-child(4)')
-console.log(sixthItem);
 ;
 if (sixthItem) {
     const btn = sixthItem.querySelector('.accordion-button');
