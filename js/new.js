@@ -87,7 +87,11 @@ document.querySelectorAll('.form-control').forEach(input => {
     input.addEventListener('input', checkValue);
 });
 document.querySelectorAll('.form-control').forEach(element => {
-
+if (element.type === 'email' && !element.checkValidity()) {
+    if (check) check.style.display = 'none';
+    element.style.borderColor = '';
+    return;
+}
     // تجاهل العناصر داخل .upholstery-wrapper بالكامل
     if (element.closest('.upholstery-wrapper')) return;
 
@@ -132,18 +136,27 @@ check.className='checkInput'
     wrapper.appendChild(element);
     if (check) wrapper.appendChild(check);
 
-    const toggleCheck = () => {
-        const value = element.value.trim();
-        // يظهر فقط إذا القيمة ليست فارغة وليست صفر
-        if (value !== '' && value !== '0') {
-            if (check) check.style.display = 'block';
-            element.classList.remove('error')
-            element.style.borderColor = '#3ca200';
-        } else {
-            if (check) check.style.display = 'none';
-            element.style.borderColor = '';
-        }
-    };
+   const toggleCheck = () => {
+    const value = element.value.trim();
+
+    // شرط خاص بالإيميل: لا تظهر الصح إلا إذا الإيميل صحيح حسب HTML5
+    if (element.type === 'email' && !element.checkValidity()) {
+        if (check) check.style.display = 'none';
+        element.style.borderColor = '';
+        return;
+    }
+
+    // يظهر فقط إذا القيمة ليست فارغة وليست صفر
+    if (value !== '' && value !== '0') {
+        if (check) check.style.display = 'block';
+        element.classList.remove('error');
+        element.style.borderColor = '#3ca200';
+    } else {
+        if (check) check.style.display = 'none';
+        element.style.borderColor = '';
+    }
+};
+
 
     toggleCheck();
     element.addEventListener('input', toggleCheck);
@@ -495,7 +508,7 @@ CleaningData = {
                     fixedCarpet: document.getElementById("fixedCarpetInput")?.value || ""
                 }
             };
-let inputIDs = ['typeSelect', 'storeyInput','furnitureSelect','datepicker']; // array من الايدهات
+let inputIDs = ['typeSelect', 'storeyInput','furnitureSelect']; // array من الايدهات
 let defultinputIDs = ['typeSelect', 'storeyInput','furnitureSelect']; // array من الايدهات
 let normalID=['areaForNormal']
 let springID=['areaForSpringCleaning']
@@ -506,7 +519,7 @@ let messieApartmentID=['areaForMessieApatment']
 let windowID=['reasonForWindowCleaning','casementForWindowCleaning','heightInputForWindowCleaning']
 
 let carpetID=['looseCarpetForCarpet','totalAreaForCarpet','fixedCarpetForCarpet']
-let addressID=['billingEmail','billingMobile','billingFirstName','billingSecondName','billingStreet','billingNo','billingZip','billingCity','billingCountry'];
+let addressID=['billingEmail','billingMobile','billingFirstName','billingSecondName','billingStreet','billingNo','billingZip','billingCity','billingCountry','billingSalutation'];
 let box1=['reasonForWindowCleaningOptional','casementForWindowCleaningOptional','heightInputForWindowCleaningOptional']
 
 let box2=['looseCarpetForCarpetOptional','totalAreaForCarpetOptional','fixedCarpetForCarpetOptional']
@@ -515,7 +528,7 @@ if(separateCheckbox.checked){
     addressID=['cleaningStreet','cleaningNo','cleaningZip','cleaningCity',...addressID];
 }
 if(separateContactPerson.checked){
-    addressID=['contactFirstName','contactSecondName','contactCountry','contactMobile',...addressID];
+    addressID=['contactFirstName','contactSecondName','contactCountry','contactMobile','contactSalutation',...addressID];
 }
 
 if(data.tabName==="normal-cleaning"){
@@ -921,6 +934,7 @@ if (firstError) {
         const box4IDS = [...box4];
 
     const errorInputID = firstError.querySelector('input, select')?.id;
+console.log(errorInputID);
 
     // -------- 1) فتح Normal Cleaning --------
     if (normalIDs.includes(errorInputID)||defultinputIDs.includes(errorInputID) ) {
@@ -1465,7 +1479,7 @@ if (sixthItem) {
                 }
             }
 
-        }, 2000);
+        }, 500);
     });
 });
 

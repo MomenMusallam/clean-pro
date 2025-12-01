@@ -520,13 +520,13 @@ div:has(> .form-control.error) .error-icon {
 }
 
 .cleaning-request div {
-  width: calc(33% - 23px);
+  width: calc(50% - 23px);
 }
 
 .card-container {
   display: flex;
   gap: 8px;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: center;
 }
 
@@ -621,7 +621,7 @@ div:has(> .form-control.error) .error-icon {
 }
 
 .inputs section div {
-  width: calc(50% - 8px);
+  width: calc(33% - 8px);
 }
 
 .inputs span {
@@ -700,7 +700,7 @@ div:has(> .form-control.error) .error-icon {
 .counter-input {
   width: 100px;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
   border: 2px solid #dee2e6;
   border-radius: 10px;
   height: 45px;
@@ -935,7 +935,12 @@ select {
     flex-wrap: nowrap;
     overflow: auto;
     padding-bottom: 8px !important;
-    flex-direction: row !important
+    flex-direction: row !important;
+
+  }
+
+  .inputs section div {
+    width: calc(50% - 8px);
   }
 
   .form-section {
@@ -1020,12 +1025,12 @@ select {
 
 @media (max-width: 600px) {
   .submit-btn {
-    flex-wrap: wrap-reverse;
+    /* flex-wrap: wrap-reverse; */
   }
 
-  .submit-form-btn button {
+  /* .submit-form-btn button {
     width: 100% !important;
-  }
+  } */
 
   .dropdown {
     width: 100%;
@@ -1040,7 +1045,7 @@ select {
   }
 
   .container-tabs2 {
-    height: 707px;
+    height: 641px;
     padding: 0 !important;
   }
 }
