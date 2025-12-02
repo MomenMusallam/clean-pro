@@ -330,6 +330,31 @@ input[type=number] {
   color: #888;
 }
 
+.lang-btn {
+  border: 1px solid #3ca200 !important;
+  border-radius: 8px !important;
+  margin-right: 20px;
+}
+
+.lang-btn:hover {
+  background-color: #3ca200 !important;
+  color: #fff !important;
+}
+
+.lang-btn a {
+  height: 100%;
+  width: 100%;
+  padding: 6px 12px !important;
+  border-radius: 8px !important;
+
+
+}
+
+.lang-btn a:hover {
+  background-color: #3ca200 !important;
+  color: #fff !important;
+}
+
 .submit-spiner {
   display: none;
 }
@@ -380,6 +405,7 @@ div:has(> .form-control.error) .error-icon {
   font-size: 18px;
   font-weight: 600;
 }
+
 
 .sub-title {
   font-size: 19px;
@@ -520,7 +546,7 @@ div:has(> .form-control.error) .error-icon {
 }
 
 .cleaning-request div {
-  width: calc(50% - 23px);
+  width: calc(33% - 23px);
 }
 
 .card-container {
@@ -621,7 +647,7 @@ div:has(> .form-control.error) .error-icon {
 }
 
 .inputs section div {
-  width: calc(33% - 8px);
+  width: calc(50% - 8px);
 }
 
 .inputs span {

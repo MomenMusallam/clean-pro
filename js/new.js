@@ -16,7 +16,16 @@
     //         toggleBtn.href = "#"; // مؤقت
     //     }
     // });
-
+document.querySelectorAll('input[type="number"].upholstery-input')
+  .forEach(input => {
+    input.addEventListener('input', () => {
+      const val = parseFloat(input.value);
+      if (!isNaN(val) && val < 0) {
+        input.value = '';       // تمسح القيمة السالبة
+        // أو مثلاً: input.value = 0;
+      }
+    });
+  });
 document.querySelectorAll('.cleaning-request label').forEach(label => {
     const fullText = label.textContent.trim();
 
@@ -87,11 +96,9 @@ document.querySelectorAll('.form-control').forEach(input => {
     input.addEventListener('input', checkValue);
 });
 document.querySelectorAll('.form-control').forEach(element => {
-if (element.type === 'email' && !element.checkValidity()) {
-    if (check) check.style.display = 'none';
-    element.style.borderColor = '';
-    return;
-}
+// فحص وجود .com داخل الإيميل
+
+
     // تجاهل العناصر داخل .upholstery-wrapper بالكامل
     if (element.closest('.upholstery-wrapper')) return;
 
@@ -136,17 +143,26 @@ check.className='checkInput'
     wrapper.appendChild(element);
     if (check) wrapper.appendChild(check);
 
-   const toggleCheck = () => {
+const toggleCheck = () => {
     const value = element.value.trim();
 
-    // شرط خاص بالإيميل: لا تظهر الصح إلا إذا الإيميل صحيح حسب HTML5
+    // فحص صحة الإيميل حسب HTML5
+    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/checkValidity
     if (element.type === 'email' && !element.checkValidity()) {
         if (check) check.style.display = 'none';
         element.style.borderColor = '';
         return;
     }
 
-    // يظهر فقط إذا القيمة ليست فارغة وليست صفر
+    // يجب أن ينتهي بـ .com تحديداً
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith
+    if (element.type === 'email' && !value.toLowerCase().endsWith('.com')) {
+        if (check) check.style.display = 'none';
+        element.style.borderColor = '';
+        return;
+    }
+
+    // باقي الأنواع
     if (value !== '' && value !== '0') {
         if (check) check.style.display = 'block';
         element.classList.remove('error');
@@ -156,6 +172,8 @@ check.className='checkInput'
         element.style.borderColor = '';
     }
 };
+
+
 
 
     toggleCheck();
@@ -171,6 +189,7 @@ check.className='checkInput'
 
 
 document.querySelectorAll('.form-select').forEach(select => {
+
     // تجاهل العناصر داخل .upholstery-wrapper بالكامل
     if (select.closest('.upholstery-wrapper')) return;
 
@@ -215,6 +234,8 @@ check.className='checkInput'
             select.style.borderColor = '#3ca200';
             check.style.display = 'block'; // 👍 تظهر العلامة
         } else {
+                        select.classList.remove('error');
+
             select.style.borderColor = '';
             check.style.display = 'none'; // تخفي العلامة
         }
