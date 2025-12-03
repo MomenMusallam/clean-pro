@@ -900,6 +900,50 @@ select {
   min-width: 0 !important;
 }
 
+.get-a-quote-form {
+  padding: 0 !important;
+  height: 600px !important;
+  box-shadow: none
+}
+
+.get-a-quote-form .container-tabs2 {
+  width: 100%;
+}
+
+.get-a-quote-form .container-tabs-ul {
+  left: -29px !important;
+  top: 3px;
+  width: 100%;
+  position: static;
+
+}
+
+.Get-A-Quote-box {
+  padding: 0 100px 56px 100px;
+}
+
+.get-a-quote-form .container-tabs2-section {
+  width: 100% !important;
+}
+
+@media (max-width: 1751px) {
+  .Get-A-Quote-box {
+    padding: 0 20px 56px 20px;
+  }
+}
+
+@media (max-width: 794px) {
+  .box {
+    --bs-gutter-y: 200px
+  }
+}
+
+@media (max-width: 881px) {
+  /* .box {
+    --bs-gutter-y: 10.5rem
+  } */
+}
+
 @media (max-width: 1190px) {
   .container-tabs2 {
     width: 100%;
@@ -910,6 +954,11 @@ select {
     background: #000;
     top: auto;
     width: 769px;
+  }
+
+  .contact2-card .container-tabs-ul {
+
+    width: 100% !important;
   }
 
   .container-tabs3 {
