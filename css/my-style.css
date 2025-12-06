@@ -1108,13 +1108,10 @@ select {
 }
 
 @media (max-width: 600px) {
-  .submit-btn {
-    /* flex-wrap: wrap-reverse; */
+  .card {
+    min-width: 76px;
+    padding: 5px 2px;
   }
-
-  /* .submit-form-btn button {
-    width: 100% !important;
-  } */
 
   .dropdown {
     width: 100%;

@@ -1,21 +1,39 @@
-        // =========================
-        // Bootstrap Form Validation
-        // =========================
-    //       const toggleBtn = document.getElementById('toggleBtn');
+const confirmRadio = document.getElementById('confirmForm');
+const confirmLabel = document.getElementById('confirmFormLabel');
 
-    // toggleBtn.addEventListener('click', function (e) {
-    //     console.log(111);
+// إضافة حدث عند الضغط على الـradio
+confirmRadio.addEventListener('click', () => {
+    confirmLabel.style.color = 'black';
+                confirmRadio.style.border = "1px solid #dee2e6";
 
-    //     e.preventDefault(); // يمنع إعادة تحميل الصفحة
+});
+function setupRadioSelection(radioName) {
+    const radios = document.getElementsByName(radioName);
 
-    //     if (toggleBtn.textContent.trim() === "De") {
-    //         toggleBtn.textContent = "En";
-    //         toggleBtn.href = "#"; // مؤقت
-    //     } else {
-    //         toggleBtn.textContent = "De";
-    //         toggleBtn.href = "#"; // مؤقت
-    //     }
-    // });
+    radios.forEach(radio => {
+        radio.addEventListener('click', () => {
+            // إزالة أي class error أو selected من كل الـ labels
+            radios.forEach(r => {
+                r.parentElement.classList.remove('selected', 'error');
+            });
+
+            // إضافة class selected للـ label اللي اختاره المستخدم
+            radio.parentElement.classList.add('selected');
+        });
+    });
+}
+setupRadioSelection('contaminationForNormal');
+setupRadioSelection('contaminationForWindowCleaning');
+setupRadioSelection('contaminationForCarpet');
+setupRadioSelection('contaminationForSpringCleaning');
+setupRadioSelection('contaminationForCleaning');
+setupRadioSelection('contaminationForMessieApatment');
+setupRadioSelection('contaminationForUpholstery');
+setupRadioSelection('contaminationForWindowCleaningOptional');
+setupRadioSelection('contaminationForCarpetOptional');
+setupRadioSelection('contaminationForUpholsteryOptional');
+setupRadioSelection('contaminationForNormalOption');
+
 document.querySelectorAll('input[type="number"].upholstery-input')
   .forEach(input => {
     input.addEventListener('input', () => {
@@ -81,6 +99,7 @@ thumbnails.forEach(img => {
     });
 });
 document.querySelectorAll('.form-control').forEach(input => {
+
     const checkValue = () => {
         if (input.value.trim() !== "") {
             input.classList.add('filled');
@@ -531,7 +550,7 @@ CleaningData = {
             };
 let inputIDs = ['typeSelect', 'storeyInput','furnitureSelect']; // array من الايدهات
 let defultinputIDs = ['typeSelect', 'storeyInput','furnitureSelect']; // array من الايدهات
-let normalID=['areaForNormal']
+let normalID=['areaForNormal','reasonForNormal']
 let springID=['areaForSpringCleaning']
 
 let cleaningID=['areaForCleaning']
@@ -938,7 +957,9 @@ inputIDs.forEach(id => {
      let    confirmId= document.getElementById("confirmForm")
 
             if(!confirm){
+
             confirmId.style.border = "1px solid red";
+            confirmFormLabel.style.color = "red";
 
             }else{
                             confirmId.style.border = "1px solid green";
