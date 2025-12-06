@@ -949,7 +949,27 @@ inputIDs.forEach(id => {
     if (!firstError) firstError = wrapper;
   }
 });
+// 🔹 هنا بعد التحقق من الحقول العادية، نضيف التحقق من البريد الإلكتروني
+const emailInputs = ['contactEmail'];
+emailInputs.forEach(id => {
+    const input = document.getElementById(id);
+    const wrapper = input.parentElement;
 
+    // إزالة أي أخطاء سابقة
+    wrapper.querySelectorAll('.error-icon').forEach(el => el.remove());
+    input.classList.remove('error');
+
+    if (input.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+        input.classList.add('error');
+
+        const icon = document.createElement('span');
+        icon.classList.add('error-icon');
+        icon.textContent = '!';
+        wrapper.appendChild(icon);
+
+        if (!firstError) firstError = wrapper;
+    }
+});
 // ----------------------------------------------------
 //  🔽 فتح الـ Accordion لو الخطأ من normal-cleaning
 // ----------------------------------------------------
