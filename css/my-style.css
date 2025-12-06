@@ -949,6 +949,15 @@ select {
     width: 100%;
   }
 
+  .card-container {
+
+    flex-wrap: wrap;
+  }
+
+  .cleaning-request div {
+    width: calc(50% - 23px);
+  }
+
   .container-tabs-ul {
     position: static !important;
     background: #000;

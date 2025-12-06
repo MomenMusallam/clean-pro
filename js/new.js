@@ -1298,28 +1298,36 @@ console.log(fatchData);
 
 // تمرير السكروول للعنصر الخطأ بشكل سلس
 if (firstError) {
+    console.log(firstError,'hoho');
+
   smoothScroll(container, firstError, 800); // 800ms = أبطأ وأكثر سلاسة
 }
 
 // دالة التمرير السلس
 function smoothScroll(container, target, duration = 600) {
-  const start = container.scrollTop;
-  const end = target.offsetTop - container.offsetTop;
-  const change = end - start;
-  let currentTime = 0;
-  const increment = 20;
+    const start = container.scrollTop;
+    const targetPosition =
+        target.getBoundingClientRect().top - container.getBoundingClientRect().top;
 
-  function animateScroll() {
-    currentTime += increment;
-    const val = easeInOutQuad(currentTime, start, change, duration);
-    container.scrollTop = val;
-    if (currentTime < duration) {
-      requestAnimationFrame(animateScroll);
+    const change = targetPosition;
+    let currentTime = 0;
+
+    function animateScroll() {
+        currentTime += 16; // نفس frame rate تبع requestAnimationFrame
+
+        const val = easeInOutQuad(currentTime, start, change, duration);
+        container.scrollTop = val;
+
+        if (currentTime < duration) {
+            requestAnimationFrame(animateScroll);
+        }
     }
-  }
 
-  animateScroll();
+    animateScroll();
 }
+
+
+
 
 // دالة easing لتسريع/تبطيء الحركة
 function easeInOutQuad(t, b, c, d) {
