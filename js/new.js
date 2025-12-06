@@ -970,6 +970,26 @@ emailInputs.forEach(id => {
         if (!firstError) firstError = wrapper;
     }
 });
+const emailInput = ['billingEmail'];
+emailInput.forEach(id => {
+    const input = document.getElementById(id);
+    const wrapper = input.parentElement;
+
+    // إزالة أي أخطاء سابقة
+    wrapper.querySelectorAll('.error-icon').forEach(el => el.remove());
+    input.classList.remove('error');
+
+    if ( !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+        input.classList.add('error');
+
+        const icon = document.createElement('span');
+        icon.classList.add('error-icon');
+        icon.textContent = '!';
+        wrapper.appendChild(icon);
+
+        if (!firstError) firstError = wrapper;
+    }
+});
 // ----------------------------------------------------
 //  🔽 فتح الـ Accordion لو الخطأ من normal-cleaning
 // ----------------------------------------------------
