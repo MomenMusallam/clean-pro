@@ -1507,9 +1507,17 @@ if (sixthItem) {
         });
 
         // إخفاء كل الصناديق بالكامل
-        document.querySelectorAll('#boxes > .box').forEach(box => {
-            box.classList.add('hidden');
-        });
+      document.querySelectorAll('#boxes > .box').forEach(box => {
+    box.classList.add('hidden');
+
+    const accordionEl = box.querySelector('.accordion-collapse');
+
+    // لو كان مفتوح لازم نسكّر الـ collapse عشان ما يخرب عند إضافته مرة ثانية
+    if (accordionEl && accordionEl._bsInstance) {
+        accordionEl._bsInstance.hide();
+    }
+});
+
 
         // إظهار التاب المطلوب
         const targetDiv = document.querySelector(`.tab-section[data-tab="${tabId}"]`);
