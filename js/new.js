@@ -1721,22 +1721,70 @@ console.log('here2');
     }
 
     // فتح الـ accordion باستخدام Bootstrap Collapse
-    const accordionEl = box.querySelector('.accordion-collapse');
-    if (accordionEl) {
-        const bsCollapse = new bootstrap.Collapse(accordionEl, { toggle: true });
+ // فتح الـ accordion باستخدام Bootstrap Collapse
+const accordionEl = box.querySelector('.accordion-collapse');
 
-        // استمع لحدث انتهاء الفتح
-        accordionEl.addEventListener('shown.bs.collapse', function () {
-            const container = document.querySelector('.container-tabs2-section');
-            if (container) {
-                // تحريك السكروول ليظهر رأس الـ accordion
-                const top = accordionEl.offsetTop - container.offsetTop;
-                container.scrollTo({ top: top, behavior: 'smooth' });
-            } else {
-                accordionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }, { once: true }); // once:true حتى يعمل مرة واحدة فقط
+if (accordionEl) {
+
+    // لو في نسخة Bootstrap سابقة -> دمرها
+    if (accordionEl._bsInstance) {
+        accordionEl._bsInstance.dispose();
     }
+
+    // اعمل instance جديدة
+    const bsCollapse = new bootstrap.Collapse(accordionEl, { toggle: false });
+    accordionEl._bsInstance = bsCollapse;
+
+    // احذف أي event قديم
+    if (accordionEl._shownHandler) {
+        accordionEl.removeEventListener('shown.bs.collapse', accordionEl._shownHandler);
+    }
+function smoothScrollSlow(container, target, duration = 1000) { // 300ms حركة سريعة
+    const start = container.scrollTop;
+    const end = target.offsetTop - container.offsetTop;
+    const change = end - start;
+    const startTime = performance.now();
+
+    function animate(time) {
+        const elapsed = time - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        container.scrollTop = start + change * progress;
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        }
+    }
+
+    requestAnimationFrame(animate);
+}
+
+
+    // الهاندلر
+   accordionEl._shownHandler = function () {
+    const container = document.querySelector('.container-tabs2-section');
+
+    if (container) {
+        const top = accordionEl.offsetTop - container.offsetTop;
+        // تأخير 1 ثانية قبل البدء بالحركة
+        setTimeout(() => {
+            smoothScrollSlow(container, accordionEl, 800); // 2000ms = مدة الحركة
+        }, 50);
+    } else {
+        setTimeout(() => {
+            accordionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+    }
+};
+
+
+    // اربط الحدث
+    accordionEl.addEventListener('shown.bs.collapse', accordionEl._shownHandler);
+
+    // ✨ تأخير بسيط حتى يرتبط الحدث ثم افتح الـ accordion
+    setTimeout(() => {
+        bsCollapse.show();
+    }, 500);
+}
+
 });
 
 
@@ -1753,7 +1801,10 @@ boxes.addEventListener('click', function (e) {
     // أقب صندوق يبدأ ID تبعه بـ box-
     const box = btn.closest('[id^="box-"]');
     if (!box) return;
-
+  const accordionEl = box.querySelector('.accordion-collapse');
+    if (accordionEl && accordionEl._bsInstance) {
+        accordionEl._bsInstance.hide();  // ← يغلق collapse فعليًا
+    }
     // إخفاء الصندوق
     box.classList.add('hidden');
 
