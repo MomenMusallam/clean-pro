@@ -9625,40 +9625,43 @@
                                         </div>
                                       </div>
                                     </div>
-                                  </div>
-                                  <div
-                                    style="margin-top: 10px; line-height: 18px"
-                                    class="form-check form-check-inline"
-                                  >
-                                    <input
-                                      class="form-check-input"
-                                      type="checkbox"
-                                      id="confirmForm"
-                                      name="confirmForm"
-                                      value="option2"
-                                    />
-                                    <label
-                                      id="confirmFormLabel"
-                                      style="font-size: 10.5px"
-                                      class="form-check-label confirmForm"
-                                      for="confirmForm"
-                                      >Ich erkläre mich damit einverstanden,
-                                      dass meine Daten zur Bearbeitung meines
-                                      Anliegens verwendet werden und stimme
-                                      hiermit den
-                                      <span>
-                                        <a style="color: #0d6efd" href="#"
-                                          >AGB</a
-                                        >
-                                      </span>
-                                      und
-                                      <span>
-                                        <a style="color: #0d6efd" href="#"
-                                          >Datenschutzerklärung</a
-                                        >
-                                      </span>
-                                      zu.</label
+                                    <div
+                                      style="
+                                        margin-top: 10px;
+                                        line-height: 18px;
+                                      "
+                                      class="form-check form-check-inline"
                                     >
+                                      <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        id="confirmForm"
+                                        name="confirmForm"
+                                        value="option2"
+                                      />
+                                      <label
+                                        id="confirmFormLabel"
+                                        style="font-size: 10.5px"
+                                        class="form-check-label confirmForm"
+                                        for="confirmForm"
+                                        >Ich erkläre mich damit einverstanden,
+                                        dass meine Daten zur Bearbeitung meines
+                                        Anliegens verwendet werden und stimme
+                                        hiermit den
+                                        <span>
+                                          <a style="color: #0d6efd" href="#"
+                                            >AGB</a
+                                          >
+                                        </span>
+                                        und
+                                        <span>
+                                          <a style="color: #0d6efd" href="#"
+                                            >Datenschutzerklärung</a
+                                          >
+                                        </span>
+                                        zu.</label
+                                      >
+                                    </div>
                                   </div>
                                 </section>
                               </form>
@@ -11472,6 +11475,1379 @@
           console.log(data);
         },
       });
+    </script>
+    <script>
+      document
+        .getElementById("SubmitForm")
+        .addEventListener("click", function (e) {
+          e.preventDefault(); // يمنع اليلود إذا كان داخل فوم
+          collectData();
+        });
+
+      function collectData() {
+        CleaningData = {
+          areaForNormal: document.getElementById("areaForNormal")?.value || "",
+          reasonForNormal:
+            document.getElementById("reasonForNormal")?.value || "",
+          requestsForNormal: Array.from(
+            document.querySelectorAll('input[name="requestsForNormal"]:checked')
+          ).map((e) => e.value),
+          contaminationForNormal:
+            document.querySelector(
+              'input[name="contaminationForNormal"]:checked'
+            )?.value || "",
+
+          areaForNormalOption:
+            document.getElementById("areaForNormalOption")?.value || "",
+          reasonForNormalOption:
+            document.getElementById("reasonForNormalOption")?.value || "",
+          requestsForNormalOption: Array.from(
+            document.querySelectorAll(
+              'input[name="requestsForNormalOption"]:checked'
+            )
+          ).map((e) => e.value),
+          contaminationForNormalOption:
+            document.querySelector(
+              'input[name="contaminationForNormalOption"]:checked'
+            )?.value || "",
+
+          reasonForWindowCleaning:
+            document.getElementById("reasonForWindowCleaning")?.value || "",
+          heightInputForWindowCleaning:
+            document.getElementById("heightInputForWindowCleaning")?.value ||
+            "",
+          casementForWindowCleaning:
+            document.getElementById("casementForWindowCleaning")?.value || "",
+          requestsForWindowCleaning: Array.from(
+            document.querySelectorAll(
+              'input[name="requestsForWindowCleaning"]:checked'
+            )
+          ).map((e) => e.value),
+          contaminationForWindowCleaning:
+            document.querySelector(
+              'input[name="contaminationForWindowCleaning"]:checked'
+            )?.value || "",
+
+          reasonForWindowCleaningOptional:
+            document.getElementById("reasonForWindowCleaningOptional")?.value ||
+            "",
+          heightInputForWindowCleaningOptional:
+            document.getElementById("heightInputForWindowCleaningOptional")
+              ?.value || "",
+          casementForWindowCleaningOptional:
+            document.getElementById("casementForWindowCleaningOptional")
+              ?.value || "",
+          requestsForWindowCleaningOptional: Array.from(
+            document.querySelectorAll(
+              'input[name="requestsForWindowCleaningOptional"]:checked'
+            )
+          ).map((e) => e.value),
+          contaminationForWindowCleaningOptional:
+            document.querySelector(
+              'input[name="contaminationForWindowCleaningOptional"]:checked'
+            )?.value || "",
+
+          looseCarpetForCarpet:
+            document.getElementById("looseCarpetForCarpet")?.value || "",
+          totalAreaForCarpet:
+            document.getElementById("totalAreaForCarpet")?.value || "",
+          fixedCarpetForCarpet:
+            document.getElementById("fixedCarpetForCarpet")?.value || "",
+          requestsForCarpet: Array.from(
+            document.querySelectorAll('input[name="requestsForCarpet"]:checked')
+          ).map((e) => e.value),
+          contaminationForCarpet:
+            document.querySelector(
+              'input[name="contaminationForCarpet"]:checked'
+            )?.value || "",
+
+          looseCarpetForCarpetOptional:
+            document.getElementById("looseCarpetForCarpetOptional")?.value ||
+            "",
+          totalAreaForCarpetOptional:
+            document.getElementById("totalAreaForCarpetOptional")?.value || "",
+          fixedCarpetForCarpetOptional:
+            document.getElementById("fixedCarpetForCarpetOptional")?.value ||
+            "",
+          requestsForCarpetOptional: Array.from(
+            document.querySelectorAll(
+              'input[name="requestsForCarpetOptional"]:checked'
+            )
+          ).map((e) => e.value),
+          contaminationForCarpetOptional:
+            document.querySelector(
+              'input[name="contaminationForCarpetOptional"]:checked'
+            )?.value || "",
+
+          areaForSpringCleaning:
+            document.getElementById("areaForSpringCleaning")?.value || "",
+          reasonForSpringCleaning:
+            document.getElementById("reasonForSpringCleaning")?.value || "",
+          requestsForSpringCleaning: Array.from(
+            document.querySelectorAll(
+              'input[name="requestsForSpringCleaning"]:checked'
+            )
+          ).map((e) => e.value),
+          contaminationForSpringCleaning:
+            document.querySelector(
+              'input[name="contaminationForSpringCleaning"]:checked'
+            )?.value || "",
+
+          areaForCleaning:
+            document.getElementById("areaForCleaning")?.value || "",
+          reasonForCleaning:
+            document.getElementById("reasonForCleaning")?.value || "",
+          requestsForCleaning: Array.from(
+            document.querySelectorAll(
+              'input[name="requestsForCleaning"]:checked'
+            )
+          ).map((e) => e.value),
+          contaminationForCleaning:
+            document.querySelector(
+              'input[name="contaminationForCleaning"]:checked'
+            )?.value || "",
+
+          areaForMessieApatment:
+            document.getElementById("areaForMessieApatment")?.value || "",
+          reasonForMessieApatment:
+            document.getElementById("reasonForMessieApatment")?.value || "",
+          requestsForMessieApatment: Array.from(
+            document.querySelectorAll(
+              'input[name="requestsForMessieApatment"]:checked'
+            )
+          ).map((e) => e.value),
+          contaminationForMessieApatment:
+            document.querySelector(
+              'input[name="contaminationForMessieApatment"]:checked'
+            )?.value || "",
+
+          upholstery: upholstery,
+          contaminationForUpholstery:
+            document.querySelector(
+              'input[name="contaminationForUpholstery"]:checked'
+            )?.value || "",
+          requestsForUpholstery: Array.from(
+            document.querySelectorAll(
+              'input[name="requestsForUpholstery"]:checked'
+            )
+          ).map((e) => e.value),
+          upholsteryOptional: upholsteryOptional,
+          reason: document.getElementById("windowReason")?.value || "",
+          area: document.getElementById("windowArea")?.value || "",
+          contaminationForUpholsteryOptional:
+            document.querySelector(
+              'input[name="contaminationForUpholsteryOptional"]:checked'
+            )?.value || "",
+          requestsForUpholsteryOptional: Array.from(
+            document.querySelectorAll(
+              'input[name="requestsForUpholsteryOptional"]:checked'
+            )
+          ).map((e) => e.value),
+          contamination:
+            document.querySelector('input[name="windowContamination"]:checked')
+              ?.value || "",
+          requests: Array.from(
+            document.querySelectorAll('input[name="windowRequests"]:checked')
+          ).map((e) => e.value),
+        };
+
+        data = {
+          ...data,
+          type: document.getElementById("typeSelect")?.value || "",
+          storey: document.getElementById("storeyInput")?.value || "",
+          furniture: document.getElementById("furnitureSelect")?.value || "",
+          reason: document.getElementById("reasonSelect")?.value || "",
+          casement: document.getElementById("casementInput")?.value || "",
+          height: document.getElementById("heightInput")?.value || "",
+          contamination:
+            document.querySelector('input[name="contamination"]:checked')
+              ?.value || "",
+          requests: Array.from(
+            document.querySelectorAll('input[name="requests"]:checked')
+          ).map((e) => e.value),
+          info: document.getElementById("infoTextarea")?.value || "",
+          photos: Array.from(
+            document.getElementById("formFileMultiple")?.files || []
+          ).map((f) => f.name),
+          // dateTime: document.getElementById("datetimepicker1Input")?.value || "",
+
+          billing: {
+            email: document.getElementById("billingEmail")?.value || "",
+            mobile: billingInput.value || "",
+            countryCode: itiBilling.getSelectedCountryData().dialCode || "",
+            company: document.getElementById("billingCompany")?.value || "",
+            country: document.getElementById("billingCountry")?.value || "",
+            salutation:
+              document.getElementById("billingSalutation")?.value || "",
+            firstName: document.getElementById("billingFirstName")?.value || "",
+            secondName:
+              document.getElementById("billingSecondName")?.value || "",
+            street: document.getElementById("billingStreet")?.value || "",
+            no: document.getElementById("billingNo")?.value || "",
+            zip: document.getElementById("billingZip")?.value || "",
+            city: document.getElementById("billingCity")?.value || "",
+            hasSeparateCleaningAddress:
+              document.getElementById("separateCleaningAddress")?.checked ||
+              false,
+          },
+
+          cleaning: {
+            company: document.getElementById("cleaningCompany")?.value || "",
+            street: document.getElementById("cleaningStreet")?.value || "",
+            no: document.getElementById("cleaningNo")?.value || "",
+            zip: document.getElementById("cleaningZip")?.value || "",
+            city: document.getElementById("cleaningCity")?.value || "",
+            hasSeparateContactPerson:
+              document.getElementById("separateContactPerson")?.checked ||
+              false,
+          },
+
+          contact: {
+            mobile: contactInput.value || "",
+            countryCode: itiContact.getSelectedCountryData().dialCode || "",
+            country: document.getElementById("contactCountry")?.value || "",
+            salutation:
+              document.getElementById("contactSalutation")?.value || "",
+            firstName: document.getElementById("contactFirstName")?.value || "",
+            secondName:
+              document.getElementById("contactSecondName")?.value || "",
+            email: document.getElementById("contactEmail")?.value || "",
+            note: document.getElementById("contactNote")?.value || "",
+          },
+
+          voucher: document.getElementById("voucherCode")?.value || "",
+
+          carpetCleaning: {
+            looseCarpet:
+              document.getElementById("looseCarpetInput")?.value || "",
+            totalArea: document.getElementById("totalArea")?.value || "",
+            fixedCarpet:
+              document.getElementById("fixedCarpetInput")?.value || "",
+          },
+        };
+        let inputIDs = ["typeSelect", "storeyInput", "furnitureSelect"]; // array من الايدهات
+        let defultinputIDs = ["typeSelect", "storeyInput", "furnitureSelect"]; // array من الايدهات
+        let normalID = ["areaForNormal", "reasonForNormal"];
+        let springID = ["areaForSpringCleaning"];
+
+        let cleaningID = ["areaForCleaning"];
+        let messieApartmentID = ["areaForMessieApatment"];
+
+        let windowID = [
+          "reasonForWindowCleaning",
+          "casementForWindowCleaning",
+          "heightInputForWindowCleaning",
+        ];
+
+        let carpetID = [
+          "looseCarpetForCarpet",
+          "totalAreaForCarpet",
+          "fixedCarpetForCarpet",
+        ];
+        let addressID = [
+          "billingEmail",
+          "billingMobile",
+          "billingFirstName",
+          "billingSecondName",
+          "billingStreet",
+          "billingNo",
+          "billingZip",
+          "billingCity",
+          "billingCountry",
+          "billingSalutation",
+        ];
+        let box1 = [
+          "reasonForWindowCleaningOptional",
+          "casementForWindowCleaningOptional",
+          "heightInputForWindowCleaningOptional",
+        ];
+
+        let box2 = [
+          "looseCarpetForCarpetOptional",
+          "totalAreaForCarpetOptional",
+          "fixedCarpetForCarpetOptional",
+        ];
+        let box4 = ["reasonForNormalOption", "areaForNormalOption"];
+        if (separateCheckbox.checked) {
+          addressID = [
+            "cleaningStreet",
+            "cleaningNo",
+            "cleaningZip",
+            "cleaningCity",
+            ...addressID,
+          ];
+        }
+        if (separateContactPerson.checked) {
+          addressID = [
+            "contactFirstName",
+            "contactSecondName",
+            "contactCountry",
+            "contactMobile",
+            "contactSalutation",
+            ...addressID,
+          ];
+        }
+
+        if (data.tabName === "normal-cleaning") {
+          inputIDs = [...inputIDs, ...normalID];
+          // جميع الراديوات ضمن المجموعة
+          const radios = document.querySelectorAll(
+            'input[name="contaminationForNormal"]'
+          );
+
+          // إزالة أي errors سابقة لكل واحد
+          radios.forEach((radio) => {
+            const wrapper =
+              radio.closest(".input-wrapper") || radio.parentElement;
+            wrapper.classList.remove("error");
+            wrapper
+              .querySelectorAll(".error-icon")
+              .forEach((el) => el.remove());
+          });
+
+          // التحقق إذا في أي واحد مختار
+          const checkedRadio = document.querySelector(
+            'input[name="contaminationForNormal"]:checked'
+          );
+
+          if (!checkedRadio) {
+            // إضافة error لكل الراديوات
+            radios.forEach((radio) => {
+              const wrapper =
+                radio.closest(".input-wrapper") || radio.parentElement;
+              wrapper.classList.add("error");
+
+              const icon = document.createElement("span");
+              icon.classList.add("error-icon");
+              icon.textContent = "!";
+              wrapper.appendChild(icon);
+            });
+          } else {
+            console.log("القيمة المختارة:", checkedRadio.value);
+          }
+        }
+        if (data.tabName === "windows-cleaning") {
+          inputIDs = [...inputIDs, ...windowID];
+          // جميع الراديوات ضمن المجموعة
+          const radios = document.querySelectorAll(
+            'input[name="contaminationForWindowCleaning"]'
+          );
+
+          // إزالة أي errors سابقة لكل واحد
+          radios.forEach((radio) => {
+            const wrapper =
+              radio.closest(".input-wrapper") || radio.parentElement;
+            wrapper.classList.remove("error");
+            wrapper
+              .querySelectorAll(".error-icon")
+              .forEach((el) => el.remove());
+          });
+
+          // التحقق إذا في أي واحد مختار
+          const checkedRadio = document.querySelector(
+            'input[name="contaminationForWindowCleaning"]:checked'
+          );
+
+          if (!checkedRadio) {
+            // إضافة error لكل الراديوات
+            radios.forEach((radio) => {
+              const wrapper =
+                radio.closest(".input-wrapper") || radio.parentElement;
+              wrapper.classList.add("error");
+
+              const icon = document.createElement("span");
+              icon.classList.add("error-icon");
+              icon.textContent = "!";
+              wrapper.appendChild(icon);
+            });
+          } else {
+            console.log("القيمة المختارة:", checkedRadio.value);
+          }
+        }
+        if (data.tabName === "messie-apartment") {
+          inputIDs = [...inputIDs, ...messieApartmentID];
+          // جميع الراديوات ضمن المجموعة
+          const radios = document.querySelectorAll(
+            'input[name="contaminationForMessieApatment"]'
+          );
+
+          // إزالة أي errors سابقة لكل واحد
+          radios.forEach((radio) => {
+            const wrapper =
+              radio.closest(".input-wrapper") || radio.parentElement;
+            wrapper.classList.remove("error");
+            wrapper
+              .querySelectorAll(".error-icon")
+              .forEach((el) => el.remove());
+          });
+
+          // التحقق إذا في أي واحد مختار
+          const checkedRadio = document.querySelector(
+            'input[name="contaminationForMessieApatment"]:checked'
+          );
+
+          if (!checkedRadio) {
+            // إضافة error لكل الراديوات
+            radios.forEach((radio) => {
+              const wrapper =
+                radio.closest(".input-wrapper") || radio.parentElement;
+              wrapper.classList.add("error");
+
+              const icon = document.createElement("span");
+              icon.classList.add("error-icon");
+              icon.textContent = "!";
+              wrapper.appendChild(icon);
+            });
+          } else {
+            console.log("القيمة المختارة:", checkedRadio.value);
+          }
+        }
+        if (data.tabName === "cleaning") {
+          inputIDs = [...inputIDs, ...cleaningID];
+          // جميع الراديوات ضمن المجموعة
+          const radios = document.querySelectorAll(
+            'input[name="contaminationForCleaning"]'
+          );
+
+          // إزالة أي errors سابقة لكل واحد
+          radios.forEach((radio) => {
+            const wrapper =
+              radio.closest(".input-wrapper") || radio.parentElement;
+            wrapper.classList.remove("error");
+            wrapper
+              .querySelectorAll(".error-icon")
+              .forEach((el) => el.remove());
+          });
+
+          // التحقق إذا في أي واحد مختار
+          const checkedRadio = document.querySelector(
+            'input[name="contaminationForCleaning"]:checked'
+          );
+
+          if (!checkedRadio) {
+            // إضافة error لكل الراديوات
+            radios.forEach((radio) => {
+              const wrapper =
+                radio.closest(".input-wrapper") || radio.parentElement;
+              wrapper.classList.add("error");
+
+              const icon = document.createElement("span");
+              icon.classList.add("error-icon");
+              icon.textContent = "!";
+              wrapper.appendChild(icon);
+            });
+          } else {
+            console.log("القيمة المختارة:", checkedRadio.value);
+          }
+        }
+
+        if (data.tabName === "carpet") {
+          inputIDs = [...inputIDs, ...carpetID];
+          // جميع الراديوات ضمن المجموعة
+          const radios = document.querySelectorAll(
+            'input[name="contaminationForCarpet"]'
+          );
+
+          // إزالة أي errors سابقة لكل واحد
+          radios.forEach((radio) => {
+            const wrapper =
+              radio.closest(".input-wrapper") || radio.parentElement;
+            wrapper.classList.remove("error");
+            wrapper
+              .querySelectorAll(".error-icon")
+              .forEach((el) => el.remove());
+          });
+
+          // التحقق إذا في أي واحد مختار
+          const checkedRadio = document.querySelector(
+            'input[name="contaminationForCarpet"]:checked'
+          );
+
+          if (!checkedRadio) {
+            // إضافة error لكل الراديوات
+            radios.forEach((radio) => {
+              const wrapper =
+                radio.closest(".input-wrapper") || radio.parentElement;
+              wrapper.classList.add("error");
+
+              const icon = document.createElement("span");
+              icon.classList.add("error-icon");
+              icon.textContent = "!";
+              wrapper.appendChild(icon);
+            });
+          } else {
+            console.log("القيمة المختارة:", checkedRadio.value);
+          }
+        }
+        if (data.tabName === "spring-cleaning") {
+          inputIDs = [...inputIDs, ...springID];
+          // جميع الراديوات ضمن المجموعة
+          const radios = document.querySelectorAll(
+            'input[name="contaminationForSpringCleaning"]'
+          );
+
+          // إزالة أي errors سابقة لكل واحد
+          radios.forEach((radio) => {
+            const wrapper =
+              radio.closest(".input-wrapper") || radio.parentElement;
+            wrapper.classList.remove("error");
+            wrapper
+              .querySelectorAll(".error-icon")
+              .forEach((el) => el.remove());
+          });
+
+          // التحقق إذا في أي واحد مختار
+          const checkedRadio = document.querySelector(
+            'input[name="contaminationForSpringCleaning"]:checked'
+          );
+
+          if (!checkedRadio) {
+            // إضافة error لكل الراديوات
+            radios.forEach((radio) => {
+              const wrapper =
+                radio.closest(".input-wrapper") || radio.parentElement;
+              wrapper.classList.add("error");
+
+              const icon = document.createElement("span");
+              icon.classList.add("error-icon");
+              icon.textContent = "!";
+              wrapper.appendChild(icon);
+            });
+          } else {
+            console.log("القيمة المختارة:", checkedRadio.value);
+          }
+        }
+        if (data.tabName === "upholstery-cleaning") {
+          // جميع الراديوات ضمن المجموعة
+          const radios = document.querySelectorAll(
+            'input[name="contaminationForUpholstery"]'
+          );
+
+          // إزالة أي errors سابقة لكل واحد
+          radios.forEach((radio) => {
+            const wrapper =
+              radio.closest(".input-wrapper") || radio.parentElement;
+            wrapper.classList.remove("error");
+            wrapper
+              .querySelectorAll(".error-icon")
+              .forEach((el) => el.remove());
+          });
+
+          // التحقق إذا في أي واحد مختار
+          const checkedRadio = document.querySelector(
+            'input[name="contaminationForUpholstery"]:checked'
+          );
+
+          if (!checkedRadio) {
+            // إضافة error لكل الراديوات
+            radios.forEach((radio) => {
+              const wrapper =
+                radio.closest(".input-wrapper") || radio.parentElement;
+              wrapper.classList.add("error");
+
+              const icon = document.createElement("span");
+              icon.classList.add("error-icon");
+              icon.textContent = "!";
+              wrapper.appendChild(icon);
+            });
+          } else {
+            console.log("القيمة المختارة:", checkedRadio.value);
+          }
+        }
+        if (data.optionsTabs && data.optionsTabs.includes("box-1")) {
+          inputIDs = [...inputIDs, ...box1];
+          // جميع الراديوات ضمن المجموعة
+          const radios = document.querySelectorAll(
+            'input[name="contaminationForWindowCleaningOptional"]'
+          );
+
+          // إزالة أي errors سابقة لكل واحد
+          radios.forEach((radio) => {
+            const wrapper =
+              radio.closest(".input-wrapper") || radio.parentElement;
+            wrapper.classList.remove("error");
+            wrapper
+              .querySelectorAll(".error-icon")
+              .forEach((el) => el.remove());
+          });
+
+          // التحقق إذا في أي واحد مختار
+          const checkedRadio = document.querySelector(
+            'input[name="contaminationForWindowCleaningOptional"]:checked'
+          );
+
+          if (!checkedRadio) {
+            // إضافة error لكل الراديوات
+            radios.forEach((radio) => {
+              const wrapper =
+                radio.closest(".input-wrapper") || radio.parentElement;
+              wrapper.classList.add("error");
+
+              const icon = document.createElement("span");
+              icon.classList.add("error-icon");
+              icon.textContent = "!";
+              wrapper.appendChild(icon);
+            });
+          } else {
+            console.log("القيمة المختارة:", checkedRadio.value);
+          }
+        }
+        if (data.optionsTabs && data.optionsTabs.includes("box-2")) {
+          inputIDs = [...inputIDs, ...box2];
+          // جميع الراديوات ضمن المجموعة
+          const radios = document.querySelectorAll(
+            'input[name="contaminationForCarpetOptional"]'
+          );
+
+          // إزالة أي errors سابقة لكل واحد
+          radios.forEach((radio) => {
+            const wrapper =
+              radio.closest(".input-wrapper") || radio.parentElement;
+            wrapper.classList.remove("error");
+            wrapper
+              .querySelectorAll(".error-icon")
+              .forEach((el) => el.remove());
+          });
+
+          // التحقق إذا في أي واحد مختار
+          const checkedRadio = document.querySelector(
+            'input[name="contaminationForCarpetOptional"]:checked'
+          );
+
+          if (!checkedRadio) {
+            // إضافة error لكل الراديوات
+            radios.forEach((radio) => {
+              const wrapper =
+                radio.closest(".input-wrapper") || radio.parentElement;
+              wrapper.classList.add("error");
+
+              const icon = document.createElement("span");
+              icon.classList.add("error-icon");
+              icon.textContent = "!";
+              wrapper.appendChild(icon);
+            });
+          } else {
+            console.log("القيمة المختارة:", checkedRadio.value);
+          }
+        }
+        if (data.optionsTabs && data.optionsTabs.includes("box-3")) {
+          // جميع الراديوات ضمن المجموعة
+          const radios = document.querySelectorAll(
+            'input[name="contaminationForUpholsteryOptional"]'
+          );
+
+          // إزالة أي errors سابقة لكل واحد
+          radios.forEach((radio) => {
+            const wrapper =
+              radio.closest(".input-wrapper") || radio.parentElement;
+            wrapper.classList.remove("error");
+            wrapper
+              .querySelectorAll(".error-icon")
+              .forEach((el) => el.remove());
+          });
+
+          // التحقق إذا في أي واحد مختار
+          const checkedRadio = document.querySelector(
+            'input[name="contaminationForUpholsteryOptional"]:checked'
+          );
+
+          if (!checkedRadio) {
+            // إضافة error لكل الراديوات
+            radios.forEach((radio) => {
+              const wrapper =
+                radio.closest(".input-wrapper") || radio.parentElement;
+              wrapper.classList.add("error");
+
+              const icon = document.createElement("span");
+              icon.classList.add("error-icon");
+              icon.textContent = "!";
+              wrapper.appendChild(icon);
+            });
+          } else {
+            console.log("القيمة المختارة:", checkedRadio.value);
+          }
+        }
+        if (data.optionsTabs && data.optionsTabs.includes("box-4")) {
+          inputIDs = [...inputIDs, ...box4];
+          const radios = document.querySelectorAll(
+            'input[name="contaminationForNormalOption"]'
+          );
+
+          // إزالة أي errors سابقة لكل واحد
+          radios.forEach((radio) => {
+            const wrapper =
+              radio.closest(".input-wrapper") || radio.parentElement;
+            wrapper.classList.remove("error");
+            wrapper
+              .querySelectorAll(".error-icon")
+              .forEach((el) => el.remove());
+          });
+
+          // التحقق إذا في أي واحد مختار
+          const checkedRadio = document.querySelector(
+            'input[name="contaminationForNormalOption"]:checked'
+          );
+
+          if (!checkedRadio) {
+            // إضافة error لكل الراديوات
+            radios.forEach((radio) => {
+              const wrapper =
+                radio.closest(".input-wrapper") || radio.parentElement;
+              wrapper.classList.add("error");
+
+              const icon = document.createElement("span");
+              icon.classList.add("error-icon");
+              icon.textContent = "!";
+              wrapper.appendChild(icon);
+            });
+          } else {
+            console.log("القيمة المختارة:", checkedRadio.value);
+          }
+        }
+
+        inputIDs = [...inputIDs, ...addressID];
+        const container = document.querySelector(".container-tabs2-section");
+        let firstError = null;
+
+        // ... كودك مثل ما هو فوق
+
+        inputIDs.forEach((id) => {
+          const input = document.getElementById(id);
+          const wrapper = input.parentElement;
+
+          wrapper.querySelectorAll(".error-icon").forEach((el) => el.remove());
+          input.classList.remove("error");
+
+          if (
+            !input.value ||
+            input.value == 0 ||
+            (input.type === "email" &&
+              !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value))
+          ) {
+            input.classList.add("error");
+
+            const icon = document.createElement("span");
+            icon.classList.add("error-icon");
+            icon.textContent = "!";
+            wrapper.appendChild(icon);
+
+            if (!firstError) firstError = wrapper;
+          }
+        });
+        // 🔹 هنا بعد التحقق من الحقول العادية، نضيف التحقق من البريد الإلكتروني
+        const emailInputs = ["contactEmail"];
+        emailInputs.forEach((id) => {
+          const input = document.getElementById(id);
+          const wrapper = input.parentElement;
+
+          // إزالة أي أخطاء سابقة
+          wrapper.querySelectorAll(".error-icon").forEach((el) => el.remove());
+          input.classList.remove("error");
+
+          if (input.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+            input.classList.add("error");
+
+            const icon = document.createElement("span");
+            icon.classList.add("error-icon");
+            icon.textContent = "!";
+            wrapper.appendChild(icon);
+
+            if (!firstError) firstError = wrapper;
+          }
+        });
+        const emailInput = ["billingEmail"];
+        emailInput.forEach((id) => {
+          const input = document.getElementById(id);
+          const wrapper = input.parentElement;
+
+          // إزالة أي أخطاء سابقة
+          wrapper.querySelectorAll(".error-icon").forEach((el) => el.remove());
+          input.classList.remove("error");
+
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+            input.classList.add("error");
+
+            const icon = document.createElement("span");
+            icon.classList.add("error-icon");
+            icon.textContent = "!";
+            wrapper.appendChild(icon);
+
+            if (!firstError) firstError = wrapper;
+          }
+        });
+        // ----------------------------------------------------
+        //  🔽 فتح الـ Accordion لو الخطأ من normal-cleaning
+        // ----------------------------------------------------
+        let confirm = document.querySelector(
+          'input[name="confirmForm"]:checked'
+        );
+        let confirmId = document.getElementById("confirmForm");
+
+        if (!confirm) {
+          confirmId.style.border = "1px solid red";
+          confirmFormLabel.style.color = "red";
+        } else {
+          confirmId.style.border = "1px solid green";
+        }
+        console.log(firstError, confirm);
+
+        if (firstError) {
+          const normalIDs = [...normalID];
+          const addressIDs = [...addressID];
+
+          const box1IDS = [...box1];
+          const box2IDS = [...box2];
+          const box4IDS = [...box4];
+
+          const errorInputID = firstError.querySelector("input, select")?.id;
+          console.log(errorInputID);
+
+          // -------- 1) فتح Normal Cleaning --------
+          if (
+            normalIDs.includes(errorInputID) ||
+            defultinputIDs.includes(errorInputID)
+          ) {
+            const collapseOne = document.getElementById("collapseOne");
+            const bsCollapse1 = new bootstrap.Collapse(collapseOne, {
+              toggle: false,
+            });
+            bsCollapse1.show();
+          }
+
+          if (box1IDS.includes(errorInputID)) {
+            const collapseThree = document.getElementById("collapseThree");
+            const bsCollapse3 = new bootstrap.Collapse(collapseThree, {
+              toggle: false,
+            });
+            bsCollapse3.show();
+          }
+          if (box2IDS.includes(errorInputID)) {
+            const collapseFour = document.getElementById("collapseFour");
+            const bsCollapse4 = new bootstrap.Collapse(collapseFour, {
+              toggle: false,
+            });
+            bsCollapse4.show();
+          }
+          if (box4IDS.includes(errorInputID)) {
+            const collapseSix = document.getElementById("collapseSix");
+            const bsCollapse5 = new bootstrap.Collapse(collapseSix, {
+              toggle: false,
+            });
+            bsCollapse5.show();
+          }
+
+          // -------- 2) فتح Name and Address --------
+          if (addressIDs.includes(errorInputID)) {
+            const collapseTwo = document.getElementById("collapseTwo");
+            const bsCollapse2 = new bootstrap.Collapse(collapseTwo, {
+              toggle: false,
+            });
+            bsCollapse2.show();
+          }
+        } else if (confirm) {
+          let defultData = {
+            terms_accepted: confirm ? 1 : 0,
+            location_type_id: document.getElementById("typeSelect")?.value,
+            floor_id: document.getElementById("storeyInput")?.value,
+            location_status_id:
+              document.getElementById("furnitureSelect")?.value,
+            preferred_date: data.dates,
+            email: document.getElementById("billingEmail")?.value,
+            phone: document.getElementById("billingMobile")?.value,
+            company: document.getElementById("billingCompany")?.value,
+            gender: document.getElementById("billingCountry")?.value,
+            honorific_title:
+              document.getElementById("billingSalutation")?.value,
+            first_name: document.getElementById("billingFirstName")?.value,
+            last_name: document.getElementById("billingSecondName")?.value,
+            street: document.getElementById("billingStreet")?.value,
+            street_number: document.getElementById("billingNo")?.value,
+            zip_code: document.getElementById("billingZip")?.value,
+            city: document.getElementById("billingCity")?.value,
+            separate_company: document.getElementById("cleaningCompany")?.value,
+            separate_street: document.getElementById("cleaningStreet")?.value,
+            separate_street_number:
+              document.getElementById("cleaningNo")?.value,
+            separate_zip_code: document.getElementById("cleaningZip")?.value,
+            separate_city: document.getElementById("cleaningCity")?.value,
+            separate_gender: document.getElementById("contactCountry")?.value,
+            separate_honorific_title:
+              document.getElementById("contactSalutation")?.value,
+            separate_first_name:
+              document.getElementById("contactFirstName")?.value,
+            separate_last_name:
+              document.getElementById("contactSecondName")?.value,
+            separate_email: document.getElementById("contactEmail")?.value,
+            separate_phone: document.getElementById("contactMobile")?.value,
+            separate_additional_names:
+              document.getElementById("contactNote")?.value,
+            is_separate_address: separateCheckbox.checked ? 1 : 0,
+            is_separate_contact: separateContactPerson.checked ? 1 : 0,
+          };
+          let dataObj = {
+            normal: {
+              area: document.getElementById("areaForNormal")?.value || "",
+              reason_for_cleaning_id:
+                document.getElementById("reasonForNormal")?.value || "",
+              additional_info:
+                document.getElementById("infoTextarea")?.value || "",
+              cleaning_requests_ids: Array.from(
+                document.querySelectorAll(
+                  'input[name="requestsForNormal"]:checked'
+                )
+              ).map((e) => e.value),
+              degree_of_contamination_id:
+                document.querySelector(
+                  'input[name="contaminationForNormal"]:checked'
+                )?.value || "",
+
+              images: Array.from(
+                document.getElementById("formFileMultiple")?.files || []
+              ),
+            },
+            windows: {
+              images: Array.from(
+                document.getElementById("formFileMultiple")?.files || []
+              ),
+              additional_info:
+                document.getElementById("infoTextarea")?.value || "",
+              reason_for_cleaning_id:
+                document.getElementById("reasonForWindowCleaning")?.value || "",
+              max_room_height:
+                document.getElementById("heightInputForWindowCleaning")
+                  ?.value || "",
+              window_sash:
+                document.getElementById("casementForWindowCleaning")?.value ||
+                "",
+              cleaning_requests_ids: Array.from(
+                document.querySelectorAll(
+                  'input[name="requestsForWindowCleaning"]:checked'
+                )
+              ).map((e) => e.value),
+              degree_of_contamination_id:
+                document.querySelector(
+                  'input[name="contaminationForWindowCleaning"]:checked'
+                )?.value || "",
+            },
+            carpet: {
+              images: Array.from(
+                document.getElementById("formFileMultiple")?.files || []
+              ),
+              additional_info:
+                document.getElementById("infoTextarea")?.value || "",
+              carpets:
+                document.getElementById("looseCarpetForCarpet")?.value || "",
+              area: document.getElementById("totalAreaForCarpet")?.value || "",
+              fixed_carpet:
+                document.getElementById("fixedCarpetForCarpet")?.value || "",
+              cleaning_requests_ids: Array.from(
+                document.querySelectorAll(
+                  'input[name="requestsForCarpet"]:checked'
+                )
+              ).map((e) => e.value),
+              degree_of_contamination_id:
+                document.querySelector(
+                  'input[name="contaminationForCarpet"]:checked'
+                )?.value || "",
+            },
+            upholstery: {
+              images: Array.from(
+                document.getElementById("formFileMultiple")?.files || []
+              ),
+              additional_info:
+                document.getElementById("infoTextarea")?.value || "",
+              furnitures: upholstery,
+              degree_of_contamination_id:
+                document.querySelector(
+                  'input[name="contaminationForUpholstery"]:checked'
+                )?.value || "",
+              cleaning_requests_ids: Array.from(
+                document.querySelectorAll(
+                  'input[name="requestsForUpholstery"]:checked'
+                )
+              ).map((e) => e.value),
+            },
+            spring: {
+              images: Array.from(
+                document.getElementById("formFileMultiple")?.files || []
+              ),
+              additional_info:
+                document.getElementById("infoTextarea")?.value || "",
+
+              area:
+                document.getElementById("areaForSpringCleaning")?.value || "",
+              reason_for_cleaning_id:
+                document.getElementById("reasonForSpringCleaning")?.value || "",
+              cleaning_requests_ids: Array.from(
+                document.querySelectorAll(
+                  'input[name="requestsForSpringCleaning"]:checked'
+                )
+              ).map((e) => e.value),
+              degree_of_contamination_id:
+                document.querySelector(
+                  'input[name="contaminationForSpringCleaning"]:checked'
+                )?.value || "",
+            },
+            cleaning: {
+              images: Array.from(
+                document.getElementById("formFileMultiple")?.files || []
+              ),
+              additional_info:
+                document.getElementById("infoTextarea")?.value || "",
+
+              area: document.getElementById("areaForCleaning")?.value || "",
+              reason_for_cleaning_id:
+                document.getElementById("reasonForCleaning")?.value || "",
+              cleaning_requests_ids: Array.from(
+                document.querySelectorAll(
+                  'input[name="requestsForCleaning"]:checked'
+                )
+              ).map((e) => e.value),
+              degree_of_contamination_id:
+                document.querySelector(
+                  'input[name="contaminationForCleaning"]:checked'
+                )?.value || "",
+            },
+            messieApartment: {
+              images: Array.from(
+                document.getElementById("formFileMultiple")?.files || []
+              ),
+              additional_info:
+                document.getElementById("infoTextarea")?.value || "",
+              area:
+                document.getElementById("areaForMessieApatment")?.value || "",
+              reason_for_cleaning_id:
+                document.getElementById("reasonForMessieApatment")?.value || "",
+              cleaning_requests_ids: Array.from(
+                document.querySelectorAll(
+                  'input[name="requestsForMessieApatment"]:checked'
+                )
+              ).map((e) => e.value),
+              degree_of_contamination_id:
+                document.querySelector(
+                  'input[name="contaminationForMessieApatment"]:checked'
+                )?.value || "",
+            },
+            box1: {
+              images: Array.from(
+                document.getElementById("formFileMultipleWindow")?.files || []
+              ),
+              additional_info:
+                document.getElementById("infoTextareaWindow")?.value || "",
+
+              reason_for_cleaning_id:
+                document.getElementById("reasonForWindowCleaningOptional")
+                  ?.value || "",
+              max_room_height:
+                document.getElementById("heightInputForWindowCleaningOptional")
+                  ?.value || "",
+              window_sash:
+                document.getElementById("casementForWindowCleaningOptional")
+                  ?.value || "",
+              cleaning_requests_ids: Array.from(
+                document.querySelectorAll(
+                  'input[name="requestsForWindowCleaningOptional"]:checked'
+                )
+              ).map((e) => e.value),
+              degree_of_contamination_id:
+                document.querySelector(
+                  'input[name="contaminationForWindowCleaningOptional"]:checked'
+                )?.value || "",
+            },
+            box2: {
+              images: Array.from(
+                document.getElementById("formFileMultipleCarpet")?.files || []
+              ),
+              additional_info:
+                document.getElementById("infoTextareaCarpet")?.value || "",
+              carpets:
+                document.getElementById("looseCarpetForCarpetOptional")
+                  ?.value || "",
+              area:
+                document.getElementById("totalAreaForCarpetOptional")?.value ||
+                "",
+              fixed_carpet:
+                document.getElementById("fixedCarpetForCarpetOptional")
+                  ?.value || "",
+              cleaning_requests_ids: Array.from(
+                document.querySelectorAll(
+                  'input[name="requestsForCarpetOptional"]:checked'
+                )
+              ).map((e) => e.value),
+              degree_of_contamination_id:
+                document.querySelector(
+                  'input[name="contaminationForCarpetOptional"]:checked'
+                )?.value || "",
+            },
+            box3: {
+              images: Array.from(
+                document.getElementById("formFileMultipleUpholstery")?.files ||
+                  []
+              ),
+              additional_info:
+                document.getElementById("infoTextareaUpholstery")?.value || "",
+              degree_of_contamination_id:
+                document.querySelector(
+                  'input[name="contaminationForUpholsteryOptional"]:checked'
+                )?.value || "",
+              cleaning_requests_ids: Array.from(
+                document.querySelectorAll(
+                  'input[name="requestsForUpholsteryOptional"]:checked'
+                )
+              ).map((e) => e.value),
+              furnitures: upholsteryOptional,
+            },
+            box4: {
+              images: Array.from(
+                document.getElementById("formFileMultipleUpholstery")?.files ||
+                  []
+              ),
+              additional_info:
+                document.getElementById("infoTextareaUpholstery")?.value || "",
+
+              area: document.getElementById("areaForNormalOption")?.value || "",
+              reason_for_cleaning_id:
+                document.getElementById("reasonForNormalOption")?.value || "",
+              cleaning_requests_ids: Array.from(
+                document.querySelectorAll(
+                  'input[name="requestsForNormalOption"]:checked'
+                )
+              ).map((e) => e.value),
+              degree_of_contamination_id:
+                document.querySelector(
+                  'input[name="contaminationForNormalOption"]:checked'
+                )?.value || "",
+            },
+          };
+
+          let fatchData = {};
+          if (data.tabName === "normal-cleaning") {
+            fatchData = {
+              ...defultData,
+              services_requested: [dataObj.normal],
+            };
+          } else if (data.tabName === "windows-cleaning") {
+            fatchData = {
+              ...defultData,
+              services_requested: [dataObj.windows],
+            };
+          }
+          if (data.tabName === "carpet") {
+            fatchData = {
+              ...defultData,
+              services_requested: [dataObj.carpet],
+            };
+          }
+          if (data.tabName === "upholstery-cleaning") {
+            fatchData = {
+              ...defultData,
+              services_requested: [dataObj.upholstery],
+            };
+          }
+          if (data.tabName === "spring-cleaning") {
+            fatchData = {
+              ...defultData,
+              services_requested: [dataObj.spring],
+            };
+          }
+          if (data.tabName === "cleaning") {
+            fatchData = {
+              ...defultData,
+              services_requested: [dataObj.cleaning],
+            };
+          }
+          if (data.tabName === "messie-apartment") {
+            fatchData = {
+              ...defultData,
+              services_requested: [dataObj.messieApartment],
+            };
+          }
+          console.log(data.optionsTabs, "data");
+
+          if (data.optionsTabs && data.optionsTabs.includes("box-1")) {
+            fatchData = {
+              ...defultData,
+              services_requested: [
+                ...fatchData.services_requested,
+                dataObj.box1,
+              ],
+            };
+          }
+          if (data.optionsTabs && data.optionsTabs.includes("box-2")) {
+            fatchData = {
+              ...defultData,
+              services_requested: [
+                ...fatchData.services_requested,
+                dataObj.box2,
+              ],
+            };
+          }
+          if (data.optionsTabs && data.optionsTabs.includes("box-3")) {
+            fatchData = {
+              ...defultData,
+              services_requested: [
+                ...fatchData.services_requested,
+                dataObj.box3,
+              ],
+            };
+          }
+          if (data.optionsTabs && data.optionsTabs.includes("box-4")) {
+            fatchData = {
+              ...defultData,
+              services_requested: [
+                ...fatchData.services_requested,
+                dataObj.box4,
+              ],
+            };
+          }
+          const tabId = data.tabName;
+
+          // التحقق إذا كان التاب الحالي هو نفسه المفعل
+
+          const loading = document.querySelector(".submit-spiner");
+          const notLoading = document.querySelector(".submit-icon");
+          const btn = document.querySelector("#SubmitForm");
+          if (loading) loading.style.display = "block";
+          if (notLoading) notLoading.style.display = "none";
+          btn.classList.add("disabled");
+
+          // ===============================
+          // 🔥 تغيير نص الـ accordion حسب اسم التاب
+          // ===============================
+          console.log(loading, "loading");
+
+          // ===============================
+          // فتح أول accordion-item بالقوة
+          const firstItem = document.querySelector(
+            ".accordion-item:nth-child(1)"
+          );
+          if (firstItem) {
+            const btn = firstItem.querySelector(".accordion-button");
+            const body = firstItem.querySelector(".accordion-collapse");
+
+            btn.classList.remove("collapsed");
+            body.classList.add("show");
+          }
+
+          // فتح العنصر السادس accordion-item بالقوة (العنصر 6)
+          const sixthItem = document.querySelector(
+            ".accordion-item:nth-child(4)"
+          );
+          if (sixthItem) {
+            const btn = sixthItem.querySelector(".accordion-button");
+            const body = sixthItem.querySelector(".accordion-collapse");
+
+            btn.classList.remove("collapsed");
+            body.classList.add("show");
+          }
+
+          document.querySelectorAll("input, select").forEach((el) => {
+            el.classList.remove("error");
+          });
+
+          document
+            .querySelectorAll(".error-icon")
+            .forEach((icon) => icon.remove());
+
+          // إخفاء كل التابات
+          document.querySelectorAll(".tab-section").forEach((div) => {
+            div.style.display = "none";
+          });
+
+          // إعادة تفعيل كل الخيارات في select
+          const select = document.getElementById("which");
+          if (select) {
+            select
+              .querySelectorAll("option")
+              .forEach((opt) => (opt.disabled = false));
+            select.value = "";
+          }
+
+          // إعادة تفعيل كل العناصر في dropdown
+          document.querySelectorAll(".dropdown-item").forEach((item) => {
+            item.classList.remove("disabled");
+            item.style.pointerEvents = "auto";
+            if (item.dataset.value === "box-4") {
+              item.style.display = "block";
+            }
+          });
+
+          // إخفاء كل الصناديق بالكامل
+          document.querySelectorAll("#boxes > .box").forEach((box) => {
+            box.classList.add("hidden");
+          });
+
+          // إظهار التاب المطلوب
+          const targetDiv = document.querySelector(
+            `.tab-section[data-tab="${tabId}"]`
+          );
+          if (targetDiv) targetDiv.style.display = "block";
+
+          // تفريغ CleaningData
+          data = { ...data, tabName: tabId, CleaningData: {} };
+
+          // تفريغ الحقول
+          document
+            .querySelectorAll("input, select, textarea")
+            .forEach((input) => {
+              if (input.type === "checkbox" || input.type === "radio") {
+                input.checked = false;
+              } else {
+                document.querySelectorAll(".checkInput").forEach((el) => {
+                  el.style.display = "none";
+                });
+                input.style.borderColor = "#dee2e6";
+
+                input.value = "";
+              }
+            });
+          setTimeout(() => {
+            loading.style.display = "none";
+            notLoading.style.display = "block";
+            btn.classList.remove("disabled");
+          }, 1000);
+          console.log(fatchData, "momen");
+        }
+
+        // تمرير السكروول للعنصر الخطأ بشكل سلس
+        if (firstError) {
+          console.log(firstError, "hoho");
+
+          smoothScroll(container, firstError, 800); // 800ms = أبطأ وأكثر سلاسة
+        }
+
+        // دالة التمرير السلس
+        function smoothScroll(container, target, duration = 600) {
+          const start = container.scrollTop;
+          const targetPosition =
+            target.getBoundingClientRect().top -
+            container.getBoundingClientRect().top;
+
+          const change = targetPosition;
+          let currentTime = 0;
+
+          function animateScroll() {
+            currentTime += 16; // نفس frame rate تبع requestAnimationFrame
+
+            const val = easeInOutQuad(currentTime, start, change, duration);
+            container.scrollTop = val;
+
+            if (currentTime < duration) {
+              requestAnimationFrame(animateScroll);
+            }
+          }
+
+          animateScroll();
+        }
+
+        // دالة easing لتسريع/تبطيء الحركة
+        function easeInOutQuad(t, b, c, d) {
+          t /= d / 2;
+          if (t < 1) return (c / 2) * t * t + b;
+          t--;
+          return (-c / 2) * (t * (t - 2) - 1) + b;
+        }
+      }
     </script>
   </body>
 </html>
