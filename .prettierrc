@@ -1,0 +1,12 @@
+{
+  "overrides": [
+    {
+      "files": "*.svg",
+      "options": {
+        "parser": "none"
+      }
+    }
+  ],
+  "prettier.htmlWhitespaceSensitivity": "ignore",
+  "prettier.printWidth": 1000
+}
