@@ -791,12 +791,21 @@ class CleaningFormApp {
     let allErrorFields = []; // FIX #2: Collect all error fields for ordered scrolling
 
     // Validate property details
-    const propertyFields = ["typeSelect", "storeyInput", "furnitureSelect"];
+    const propertyFields = [
+      "typeSelect",
+      "storeyInput",
+      "furnitureSelect",
+      "areaForNormal",
+    ];
     if (!this.validator.validateRequiredFields(propertyFields)) {
       isValid = false;
       propertyFields.forEach((fieldId) => {
         const field = document.getElementById(fieldId);
-        if (field && field.classList.contains("error")) {
+        if (
+          field &&
+          (field.classList.contains("error-sign") ||
+            field.classList.contains("error"))
+        ) {
           allErrorFields.push({ field, order: 1 }); // Property details first
         }
       });
@@ -820,6 +829,40 @@ class CleaningFormApp {
       ); // Optional services third
     }
 
+    // --- Validate Cleaning Address if checkbox is checked ---
+    const cleaningCheckbox = document.getElementById("separateCleaningAddress");
+    if (cleaningCheckbox && cleaningCheckbox.checked) {
+      const cleaningFields = ["cleaningStreet", "cleaningNo", "cleaningZip"]; // حط الايديهات هنا
+      cleaningFields.forEach((fieldId) => {
+        const field = document.getElementById(fieldId);
+        if (
+          field &&
+          (field.value.trim() === "" ||
+            (field.tagName === "SELECT" && field.value === "0"))
+        ) {
+          field.classList.add("error-sign");
+          allErrorFields.push({ field, order: 3 }); // نفس ترتيب optional services
+          isValid = false;
+        }
+      });
+    }
+    const contactCheckbox = document.getElementById("separateContactPerson");
+    if (contactCheckbox && contactCheckbox.checked) {
+      const cleaningFields = ["contactFirstName"];
+      cleaningFields.forEach((fieldId) => {
+        const field = document.getElementById(fieldId);
+        if (
+          field &&
+          (field.value.trim() === "" ||
+            (field.tagName === "SELECT" && field.value === "0"))
+        ) {
+          field.classList.add("error-sign");
+          allErrorFields.push({ field, order: 3 });
+          isValid = false;
+        }
+      });
+    }
+
     // Validate personal information
     const personalFields = [
       "billingEmail",
@@ -838,7 +881,11 @@ class CleaningFormApp {
       isValid = false;
       personalFields.forEach((fieldId) => {
         const field = document.getElementById(fieldId);
-        if (field && field.classList.contains("error")) {
+        if (
+          field &&
+          (field.classList.contains("error-sign") ||
+            field.classList.contains("error"))
+        ) {
           allErrorFields.push({ field, order: 4 }); // Personal info last
         }
       });
@@ -861,7 +908,6 @@ class CleaningFormApp {
         const label = document.getElementById("confirmFormLabel");
         if (label) label.style.color = "red";
       }
-      // uiManager.showError('You must accept the terms and conditions');
       isValid = false;
     }
 
@@ -870,6 +916,8 @@ class CleaningFormApp {
       allErrorFields.sort((a, b) => a.order - b.order);
 
       if (allErrorFields.length > 0) {
+        console.log(allErrorFields, "allErrorFields");
+
         const firstErrorField = allErrorFields[0].field;
         uiManager.scrollToError(firstErrorField);
       }
