@@ -791,12 +791,7 @@ class CleaningFormApp {
     let allErrorFields = []; // FIX #2: Collect all error fields for ordered scrolling
 
     // Validate property details
-    const propertyFields = [
-      "typeSelect",
-      "storeyInput",
-      "furnitureSelect",
-      "areaForNormal",
-    ];
+    const propertyFields = ["typeSelect", "storeyInput", "furnitureSelect"];
     if (!this.validator.validateRequiredFields(propertyFields)) {
       isValid = false;
       propertyFields.forEach((fieldId) => {
@@ -813,20 +808,25 @@ class CleaningFormApp {
 
     // Validate current tab
     const tabErrors = this.validateCurrentTab();
+    console.log(tabErrors, "tabErrorstabErrors");
+
     if (!tabErrors.isValid) {
       isValid = false;
-      allErrorFields.push(
-        ...tabErrors.fields.map((f) => ({ field: f, order: 2 }))
-      ); // Main service second
+
+      tabErrors.fields.forEach((f) => {
+        if (f) f.classList.add("error-sign"); // إضافة الكلاس
+        allErrorFields.push({ field: f, order: 2 }); // Main service second
+      });
     }
 
     // FIX #1: Validate optional services
     const optionalErrors = this.validateOptionalServices();
     if (!optionalErrors.isValid) {
       isValid = false;
-      allErrorFields.push(
-        ...optionalErrors.fields.map((f) => ({ field: f, order: 3 }))
-      ); // Optional services third
+      optionalErrors.fields.forEach((f) => {
+        if (f) f.classList.add("error-sign"); // إضافة الكلاس
+        allErrorFields.push({ field: f, order: 3 }); // Optional services third
+      });
     }
 
     // --- Validate Cleaning Address if checkbox is checked ---
@@ -939,6 +939,11 @@ class CleaningFormApp {
       case "normal-cleaning":
         const areaForNormal = document.getElementById("areaForNormal");
         const reasonForNormal = document.getElementById("reasonForNormal");
+        if (!reasonForNormal?.value || reasonForNormal.value === "0") {
+          this.showFieldError(reasonForNormal, "Please select a reason");
+          isValid = false;
+          errorFields.push(reasonForNormal);
+        }
         if (!areaForNormal?.value || parseFloat(areaForNormal.value) <= 0) {
           this.showFieldError(
             areaForNormal,
@@ -947,11 +952,6 @@ class CleaningFormApp {
           isValid = false;
           errorFields.push(areaForNormal);
         }
-        if (!reasonForNormal?.value || reasonForNormal.value === "0") {
-          this.showFieldError(reasonForNormal, "Please select a reason");
-          isValid = false;
-          errorFields.push(reasonForNormal);
-        }
         if (!this.validator.validateRadioGroup("contaminationForNormal")) {
           isValid = false;
           const radio = document.querySelector(
@@ -959,23 +959,24 @@ class CleaningFormApp {
           );
           if (radio) errorFields.push(radio);
         }
+
         break;
 
       case "windows-cleaning":
         const casement = document.getElementById("casementForWindowCleaning");
         const reason = document.getElementById("reasonForWindowCleaning");
         const height = document.getElementById("heightInputForWindowCleaning");
-
-        if (!casement?.value || parseFloat(casement.value) <= 0) {
-          this.showFieldError(casement, "Please enter number of window sashes");
-          isValid = false;
-          errorFields.push(casement);
-        }
         if (!reason?.value || reason.value === "0") {
           this.showFieldError(reason, "Please select a reason");
           isValid = false;
           errorFields.push(reason);
         }
+        if (!casement?.value || parseFloat(casement.value) <= 0) {
+          this.showFieldError(casement, "Please enter number of window sashes");
+          isValid = false;
+          errorFields.push(casement);
+        }
+
         if (!height?.value || parseFloat(height.value) <= 0) {
           this.showFieldError(height, "Please enter room height");
           isValid = false;
