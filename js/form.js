@@ -1028,16 +1028,17 @@ class CleaningFormApp {
       case "spring-cleaning":
         const areaSpring = document.getElementById("areaForSpringCleaning");
         const reasonSpring = document.getElementById("reasonForSpringCleaning");
-        if (!areaSpring?.value || parseFloat(areaSpring.value) <= 0) {
-          this.showFieldError(areaSpring, "Please enter area");
-          isValid = false;
-          errorFields.push(areaSpring);
-        }
         if (!reasonSpring?.value || reasonSpring.value === "0") {
           this.showFieldError(reasonSpring, "Please select a reason");
           isValid = false;
           errorFields.push(reasonSpring);
         }
+        if (!areaSpring?.value || parseFloat(areaSpring.value) <= 0) {
+          this.showFieldError(areaSpring, "Please enter area");
+          isValid = false;
+          errorFields.push(areaSpring);
+        }
+
         if (
           !this.validator.validateRadioGroup("contaminationForSpringCleaning")
         ) {
@@ -1052,16 +1053,17 @@ class CleaningFormApp {
       case "cleaning":
         const areaEnd = document.getElementById("areaForCleaning");
         const reasonEnd = document.getElementById("reasonForCleaning");
-        if (!areaEnd?.value || parseFloat(areaEnd.value) <= 0) {
-          this.showFieldError(areaEnd, "Please enter area");
-          isValid = false;
-          errorFields.push(areaEnd);
-        }
         if (!reasonEnd?.value || reasonEnd.value === "0") {
           this.showFieldError(reasonEnd, "Please select a reason");
           isValid = false;
           errorFields.push(reasonEnd);
         }
+        if (!areaEnd?.value || parseFloat(areaEnd.value) <= 0) {
+          this.showFieldError(areaEnd, "Please enter area");
+          isValid = false;
+          errorFields.push(areaEnd);
+        }
+
         if (!this.validator.validateRadioGroup("contaminationForCleaning")) {
           isValid = false;
           const radio = document.querySelector(
@@ -1074,16 +1076,17 @@ class CleaningFormApp {
       case "messie-apartment":
         const areaMessie = document.getElementById("areaForMessieApatment");
         const reasonMessie = document.getElementById("reasonForMessieApatment");
-        if (!areaMessie?.value || parseFloat(areaMessie.value) <= 0) {
-          this.showFieldError(areaMessie, "Please enter area");
-          isValid = false;
-          errorFields.push(areaMessie);
-        }
         if (!reasonMessie?.value || reasonMessie.value === "0") {
           this.showFieldError(reasonMessie, "Please select a reason");
           isValid = false;
           errorFields.push(reasonMessie);
         }
+        if (!areaMessie?.value || parseFloat(areaMessie.value) <= 0) {
+          this.showFieldError(areaMessie, "Please enter area");
+          isValid = false;
+          errorFields.push(areaMessie);
+        }
+
         if (
           !this.validator.validateRadioGroup("contaminationForMessieApatment")
         ) {
