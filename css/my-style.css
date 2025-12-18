@@ -134,13 +134,15 @@
   margin-top: 0 !important;
 }
 
-.counter-input {
+.upholstery-wrapper .counter-input {
   width: 60px;
   text-align: center;
   font-size: 1.1rem;
   border: 2px solid #dee2e6;
   border-radius: 8px;
   height: 35px;
+  padding: 0 !important;
+  background-image: none !important;
 }
 
 /* .hero2-content {

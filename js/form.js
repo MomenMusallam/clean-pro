@@ -432,7 +432,7 @@ class CleaningFormApp {
   setupUpholsteryCounters() {
     document.addEventListener("click", (e) => {
       if (e.target.matches(".btn-plus, .btn-minus")) {
-        this.handleCounterClick(e.target);
+        // this.handleCounterClick(e.target);
       }
     });
 
