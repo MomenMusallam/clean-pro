@@ -381,8 +381,7 @@ div:has(> .form-control.error) .error-icon {
   background-color: #fff;
 }
 
-.error + .error-icon {
-}
+.error+.error-icon {}
 
 .input-wrapper {
   position: relative;
@@ -522,6 +521,7 @@ div:has(> .form-control.error) .error-icon {
   z-index: 999999;
   max-width: 250px;
 }
+
 .cleaning-request label {
   margin-bottom: 0 !important;
   font-weight: 400;
@@ -600,7 +600,7 @@ div:has(> .form-control.error) .error-icon {
 }
 
 /* عند تحديد البطاقة */
-.card-input:checked + .card {
+.card-input:checked+.card {
   border-color: #3ca200;
   box-shadow: 0 0 10px rgba(60, 162, 0, 0.5);
   background-color: #a7a7a72e;
@@ -1119,6 +1119,26 @@ input.success-sign {
   border-color: #4caf50;
   padding-right: 34px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Cpolyline points='4,11 8,15 16,5' fill='none' stroke='%234caf50' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px 16px;
+}
+
+select.error-sign {
+  border-color: #f44336;
+  padding-right: 34px;
+
+
+  /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ctext x='50%25' y='70%25' text-anchor='middle' fill='%23f44336' font-size='18' font-weight='bold'%3E!%3C/text%3E%3C/svg%3E"); */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px 16px;
+}
+
+select.success-sign {
+  border-color: #4caf50;
+  padding-right: 34px;
+  /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Cpolyline points='4,11 8,15 16,5' fill='none' stroke='%234caf50' stroke-width='2'/%3E%3C/svg%3E"); */
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 16px 16px;
