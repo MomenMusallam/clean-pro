@@ -36,16 +36,16 @@ export class DataCollector {
      * @returns {Object} Service data
      */
     collectNormalCleaningService(isOptional = false) {
-        const prefix = isOptional ? 'NormalOption' : 'Normal';
+        const prefix = isOptional ? 'Optional' : '';
         
         return {
             service_id: this.serviceIdMap['normal-cleaning'],
-            reason_for_cleaning_id: document.getElementById(`reasonFor${prefix}`)?.value || null,
-            area: document.getElementById(`areaFor${prefix}`)?.value || null,
-            degree_of_contamination_id: getSelectedRadio(`contaminationFor${prefix}`) || null,
-            cleaning_requests_ids: getCheckedValues(`requestsFor${prefix}`),
-            additional_info: document.getElementById(`infoTextarea${isOptional ? prefix : ''}`)?.value || '',
-            images: this.getServiceImages(isOptional ? 'formFileMultipleNormal' : 'formFileMultiple'),
+            reason_for_cleaning_id: document.getElementById(`reasonForNormal${prefix}`)?.value || null,
+            area: document.getElementById(`areaForNormal${prefix}`)?.value || null,
+            degree_of_contamination_id: getSelectedRadio(`contaminationForNormal${prefix}`) || null,
+            cleaning_requests_ids: getCheckedValues(`requestsForNormal${prefix}`),
+            additional_info: document.getElementById(`infoTextareaNormal${isOptional ? prefix : ''}`)?.value || '',
+            images: this.getServiceImages(`formFileMultipleNormal${isOptional ? prefix : ''}`),
         };
     }
 
@@ -55,17 +55,17 @@ export class DataCollector {
      * @returns {Object} Service data
      */
     collectWindowCleaningService(isOptional = false) {
-        const prefix = isOptional ? 'WindowCleaningOptional' : 'WindowCleaning';
+        const prefix = isOptional ? 'Optional' : '';
         
         return {
             service_id: this.serviceIdMap['windows-cleaning'],
-            reason_for_cleaning_id: document.getElementById(`reasonFor${prefix}`)?.value || null,
-            window_sash: document.getElementById(`casementFor${prefix}`)?.value || null,
-            max_room_height: document.getElementById(`heightInputFor${prefix}`)?.value || null,
-            degree_of_contamination_id: getSelectedRadio(`contaminationFor${prefix}`) || null,
-            cleaning_requests_ids: getCheckedValues(`requestsFor${prefix}`),
-            additional_info: document.getElementById(`infoTextarea${isOptional ? 'Window' : ''}`)?.value || '',
-            images: this.getServiceImages(isOptional ? 'formFileMultipleWindow' : 'formFileMultiple'),
+            reason_for_cleaning_id: document.getElementById(`reasonForWindow${prefix}`)?.value || null,
+            window_sash: document.getElementById(`casementForWindow${prefix}`)?.value || null,
+            max_room_height: document.getElementById(`heightInputForWindow${prefix}`)?.value || null,
+            degree_of_contamination_id: getSelectedRadio(`contaminationForWindow${prefix}`) || null,
+            cleaning_requests_ids: getCheckedValues(`requestsForWindow${prefix}`),
+            additional_info: document.getElementById(`infoTextareaWindow${isOptional }`)?.value || '',
+            images: this.getServiceImages(`formFileMultipleWindow${isOptional }`),
         };
     }
 
@@ -75,17 +75,17 @@ export class DataCollector {
      * @returns {Object} Service data
      */
     collectCarpetCleaningService(isOptional = false) {
-        const prefix = isOptional ? 'CarpetOptional' : 'Carpet';
+        const prefix = isOptional ? 'Optional' : '';
         
         return {
             service_id: this.serviceIdMap['carpet'],
-            carpets: document.getElementById(`looseCarpetFor${prefix}`)?.value || null,
-            area: document.getElementById(`totalAreaFor${prefix}`)?.value || null,
-            fixed_carpet: document.getElementById(`fixedCarpetFor${prefix}`)?.value || null,
-            degree_of_contamination_id: getSelectedRadio(`contaminationFor${prefix}`) || null,
-            cleaning_requests_ids: getCheckedValues(`requestsFor${prefix}`),
-            additional_info: document.getElementById(`infoTextarea${isOptional ? 'Carpet' : ''}`)?.value || '',
-            images: this.getServiceImages(isOptional ? 'formFileMultipleCarpet' : 'formFileMultiple'),
+            carpets: document.getElementById(`looseCarpetForCarpet${prefix}`)?.value || null,
+            area: document.getElementById(`totalAreaForCarpet${prefix}`)?.value || null,
+            fixed_carpet: document.getElementById(`fixedCarpetForCarpet${prefix}`)?.value || null,
+            degree_of_contamination_id: getSelectedRadio(`contaminationForCarpet${prefix}`) || null,
+            cleaning_requests_ids: getCheckedValues(`requestsForCarpet${prefix}`),
+            additional_info: document.getElementById(`infoTextareaCarpet${isOptional}`)?.value || '',
+            images: this.getServiceImages(`formFileMultipleCarpet${isOptional}`),
         };
     }
 
@@ -96,7 +96,7 @@ export class DataCollector {
      * @returns {Object} Service data
      */
     collectUpholsteryCleaningService(upholsteryItems = [], isOptional = false) {
-        const prefix = isOptional ? 'UpholsteryOptional' : 'Upholstery';
+        const prefix = isOptional ? 'Optional' : '';
         
         // Collect upholstery items
         let furnitures = [];
@@ -109,7 +109,7 @@ export class DataCollector {
                     const value = parseInt(input.value) || 0;
                     if (value > 0) {
                         furnitures.push({
-                            furniture_type_id: input.id,
+                            furniture_type_id: Number(input.id.match(/\d+/)?.[0]),
                             furniture_num: value
                         });
                     }
@@ -126,10 +126,10 @@ export class DataCollector {
         return {
             service_id: this.serviceIdMap['upholstery-cleaning'],
             furnitures: furnitures,
-            degree_of_contamination_id: getSelectedRadio(`contaminationFor${prefix}`) || null,
-            cleaning_requests_ids: getCheckedValues(`requestsFor${prefix}`),
-            additional_info: document.getElementById(`infoTextarea${isOptional ? 'Upholstery' : ''}`)?.value || '',
-            images: this.getServiceImages(isOptional ? 'formFileMultipleUpholstery' : 'formFileMultiple'),
+            degree_of_contamination_id: getSelectedRadio(`contaminationForUpholstery${prefix}`) || null,
+            cleaning_requests_ids: getCheckedValues(`requestsForUpholstery${prefix}`),
+            additional_info: document.getElementById(`infoTextareaUpholstery${isOptional ? 'Carpet' : ''}`)?.value || '',
+            images: this.getServiceImages(`formFileMultipleUpholstery${isOptional ? 'Carpet' : ''}`),
         };
     }
 
@@ -144,8 +144,8 @@ export class DataCollector {
             area: document.getElementById('areaForSpringCleaning')?.value || null,
             degree_of_contamination_id: getSelectedRadio('contaminationForSpringCleaning') || null,
             cleaning_requests_ids: getCheckedValues('requestsForSpringCleaning'),
-            additional_info: document.getElementById('infoTextarea')?.value || '',
-            images: this.getServiceImages('formFileMultiple'),
+            additional_info: document.getElementById('infoTextareaForSpring')?.value || '',
+            images: this.getServiceImages('formFileMultipleForSpring'),
         };
     }
 
@@ -160,8 +160,8 @@ export class DataCollector {
             area: document.getElementById('areaForCleaning')?.value || null,
             degree_of_contamination_id: getSelectedRadio('contaminationForCleaning') || null,
             cleaning_requests_ids: getCheckedValues('requestsForCleaning'),
-            additional_info: document.getElementById('infoTextarea')?.value || '',
-            images: this.getServiceImages('formFileMultiple'),
+            additional_info: document.getElementById('infoTextForCleaning')?.value || '',
+            images: this.getServiceImages('formFileMultipleForCleaning'),
         };
     }
 
@@ -176,8 +176,8 @@ export class DataCollector {
             area: document.getElementById('areaForMessieApatment')?.value || null,
             degree_of_contamination_id: getSelectedRadio('contaminationForMessieApatment') || null,
             cleaning_requests_ids: getCheckedValues('requestsForMessieApatment'),
-            additional_info: document.getElementById('infoTextarea')?.value || '',
-            images: this.getServiceImages('formFileMultiple'),
+            additional_info: document.getElementById('infoTextareaForMessieApatment')?.value || '',
+            images: this.getServiceImages('formFileMultipleForMessieApatment'),
         };
     }
 
@@ -378,47 +378,6 @@ export class DataCollector {
 
         const collector = serviceCollectors[activeTab];
         return collector ? collector() : null;
-    }
-
-    /**
-     * Validate collected data before submission
-     * @param {Object} data - Form data
-     * @returns {Object} Validation result
-     */
-    validateData(data) {
-        const errors = [];
-
-        // Check required personal fields
-        if (!data.email) errors.push('Email is required');
-        if (!data.phone) errors.push('Phone is required');
-        if (!data.first_name) errors.push('First name is required');
-        if (!data.last_name) errors.push('Last name is required');
-        if (!data.street) errors.push('Street is required');
-        if (!data.street_number) errors.push('Street number is required');
-        if (!data.zip_code) errors.push('Zip code is required');
-        if (!data.city) errors.push('City is required');
-        if (!data.gender) errors.push('Gender is required');
-        if (!data.honorific_title) errors.push('Title is required');
-        
-        // Check property details
-        if (!data.location_type_id) errors.push('Property type is required');
-        if (!data.floor) errors.push('Floor is required');
-        if (!data.location_status_id) errors.push('Property status is required');
-        
-        // Check services
-        if (!data.services_requested || data.services_requested.length === 0) {
-            errors.push('At least one service is required');
-        }
-
-        // Check terms
-        if (!data.terms_accepted) {
-            errors.push('You must accept the terms and conditions');
-        }
-
-        return {
-            isValid: errors.length === 0,
-            errors,
-        };
     }
 }
 

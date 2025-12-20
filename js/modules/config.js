@@ -24,59 +24,19 @@ export const FormConfig = {
     // Localization
     locale: {
         current: window.appData?.locale || 'en',
-        language: window.appData?.lang || 'en',
     },
 
     // Calendar Settings
     calendar: {
         preferredDateLimit: window.appData?.preferredDateLimit || 3,
         note: window.appData?.calendarNote || '',
-        minDate: 1, // Days from today
-        dateFormat: 'd/m/Y',
-    },
-
-    // Validation Rules
-    validation: {
-        emailDomain: '.com',
-        minInputValue: 0,
-        requiredFields: [
-            'firstName',
-            'lastName',
-            'email',
-            'phone',
-            'address',
-        ],
-    },
-
-    // UI Settings
-    ui: {
-        scrollDuration: 800, // milliseconds
-        loadingDelay: 1000, // milliseconds
-        animationDelay: 500, // milliseconds
-        tooltipOffset: 5, // pixels
-    },
-
-    // Selectors - Centralized DOM selectors
-    selectors: {
-        form: '#bookingForm',
-        submitBtn: '#SubmitForm',
-        loading: '.submit-spiner',
-        submitIcon: '.submit-icon',
-        confirmRadio: '#confirmForm',
-        confirmLabel: '#confirmFormLabel',
-        datePicker: '#datepicker',
-        selectedDatesList: '#selectedDatesList',
-        tabSection: '.tab-section',
-        dropdown: '#whichDropdown',
-        boxes: '#boxes',
-        containerSection: '.container-tabs2-section',
     },
 
     // Error Messages
     messages: {
-        success: 'Form submitted successfully!',
+        success: window.appData?.successMessage || '',
         error: 'An error occurred. Please try again.',
-        validationError: 'Please fill in all required fields.',
+        validationError: window.appData?.fieldRequiredMessage || '',
         networkError: 'Network error. Please check your connection.',
         invalidEmail: 'Please enter a valid email address.',
         maxDatesExceeded: 'You can select up to {limit} dates only.',

@@ -208,7 +208,6 @@ export function showFieldError(field, message = '') {
 
     field.classList.add('error');
     field.classList.add('error-sign');
-            field.classList.remove('success-sign');
 
     
     // if (message) {

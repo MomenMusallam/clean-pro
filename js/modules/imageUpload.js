@@ -19,9 +19,9 @@ export function setupImageUpload(inputId, previewId, counterId, maxFiles = 5) {
 
     let selectedFiles = [];
 
-    fileInput.addEventListener('change', (e) => {
+    fileInput.addEventListener("change", (e) => {
         const files = Array.from(e.target.files);
-        
+
         // Check if total files exceed limit
         if (selectedFiles.length + files.length > maxFiles) {
             alert(`You can upload maximum ${maxFiles} images`);
@@ -29,7 +29,7 @@ export function setupImageUpload(inputId, previewId, counterId, maxFiles = 5) {
         }
 
         // Validate and add files
-        files.forEach(file => {
+        files.forEach((file) => {
             if (validateFile(file)) {
                 selectedFiles.push(file);
                 addPreview(file, previewContainer, selectedFiles);
@@ -41,10 +41,17 @@ export function setupImageUpload(inputId, previewId, counterId, maxFiles = 5) {
     });
 
     // Remove file handler
-    previewContainer.addEventListener('click', (e) => {
-        if (e.target.classList.contains('remove-image')) {
+    previewContainer.addEventListener("click", (e) => {
+        if (e.target.classList.contains("remove-image")) {
             const index = parseInt(e.target.dataset.index);
-            removeFile(index, selectedFiles, previewContainer, counterElement, fileInput, maxFiles);
+            removeFile(
+                index,
+                selectedFiles,
+                previewContainer,
+                counterElement,
+                fileInput,
+                maxFiles
+            );
         }
     });
 }
@@ -55,11 +62,19 @@ export function setupImageUpload(inputId, previewId, counterId, maxFiles = 5) {
  * @returns {boolean} Is valid
  */
 function validateFile(file) {
-    const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
-    const maxSize = 5 * 1024 * 1024; // 5MB
+    const validTypes = [
+        "image/jpeg",
+        "image/jpg",
+        "image/png",
+        "image/gif",
+        "image/webp",
+    ];
+    const maxSize = 10 * 1024 * 1024; // 10MB
 
     if (!validTypes.includes(file.type)) {
-        alert(`Invalid file type: ${file.name}. Please upload images only (JPEG, PNG, GIF, WebP)`);
+        alert(
+            `Invalid file type: ${file.name}. Please upload images only (JPEG, PNG, GIF, WebP)`
+        );
         return false;
     }
 
@@ -79,12 +94,12 @@ function validateFile(file) {
  */
 function addPreview(file, container, files) {
     const reader = new FileReader();
-    
+
     reader.onload = (e) => {
         const index = files.indexOf(file);
-        
-        const previewDiv = document.createElement('div');
-        previewDiv.className = 'image-preview-item';
+
+        const previewDiv = document.createElement("div");
+        previewDiv.className = "image-preview-item";
         previewDiv.style.cssText = `
             position: relative;
             width: 100px;
@@ -94,7 +109,7 @@ function addPreview(file, container, files) {
             overflow: hidden;
         `;
 
-        const img = document.createElement('img');
+        const img = document.createElement("img");
         img.src = e.target.result;
         img.style.cssText = `
             width: 100%;
@@ -102,11 +117,11 @@ function addPreview(file, container, files) {
             object-fit: cover;
         `;
 
-        const removeBtn = document.createElement('button');
-        removeBtn.type = 'button';
-        removeBtn.className = 'remove-image';
+        const removeBtn = document.createElement("button");
+        removeBtn.type = "button";
+        removeBtn.className = "remove-image";
         removeBtn.dataset.index = index;
-        removeBtn.innerHTML = '×';
+        removeBtn.innerHTML = "×";
         removeBtn.style.cssText = `
             position: absolute;
             top: 2px;
@@ -126,12 +141,12 @@ function addPreview(file, container, files) {
             transition: background 0.2s;
         `;
 
-        removeBtn.addEventListener('mouseenter', () => {
-            removeBtn.style.background = 'rgba(255, 0, 0, 1)';
+        removeBtn.addEventListener("mouseenter", () => {
+            removeBtn.style.background = "rgba(255, 0, 0, 1)";
         });
 
-        removeBtn.addEventListener('mouseleave', () => {
-            removeBtn.style.background = 'rgba(255, 0, 0, 0.8)';
+        removeBtn.addEventListener("mouseleave", () => {
+            removeBtn.style.background = "rgba(255, 0, 0, 0.8)";
         });
 
         previewDiv.appendChild(img);
@@ -153,11 +168,11 @@ function addPreview(file, container, files) {
  */
 function removeFile(index, files, container, counter, input, maxFiles) {
     files.splice(index, 1);
-    
+
     // Clear and rebuild preview
-    container.innerHTML = '';
-    files.forEach(file => addPreview(file, container, files));
-    
+    container.innerHTML = "";
+    files.forEach((file) => addPreview(file, container, files));
+
     updateCounter(counter, files.length, maxFiles);
     updateFileInput(input, files);
 }
@@ -171,11 +186,11 @@ function removeFile(index, files, container, counter, input, maxFiles) {
 function updateCounter(counter, current, max) {
     if (counter) {
         counter.textContent = `${current}/${max}`;
-        
+
         if (current >= max) {
-            counter.style.color = '#ff5b5b';
+            counter.style.color = "#ff5b5b";
         } else {
-            counter.style.color = '#000';
+            counter.style.color = "#000";
         }
     }
 }
@@ -187,7 +202,7 @@ function updateCounter(counter, current, max) {
  */
 function updateFileInput(input, files) {
     const dt = new DataTransfer();
-    files.forEach(file => dt.items.add(file));
+    files.forEach((file) => dt.items.add(file));
     input.files = dt.files;
 }
 
@@ -213,8 +228,8 @@ export function clearUploads(inputId, previewId, counterId, maxFiles = 5) {
     const preview = document.getElementById(previewId);
     const counter = document.querySelector(`.${counterId}`);
 
-    if (input) input.value = '';
-    if (preview) preview.innerHTML = '';
+    if (input) input.value = "";
+    if (preview) preview.innerHTML = "";
     if (counter) counter.textContent = `0/${maxFiles}`;
 }
 
@@ -222,14 +237,75 @@ export function clearUploads(inputId, previewId, counterId, maxFiles = 5) {
  * Initialize all image upload handlers
  */
 export function initializeImageUploads() {
-    // Main form upload
-    setupImageUpload('formFileMultiple', 'preview', 'imgCount', 5);
-    
     // Optional service uploads (if they exist)
-    setupImageUpload('formFileMultipleWindow', 'previewWindow', 'imgCountWindow', 5);
-    setupImageUpload('formFileMultipleCarpet', 'previewCarpet', 'imgCountCarpet', 5);
-    setupImageUpload('formFileMultipleUpholstery', 'previewUpholstery', 'imgCountUpholstery', 5);
-    setupImageUpload('formFileMultipleNormal', 'previewNormal', 'imgCountNormal', 5);
+    setupImageUpload(
+        "formFileMultipleWindow",
+        "previewWindow",
+        "imgCountWindow",
+        5
+    );
+    setupImageUpload(
+        "formFileMultipleUpholstery",
+        "previewUpholstery",
+        "imgCountUpholstery",
+        5
+    );
+    setupImageUpload(
+        "formFileMultipleCarpet",
+        "previewCarpet",
+        "imgCountCarpet",
+        5
+    );
+    setupImageUpload(
+        "formFileMultipleNormal",
+        "previewNormal",
+        "imgCountNormal",
+        5
+    );
+
+    setupImageUpload(
+        "formFileMultipleForSpring",
+        "previewSpring",
+        "imgCountSpring",
+        5
+    );
+    setupImageUpload(
+        "formFileMultipleForMessieApatment",
+        "previewMessieApatment",
+        "imgCountMessieApatment",
+        5
+    );
+    setupImageUpload(
+        "formFileMultipleForCleaning",
+        "previewCleaning",
+        "imgCountcleaning",
+        5
+    );
+
+    setupImageUpload(
+        "formFileMultipleWindowOptional",
+        "previewWindowOptionall",
+        "imgCountWindowOptional",
+        5
+    );
+    setupImageUpload(
+        "formFileMultipleUpholsteryOptional",
+        "previewUpholsteryOptional",
+        "imgCountUpholsteryOptional",
+        5
+    );
+    setupImageUpload(
+        "formFileMultipleCarpetOptional",
+        "previewCarpetOptional",
+        "imgCountCarpetOptional",
+        5
+    );
+    setupImageUpload(
+        "formFileMultipleNormalOptional",
+        "previewNormalOptional",
+        "imgCountNormalOptional",
+        5
+    );
 }
 
 export default {

@@ -1,300 +1,365 @@
 /**
- * Form Validation Module - FIXED VERSION
- * Handles all form validation logic with live validation
+ * Form Validation Module - OPTIMIZED VERSION
+ * Works with input-wrapper structure from setupCheckMarks
  */
 
-import { validateEmail, getCheckedValues, getSelectedRadio } from "./utils.js";
-import { validation as validationConfig } from "./config.js";
+import { validateEmail, getCheckedValues, getSelectedRadio } from './utils.js';
+import { validation as validationConfig } from './config.js';
 
 /**
  * Validation class for form fields
  */
 export class FormValidator {
-  constructor(formElement) {
-    this.form = formElement;
-    this.errors = [];
-  }
-
-  /**
-   * Validate required fields
-   * @param {Array} fieldIds - Array of field IDs to validate
-   * @returns {boolean} Is valid
-   */
-  validateRequiredFields(fieldIds = []) {
-    this.errors = [];
-
-    fieldIds.forEach((fieldId) => {
-      const field = document.getElementById(fieldId);
-      if (!field) return;
-
-      const value = field.value.trim();
-      console.log(field, "field");
-
-      if (!value || value == "0" || value === "") {
-        this.errors.push({
-          field: fieldId,
-          element: field,
-          message: "This field is required",
-        });
-        field.classList.add("error-sign");
-        field.classList.remove("success-sign");
-      } else {
-        field.classList.remove("error-sign");
-        field.classList.add("success-sign");
-      }
-    });
-
-    return this.errors.length === 0;
-  }
-
-  /**
-   * Validate email field
-   * @param {string} fieldId - Email field ID
-   * @returns {boolean} Is valid
-   */
-  validateEmailField(fieldId) {
-    const field = document.getElementById(fieldId);
-    if (!field) return true;
-
-    const email = field.value.trim();
-
-    if (!email) {
-      this.errors.push({
-        field: fieldId,
-        element: field,
-        message: "Email is required",
-      });
-      field.classList.add("error-sign");
-      field.classList.remove("success-sign");
-      return false;
+    constructor(formElement) {
+        this.form = formElement;
+        this.errors = [];
     }
 
-    if (!validateEmail(email)) {
-      this.errors.push({
-        field: fieldId,
-        element: field,
-        message: "Please enter a valid email ending with .com",
-      });
-      field.classList.add("error-sign");
-      field.classList.remove("success-sign");
-      return false;
-    }
+    /**
+     * Validate required fields
+     * @param {Array} fieldIds - Array of field IDs to validate
+     * @param {string} message - Error message
+     * @returns {boolean} Is valid
+     */
+    validateRequiredFields(fieldIds = [], message) {
+        this.errors = [];
 
-    field.classList.remove("error-sign");
-    field.classList.add("success-sign");
-    return true;
-  }
+        fieldIds.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (!field) return;
 
-  /**
-   * Validate phone field
-   * @param {string} fieldId - Phone field ID
-   * @returns {boolean} Is valid
-   */
-  validatePhoneField(fieldId) {
-    const field = document.getElementById(fieldId);
-    if (!field) return true;
-
-    const phone = field.value.trim();
-
-    if (!phone) {
-      this.errors.push({
-        field: fieldId,
-        element: field,
-        message: "Phone is required",
-      });
-      field.classList.add("error-sign");
-      field.classList.remove("success-sign");
-      return false;
-    }
-
-    if (phone.length < 5) {
-      this.errors.push({
-        field: fieldId,
-        element: field,
-        message: "Please enter a valid phone number",
-      });
-      field.classList.add("error-sign");
-      field.classList.remove("success-sign");
-      return false;
-    }
-
-    field.classList.remove("error-sign");
-    field.classList.add("success-sign");
-    return true;
-  }
-
-  /**
-   * Validate radio group
-   * @param {string} radioName - Radio group name
-   * @returns {boolean} Is valid
-   */
-  validateRadioGroup(radioName) {
-    const selected = getSelectedRadio(radioName);
-
-    if (!selected) {
-      this.errors.push({
-        field: radioName,
-        message: "Please select an option",
-      });
-
-      document
-        .querySelectorAll(`input[name="${radioName}"]`)
-        .forEach((radio) => {
-          radio.parentElement.classList.add("error");
+            const value = field.value.trim();
+            const isEmpty = !value || value == 0 || value === '';
+            
+            if (isEmpty) {
+                this.errors.push({
+                    field: fieldId,
+                    element: field,
+                });
+                
+                // Add error styling
+                field.classList.add('error-sign');
+                
+                // Add error message
+                const wrapper = field.closest('.input-wrapper') || field.parentElement;
+                const existingError = wrapper.querySelector(".field-error");
+                if (!existingError) {
+                    const errorDiv = document.createElement("div");
+                    errorDiv.className = "field-error";
+                    errorDiv.style.cssText = "color: #f44336; font-size: 12px; margin-top: 4px;";
+                    errorDiv.textContent = message;
+                    wrapper.appendChild(errorDiv);
+                }
+            } else {
+                field.classList.remove('error-sign');
+                
+                // Remove error message
+                const wrapper = field.closest('.input-wrapper') || field.parentElement;
+                const existingError = wrapper.querySelector(".field-error");
+                if (existingError) existingError.remove();
+            }
         });
 
-      return false;
+        return this.errors.length === 0;
     }
 
-    document.querySelectorAll(`input[name="${radioName}"]`).forEach((radio) => {
-      radio.parentElement.classList.remove("error");
-    });
+    /**
+     * Validate email field with proper regex
+     * @param {string} fieldId - Email field ID
+     * @returns {boolean} Is valid
+     */
+    validateEmailField(fieldId) {
+        const field = document.getElementById(fieldId);
+        if (!field) return true;
 
-    return true;
-  }
+        const email = field.value.trim();
+        const wrapper = field.closest('.input-wrapper') || field.parentElement;
+        
+        // Remove previous error messages
+        const existingError = wrapper.querySelector(".field-error");
+        if (existingError) existingError.remove();
+        
+        if (!email) {
+            this.errors.push({
+                field: fieldId,
+                element: field,
+                message: 'Email is required',
+            });
+            field.classList.add('error-sign');
+            return false;
+        }
 
-  /**
-   * Validate number field
-   * @param {string} fieldId - Field ID
-   * @param {number} min - Minimum value
-   * @param {number} max - Maximum value
-   * @returns {boolean} Is valid
-   */
-  validateNumberField(fieldId, min = 0, max = Infinity) {
-    const field = document.getElementById(fieldId);
-    if (!field) return true;
+        // Enhanced email validation regex
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        
+        if (!emailRegex.test(email)) {
+            this.errors.push({
+                field: fieldId,
+                element: field,
+                message: 'Please enter a valid email address',
+            });
+            field.classList.add('error-sign');
+            
+            // Show error message
+            const errorDiv = document.createElement("div");
+            errorDiv.className = "field-error";
+            errorDiv.style.cssText = "color: #f44336; font-size: 12px; margin-top: 4px;";
+            errorDiv.textContent = 'Please enter a valid email address';
+            wrapper.appendChild(errorDiv);
+            
+            return false;
+        }
 
-    const value = parseFloat(field.value);
-
-    if (isNaN(value) || value < min) {
-      this.errors.push({
-        field: fieldId,
-        element: field,
-        message: `Value must be at least ${min}`,
-      });
-      field.classList.add("error-sign");
-      field.classList.remove("success-sign");
-      return false;
+        field.classList.remove('error-sign');
+        return true;
     }
 
-    if (value > max) {
-      this.errors.push({
-        field: fieldId,
-        element: field,
-        message: `Value must be at most ${max}`,
-      });
-      field.classList.add("error-sign");
-      field.classList.remove("success-sign");
-      return false;
+    /**
+     * Validate phone field
+     * @param {string} fieldId - Phone field ID
+     * @returns {boolean} Is valid
+     */
+    validatePhoneField(fieldId) {
+        const field = document.getElementById(fieldId);
+        if (!field) return true;
+
+        const phone = field.value.trim();
+        
+        if (!phone) {
+            this.errors.push({
+                field: fieldId,
+                element: field,
+                message: 'Phone is required',
+            });
+            field.classList.add('error-sign');
+            return false;
+        }
+
+        if (phone.length < 5) {
+            this.errors.push({
+                field: fieldId,
+                element: field,
+                message: 'Please enter a valid phone number',
+            });
+            field.classList.add('error-sign');
+            return false;
+        }
+
+        field.classList.remove('error-sign');
+        return true;
     }
 
-    field.classList.remove("error-sign");
-    field.classList.add("success-sign");
-    return true;
-  }
+    /**
+     * Validate radio group
+     * @param {string} radioName - Radio group name
+     * @returns {boolean} Is valid
+     */
+    validateRadioGroup(radioName) {
+        const selected = getSelectedRadio(radioName);
+        
+        if (!selected) {
+            this.errors.push({
+                field: radioName,
+                message: 'Please select an option',
+            });
 
-  /**
-   * Get first error element
-   * @returns {HTMLElement|null} First error element
-   */
-  getFirstError() {
-    if (this.errors.length === 0) return null;
+            document.querySelectorAll(`input[name="${radioName}"]`).forEach(radio => {
+                radio.parentElement.classList.add('error');
+            });
 
-    const firstError = this.errors.find((error) => error.element);
-    return firstError ? firstError.element : null;
-  }
+            return false;
+        }
 
-  /**
-   * Get all errors
-   * @returns {Array} Array of errors
-   */
-  getErrors() {
-    return this.errors;
-  }
+        document.querySelectorAll(`input[name="${radioName}"]`).forEach(radio => {
+            radio.parentElement.classList.remove('error');
+        });
 
-  /**
-   * Clear all validation errors
-   */
-  clearErrors() {
-    this.errors = [];
+        return true;
+    }
 
-    document.querySelectorAll(".error-sign, .success-sign").forEach((el) => {
-      el.classList.remove("error-sign");
-      el.classList.remove("success-sign");
-    });
+    /**
+     * Validate number field
+     * @param {string} fieldId - Field ID
+     * @param {number} min - Minimum value
+     * @param {number} max - Maximum value
+     * @returns {boolean} Is valid
+     */
+    validateNumberField(fieldId, min = 0, max = Infinity) {
+        const field = document.getElementById(fieldId);
+        if (!field) return true;
 
-    document.querySelectorAll(".error").forEach((el) => {
-      el.classList.remove("error");
-    });
-  }
+        const value = parseFloat(field.value);
+
+        if (isNaN(value) || value < min) {
+            this.errors.push({
+                field: fieldId,
+                element: field,
+                message: `Value must be at least ${min}`,
+            });
+            field.classList.add('error-sign');
+            return false;
+        }
+
+        if (value > max) {
+            this.errors.push({
+                field: fieldId,
+                element: field,
+                message: `Value must be at most ${max}`,
+            });
+            field.classList.add('error-sign');
+            return false;
+        }
+
+        field.classList.remove('error-sign');
+        return true;
+    }
+
+    /**
+     * Get first error element
+     * @returns {HTMLElement|null} First error element
+     */
+    getFirstError() {
+        if (this.errors.length === 0) return null;
+        
+        const firstError = this.errors.find(error => error.element);
+        return firstError ? firstError.element : null;
+    }
+
+    /**
+     * Get all errors
+     * @returns {Array} Array of errors
+     */
+    getErrors() {
+        return this.errors;
+    }
+
+    /**
+     * Clear all validation errors
+     */
+    clearErrors() {
+        this.errors = [];
+        
+        document.querySelectorAll('.error-sign').forEach(el => {
+            el.classList.remove('error-sign');
+        });
+
+        document.querySelectorAll('.error').forEach(el => {
+            el.classList.remove('error');
+        });
+        
+        document.querySelectorAll('.field-error').forEach(el => {
+            el.remove();
+        });
+    }
 }
 
 /**
- * Setup real-time validation for input field
+ * Setup real-time validation - Works with input-wrapper structure
  * @param {HTMLElement} input - Input element
  */
 export function setupRealtimeValidation(input) {
-  if (!input) return;
+    if (!input) return;
 
-  input.addEventListener("input", () => {
-    const value = input.value.trim();
+    // Real-time validation on input
+    input.addEventListener('input', () => {
+        validateFieldRealtime(input, false);
+    });
+
+    // Validation on blur with error messages
+    input.addEventListener('blur', () => {
+        validateFieldRealtime(input, true);
+    });
+
+    // For select elements, also validate on change
+    if (input.tagName === 'SELECT') {
+        input.addEventListener('change', () => {
+            validateFieldRealtime(input, false);
+        });
+    }
+}
+
+/**
+ * Validate field in real-time with visual feedback
+ * Works with the checkmark system from setupCheckMarks
+ * @param {HTMLElement} field - Field to validate
+ * @param {boolean} showErrors - Whether to show error messages
+ */
+function validateFieldRealtime(field, showErrors = false) {
+    const value = field.value.trim();
+    const wrapper = field.closest('.input-wrapper') || field.parentElement;
+    const checkmark = wrapper.querySelector('.checkInput');
+    
+    // Remove previous error messages
+    const existingError = wrapper.querySelector(".field-error");
+    if (existingError) existingError.remove();
 
     // Email validation
-    if (input.type === "email") {
-      if (value && validateEmail(value)) {
-        input.classList.remove("error-sign");
-        input.classList.add("success-sign");
-      } else if (value) {
-        input.classList.add("error-sign");
-        input.classList.remove("success-sign");
-      } else {
-        input.classList.remove("error-sign");
-        input.classList.remove("success-sign");
-      }
+    if (field.type === 'email') {
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        
+        if (!value) {
+            // Empty field - hide both checkmark and error
+            field.classList.remove('error-sign');
+            if (checkmark) checkmark.style.display = 'none';
+        } else if (emailRegex.test(value)) {
+            // Valid email - show checkmark
+            field.classList.remove('error-sign');
+            if (checkmark) checkmark.style.display = 'block';
+        } else {
+            // Invalid email - show error icon
+            field.classList.add('error-sign');
+            if (checkmark) checkmark.style.display = 'none';
+            
+            if (showErrors) {
+                const errorDiv = document.createElement("div");
+                errorDiv.className = "field-error";
+                errorDiv.style.cssText = "color: #f44336; font-size: 12px; margin-top: 4px;";
+                errorDiv.textContent = "Please enter a valid email address";
+                wrapper.appendChild(errorDiv);
+            }
+        }
     }
     // Number validation
-    else if (input.type === "number") {
-      const numValue = parseFloat(value);
-      if (!isNaN(numValue) && numValue > 0) {
-        input.classList.remove("error-sign");
-        input.classList.add("success-sign");
-      } else if (value) {
-        input.classList.add("error-sign");
-        input.classList.remove("success-sign");
-      } else {
-        input.classList.remove("error-sign");
-        input.classList.remove("success-sign");
-      }
+    else if (field.type === 'number') {
+        const numValue = parseFloat(value);
+        
+        if (!value) {
+            // Empty field
+            field.classList.remove('error-sign');
+            if (checkmark) checkmark.style.display = 'none';
+        } else if (!isNaN(numValue) && numValue > 0) {
+            // Valid number - show checkmark
+            field.classList.remove('error-sign');
+            if (checkmark) checkmark.style.display = 'block';
+        } else {
+            // Invalid number - show error
+            field.classList.add('error-sign');
+            if (checkmark) checkmark.style.display = 'none';
+        }
     }
-    // Text validation
-    else if (input.tagName === "SELECT") {
-      if (value !== "" && value !== "0") {
-        input.classList.remove("error-sign");
-        input.classList.add("success-sign");
-      } else {
-        input.classList.remove("error-sign");
-        input.classList.remove("success-sign");
-      }
-    } else {
-      if (value !== "" && value !== "0") {
-        input.classList.remove("error-sign");
-        input.classList.add("success-sign");
-      } else {
-        input.classList.remove("error-sign");
-        input.classList.remove("success-sign");
-      }
+    // Select validation
+    else if (field.tagName === 'SELECT') {
+        if (!value || value === '0' || value === '') {
+            // No selection or default option - show error icon
+            field.classList.add('error-sign');
+            // Selects don't have checkmarks in your setup
+        } else {
+            // Valid selection - remove error
+            field.classList.remove('error-sign');
+        }
     }
-  });
-
-  // Also validate on blur for better UX
-  input.addEventListener("blur", () => {
-    const value = input.value.trim();
-
-    if (input.hasAttribute("required") && (!value || value === "0")) {
-      input.classList.add("error-sign");
-      input.classList.remove("success-sign");
+    // Text/textarea validation
+    else {
+        if (!value || value === '0') {
+            // Empty field
+            field.classList.remove('error-sign');
+            if (checkmark) checkmark.style.display = 'none';
+        } else {
+            // Has value - show checkmark
+            field.classList.remove('error-sign');
+            if (checkmark) checkmark.style.display = 'block';
+        }
     }
-  });
 }
 
 /**
@@ -302,52 +367,51 @@ export function setupRealtimeValidation(input) {
  * @param {string} radioName - Radio group name
  */
 export function setupRadioValidation(radioName) {
-  const radios = document.getElementsByName(radioName);
+    const radios = document.getElementsByName(radioName);
 
-  radios.forEach((radio) => {
-    radio.addEventListener("click", () => {
-      radios.forEach((r) => {
-        r.parentElement.classList.remove("error");
-      });
-      radio.parentElement.classList.add("selected");
+    radios.forEach((radio) => {
+        radio.addEventListener('click', () => {
+            radios.forEach((r) => {
+                r.parentElement.classList.remove('error');
+            });
+            radio.parentElement.classList.add('selected');
+        });
     });
-  });
 }
 
 /**
  * Initialize all validation setups
  */
 export function initializeValidation() {
-  // Setup real-time validation for all inputs
-  document
-    .querySelectorAll(
-      'input:not([type="radio"]):not([type="checkbox"]):not([type="file"]), textarea, select'
-    )
-    .forEach((input) => {
-      setupRealtimeValidation(input);
+    // Setup real-time validation for all inputs, selects, and textareas
+    document.querySelectorAll('input:not([type="radio"]):not([type="checkbox"]):not([type="file"]), textarea, select').forEach(input => {
+        // Skip if already in upholstery wrapper or file inputs
+        if (input.closest('.upholstery-wrapper') || input.type === 'file') return;
+        
+        setupRealtimeValidation(input);
     });
 
-  // Setup radio validations
-  const radioGroups = [
-    "contaminationForNormal",
-    "contaminationForWindowCleaning",
-    "contaminationForCarpet",
-    "contaminationForSpringCleaning",
-    "contaminationForCleaning",
-    "contaminationForMessieApatment",
-    "contaminationForUpholstery",
-    "contaminationForWindowCleaningOptional",
-    "contaminationForCarpetOptional",
-    "contaminationForUpholsteryOptional",
-    "contaminationForNormalOption",
-  ];
+    // Setup radio validations
+    const radioGroups = [
+        'contaminationForNormal',
+        'contaminationForWindowCleaning',
+        'contaminationForCarpet',
+        'contaminationForSpringCleaning',
+        'contaminationForCleaning',
+        'contaminationForMessieApatment',
+        'contaminationForUpholstery',
+        'contaminationForWindowCleaningOptional',
+        'contaminationForCarpetOptional',
+        'contaminationForUpholsteryOptional',
+        'contaminationForNormalOption',
+    ];
 
-  radioGroups.forEach(setupRadioValidation);
+    radioGroups.forEach(setupRadioValidation);
 }
 
 export default {
-  FormValidator,
-  setupRealtimeValidation,
-  setupRadioValidation,
-  initializeValidation,
+    FormValidator,
+    setupRealtimeValidation,
+    setupRadioValidation,
+    initializeValidation,
 };

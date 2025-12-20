@@ -3,8 +3,8 @@
  * Handles all API requests with retry logic, error handling, and response processing
  */
 
-import { convertToFormData } from './utils.js';
-import {FormConfig} from './config.js';
+import { convertToFormData } from "./utils.js";
+import { FormConfig } from "./config.js";
 
 /**
  * Enhanced API handler class with retry logic and better error handling
@@ -25,45 +25,51 @@ export class ApiHandler {
      */
     async submitForm(data) {
         if (!this.csrfToken) {
-            throw new Error('CSRF token not found. Please refresh the page.');
+            throw new Error("CSRF token not found. Please refresh the page.");
         }
 
         const formData = this.prepareFormData(data);
-        
+
         for (let attempt = 1; attempt <= this.retryAttempts; attempt++) {
             try {
                 const response = await this.makeRequest(formData, attempt);
-                
+
                 if (!response.ok) {
                     const errorData = await this.handleErrorResponse(response);
-                    
+
                     // Don't retry on client errors (4xx), only on server errors (5xx) or network issues
                     if (response.status >= 400 && response.status < 500) {
                         throw errorData;
                     }
-                    
+
                     // Retry on server errors if we have attempts left
                     if (attempt < this.retryAttempts) {
-                        console.warn(`Attempt ${attempt} failed with status ${response.status}, retrying...`);
+                        console.warn(
+                            `Attempt ${attempt} failed with status ${response.status}, retrying...`
+                        );
                         await this.delay(this.retryDelay * attempt); // Exponential backoff
                         continue;
                     }
-                    
+
                     throw errorData;
                 }
 
                 return await this.processSuccessResponse(response);
-                
             } catch (error) {
                 console.error(`API attempt ${attempt} failed:`, error);
-                
+
                 // If it's a network error and we have attempts left, retry
-                if (this.isNetworkError(error) && attempt < this.retryAttempts) {
-                    console.warn(`Network error on attempt ${attempt}, retrying...`);
+                if (
+                    this.isNetworkError(error) &&
+                    attempt < this.retryAttempts
+                ) {
+                    console.warn(
+                        `Network error on attempt ${attempt}, retrying...`
+                    );
                     await this.delay(this.retryDelay * attempt);
                     continue;
                 }
-                
+
                 throw this.formatError(error, attempt);
             }
         }
@@ -81,10 +87,10 @@ export class ApiHandler {
 
         try {
             const response = await fetch(this.baseUrl, {
-                method: 'POST',
+                method: "POST",
                 headers: {
-                    'X-CSRF-TOKEN': this.csrfToken,
-                    'X-Requested-With': 'XMLHttpRequest',
+                    "X-CSRF-TOKEN": this.csrfToken,
+                    "X-Requested-With": "XMLHttpRequest",
                 },
                 body: formData,
                 signal: controller.signal,
@@ -92,14 +98,13 @@ export class ApiHandler {
 
             clearTimeout(timeoutId);
             return response;
-            
         } catch (error) {
             clearTimeout(timeoutId);
-            
-            if (error.name === 'AbortError') {
+
+            if (error.name === "AbortError") {
                 throw new Error(`Request timeout after ${this.timeout}ms`);
             }
-            
+
             throw error;
         }
     }
@@ -115,7 +120,7 @@ export class ApiHandler {
             ...data,
             _timestamp: Date.now(),
             _locale: FormConfig.locale.current,
-            _version: '1.0',
+            _version: "1.0",
         };
 
         return convertToFormData(enrichedData);
@@ -129,20 +134,19 @@ export class ApiHandler {
     async processSuccessResponse(response) {
         try {
             const data = await response.json();
-            
+
             return {
                 success: true,
                 data: data,
                 status: response.status,
                 timestamp: Date.now(),
             };
-            
         } catch (error) {
-            console.warn('Response is not valid JSON:', error);
-            
+            console.warn("Response is not valid JSON:", error);
+
             return {
                 success: true,
-                data: { message: 'Request completed successfully' },
+                data: { message: "Request completed successfully" },
                 status: response.status,
                 timestamp: Date.now(),
             };
@@ -165,16 +169,15 @@ export class ApiHandler {
 
         try {
             const responseData = await response.json();
-            
+
             errorData = {
                 ...errorData,
                 message: responseData.message || errorData.message,
                 errors: responseData.errors || {},
                 details: responseData.details,
             };
-            
         } catch (parseError) {
-            console.warn('Could not parse error response as JSON:', parseError);
+            console.warn("Could not parse error response as JSON:", parseError);
             errorData.message = response.statusText || errorData.message;
         }
 
@@ -190,7 +193,7 @@ export class ApiHandler {
     formatError(error, attempt) {
         return {
             success: false,
-            error: error.message || 'An unexpected error occurred',
+            error: error.message || "An unexpected error occurred",
             status: error.status || 0,
             errors: error.errors || {},
             attempts: attempt,
@@ -205,20 +208,23 @@ export class ApiHandler {
      */
     getStatusMessage(status) {
         const messages = {
-            400: 'Bad request. Please check your input and try again.',
-            401: 'Your session has expired. Please refresh the page.',
-            403: 'You do not have permission to perform this action.',
-            404: 'The requested service is not available.',
-            413: 'One or more files are too large. Please reduce file sizes.',
-            422: 'Please check your input. Some fields contain invalid data.',
-            429: 'Too many requests. Please wait a moment and try again.',
-            500: 'Server error. Please try again in a few moments.',
-            502: 'Service temporarily unavailable. Please try again later.',
-            503: 'Service is currently under maintenance. Please try again later.',
-            504: 'Request timeout. Please check your connection and try again.',
+            400: "Bad request. Please check your input and try again.",
+            401: "Your session has expired. Please refresh the page.",
+            403: "You do not have permission to perform this action.",
+            404: "The requested service is not available.",
+            413: "One or more files are too large. Please reduce file sizes.",
+            422: "Please check your input. Some fields contain invalid data.",
+            429: "Too many requests. Please wait a moment and try again.",
+            500: "Server error. Please try again in a few moments.",
+            502: "Service temporarily unavailable. Please try again later.",
+            503: "Service is currently under maintenance. Please try again later.",
+            504: "Request timeout. Please check your connection and try again.",
         };
 
-        return messages[status] || 'An unexpected error occurred. Please try again.';
+        return (
+            messages[status] ||
+            "An unexpected error occurred. Please try again."
+        );
     }
 
     /**
@@ -228,11 +234,11 @@ export class ApiHandler {
      */
     isNetworkError(error) {
         return (
-            error.name === 'TypeError' ||
-            error.name === 'NetworkError' ||
-            error.message.includes('fetch') ||
-            error.message.includes('network') ||
-            error.message.includes('timeout')
+            error.name === "TypeError" ||
+            error.name === "NetworkError" ||
+            error.message.includes("fetch") ||
+            error.message.includes("network") ||
+            error.message.includes("timeout")
         );
     }
 
@@ -242,47 +248,7 @@ export class ApiHandler {
      * @returns {Promise} Delay promise
      */
     delay(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    /**
-     * Validate form data before submission
-     * @param {Object} data - Form data to validate
-     * @returns {Object} Validation result
-     */
-    validateSubmissionData(data) {
-        const errors = [];
-
-        // // Check required fields
-        // if (!data.personalInfo?.email) {
-        //     errors.push('Email is required');
-        // }
-
-        // if (!data.personalInfo?.phone) {
-        //     errors.push('Phone number is required');
-        // }
-
-        // if (!data.tabName) {
-        //     errors.push('Service type is required');
-        // }
-
-        // Check file sizes
-        if (data.files) {
-            Object.values(data.files).forEach(fileList => {
-                if (Array.isArray(fileList)) {
-                    fileList.forEach(file => {
-                        if (file.size > FormConfig.validation.files.maxSize) {
-                            errors.push(`File "${file.name}" is too large`);
-                        }
-                    });
-                }
-            });
-        }
-
-        return {
-            isValid: errors.length === 0,
-            errors,
-        };
+        return new Promise((resolve) => setTimeout(resolve, ms));
     }
 }
 
@@ -298,37 +264,25 @@ export const apiHandler = new ApiHandler();
  */
 export async function submitFormData(formData) {
     try {
-        // Validate before submission
-        const validation = apiHandler.validateSubmissionData(formData);
-        if (!validation.isValid) {
-            return {
-                success: false,
-                error: 'Validation failed',
-                errors: validation.errors,
-                type: 'validation',
-            };
-        }
-
-        console.log('Submitting form data:', {
+        console.log("Submitting form data:", {
             tab: formData.tabName,
             hasPersonalInfo: !!formData.personalInfo,
             hasFiles: !!formData.files,
         });
 
         const response = await apiHandler.submitForm(formData);
-        
-        console.log('Form submission successful:', response);
+
+        console.log("Form submission successful:", response);
         return response;
-        
     } catch (error) {
-        console.error('Form submission failed:', error);
-        
+        console.error("Form submission failed:", error);
+
         return {
             success: false,
-            error: error.error || error.message || 'Submission failed',
+            error: error.error || error.message || "Submission failed",
             status: error.status || 0,
             errors: error.errors || {},
-            type: error.type || 'network',
+            type: error.type || "network",
         };
     }
 }
@@ -341,11 +295,11 @@ export async function submitFormData(formData) {
  */
 export function handleApiResponse(response, onSuccess, onError) {
     if (response.success) {
-        if (typeof onSuccess === 'function') {
+        if (typeof onSuccess === "function") {
             onSuccess(response.data, response);
         }
     } else {
-        if (typeof onError === 'function') {
+        if (typeof onError === "function") {
             onError(response.error, response.errors, response);
         }
     }
@@ -358,7 +312,7 @@ export function handleApiResponse(response, onSuccess, onError) {
  */
 export function createProgressHandler(onProgress) {
     return (event) => {
-        if (event.lengthComputable && typeof onProgress === 'function') {
+        if (event.lengthComputable && typeof onProgress === "function") {
             const percentComplete = (event.loaded / event.total) * 100;
             onProgress(percentComplete, event);
         }
