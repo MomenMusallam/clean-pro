@@ -4,10 +4,10 @@ import { dataCollector } from "./modules/dataCollector.js";
 import { uiManager } from "./modules/uiManager.js";
 import { initializeImageUploads } from "./modules/imageUpload.js";
 import { submitFormData } from "./modules/api.js";
-import {
+import utils, {
     toggleLoadingState,
     resetFormFields,
-    debounce,
+    smoothScroll,
 } from "./modules/utils.js";
 
 /**
@@ -36,7 +36,6 @@ class CleaningFormApp {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleTabSwitch = this.handleTabSwitch.bind(this);
-        this.handleFormInput = debounce(this.handleFormInput.bind(this), 300);
     }
 
     /**
@@ -92,7 +91,7 @@ class CleaningFormApp {
     async setupFormFunctionality() {
         this.setupUpholsteryCounters();
         this.setupAddressToggles();
-        this.setupInputValidation();
+        // this.setupInputValidation();
     }
 
     async setupEventListeners() {
@@ -104,9 +103,6 @@ class CleaningFormApp {
         document.querySelectorAll("button[data-tab]").forEach((button) => {
             button.addEventListener("click", this.handleTabSwitch);
         });
-
-        document.addEventListener("input", this.handleFormInput);
-        document.addEventListener("change", this.handleFormInput);
 
         const termsCheckbox = document.getElementById("confirmForm");
         if (termsCheckbox) {
@@ -135,6 +131,7 @@ class CleaningFormApp {
 
             if (radioInput && radioInput.type === "radio") {
                 // Remove selected class from all cards in the same group
+                console.log('ffffffffffffffffff')
                 document
                     .querySelectorAll(`input[name=\"${radioInput.name}\"]`)
                     .forEach((radio) => {
@@ -142,7 +139,10 @@ class CleaningFormApp {
                         if (label) {
                             label.classList.remove("selected");
                             const card = label.querySelector(".card");
-                            if (card) card.style.borderColor = "";
+                            if (card) {
+                                card.style.borderColor = "";
+                                card.style.backgroundColor = "";
+                            }
                         }
                     });
 
@@ -152,14 +152,17 @@ class CleaningFormApp {
                 if (parentLabel) {
                     parentLabel.classList.add("selected");
                     const card = parentLabel.querySelector(".card");
-                    if (card) card.style.borderColor = "#3ca200";
+                    if (card) {
+                        card.style.borderColor = "#198754";
+                        card.style.backgroundColor = "#e9e9e9";
+                    }
                 }
 
                 // Remove error state
                 document
                     .querySelectorAll(`input[name=\"${radioInput.name}\"]`)
                     .forEach((radio) => {
-                        radio.parentElement?.classList.remove("error");
+                        radio.parentElement?.classList.remove("is-invalid");
                     });
 
                 // Trigger change event
@@ -322,6 +325,18 @@ class CleaningFormApp {
         if (newTab === this.currentTab) return;
 
         console.log(`Switching from ${this.currentTab} to ${newTab}`);
+        utils.smoothScroll(
+            document.querySelector(".container-tabs2-section"),
+            document.getElementById("bookingForm")
+        );
+        // loading gif
+        // const loadingGif = document.querySelector(".loading");
+        // if (loadingGif) {
+        //     loadingGif.style.display = "flex";
+        // }
+        // setTimeout(() => {
+        //     loadingGif.style.display = "none"
+        // }, 800);
 
         // Clear validation errors
         this.validator.clearErrors();
@@ -361,7 +376,8 @@ class CleaningFormApp {
                 }
 
                 // Remove visual states
-                field.classList.remove("error");
+                field.classList.remove("is-invalid");
+                field.classList.remove("is-valid");
                 field.style.borderColor = "";
             });
 
@@ -520,7 +536,7 @@ class CleaningFormApp {
                         .querySelectorAll("input")
                         .forEach((input) => {
                             input.value = "";
-                            input.classList.remove("error");
+                            input.classList.remove("is-invalid");
                             input.style.borderColor = "";
                         });
                 }
@@ -552,7 +568,7 @@ class CleaningFormApp {
                                 field.value =
                                     field.tagName === "SELECT" ? "0" : "";
                             }
-                            field.classList.remove("error");
+                            field.classList.remove("is-invalid");
                             field.style.borderColor = "";
                         });
                 }
@@ -604,7 +620,7 @@ class CleaningFormApp {
         if (!box || !dropdownItem) return;
 
         box.classList.remove("hidden");
-        dropdownItem.style.display = "none";
+        dropdownItem.classList.add("disable");
 
         if (!this.optionalServices.includes(serviceId)) {
             this.optionalServices.push(serviceId);
@@ -648,131 +664,19 @@ class CleaningFormApp {
             } else if (field.type !== "file") {
                 field.value = field.tagName === "SELECT" ? "0" : "";
             }
-            field.classList.remove("error");
+            field.classList.remove("is-invalid");
             field.style.borderColor = "";
         });
 
         console.log("Removed optional service:", serviceId);
     }
 
-    setupInputValidation() {
-        document
-            .querySelectorAll("input, select, textarea")
-            .forEach((field) => {
-                if (
-                    field.type === "file" ||
-                    field.closest(".upholstery-wrapper")
-                )
-                    return;
-
-                field.addEventListener("blur", () =>
-                    this.validateSingleField(field)
-                );
-                // field.addEventListener("input", () =>
-                //     this.updateFieldVisualState(field)
-                // );
-            });
-    }
-
-    validateSingleField(field) {
-        const fieldId = field.id;
-        if (!fieldId) return;
-
-        field.classList.remove("error");
-        const existingError = field.parentElement.querySelector(".field-error");
-        if (existingError) existingError.remove();
-
-        let isValid = true;
-        let errorMessage = "";
-
-        if (field.hasAttribute("required") || field.value.trim()) {
-            if (field.type === "email") {
-                const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
-                if (!emailRegex.test(field.value)) {
-                    isValid = false;
-                    errorMessage = "Please enter a valid email address";
-                }
-            } else if (field.type === "number") {
-                const value = parseFloat(field.value);
-                if (isNaN(value) || value < 0) {
-                    isValid = false;
-                    errorMessage = "Please enter a valid positive number";
-                }
-            } else if (field.tagName === "SELECT") {
-                if (field.value === "0" || field.value === "") {
-                    isValid = false;
-                    errorMessage = "Please make a selection";
-                }
-            }
-        }
-
-        if (!isValid) {
-            this.showFieldError(field, errorMessage);
-        }
-
-        return isValid;
-    }
-
-    showFieldError(
-        field,
-        showMessage = true,
-        message = FormConfig.messages.validationError
-    ) {
-        // field.classList.add("error");
-        // field.classList.add('error-sign');
-        if (showMessage) {
-            const errorDiv = document.createElement("div");
-            errorDiv.className = "field-error";
-            errorDiv.style.cssText =
-                "color: #f44336; font-size: 12px; margin-top: 4px;";
-            errorDiv.textContent = message;
-
-            field.parentElement.appendChild(errorDiv);
-        }
-    }
-
-    updateFieldVisualState(field) {
-        const isValid = this.isFieldValid(field);
-
-        if (isValid) {
-            //   field.style.borderColor = "#3ca200";
-            // field.classList.remove('error-sign');
-        } else {
-            this.showFieldError(field);
-        }
-    }
-
-    isFieldValid(field) {
-        const value = field.value?.trim();
-
-        if (!value || value === "0") return false;
-
-        if (field.type === "email") {
-            return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(value);
-        }
-
-        if (field.type === "number") {
-            const num = parseFloat(value);
-            return !isNaN(num) && num >= 0;
-        }
-
-        return true;
-    }
-
-    handleFormInput(event) {
-        const field = event.target;
-
-        if (!field.matches("input, select, textarea")) return;
-        // this.updateFieldVisualState(field);
-    }
-
     handleTermsChange(event) {
         const checkbox = event.target;
-        const label = document.getElementById("confirmFormLabel");
-
+        console.log(checkbox);
         if (checkbox.checked) {
-            checkbox.classList.remove("error");
-            if (label) label.style.color = "";
+            checkbox.classList.remove("is-invalid");
+            checkbox.classList.add("is-valid");
         }
     }
 
@@ -781,7 +685,6 @@ class CleaningFormApp {
      */
     async handleSubmit(event) {
         event.preventDefault();
-        $(".field-error").remove();
 
         if (this.isSubmitting) return;
 
@@ -811,9 +714,7 @@ class CleaningFormApp {
             const response = await submitFormData(formData);
 
             if (response.success) {
-                uiManager.showSuccess(
-                    FormConfig.messages.success
-                );
+                uiManager.showSuccess(FormConfig.messages.success);
                 this.handleSuccessfulSubmission();
             } else {
                 this.handleSubmissionError(response);
@@ -835,48 +736,39 @@ class CleaningFormApp {
     validateForm() {
         this.validator.clearErrors();
         let isValid = true;
-        let allErrorFields = []; // FIX #2: Collect all error fields for ordered scrolling
+        let allErrorFields = [];
 
-        // Validate property details
+        // 1. Validate property details using FormValidator
         const propertyFields = ["typeSelect", "storeyInput", "furnitureSelect"];
-        if (!this.validator.validateRequiredFields(propertyFields , FormConfig.messages.validationError)) {
+        if (!this.validator.validateRequiredFields(propertyFields)) {
             isValid = false;
             propertyFields.forEach((fieldId) => {
                 const field = document.getElementById(fieldId);
-                if (
-                    field &&
-                    (field.classList.contains("error-sign") ||
-                        field.classList.contains("error"))
-                ) {
-                    allErrorFields.push({ field, order: 1 }); // Property details first
+                if (field && field.classList.contains("is-invalid")) {
+                    allErrorFields.push({ field, order: 1 });
                 }
             });
         }
 
-        // Validate current tab
+        // 2. Validate current tab
         const tabErrors = this.validateCurrentTab();
-        console.log(tabErrors, "tabErrorstabErrors");
-
         if (!tabErrors.isValid) {
             isValid = false;
-
             tabErrors.fields.forEach((f) => {
-                if (f) f.classList.add("error-sign"); // إضافة الكلاس
-                allErrorFields.push({ field: f, order: 2 }); // Main service second
+                allErrorFields.push({ field: f, order: 2 });
             });
         }
 
-        // FIX #1: Validate optional services
+        // 3. Validate optional services
         const optionalErrors = this.validateOptionalServices();
         if (!optionalErrors.isValid) {
             isValid = false;
             optionalErrors.fields.forEach((f) => {
-                if (f) f.classList.add("error-sign"); // إضافة الكلاس
-                allErrorFields.push({ field: f, order: 3 }); // Optional services third
+                allErrorFields.push({ field: f, order: 3 });
             });
         }
 
-        // --- Validate Cleaning Address if checkbox is checked ---
+        // 4. Validate cleaning address if checkbox is checked
         const cleaningCheckbox = document.getElementById(
             "separateCleaningAddress"
         );
@@ -887,46 +779,51 @@ class CleaningFormApp {
                 "cleaningZip",
                 "cleaningCity",
             ];
-            cleaningFields.forEach((fieldId) => {
-                const field = document.getElementById(fieldId);
-                if (
-                    field &&
-                    (field.value.trim() === "" ||
-                        (field.tagName === "SELECT" && field.value === "0"))
-                ) {
-                    field.classList.add("error-sign");
-                    allErrorFields.push({ field, order: 3 }); 
-                    isValid = false;
-                }
-            });
+            if (!this.validator.validateRequiredFields(cleaningFields)) {
+                isValid = false;
+                cleaningFields.forEach((fieldId) => {
+                    const field = document.getElementById(fieldId);
+                    if (field && field.classList.contains("is-invalid")) {
+                        allErrorFields.push({ field, order: 3 });
+                    }
+                });
+            }
         }
+
+        // 5. Validate contact person if checkbox is checked
         const contactCheckbox = document.getElementById(
             "separateContactPerson"
         );
         if (contactCheckbox && contactCheckbox.checked) {
-            const cleaningFields = [
+            const contactFields = [
                 "contactCountry",
-                ,"contactSalutation",
                 "contactFirstName",
                 "contactSecondName",
                 "contactEmail",
-                "contactMobile"
+                "contactMobile",
             ];
-            cleaningFields.forEach((fieldId) => {
+
+            if (!this.validator.validateRequiredFields(contactFields)) {
+                isValid = false;
+            }
+
+            if (!this.validator.validateEmailField("contactEmail")) {
+                isValid = false;
+            }
+
+            if (!this.validator.validatePhoneField("contactMobile")) {
+                isValid = false;
+            }
+
+            contactFields.forEach((fieldId) => {
                 const field = document.getElementById(fieldId);
-                if (
-                    field &&
-                    (field.value.trim() === "" ||
-                        (field.tagName === "SELECT" && field.value === "0"))
-                ) {
-                    field.classList.add("error-sign");
+                if (field && field.classList.contains("is-invalid")) {
                     allErrorFields.push({ field, order: 3 });
-                    isValid = false;
                 }
             });
         }
 
-        // Validate personal information
+        // 6. Validate personal information using FormValidator
         const personalFields = [
             "billingEmail",
             "billingMobile",
@@ -937,55 +834,44 @@ class CleaningFormApp {
             "billingZip",
             "billingCity",
             "billingCountry",
-            "billingSalutation",
         ];
 
-        if (!this.validator.validateRequiredFields(personalFields , FormConfig.messages.validationError)) {
+        if (!this.validator.validateRequiredFields(personalFields)) {
             isValid = false;
-            personalFields.forEach((fieldId) => {
-                const field = document.getElementById(fieldId);
-                if (
-                    field &&
-                    (field.classList.contains("error-sign") ||
-                        field.classList.contains("error"))
-                ) {
-                    allErrorFields.push({ field, order: 4 }); // Personal info last
-                }
-            });
         }
 
-        // Validate email
         if (!this.validator.validateEmailField("billingEmail")) {
             isValid = false;
-            const field = document.getElementById("billingEmail");
-            if (field && !allErrorFields.find((e) => e.field === field)) {
-                allErrorFields.push({ field, order: 4 });
-            }
         }
 
-        // Validate terms
-        const termsCheckbox = document.getElementById("confirmForm");
-        if (!termsCheckbox || !termsCheckbox.checked) {
-            if (termsCheckbox) {
-                termsCheckbox.classList.add("error");
-                const label = document.getElementById("confirmFormLabel");
-                if (label) label.style.color = "red";
+        if (!this.validator.validatePhoneField("billingMobile")) {
+            isValid = false;
+        }
+
+        personalFields.forEach((fieldId) => {
+            const field = document.getElementById(fieldId);
+            if (field && field.classList.contains("is-invalid")) {
+                allErrorFields.push({ field, order: 4 });
+            }
+        });
+
+        // 7. Validate terms
+        if (!this.validator.validateCheckbox("confirmForm")) {
+            isValid = false;
+            const checkBox = document.getElementById("confirmForm");
+            if (checkBox) {
+                allErrorFields.push({ field: checkBox, order: 5 });
             }
             isValid = false;
         }
 
+        // Scroll to first error
         if (!isValid) {
-            // FIX #2: Sort error fields by order (top to bottom)
             allErrorFields.sort((a, b) => a.order - b.order);
-
             if (allErrorFields.length > 0) {
-                console.log(allErrorFields, "allErrorFields");
-
                 const firstErrorField = allErrorFields[0].field;
                 uiManager.scrollToError(firstErrorField);
             }
-
-            // uiManager.showError('Please fill in all required fields correctly');
         }
 
         return isValid;
@@ -997,25 +883,22 @@ class CleaningFormApp {
     validateCurrentTab() {
         let isValid = true;
         let errorFields = [];
-
+        console.log(this.currentTab);
         switch (this.currentTab) {
             case "normal-cleaning":
-                const reasonForNormal =
-                    document.getElementById("reasonForNormal");
-                const areaForNormal = document.getElementById("areaForNormal");
-                if (!reasonForNormal?.value || reasonForNormal.value == 0) {
-                    this.showFieldError(reasonForNormal);
+                const fieldsNormal = ["reasonForNormal", "areaForNormal"];
+                if (!this.validator.validateRequiredFields(fieldsNormal)) {
                     isValid = false;
-                    errorFields.push(reasonForNormal);
+                    fieldsNormal.forEach((id) => {
+                        const field = document.getElementById(id);
+                        if (field && field.classList.contains("is-invalid")) {
+                            errorFields.push(field);
+                        }
+                    });
                 }
-                if (
-                    !areaForNormal?.value ||
-                    parseFloat(areaForNormal.value) <= 0
-                ) {
-                    this.showFieldError(areaForNormal);
-                    isValid = false;
-                    errorFields.push(areaForNormal);
-                }
+                console.log(
+                    this.validator.validateRadioGroup("contaminationForNormal")
+                );
                 if (
                     !this.validator.validateRadioGroup("contaminationForNormal")
                 ) {
@@ -1023,30 +906,26 @@ class CleaningFormApp {
                     const radio = document.querySelector(
                         'input[name="contaminationForNormal"]'
                     );
-                    if (radio) errorFields.push(radio);
+                    if (radio) {
+                        errorFields.push(radio.parentElement);
+                    }
                 }
-
                 break;
 
             case "windows-cleaning":
-                const casement = document.getElementById("casementForWindow");
-                const reason = document.getElementById("reasonForWindow");
-                const height = document.getElementById("heightInputForWindow");
-                if (!reason?.value || reason.value == 0) {
-                    this.showFieldError(reason);
+                const fieldsWindow = [
+                    "reasonForWindow",
+                    "casementForWindow",
+                    "heightInputForWindow",
+                ];
+                if (!this.validator.validateRequiredFields(fieldsWindow)) {
                     isValid = false;
-                    errorFields.push(reason);
-                }
-                if (!casement?.value || parseFloat(casement.value) <= 0) {
-                    this.showFieldError(casement);
-                    isValid = false;
-                    errorFields.push(casement);
-                }
-
-                if (!height?.value || parseFloat(height.value) <= 0) {
-                    this.showFieldError(height);
-                    isValid = false;
-                    errorFields.push(height);
+                    fieldsWindow.forEach((id) => {
+                        const field = document.getElementById(id);
+                        if (field && field.classList.contains("is-invalid")) {
+                            errorFields.push(field);
+                        }
+                    });
                 }
                 if (
                     !this.validator.validateRadioGroup("contaminationForWindow")
@@ -1055,34 +934,24 @@ class CleaningFormApp {
                     const radio = document.querySelector(
                         'input[name="contaminationForWindow"]'
                     );
-                    if (radio) errorFields.push(radio);
+                    if (radio) errorFields.push(radio.parentElement);
                 }
                 break;
 
             case "carpet":
-                const totalArea = document.getElementById("totalAreaForCarpet");
-                const looseCarpt = document.getElementById(
-                    "looseCarpetForCarpet"
-                );
-                const fixedCarpet = document.getElementById(
-                    "fixedCarpetForCarpet"
-                );
-                if (!looseCarpt?.value || parseInt(looseCarpt.value) <= 0) {
-                    this.showFieldError(looseCarpt, false);
+                const fieldsCarpet = [
+                    "totalAreaForCarpet",
+                    "looseCarpetForCarpet",
+                    "fixedCarpetForCarpet",
+                ];
+                if (!this.validator.validateRequiredFields(fieldsCarpet)) {
                     isValid = false;
-                    errorFields.push(looseCarpt);
-                }
-
-                if (!totalArea?.value || parseFloat(totalArea.value) <= 0) {
-                    this.showFieldError(totalArea);
-                    isValid = false;
-                    errorFields.push(totalArea);
-                }
-
-                if (!fixedCarpet?.value || parseFloat(fixedCarpet.value) <= 0) {
-                    this.showFieldError(fixedCarpet);
-                    isValid = false;
-                    errorFields.push(fixedCarpet);
+                    fieldsCarpet.forEach((id) => {
+                        const field = document.getElementById(id);
+                        if (field && field.classList.contains("is-invalid")) {
+                            errorFields.push(field);
+                        }
+                    });
                 }
                 if (
                     !this.validator.validateRadioGroup("contaminationForCarpet")
@@ -1091,17 +960,11 @@ class CleaningFormApp {
                     const radio = document.querySelector(
                         'input[name="contaminationForCarpet"]'
                     );
-                    if (radio) errorFields.push(radio);
+                    if (radio) errorFields.push(radio.parentElement);
                 }
                 break;
 
             case "upholstery-cleaning":
-                // if (this.upholsteryItems.length === 0) {
-                //     // uiManager.showError('Please select at least one furniture item');
-                //     isValid = false;
-                //     const firstUpholsteryInput = document.querySelector('.upholstery-input');
-                //     if (firstUpholsteryInput) errorFields.push(firstUpholsteryInput);
-                // }
                 if (
                     !this.validator.validateRadioGroup(
                         "contaminationForUpholstery"
@@ -1111,28 +974,24 @@ class CleaningFormApp {
                     const radio = document.querySelector(
                         'input[name="contaminationForUpholstery"]'
                     );
-                    if (radio) errorFields.push(radio);
+                    if (radio) errorFields.push(radio.parentElement);
                 }
                 break;
 
             case "spring-cleaning":
-                const areaSpring = document.getElementById(
-                    "areaForSpringCleaning"
-                );
-                const reasonSpring = document.getElementById(
-                    "reasonForSpringCleaning"
-                );
-                if (!reasonSpring?.value || reasonSpring.value == 0) {
-                    this.showFieldError(reasonSpring);
+                const fieldsSpring = [
+                    "reasonForSpringCleaning",
+                    "areaForSpringCleaning",
+                ];
+                if (!this.validator.validateRequiredFields(fieldsSpring)) {
                     isValid = false;
-                    errorFields.push(reasonSpring);
+                    fieldsSpring.forEach((id) => {
+                        const field = document.getElementById(id);
+                        if (field && field.classList.contains("is-invalid")) {
+                            errorFields.push(field);
+                        }
+                    });
                 }
-                if (!areaSpring?.value || parseFloat(areaSpring.value) <= 0) {
-                    this.showFieldError(areaSpring);
-                    isValid = false;
-                    errorFields.push(areaSpring);
-                }
-
                 if (
                     !this.validator.validateRadioGroup(
                         "contaminationForSpringCleaning"
@@ -1142,24 +1001,21 @@ class CleaningFormApp {
                     const radio = document.querySelector(
                         'input[name="contaminationForSpringCleaning"]'
                     );
-                    if (radio) errorFields.push(radio);
+                    if (radio) errorFields.push(radio.parentElement);
                 }
                 break;
 
             case "cleaning":
-                const areaEnd = document.getElementById("areaForCleaning");
-                const reasonEnd = document.getElementById("reasonForCleaning");
-                if (!reasonEnd?.value || reasonEnd.value === "0") {
-                    this.showFieldError(reasonEnd);
+                const fieldsEnd = ["reasonForCleaning", "areaForCleaning"];
+                if (!this.validator.validateRequiredFields(fieldsEnd)) {
                     isValid = false;
-                    errorFields.push(reasonEnd);
+                    fieldsEnd.forEach((id) => {
+                        const field = document.getElementById(id);
+                        if (field && field.classList.contains("is-invalid")) {
+                            errorFields.push(field);
+                        }
+                    });
                 }
-                if (!areaEnd?.value || parseFloat(areaEnd.value) <= 0) {
-                    this.showFieldError(areaEnd);
-                    isValid = false;
-                    errorFields.push(areaEnd);
-                }
-
                 if (
                     !this.validator.validateRadioGroup(
                         "contaminationForCleaning"
@@ -1169,28 +1025,24 @@ class CleaningFormApp {
                     const radio = document.querySelector(
                         'input[name="contaminationForCleaning"]'
                     );
-                    if (radio) errorFields.push(radio);
+                    if (radio) errorFields.push(radio.parentElement);
                 }
                 break;
 
             case "messie-apartment":
-                const areaMessie = document.getElementById(
-                    "areaForMessieApatment"
-                );
-                const reasonMessie = document.getElementById(
-                    "reasonForMessieApatment"
-                );
-                if (!reasonMessie?.value || reasonMessie.value == 0) {
-                    this.showFieldError(reasonMessie);
+                const fieldsMessie = [
+                    "reasonForMessieApatment",
+                    "areaForMessieApatment",
+                ];
+                if (!this.validator.validateRequiredFields(fieldsMessie)) {
                     isValid = false;
-                    errorFields.push(reasonMessie);
+                    fieldsMessie.forEach((id) => {
+                        const field = document.getElementById(id);
+                        if (field && field.classList.contains("is-invalid")) {
+                            errorFields.push(field);
+                        }
+                    });
                 }
-                if (!areaMessie?.value || parseFloat(areaMessie.value) <= 0) {
-                    this.showFieldError(areaMessie);
-                    isValid = false;
-                    errorFields.push(areaMessie);
-                }
-
                 if (
                     !this.validator.validateRadioGroup(
                         "contaminationForMessieApatment"
@@ -1200,7 +1052,7 @@ class CleaningFormApp {
                     const radio = document.querySelector(
                         'input[name="contaminationForMessieApatment"]'
                     );
-                    if (radio) errorFields.push(radio);
+                    if (radio) errorFields.push(radio.parentElement);
                 }
                 break;
         }
@@ -1215,43 +1067,30 @@ class CleaningFormApp {
         let isValid = true;
         let errorFields = [];
 
-        // Validate each active optional service
         this.optionalServices.forEach((boxId) => {
             const box = document.getElementById(boxId);
             if (!box || box.classList.contains("hidden")) return;
 
             switch (boxId) {
                 case "box-1": // Window Cleaning Optional
-                    const reasonWindow = document.getElementById(
-                        "reasonForWindowOptional"
-                    );
-                    const casementWindow = document.getElementById(
-                        "casementForWindowOptional"
-                    );
-                    const heightWindow = document.getElementById(
-                        "heightInputForWindowOptional"
-                    );
-
-                    if (!reasonWindow?.value || reasonWindow.value == 0) {
-                        this.showFieldError(reasonWindow);
-                        isValid = false;
-                        errorFields.push(reasonWindow);
-                    }
+                    const fieldsWindowOpt = [
+                        "reasonForWindowOptional",
+                        "casementForWindowOptional",
+                        "heightInputForWindowOptional",
+                    ];
                     if (
-                        !casementWindow?.value ||
-                        parseFloat(casementWindow.value) <= 0
+                        !this.validator.validateRequiredFields(fieldsWindowOpt)
                     ) {
-                        this.showFieldError(casementWindow);
                         isValid = false;
-                        errorFields.push(casementWindow);
-                    }
-                    if (
-                        !heightWindow?.value ||
-                        parseFloat(heightWindow.value) <= 0
-                    ) {
-                        this.showFieldError(heightWindow);
-                        isValid = false;
-                        errorFields.push(heightWindow);
+                        fieldsWindowOpt.forEach((id) => {
+                            const field = document.getElementById(id);
+                            if (
+                                field &&
+                                field.classList.contains("is-invalid")
+                            ) {
+                                errorFields.push(field);
+                            }
+                        });
                     }
                     if (
                         !this.validator.validateRadioGroup(
@@ -1262,39 +1101,29 @@ class CleaningFormApp {
                         const radio = document.querySelector(
                             'input[name="contaminationForWindowOptional"]'
                         );
-                        if (radio) errorFields.push(radio);
+                        if (radio) errorFields.push(radio.parentElement);
                     }
                     break;
 
                 case "box-2": // Carpet Cleaning Optional
-                    const totalArea = document.getElementById(
-                        "totalAreaForCarpetOptional"
-                    );
-                    const looseCarpt = document.getElementById(
-                        "looseCarpetForCarpetOptional"
-                    );
-                    const fixedCarpet = document.getElementById(
-                        "fixedCarpetForCarpetOptional"
-                    );
-                    if (!looseCarpt?.value || parseInt(looseCarpt.value) <= 0) {
-                        this.showFieldError(looseCarpt, false);
-                        isValid = false;
-                        errorFields.push(looseCarpt);
-                    }
-
-                    if (!totalArea?.value || parseFloat(totalArea.value) <= 0) {
-                        this.showFieldError(totalArea);
-                        isValid = false;
-                        errorFields.push(totalArea);
-                    }
-
+                    const fieldsCarpetOpt = [
+                        "totalAreaForCarpetOptional",
+                        "looseCarpetForCarpetOptional",
+                        "fixedCarpetForCarpetOptional",
+                    ];
                     if (
-                        !fixedCarpet?.value ||
-                        parseFloat(fixedCarpet.value) <= 0
+                        !this.validator.validateRequiredFields(fieldsCarpetOpt)
                     ) {
-                        this.showFieldError(fixedCarpet);
                         isValid = false;
-                        errorFields.push(fixedCarpet);
+                        fieldsCarpetOpt.forEach((id) => {
+                            const field = document.getElementById(id);
+                            if (
+                                field &&
+                                field.classList.contains("is-invalid")
+                            ) {
+                                errorFields.push(field);
+                            }
+                        });
                     }
                     if (
                         !this.validator.validateRadioGroup(
@@ -1305,23 +1134,11 @@ class CleaningFormApp {
                         const radio = document.querySelector(
                             'input[name="contaminationForCarpetOptional"]'
                         );
-                        if (radio) errorFields.push(radio);
+                        if (radio) errorFields.push(radio.parentElement);
                     }
                     break;
 
                 case "box-3": // Upholstery Cleaning Optional
-                    // Check if any upholstery items are selected in this box
-                    // const upholsteryInputs = box.querySelectorAll('.upholstery-input-optional');
-                    // let hasItems = false;
-                    // upholsteryInputs.forEach(input => {
-                    //     if (parseInt(input.value) > 0) hasItems = true;
-                    // });
-
-                    // if (!hasItems) {
-                    //     uiManager.showError('Please select at least one furniture item in optional upholstery service');
-                    //     isValid = false;
-                    //     if (upholsteryInputs.length > 0) errorFields.push(upholsteryInputs[0]);
-                    // }
                     if (
                         !this.validator.validateRadioGroup(
                             "contaminationForUpholsteryOptional"
@@ -1331,31 +1148,29 @@ class CleaningFormApp {
                         const radio = document.querySelector(
                             'input[name="contaminationForUpholsteryOptional"]'
                         );
-                        if (radio) errorFields.push(radio);
+                        if (radio) errorFields.push(radio.parentElement);
                     }
                     break;
 
                 case "box-4": // Normal Cleaning Optional
-                    const areaNormal = document.getElementById(
-                        "areaForNormalOption"
-                    );
-                    const reasonForNormal = document.getElementById(
-                        "reasonForNormalOption"
-                    );
-                    if (!reasonForNormal?.value || reasonForNormal.value == 0) {
-                        this.showFieldError(reasonForNormal);
-                        isValid = false;
-                        errorFields.push(reasonForNormal);
-                    }
+                    const fieldsNormalOpt = [
+                        "reasonForNormalOption",
+                        "areaForNormalOption",
+                    ];
                     if (
-                        !areaNormal?.value ||
-                        parseFloat(areaNormal.value) <= 0
+                        !this.validator.validateRequiredFields(fieldsNormalOpt)
                     ) {
-                        this.showFieldError(areaNormal);
                         isValid = false;
-                        errorFields.push(areaNormal);
+                        fieldsNormalOpt.forEach((id) => {
+                            const field = document.getElementById(id);
+                            if (
+                                field &&
+                                field.classList.contains("is-invalid")
+                            ) {
+                                errorFields.push(field);
+                            }
+                        });
                     }
-
                     if (
                         !this.validator.validateRadioGroup(
                             "contaminationForNormalOption"
@@ -1365,7 +1180,7 @@ class CleaningFormApp {
                         const radio = document.querySelector(
                             'input[name="contaminationForNormalOption"]'
                         );
-                        if (radio) errorFields.push(radio);
+                        if (radio) errorFields.push(radio.parentElement);
                     }
                     break;
             }
@@ -1397,36 +1212,28 @@ class CleaningFormApp {
     }
 
     resetForm() {
-        // Reset form fields
         resetFormFields();
 
-        // Reset internal state
         this.upholsteryItems = [];
         this.selectedDates = [];
         this.optionalServices = [];
 
-        // Reset to default tab
         this.currentTab = "normal-cleaning";
         this.setActiveTab("normal-cleaning");
 
-        // Clear validation errors
         this.validator.clearErrors();
 
-        // Clear date picker
         if (this.flatpickrInstance) {
             this.flatpickrInstance.clear();
         }
 
-        // Clear selected dates display
         const selectedDatesList = document.getElementById("selectedDatesList");
         if (selectedDatesList) {
             selectedDatesList.innerHTML = "";
         }
 
-        // Hide all optional service boxes
         this.clearAllOptionalServices();
 
-        // Hide address sections
         const cleaningAddressSection =
             document.querySelector(".ceaning-address");
         const contactPersonSection = document.querySelector(".contact-person");
@@ -1434,7 +1241,6 @@ class CleaningFormApp {
             cleaningAddressSection.style.display = "none";
         if (contactPersonSection) contactPersonSection.style.display = "none";
 
-        // Uncheck address toggles
         const cleaningAddressCheckbox = document.getElementById(
             "separateCleaningAddress"
         );
@@ -1443,7 +1249,10 @@ class CleaningFormApp {
         );
         if (cleaningAddressCheckbox) cleaningAddressCheckbox.checked = false;
         if (contactPersonCheckbox) contactPersonCheckbox.checked = false;
-
+        utils.smoothScroll(
+            document.querySelector(".container-tabs2-section"),
+            document.getElementById("bookingForm")
+        );
         console.log("Form reset completed");
     }
 

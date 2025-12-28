@@ -13,7 +13,9 @@ export function smoothScroll(container, target, duration = 600) {
     if (!container || !target) return;
 
     const start = container.scrollTop;
-    const targetPosition = target.getBoundingClientRect().top - container.getBoundingClientRect().top;
+    const targetPosition =
+        target.getBoundingClientRect().top -
+        container.getBoundingClientRect().top;
     const change = targetPosition;
     let currentTime = 0;
 
@@ -63,11 +65,11 @@ export function debounce(func, wait = 300) {
  */
 export function throttle(func, limit = 300) {
     let inThrottle;
-    return function(...args) {
+    return function (...args) {
         if (!inThrottle) {
             func.apply(this, args);
             inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
+            setTimeout(() => (inThrottle = false), limit);
         }
     };
 }
@@ -85,8 +87,14 @@ export function convertToFormData(data) {
 
         if (Array.isArray(value)) {
             value.forEach((v, i) => appendItem(`${key}[${i}]`, v));
-        } else if (typeof value === 'object' && !(value instanceof File) && !(value instanceof Date)) {
-            Object.keys(value).forEach((subKey) => appendItem(`${key}[${subKey}]`, value[subKey]));
+        } else if (
+            typeof value === "object" &&
+            !(value instanceof File) &&
+            !(value instanceof Date)
+        ) {
+            Object.keys(value).forEach((subKey) =>
+                appendItem(`${key}[${subKey}]`, value[subKey])
+            );
         } else {
             formData.append(key, value);
         }
@@ -104,20 +112,12 @@ export function convertToFormData(data) {
  * @returns {*} Found value or default
  */
 export function getNestedValue(obj, path, defaultValue = null) {
-    return path.split('.').reduce((acc, part) => acc && acc[part], obj) || defaultValue;
+    return (
+        path.split(".").reduce((acc, part) => acc && acc[part], obj) ||
+        defaultValue
+    );
 }
 
-/**
- * Remove all error states from form elements
- */
-export function clearErrorStates() {
-    document.querySelectorAll('input, select, textarea').forEach((el) => {
-        el.classList.remove('error');
-        el.style.borderColor = '';
-    });
-
-    document.querySelectorAll('.error-icon').forEach((icon) => icon.remove());
-}
 
 /**
  * Show/hide loading state
@@ -125,17 +125,17 @@ export function clearErrorStates() {
  * @param {HTMLElement} button - Button element
  */
 export function toggleLoadingState(show, button) {
-    const loading = button?.querySelector('.submit-spiner');
-    const icon = button?.querySelector('.submit-icon');
+    const loading = button?.querySelector(".submit-spiner");
+    const icon = button?.querySelector(".submit-icon");
 
-    if (loading) loading.style.display = show ? 'block' : 'none';
-    if (icon) icon.style.display = show ? 'none' : 'block';
-    
+    if (loading) loading.style.display = show ? "block" : "none";
+    if (icon) icon.style.display = show ? "none" : "block";
+
     if (button) {
         if (show) {
-            button.classList.add('disabled');
+            button.classList.add("disabled");
         } else {
-            button.classList.remove('disabled');
+            button.classList.remove("disabled");
         }
     }
 }
@@ -146,7 +146,7 @@ export function toggleLoadingState(show, button) {
  * @param {string} locale - Locale string
  * @returns {string} Formatted date
  */
-export function formatDate(date, locale = 'en-GB') {
+export function formatDate(date, locale = "en-GB") {
     return date.toLocaleDateString(locale);
 }
 
@@ -157,7 +157,7 @@ export function formatDate(date, locale = 'en-GB') {
  */
 export function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email) && email.toLowerCase().endsWith('.com');
+    return re.test(email) && email.toLowerCase().endsWith(".com");
 }
 
 /**
@@ -166,8 +166,9 @@ export function validateEmail(email) {
  * @returns {Array} Array of values
  */
 export function getCheckedValues(name) {
-    return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
-        .map((el) => el.value);
+    return Array.from(
+        document.querySelectorAll(`input[name="${name}"]:checked`)
+    ).map((el) => el.value);
 }
 
 /**
@@ -184,17 +185,41 @@ export function getSelectedRadio(name) {
  * Reset all form fields
  */
 export function resetFormFields() {
-    document.querySelectorAll('input, select, textarea').forEach((input) => {
-        if (input.type === 'checkbox' || input.type === 'radio') {
+    document.querySelectorAll("input, select, textarea").forEach((input) => {
+        if (input.type === "checkbox" || input.type === "radio") {
             input.checked = false;
-        } else if (input.type !== 'file') {
-            input.value = '';
-            input.style.borderColor = '';
+        } else if (input.tagName == "SELECT") {
+            input.value = "0";
+
+            const firstOption = input.querySelector(
+                'option[value="0"], option[value=""]'
+            );
+            if (firstOption) {
+                firstOption.disabled = false;
+                firstOption.selected = true;
+            }
+        } else if (input.type !== "file") {
+            input.value = "";
+            input.style.borderColor = "";
+        }
+    });
+    document
+    .querySelectorAll('input[type="radio"]')
+    .forEach((radio) => {
+        const label = radio.closest('.card-label');
+        if (label) {
+            label.classList.remove('selected');
+
+            const card = label.querySelector('.card');
+            if (card) {
+                card.style.borderColor = '';
+                card.style.backgroundColor = '';
+            }
         }
     });
 
-    document.querySelectorAll('.checkInput').forEach((el) => {
-        el.style.display = 'none';
+    document.querySelectorAll(".checkInput").forEach((el) => {
+        el.style.display = "none";
     });
 }
 
@@ -203,13 +228,11 @@ export function resetFormFields() {
  * @param {HTMLElement} field - Field element
  * @param {string} message - Error message
  */
-export function showFieldError(field, message = '') {
+export function showFieldError(field, message = "") {
     if (!field) return;
 
-    field.classList.add('error');
-    field.classList.add('error-sign');
+    field.classList.add("is-invalid");
 
-    
     // if (message) {
     //     const errorDiv = document.createElement('div');
     //     errorDiv.className = 'error-message';
@@ -217,7 +240,7 @@ export function showFieldError(field, message = '') {
     //     errorDiv.style.color = 'red';
     //     errorDiv.style.fontSize = '12px';
     //     errorDiv.style.marginTop = '4px';
-        
+
     //     field.parentElement.appendChild(errorDiv);
     // }
 }
@@ -229,10 +252,10 @@ export function showFieldError(field, message = '') {
 export function clearFieldError(field) {
     if (!field) return;
 
-    field.classList.remove('error');
-    field.style.borderColor = '';
-    
-    const errorMessage = field.parentElement?.querySelector('.error-message');
+    field.classList.remove("error");
+    field.style.borderColor = "";
+
+    const errorMessage = field.parentElement?.querySelector(".error-message");
     if (errorMessage) {
         errorMessage.remove();
     }
@@ -245,13 +268,15 @@ export function clearFieldError(field) {
  */
 export function isInViewport(element) {
     if (!element) return false;
-    
+
     const rect = element.getBoundingClientRect();
     return (
         rect.top >= 0 &&
         rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        rect.bottom <=
+            (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <=
+            (window.innerWidth || document.documentElement.clientWidth)
     );
 }
 
@@ -259,21 +284,21 @@ export function isInViewport(element) {
  * Lazy load images
  * @param {string} selector - Image selector
  */
-export function lazyLoadImages(selector = 'img[data-src]') {
+export function lazyLoadImages(selector = "img[data-src]") {
     const images = document.querySelectorAll(selector);
-    
+
     const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 const img = entry.target;
                 img.src = img.dataset.src;
-                img.removeAttribute('data-src');
+                img.removeAttribute("data-src");
                 observer.unobserve(img);
             }
         });
     });
 
-    images.forEach(img => imageObserver.observe(img));
+    images.forEach((img) => imageObserver.observe(img));
 }
 
 /**
@@ -284,8 +309,8 @@ export function lazyLoadImages(selector = 'img[data-src]') {
 export function createTooltip(text, target) {
     if (!text || !target) return null;
 
-    const tooltip = document.createElement('div');
-    tooltip.className = 'tooltip-custom';
+    const tooltip = document.createElement("div");
+    tooltip.className = "tooltip-custom";
     tooltip.textContent = text;
     tooltip.style.cssText = `
         position: absolute;
@@ -301,8 +326,8 @@ export function createTooltip(text, target) {
     document.body.appendChild(tooltip);
 
     const rect = target.getBoundingClientRect();
-    tooltip.style.left = rect.left + 'px';
-    tooltip.style.top = (rect.top - tooltip.offsetHeight - 5) + 'px';
+    tooltip.style.left = rect.left + "px";
+    tooltip.style.top = rect.top - tooltip.offsetHeight - 5 + "px";
 
     return tooltip;
 }
@@ -323,7 +348,6 @@ export default {
     throttle,
     convertToFormData,
     getNestedValue,
-    clearErrorStates,
     toggleLoadingState,
     formatDate,
     validateEmail,

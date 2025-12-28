@@ -514,4 +514,34 @@
 
 })(jQuery); // End jQuery
 
+document.addEventListener('DOMContentLoaded', function() {
+    const languageItems = document.querySelectorAll('.language-dropdown .dropdown-item');
+    const languageBtn = document.querySelector('.language-selector .language-text');
+    const selectedFlag = document.getElementById('selectedFlag');
+    
+    languageItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const langText = this.querySelector('span').textContent;
+            const flagSrc = this.getAttribute('data-flag');
+            const targetHref = this.getAttribute('href'); 
+          
+            if (languageBtn) {
+                languageBtn.textContent = langText;
+            }
+            if (selectedFlag && flagSrc) {
+                selectedFlag.src = flagSrc;
+                selectedFlag.alt = langText;
+            }
+            
+            languageItems.forEach(li => li.classList.remove('active'));
+            this.classList.add('active');
+            
+            if (targetHref) {
+                 window.location.href = targetHref; 
+            }
+        });
+    });
+});
  

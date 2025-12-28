@@ -1,6 +1,7 @@
 /**
- * UI Interactions Module - FIXED VERSION
+ * UI Interactions Module - RESPONSIVE SCROLL VERSION
  * Handles all UI-related interactions with proper tab management
+ * FIXED: Desktop uses container scroll, Mobile uses page scroll
  */
 
 import { smoothScroll, createTooltip, removeTooltip } from './utils.js';
@@ -12,6 +13,13 @@ export class UIManager {
     constructor() {
         this.activeTab = 'normal-cleaning';
         this.tooltips = new Map();
+    }
+
+    /**
+     * Check if we're in mobile accordion mode
+     */
+    isMobileAccordionMode() {
+        return window.innerWidth <= 992;
     }
 
     /**
@@ -88,11 +96,6 @@ export class UIManager {
             
             // Trigger input event for data collection
             input.dispatchEvent(new Event('input', { bubbles: true }));
-            
-            // Visual feedback
-            // if (currentValue - 1 === 0) {
-            //     input.style.borderColor = '';
-            // }
         }
     }
 
@@ -132,80 +135,6 @@ export class UIManager {
             });
         });
     }
-
-    /**
-     * Setup check marks for valid inputs
-     */
- setupCheckMarks() {
-    document.querySelectorAll('.form-control, .form-select').forEach(element => {
-        // Skip elements in upholstery wrapper
-        if (element.closest('.upholstery-wrapper')) return;
-
-        // Skip file inputs
-        if (element.type === 'file') return;
-
-        // Skip if already wrapped
-        if (element.parentElement.classList.contains('input-wrapper')) return;
-
-        // Create wrapper
-        const wrapper = document.createElement('div');
-        wrapper.className = 'input-wrapper';
-        wrapper.style.cssText = `
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        `;
-
-        element.parentNode.insertBefore(wrapper, element);
-        wrapper.appendChild(element);
-
-        let check = null;
-
-        // Add check mark for non-select elements
-        if (element.tagName.toLowerCase() !== 'select') {
-            check = document.createElement('span');
-            check.textContent = '✓';
-            check.className = 'checkInput';
-            check.style.cssText = `
-                position: absolute;
-                right: 10px;
-                top: 50%;
-                transform: translateY(-50%);
-                color: #3ca200;
-                font-size: 22px;
-                font-weight: bold;
-                display: none;
-                pointer-events: none;
-                z-index: 10;
-            `;
-            wrapper.appendChild(check);
-        }
-
-        // ✅ Toggle checkmark when value exists
-        const toggleCheck = () => {
-            if (!check) return;
-
-            if (element.value && element.value.trim() !== '') {
-                check.style.display = 'block';
-                element.classList.remove("error");
-        const existingError = element.parentElement.querySelector(".field-error");
-        if (existingError) existingError.remove();
-            } else {
-                check.style.display = 'none';
-                 element.classList.remove("error");
-        const existingError = element.parentElement.querySelector(".field-error");
-            }
-        };
-
-        // Listen to changes
-        element.addEventListener('input', toggleCheck);
-        element.addEventListener('change', toggleCheck);
-
-        // Run once (for prefilled values)
-        toggleCheck();
-    });
-}
-
 
     /**
      * Setup dropdown box management
@@ -309,24 +238,69 @@ export class UIManager {
     }
 
     /**
-     * Scroll to first error
+     * Scroll to first error - RESPONSIVE VERSION
+     * Desktop: Scroll within container
+     * Mobile: Scroll the page
      * @param {HTMLElement} errorElement - First error element
      */
     scrollToError(errorElement) {
         if (!errorElement) return;
 
-        const container = document.querySelector('.container-tabs2-section');
-        if (container) {
-            smoothScroll(container, errorElement, 800);
+        console.log('📍 [UIManager] Scrolling to error element:', errorElement);
+
+        if (this.isMobileAccordionMode()) {
+            // MOBILE ACCORDION MODE - Scroll the PAGE
+            console.log('📱 [UIManager] Mobile mode - scrolling page');
+            
+            const elementRect = errorElement.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Calculate target position with offset from top
+            const targetPosition = elementRect.top + scrollTop - 100; // 100px offset
+
+            // Smooth scroll the PAGE
+            window.scrollTo({
+                top: Math.max(0, targetPosition),
+                behavior: 'smooth'
+            });
+
+            console.log(`✅ [UIManager] Page scrolled to position: ${targetPosition}px`);
         } else {
-            errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // DESKTOP MODE - Scroll within CONTAINER
+            console.log('🖥️ [UIManager] Desktop mode - scrolling container');
+            
+            const container = document.querySelector('.container-tabs2-section');
+            if (container) {
+                // Use the smoothScroll utility function
+                smoothScroll(container, errorElement, 800);
+                console.log('✅ [UIManager] Container scrolled to error');
+            } else {
+                // Fallback: scroll page if container not found
+                console.warn('⚠️ [UIManager] Container not found, using page scroll');
+                errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         }
         
         // Flash the error element
-        errorElement.style.transition = 'border-color 0.3s';
-        errorElement.style.borderColor = 'red';
+        this.flashErrorElement(errorElement);
+    }
+
+    /**
+     * Flash error element to draw attention
+     * @param {HTMLElement} element - Element to flash
+     */
+    flashErrorElement(element) {
+        // Add visual feedback
+        const originalBorder = element.style.borderColor;
+        const originalBg = element.style.backgroundColor;
+        
+        element.style.transition = 'all 0.3s ease';
+        element.style.borderColor = '#dc3545';
+        element.style.backgroundColor = '#fff5f5';
+        
         setTimeout(() => {
-            errorElement.style.borderColor = '';
+            element.style.borderColor = originalBorder;
+            element.style.backgroundColor = originalBg;
         }, 2000);
     }
 
@@ -428,7 +402,6 @@ export class UIManager {
         this.setupCounters();
         this.setupImageSelection();
         this.setupTooltips();
-        this.setupCheckMarks();
         this.setupDropdownBoxes();
         this.setupAccordions();
         

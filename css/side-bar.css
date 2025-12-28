@@ -1,0 +1,1186 @@
+/* ============================================================================
+   SERVICE SIDEBAR NAVIGATION - REFACTORED
+   ============================================================================
+   
+   A modern, clean sidebar for service selection
+   Inspired by Mr. Cleaner design with unique enhancements
+   
+   Structure:
+   1. CSS Custom Properties (Variables)
+   2. Sidebar Container
+   3. Service List
+   4. Service Buttons
+   5. Active & Hover States
+   6. Responsive Design
+   
+   ============================================================================ */
+
+
+/* ============================================================================
+   1. CSS CUSTOM PROPERTIES (VARIABLES)
+   ============================================================================ */
+
+:root {
+    /* Brand Colors */
+    --service-primary: #3ca200;
+    --service-primary-dark: #2d7a00;
+    --service-primary-light: #4cbd00;
+    
+    /* Neutral Colors */
+    --service-bg: #ffffff;
+    --service-bg-hover: #f8f9fa;
+    --service-border: #e8e9eb;
+    --service-text: #2c3e50;
+    --service-text-muted: #6c757d;
+    
+    /* Spacing */
+    --service-padding: 1rem;
+    --service-gap: 0.5rem;
+    --service-border-radius: 8px;
+    
+    /* Transitions */
+    --service-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ============================================================================
+   2. SIDEBAR CONTAINER
+   ============================================================================ */
+
+.service-sidebar {
+    background: var(--service-bg);
+    border-right: 1px solid var(--service-border);
+    height: 100%;
+    min-height: 500px;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    
+    /* Custom scrollbar for better UX */
+    scrollbar-width: thin;
+    scrollbar-color: var(--service-primary-light) transparent;
+}
+
+.service-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.service-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.service-sidebar::-webkit-scrollbar-thumb {
+    background: var(--service-primary-light);
+    border-radius: 3px;
+}
+
+.service-sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--service-primary);
+}
+
+
+/* ============================================================================
+   3. SERVICE NAVIGATION & LIST
+   ============================================================================ */
+
+.service-nav {
+    padding: var(--service-padding);
+}
+
+.service-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--service-gap);
+}
+
+.service-item {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ============================================================================
+   4. SERVICE BUTTONS (Default State)
+   ============================================================================ */
+
+.service-btn {
+    /* Reset button styles */
+    appearance: none;
+    border: none;
+    background: none;
+    
+    /* Layout */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.875rem 1rem;
+    
+    /* Typography */
+    font-family: inherit;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--service-text);
+    text-align: left;
+    
+    /* Visual */
+    background: transparent;
+    border-radius: var(--service-border-radius);
+    border-left: 3px solid transparent;
+    
+    /* Interaction */
+    cursor: pointer;
+    transition: var(--service-transition);
+    
+    /* Accessibility */
+    position: relative;
+    outline-offset: 2px;
+}
+
+/* Icon container */
+.service-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    transition: var(--service-transition);
+}
+
+.service-icon svg {
+    width: 100%;
+    height: 100%;
+    transition: var(--service-transition);
+}
+
+/* Service name */
+.service-name {
+    flex: 1;
+    line-height: 1.4;
+    transition: var(--service-transition);
+}
+
+
+/* ============================================================================
+   5. INTERACTIVE STATES
+   ============================================================================ */
+
+/* Hover State */
+.service-btn:hover {
+    background: var(--service-bg-hover);
+    border-left-color: var(--service-primary-light);
+    transform: translateX(2px);
+}
+
+.service-btn:hover .service-icon {
+    transform: scale(1.05);
+}
+
+.service-btn:hover .service-icon svg {
+    filter: brightness(1.1);
+}
+
+/* Focus State (Accessibility) */
+.service-btn:focus {
+    outline: 2px solid var(--service-primary);
+    outline-offset: 2px;
+}
+
+.service-btn:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Active State - The selected service */
+.service-btn.active {
+    background: linear-gradient(
+        to right,
+        rgba(60, 162, 0, 0.08),
+        rgba(60, 162, 0, 0.02)
+    );
+    border-left-color: var(--service-primary);
+    color: var(--service-primary-dark);
+    font-weight: 600;
+}
+
+.service-btn.active .service-icon {
+    transform: scale(1.1);
+}
+
+.service-btn.active .service-icon svg {
+    filter: drop-shadow(0 2px 4px rgba(60, 162, 0, 0.2));
+}
+
+/* Active + Hover */
+.service-btn.active:hover {
+    background: linear-gradient(
+        to right,
+        rgba(60, 162, 0, 0.12),
+        rgba(60, 162, 0, 0.04)
+    );
+    transform: translateX(4px);
+}
+
+/* Pressed/Active State */
+.service-btn:active {
+    transform: translateX(1px);
+}
+
+
+/* ============================================================================
+   6. RESPONSIVE DESIGN
+   ============================================================================ */
+
+/* Tablet and Below - Horizontal Layout */
+@media (max-width: 992px) {
+    .service-sidebar {
+        border-right: none;
+        border-bottom: 2px solid var(--service-border);
+        position: relative;
+        min-height: auto;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    
+    .service-nav {
+        padding: 0.75rem;
+    }
+    
+    .service-list {
+        flex-direction: row;
+        gap: 0.5rem;
+        min-width: min-content;
+    }
+    
+    .service-item {
+        flex-shrink: 0;
+    }
+    
+    .service-btn {
+        flex-direction: column;
+        padding: 0.75rem;
+        gap: 0.5rem;
+        text-align: center;
+        min-width: 100px;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+    
+    .service-btn:hover {
+        transform: translateY(-2px);
+        border-bottom-color: var(--service-primary-light);
+    }
+    
+    .service-btn.active {
+        border-bottom-color: var(--service-primary);
+        background: linear-gradient(
+            to bottom,
+            rgba(60, 162, 0, 0.08),
+            rgba(60, 162, 0, 0.02)
+        );
+    }
+    
+    .service-btn.active:hover {
+        transform: translateY(-4px);
+    }
+    
+    .service-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .service-name {
+        font-size: 0.8125rem;
+        line-height: 1.2;
+    }
+}
+
+/* Mobile - Smaller Buttons */
+@media (max-width: 576px) {
+    .service-nav {
+        padding: 0.5rem;
+    }
+    
+    .service-list {
+        gap: 0.375rem;
+    }
+    
+    .service-btn {
+        min-width: 85px;
+        padding: 0.625rem 0.5rem;
+    }
+    
+    .service-icon {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .service-name {
+        font-size: 0.75rem;
+    }
+}
+
+
+/* ============================================================================
+   7. UNIQUE ENHANCEMENTS
+   ============================================================================ */
+
+/* Subtle animation on load */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.service-item {
+    animation: slideInLeft 0.4s ease-out backwards;
+}
+
+.service-item:nth-child(1) { animation-delay: 0.05s; }
+.service-item:nth-child(2) { animation-delay: 0.1s; }
+.service-item:nth-child(3) { animation-delay: 0.15s; }
+.service-item:nth-child(4) { animation-delay: 0.2s; }
+.service-item:nth-child(5) { animation-delay: 0.25s; }
+.service-item:nth-child(6) { animation-delay: 0.3s; }
+.service-item:nth-child(7) { animation-delay: 0.35s; }
+
+/* Disable animation on mobile for performance */
+@media (max-width: 992px) {
+    .service-item {
+        animation: none;
+    }
+}
+
+/* Active indicator line - unique touch */
+.service-btn.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background: var(--service-primary);
+    border-radius: 0 2px 2px 0;
+    box-shadow: 0 0 8px rgba(60, 162, 0, 0.3);
+}
+
+@media (max-width: 992px) {
+    .service-btn.active::before {
+        left: 50%;
+        top: auto;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 3px;
+        border-radius: 2px 2px 0 0;
+    }
+}
+
+
+/* ============================================================================
+   8. PRINT STYLES
+   ============================================================================ */
+
+@media print {
+    .service-sidebar {
+        border: none;
+        box-shadow: none;
+    }
+    
+    .service-btn:hover,
+    .service-btn.active {
+        background: none;
+        border-color: #000;
+    }
+}
+
+
+
+
+
+
+
+
+/* ============================================================================
+   FORM CONTAINER & LAYOUT
+   ============================================================================
+   
+   Main structure for the booking form
+   Handles: wrapper, container, sidebar + content layout
+   
+   Structure:
+   1. CSS Variables
+   2. Wrapper & Container
+   3. Form Layout (Sidebar + Content Grid)
+   4. Responsive Breakpoints
+   5. Background Decoration
+   
+   ============================================================================ */
+
+
+/* ============================================================================
+   1. CSS VARIABLES
+   ============================================================================ */
+
+:root {
+    /* Layout */
+    --form-max-width: 1200px;
+    --form-gap: 0;
+    --form-padding: 1.5rem;
+    
+    /* Colors */
+    --form-bg: #ffffff;
+    --form-border: #e8e9eb;
+    --form-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    
+    /* Sidebar */
+    --sidebar-width: 220px;
+    --sidebar-bg: #ffffff;
+    
+    /* Content */
+    --content-bg: #ffffff;
+    --content-padding: 2rem;
+    
+    /* Border Radius */
+    --form-radius: 12px;
+}
+
+
+/* ============================================================================
+   2. WRAPPER & CONTAINER
+   ============================================================================ */
+
+.booking-form-wrapper {
+    width: 100%;
+    padding: 2rem 1rem;
+    position: relative;
+}
+
+.booking-form-container {
+    max-width: var(--form-max-width);
+    margin: 0 auto;
+    background: var(--form-bg);
+    border-radius: var(--form-radius);
+    box-shadow: var(--form-shadow);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+
+/* ============================================================================
+   3. FORM LAYOUT - Sidebar + Content Grid
+   ============================================================================ */
+
+.form-layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    min-height: 600px;
+    gap: var(--form-gap);
+}
+
+/* Sidebar Column */
+.form-layout > .service-sidebar {
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--form-border);
+}
+
+/* Content Column */
+.form-content {
+    background: var(--content-bg);
+    padding: var(--content-padding);
+    overflow-y: auto;
+    max-height: calc(100vh - 150px);
+}
+
+/* Custom Scrollbar for Content */
+.form-content {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e0 transparent;
+}
+
+.form-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.form-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.form-content::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 4px;
+}
+
+.form-content::-webkit-scrollbar-thumb:hover {
+    background: #a0aec0;
+}
+
+
+/* ============================================================================
+   4. BOOKING FORM ELEMENT
+   ============================================================================ */
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+
+/* ============================================================================
+   5. RESPONSIVE DESIGN
+   ============================================================================ */
+
+/* Tablet - Stack Sidebar on Top */
+@media (max-width: 992px) {
+    .form-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+    
+    .form-layout > .service-sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--form-border);
+    }
+    
+    .form-content {
+        padding: 1.5rem;
+        max-height: none;
+    }
+}
+
+/* Mobile - Compact Spacing */
+@media (max-width: 576px) {
+    .booking-form-wrapper {
+        padding: 1rem 0.5rem;
+    }
+    
+    .booking-form-container {
+        border-radius: 8px;
+    }
+    
+    .form-content {
+        padding: 1rem;
+    }
+    
+    .booking-form {
+        gap: 1rem;
+    }
+}
+
+
+/* ============================================================================
+   6. BACKGROUND DECORATION (Optional)
+   ============================================================================ */
+
+.form-background-decoration {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 400px;
+    height: 400px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.15;
+}
+
+.form-background-decoration img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 992px) {
+    .form-background-decoration {
+        display: none;
+    }
+}
+
+
+/* ============================================================================
+   7. LOADING STATE (Optional)
+   ============================================================================ */
+
+.booking-form.is-loading {
+    pointer-events: none;
+    opacity: 0.6;
+    position: relative;
+}
+
+.booking-form.is-loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ============================================================================
+   8. PRINT STYLES
+   ============================================================================ */
+
+@media print {
+    .booking-form-wrapper {
+        padding: 0;
+    }
+    
+    .booking-form-container {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+    
+    .form-background-decoration {
+        display: none;
+    }
+    
+    .form-content {
+        max-height: none;
+        overflow: visible;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* ============================================================================
+   FORM COMPONENTS - Buttons & Actions
+   ============================================================================
+   
+   Styling for form actions, submit buttons, dropdowns
+   Based on Mr. Cleaner reference with modern enhancements
+   
+   Structure:
+   1. CSS Variables
+   2. Form Actions Container
+   3. Add Service Dropdown Button
+   4. Submit Button
+   5. Button States & Animations
+   6. Responsive Design
+   
+   ============================================================================ */
+
+
+/* ============================================================================
+   1. CSS VARIABLES
+   ============================================================================ */
+
+:root {
+    /* Colors */
+    --btn-primary: #ff8800;
+    --btn-primary-hover: #e67700;
+    --btn-primary-active: #cc6600;
+    
+    --btn-secondary: #ffd700;
+    --btn-secondary-hover: #ffcc00;
+    
+    --btn-text: #ffffff;
+    --btn-shadow: 0 4px 12px rgba(255, 136, 0, 0.25);
+    
+    /* Spacing */
+    --btn-height: 60px;
+    --btn-height-mobile: 55px;
+    --btn-gap: 0;
+    
+    /* Border Radius */
+    --btn-radius: 8px;
+}
+
+
+/* ============================================================================
+   2. FORM ACTIONS CONTAINER
+   ============================================================================ */
+
+.form-actions {
+    display: flex;
+    gap: var(--btn-gap);
+    margin-top: 2rem;
+    width: 100%;
+    position: relative;
+}
+
+/* Layout: 1/3 (Add) + 2/3 (Submit) */
+.add-service-dropdown {
+    flex: 0 0 calc(100% / 3);
+}
+
+.btn-submit-form {
+    flex: 0 0 calc(100% * 2 / 3);
+}
+
+
+/* ============================================================================
+   3. ADD SERVICE DROPDOWN BUTTON (Plus Button)
+   ============================================================================ */
+
+.btn-add-service {
+    /* Reset */
+    appearance: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    
+    /* Layout */
+    width: 100%;
+    height: var(--btn-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Visual */
+    background: var(--btn-secondary);
+    border-radius: var(--btn-radius) 0 0 var(--btn-radius);
+    
+    /* Typography */
+    font-family: inherit;
+    color: #000000;
+    cursor: pointer;
+    
+    /* Effects */
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.plus-icon {
+    font-size: 38px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+/* Hover State */
+.btn-add-service:hover {
+    background: var(--btn-secondary-hover);
+    transform: translateY(-2px);
+    box-shadow: 
+        inset 0 0 0 1px rgba(0, 0, 0, 0.1),
+        0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+/* Active State */
+.btn-add-service:active {
+    transform: translateY(0);
+}
+
+/* Focus State */
+.btn-add-service:focus {
+    outline: 2px solid var(--btn-secondary);
+    outline-offset: 2px;
+}
+
+
+/* ============================================================================
+   4. DROPDOWN MENU STYLING
+   ============================================================================ */
+
+.add-service-dropdown .dropdown-menu {
+    min-width: 250px;
+    border-radius: var(--btn-radius);
+    border: 1px solid var(--form-border, #e8e9eb);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    padding: 0.5rem 0;
+}
+
+.add-service-dropdown .dropdown-header {
+    display: block;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    color: #000;
+    background: var(--btn-secondary);
+    margin: -0.5rem 0 0.5rem;
+    border-radius: var(--btn-radius) var(--btn-radius) 0 0;
+    pointer-events: none;
+}
+
+.add-service-dropdown .dropdown-divider {
+    margin: 0.5rem 0;
+}
+
+.add-service-dropdown .dropdown-item {
+    padding: 0.625rem 1rem;
+    font-size: 0.9375rem;
+    transition: all 0.2s ease;
+}
+
+.add-service-dropdown .dropdown-item:hover {
+    background: #f8f9fa;
+    color: var(--btn-primary);
+    padding-left: 1.25rem;
+}
+
+
+/* ============================================================================
+   5. SUBMIT BUTTON
+   ============================================================================ */
+
+.btn-submit-form {
+    /* Reset */
+    appearance: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    
+    /* Layout */
+    width: 100%;
+    height: var(--btn-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    
+    /* Visual */
+    background: linear-gradient(135deg, var(--btn-primary) 0%, #ff9933 100%);
+    border-radius: 0 var(--btn-radius) var(--btn-radius) 0;
+    
+    /* Typography */
+    font-family: inherit;
+    color: var(--btn-text);
+    cursor: pointer;
+    
+    /* Effects */
+    transition: all 0.3s ease;
+    box-shadow: var(--btn-shadow);
+}
+
+/* Loading Spinner - Hidden by Default */
+.submit-spinner {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.submit-spinner .spinner-border {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.3);
+    border-right-color: #ffffff;
+}
+
+/* Button Content */
+.submit-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+}
+
+.submit-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit-icon svg {
+    width: 21px;
+    height: 21px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.submit-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.submit-title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-transform: capitalize;
+}
+
+.submit-note {
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.2;
+    opacity: 0.9;
+}
+
+
+/* ============================================================================
+   6. BUTTON STATES
+   ============================================================================ */
+
+/* Hover State */
+.btn-submit-form:hover {
+    background: linear-gradient(135deg, var(--btn-primary-hover) 0%, #ff8800 100%);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 16px rgba(255, 136, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Active State */
+.btn-submit-form:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 2px 8px rgba(255, 136, 0, 0.25),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus State */
+.btn-submit-form:focus {
+    outline: 2px solid var(--btn-primary);
+    outline-offset: 2px;
+}
+
+/* Disabled State */
+.btn-submit-form:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-submit-form:disabled:hover {
+    transform: none;
+    box-shadow: var(--btn-shadow);
+}
+
+/* Loading State */
+.btn-submit-form.is-loading .submit-spinner {
+    display: block;
+}
+
+.btn-submit-form.is-loading .submit-content {
+    opacity: 0;
+}
+
+
+/* ============================================================================
+   7. RESPONSIVE DESIGN
+   ============================================================================ */
+
+/* Tablet & Mobile */
+@media (max-width: 992px) {
+    .form-actions {
+        margin-top: 1.5rem;
+    }
+    
+    .btn-add-service,
+    .btn-submit-form {
+        height: var(--btn-height-mobile);
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 576px) {
+    .btn-add-service,
+    .btn-submit-form {
+        height: 50px;
+    }
+    
+    .plus-icon {
+        font-size: 32px;
+    }
+    
+    .submit-title {
+        font-size: 0.9375rem;
+    }
+    
+    .submit-note {
+        font-size: 0.6875rem;
+    }
+    
+    .submit-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+
+/* ============================================================================
+   8. BUTTON ALIGNMENT FIXES
+   ============================================================================ */
+
+/* Remove border radius gaps between buttons */
+.add-service-dropdown .btn-add-service {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.btn-submit-form {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* Mobile - Full Width Buttons */
+@media (max-width: 992px) {
+    .form-actions {
+        /* Handled by sticky-buttons.css for mobile */
+    }
+}
+
+
+/* ============================================================================
+   9. ACCESSIBILITY ENHANCEMENTS
+   ============================================================================ */
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .btn-add-service,
+    .btn-submit-form {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .btn-add-service,
+    .btn-submit-form,
+    .add-service-dropdown .dropdown-item {
+        transition: none;
+    }
+    
+    .btn-add-service:hover,
+    .btn-submit-form:hover {
+        transform: none;
+    }
+}
+
+
+/* ============================================================================
+   10. PRINT STYLES
+   ============================================================================ */
+
+@media print {
+    .form-actions {
+        display: none;
+    }
+}
+
+
+
+
+
+/* ============================================================================
+   FORM LAYOUT - SAFE REFACTORING
+   ============================================================================
+   
+   This CSS file replaces ALL inline styles from form.blade.php
+   Keeps all IDs and JavaScript-dependent classes intact
+   
+   ============================================================================ */
+
+
+/* ============================================================================
+   1. MAIN SECTION WRAPPER
+   ============================================================================ */
+
+.form-main-section {
+    position: relative;
+    min-height: 500px;
+}
+
+
+/* ============================================================================
+   2. ADD SERVICE BUTTON (Plus Button)
+   ============================================================================ */
+
+.btn-add-service {
+    height: 100%;
+    font-size: 38px;
+    color: #000;
+    font-weight: 500;
+}
+
+
+/* ============================================================================
+   3. DROPDOWN MENU STYLING
+   ============================================================================ */
+
+.dropdown-header-item {
+    background-color: orange;
+    color: black;
+    pointer-events: none;
+}
+
+
+/* ============================================================================
+   4. SUBMIT BUTTON
+   ============================================================================ */
+
+.submit-button {
+    height: 62px;
+}
+
+
+/* ============================================================================
+   5. SUBMIT BUTTON CONTENT WRAPPER
+   ============================================================================ */
+
+.submit-btn-wrapper {
+    width: 100%;
+}
+
+
+/* ============================================================================
+   6. SUBMIT BUTTON ROWS (Content Layout)
+   ============================================================================ */
+
+.submit-btn-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+
+/* ============================================================================
+   7. SUBMIT BUTTON TEXT STYLING
+   ============================================================================ */
+
+.submit-text-main {
+    color: #fff;
+    font-size: 16px;
+    line-height: 14px;
+    margin: 0;
+}
+
+.submit-text-note {
+    color: #fff;
+    font-size: 12px;
+    line-height: 14px;
+    margin: 0;
+}
+
+
+/* ============================================================================
+   8. RESPONSIVE ADJUSTMENTS
+   ============================================================================ */
+
+@media (max-width: 600px) {
+    .btn-add-service {
+        height: 55px;
+        font-size: 32px;
+    }
+    
+    .submit-button {
+        height: 55px;
+    }
+}

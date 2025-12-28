@@ -4927,11 +4927,11 @@ img {
   display: inline-block;
   padding: 0;
   position: relative;
-  margin: 0 20px;
+  margin: 0 0;
 }
 @media (max-width: 1599px) {
   .header-wrap .main-menu ul li {
-    margin: 0 5px;
+    margin: 0 0;
   }
 }
 @media (max-width: 1399px) {
@@ -5156,6 +5156,7 @@ img {
 }
 .sticky.header-1 .header-wrap .logo .sticky-logo {
   display: block;
+  width: 200px;
 }
 .sticky.header-1 .header-wrap .main-menu ul li a {
   padding: 26px 10px;
@@ -10875,3 +10876,123 @@ img {
 .footer2-bottom-info__links a:hover {
   color: white;
 }/*# sourceMappingURL=style.css.map */
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.language-selector {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    min-height: 40px;
+}
+
+.language-selector:hover {
+    background: #fff;
+    border-color: #ccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.language-selector:focus {
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+}
+
+.flag-icon-btn {
+    width: 24px;
+    height: 18px;
+    border-radius: 3px;
+    object-fit: cover;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+}
+
+.language-selector .bi-chevron-down {
+    color: #999;
+    flex-shrink: 0;
+    margin-left: 4px;
+}
+
+.language-text {
+    font-size: 14px;
+    color: #333;
+    white-space: nowrap;
+}
+
+.language-dropdown {
+    min-width: 180px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    padding: 12px 0;
+    margin-top: 8px;
+}
+
+.language-dropdown .dropdown-item {
+    padding: 10px 20px;
+    gap: 12px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 400;
+    transition: background-color 0.2s ease;
+    border: none;
+}
+
+.language-dropdown .dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #000;
+    border-radius: 10px;
+}
+
+.language-dropdown .dropdown-item.active {
+    background-color: #f0f0f0;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+.flag-icon {
+    width: 24px;
+    height: 18px;
+    border-radius: 3px;
+    object-fit: cover;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+}
+
+.language-dropdown .dropdown-item span {
+    flex: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 575.98px) {
+    .language-selector {
+        padding: 8px 12px;
+        min-width: 50px;
+    }
+    
+    .flag-icon-btn {
+        width: 22px;
+        height: 16px;
+    }
+}
+
+@media (min-width: 576px) {
+    .language-selector {
+        min-width: 140px;
+    }
+}
+
+.logo {
+  width: 240px;
+}
